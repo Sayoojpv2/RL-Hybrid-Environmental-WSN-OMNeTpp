@@ -11,6 +11,21 @@
 `communicationModel = "ieee802154"` sends every routing frame through `RadioAdapter` to INET's
 `Ieee802154NarrowbandMac` and `Ieee802154NarrowbandScalarRadioMedium`; the routing logic is the same code.
 
+## Communication paths
+
+```mermaid
+flowchart LR
+    C[Controller<br/>rounds, workload, accounting] -->|scheduled reports| SN[SensorNode<br/>RL-Hybrid Q-learning agent]
+    SN -->|next-hop decision| M{communicationModel}
+    M -->|abstract| PM[PeriyarModel<br/>MATLAB link draw and<br/>first-order energy]
+    PM -->|delivered or lost| NH[next-hop SensorNode<br/>or BaseStation]
+    M -->|ieee802154| RA[RadioAdapter<br/>plugin]
+    RA --> INET[INET 4.7.0<br/>Ieee802154NarrowbandMac +<br/>scalar radio medium, CC2420 values]
+    INET --> NH2[next-hop SensorNode<br/>or BaseStation]
+    NH -. outcome feeds Q-learning .-> SN
+    NH2 -. routing answer, matched by txSeq;<br/>1 s timeout counts a lost hop .-> SN
+```
+
 ## Modules
 
 * **Controller**: owns the round clock, loads the scenario workload (`data/scenarios/<profile>_<N>/`), schedules one

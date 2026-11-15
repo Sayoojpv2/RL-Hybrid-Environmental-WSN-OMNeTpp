@@ -24,3 +24,5 @@ __pycache__/
 *.bin
 !matlab_reference/**/*.bin
 release_assets/
+runs/
+validation_runs/

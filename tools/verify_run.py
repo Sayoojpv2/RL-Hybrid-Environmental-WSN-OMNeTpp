@@ -6,7 +6,7 @@ Usage: python3 tools/verify_run.py <Config> <seed> [<seed> ...]
 import csv, glob, math, os, re, sys
 from collections import Counter
 
-RES = "results"
+RES = os.environ.get("RLH_RESULTS_DIR", "results")   # validate.sh sets this to its own output folder
 config, seeds = sys.argv[1], [int(s) for s in sys.argv[2:]]
 out, fails = [], []
 

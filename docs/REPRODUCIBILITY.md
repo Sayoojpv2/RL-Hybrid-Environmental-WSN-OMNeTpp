@@ -1,51 +1,72 @@
 # Reproducibility guide
 
-## Requirements
+## Supported environment
 
-* OMNeT++ 6.4.0 with its bundled MSYS2 clang64 toolchain (developed on Windows 11; Linux should work with the `.sh`
-  scripts but was not tested).
+* **Tested:** Windows 11, OMNeT++ 6.4.0 with its bundled MSYS2 clang64 toolchain.
+* **Not verified:** Linux and macOS. The wireless scripts load Windows DLLs (`libINET.dll`,
+  `wireless/libRLHybridWireless.dll`) and call `cygpath`; the abstract model may build elsewhere but this was not tested.
 * INET 4.7.0, built in release mode in `<OMNETPP_ROOT>/samples/inet-4.7.0`, only for the IEEE 802.15.4 configurations.
   INET is not included in this repository.
-* Python 3.10+ with numpy, pandas and matplotlib for the tools. Run tools with `python -P` from the project root.
+* Python **3.11+** (the commands use `python -P`, which needs 3.11) with numpy and matplotlib. Run tools from the
+  project root.
 * Set `OMNETPP_ROOT` to the OMNeT++ folder. Scripts contain no machine-specific paths.
 
 Build only this project (`build.cmd` / `build.sh`), never a whole IDE workspace.
 
-## Abstract model
+## Output folders: published results are never overwritten by default
+
+| Command | Default output | Override |
+|---|---|---|
+| `run.cmd` / `run.sh` | new `runs/<Config>-<timestamp>/` | `RESULT_DIR` environment variable |
+| `validate.cmd` / `validate.sh` | new `validation_runs/<timestamp>/` (results and logs) | first argument; must be a new or empty folder, historical folders are refused |
+| `run_wireless.sh` | new `runs/wireless-<timestamp>/` | `--result-dir=<folder>` |
+
+`runs/` and `validation_runs/` are ignored by Git. Console logs get a timestamp, so earlier logs are not overwritten.
+The configurations' own `result-dir` values (for example `results_environmental`) are the folders the published results
+were written to; the wrappers override them with `--result-dir`, which also moves the controller's CSV outputs
+(`outputPrefix = "${resultdir}/..."`).
+
+## Three levels of use
+
+1. **Build:** `build.cmd` (simulator); `build_wireless.cmd` (802.15.4 plugin, after INET).
+2. **Optional short demonstration:** `run.cmd GuiDemo20Rounds` (seed 42, rounds 1-20 of the 50-node model; a preview,
+   not a result).
+3. **Full validation suite (an experiment):** `validate.cmd [output dir]` runs the reference check, a 1,000-round
+   seed-42 run and five 1,000-round seeds, and compares them with the MATLAB reference (expect `ALL STAGES PASSED`,
+   112 checks). The comparison tools read the run's own folder (`RLH_RESULTS_DIR`, set by `validate.sh`).
+
+## Experiments, abstract model
 
 ```bat
-build.cmd
-validate.cmd                                   & rem 50-node MATLAB equivalence, expect ALL STAGES PASSED (112 checks)
 run.cmd V2_200Node_Environmental all 200       & rem 5 scenarios x seeds 42-46, 200 nodes
 run.cmd V2_200Node_Environmental all 500       & rem the same at 500 nodes
-python -P tools/environmental_200node.py --nodes 200
 ```
 
-Results go to `results_environmental/` and `results_environmental_500/`. The abstract runs are deterministic: reruns
-of the environmental configurations reproduced 300/300 output files byte for byte (`PROJECT_RESEARCH_UPGRADE_REPORT.md`
-section 13).
+The published results are in `results_environmental/` and `results_environmental_500/`. The abstract runs are
+deterministic: reruns reproduced 300/300 output files byte for byte (`PROJECT_RESEARCH_UPGRADE_REPORT.md` section 13),
+so a new run can be compared file by file with the published folder. `tools/environmental_200node.py --nodes 200`
+reads the published folders and regenerates the analysis files inside them; it does not take another input folder.
 
-## IEEE 802.15.4 model
+## Experiments, IEEE 802.15.4 model
 
 ```bash
 ./build_wireless.sh
 ./run_wireless.sh -f wireless/pilot.ini -c P1_TwoNodeAck        # pilot tests P1 ... P6
-python -P tools/check_wireless_pilot.py
-./run_wireless.sh -c W_Environmental -r '"$scenario"=="mixed" && $N==200 && $seed==42'
-./run_wireless.sh -c W_EventAware    -r '"$scenario"=="mixed" && $N==200 && $seed==42'
+./run_wireless.sh -c W_Environmental -r '"$scenario"=="mixed" && $N==200 && $seed==42' --result-dir=runs/w200_seed42
 ./run_wireless.sh -c W_Environmental -r '"$scenario"=="mixed" && $N==500 && $seed==42' \
-    --result-dir=results_research_upgrade/wireless_N500 --cmdenv-status-frequency=600s
-python -P tools/research_upgrade.py
-python -P tools/wireless500.py
+    --result-dir=runs/w500 --cmdenv-status-frequency=600s
+python -P tools/wireless500.py --dir runs/w500
 ```
 
-Several runs can share a machine with `opp_runall -j4 -b1 bash ./run_wireless.sh ...` (on Windows `opp_runall` needs the
-`bash` prefix). Measured cost on an i5-13420H laptop: about 25 min to 2 h per 200-node run depending on CPU state, and
-5.4 h for one 500-node run alone (168.7 MB peak memory). Run long jobs on AC power, detached from any interactive
-session, and keep the machine from sleeping.
+`tools/check_wireless_pilot.py` and `tools/research_upgrade.py` read the published `results_research_upgrade/`
+folders. Several runs can share a machine with `opp_runall -j4 -b1 bash ./run_wireless.sh ...` (on Windows `opp_runall`
+needs the `bash` prefix). Measured cost on an i5-13420H laptop: about 25 min to 2 h per 200-node run depending on CPU
+state, and 5.4 h for one 500-node run alone (168.7 MB peak memory). Run long jobs on AC power, detached from any
+interactive session, and keep the machine from sleeping.
 
 Binaries used for the reported 802.15.4 results (not included; rebuild from source): simulator SHA-256 prefix
-`9c85e8de20da02bdde7f` and plugin `9b3d42a6f6f4ac6123b5`, built 13 Nov 2026 from the sources in this release.
+`9c85e8de20da02bdde7f` and plugin `9b3d42a6f6f4ac6123b5`, built 13 Nov 2026 from the C++ sources of this release
+(v1.0.1 changes scripts and documentation only, no C++ or NED file).
 
 ## Input data
 

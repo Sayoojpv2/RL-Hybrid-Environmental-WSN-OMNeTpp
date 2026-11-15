@@ -15,6 +15,7 @@ v1.0.0 closes the software simulation study. The items below are open; none of t
 
 ## Method extensions (ideas, not started)
 
+* A systematic literature review and related-work comparison; it was not completed in this project.
 * Scale decision windows and TTL with network size and density.
 * Compare RL-Hybrid on 802.15.4 with established WSN routing baselines (for example RPL or a
   minimum-hop/ETX scheme) in the same simulator.

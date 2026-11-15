@@ -1,0 +1,4 @@
+# Line endings: shell scripts and makefiles stay LF (MSYS bash rejects CRLF); Windows CMD files use CRLF.
+*.sh     text eol=lf
+Makefile text eol=lf
+*.cmd    text eol=crlf

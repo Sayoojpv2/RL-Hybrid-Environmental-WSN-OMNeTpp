@@ -23,7 +23,7 @@ Labels: **complete** (all planned seeds and rounds), **single seed** (complete r
 
 | Experiment | Location | Status |
 |---|---|---|
-| Pilot tests P1-P6 (two-node ACK, collisions, queue, ...) | `results_research_upgrade/pilot/`, `link_check/`, `w10/` | complete |
+| Pilot tests P1-P6 (two-node ACK, collisions, queue, ...) | `results_research_upgrade/pilot/`, `results_research_upgrade/link_check/`, `results_research_upgrade/w10/` | complete |
 | 200 nodes, mixed, variant C, link-budget prior, 500 rounds | `results_research_upgrade/wireless_N200/` | **complete, seeds 42-46** |
 | 200 nodes, mixed, event-aware option, 500 rounds | `results_research_upgrade/eventaware_N200/` (100-round run: `eventaware_N200_100rounds/`) | **single seed (42)**; seeds 43-46 were interrupted (`interrupted_runs/W_EventAware-*`) |
 | 200 nodes, mixed, variant C, MATLAB link prior | `results_research_upgrade/sensitivity_matlab_prior_N200/` | single seed (42) |

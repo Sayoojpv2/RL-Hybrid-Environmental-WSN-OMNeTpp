@@ -19,7 +19,7 @@ doubles; the tolerance only absorbs text formatting).
 import csv, math, os, sys
 
 REF = os.path.join("matlab_reference", "data")
-RES = "results"
+RES = os.environ.get("RLH_RESULTS_DIR", "results")   # validate.sh sets this to its own output folder
 
 def close(a, b, rel=1e-9, ab=1e-12):
     a, b = float(a), float(b)

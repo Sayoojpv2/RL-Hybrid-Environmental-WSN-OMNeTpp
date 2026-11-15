@@ -14,10 +14,11 @@ def rows(p):
         return list(csv.DictReader(f))
 
 ref = {int(r["seed"]): r for r in rows(os.path.join("matlab_reference", "data", "reference_metrics_matlab.csv"))}
-omn = {s: rows(os.path.join("results", f"{config}-seed{s}-metrics.csv"))[0] for s in SEEDS}
+RES = os.environ.get("RLH_RESULTS_DIR", "results")   # validate.sh sets this to its own output folder
+omn = {s: rows(os.path.join(RES, f"{config}-seed{s}-metrics.csv"))[0] for s in SEEDS}
 lat = {}
 for s in SEEDS:   # OMNeT++-only latency (round start -> BS), from the scalar file
-    for line in open(glob.glob(os.path.join("results", f"{config}-seed={s}-#*.sca"))[0]):
+    for line in open(glob.glob(os.path.join(RES, f"{config}-seed={s}-#*.sca"))[0]):
         p = line.split()
         if len(p) >= 4 and p[0] == "scalar" and p[1] == "PeriyarRiverNetwork.BS" and p[2] == "latency:mean":
             lat[s] = float(p[3])

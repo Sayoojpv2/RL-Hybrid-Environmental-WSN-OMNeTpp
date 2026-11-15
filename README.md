@@ -3,8 +3,9 @@
 Reinforcement-learning-based adaptive routing for environmental wireless sensor networks, implemented and evaluated
 with OMNeT++ 6.4.0 and INET 4.7.0.
 
-**Release v1.0.0 is the frozen final snapshot of the software simulation study.** Hardware deployment is not part of
-this release; it is listed as a proposed future extension.
+**v1.0.0 is the frozen final snapshot of the software simulation study; v1.0.1 only repairs scripts and documentation
+([CHANGELOG.md](CHANGELOG.md)).** Hardware deployment is not part of this project's results; it is a proposed future
+extension.
 
 ## The project in three stages
 
@@ -55,26 +56,24 @@ algorithm and between algorithm options.
 * [PROJECT_RESEARCH_UPGRADE_REPORT.md](PROJECT_RESEARCH_UPGRADE_REPORT.md): detailed IEEE 802.15.4 report.
 * [PROJECT_FINAL_AUDIT.md](PROJECT_FINAL_AUDIT.md): audit of the abstract environmental study.
 
-## Quick start
+## Getting started
 
-Requires OMNeT++ 6.4.0 (MSYS2 clang64 toolchain on Windows) and, for the wireless model, INET 4.7.0 built in release mode.
+**Tested environment:** Windows 11, OMNeT++ 6.4.0 with its bundled MSYS2 clang64 toolchain, INET 4.7.0 (release
+build, wireless model only), Python 3.11+ with numpy and matplotlib. Linux and macOS are **not verified**: the wireless
+scripts load Windows DLLs (`libINET.dll`, `libRLHybridWireless.dll`) and use `cygpath`.
 
-Windows command prompt (abstract model):
+Set `OMNETPP_ROOT` once (Windows prompt): `setx OMNETPP_ROOT "D:\omnetpp-6.4.0"`, then open a new prompt.
 
-```bat
-setx OMNETPP_ROOT "D:\omnetpp-6.4.0"
-build.cmd
-run.cmd V2_200Node_Environmental mixed 200
-validate.cmd
-```
+1. **Build** (minutes): `build.cmd` (simulator), and for the wireless model `build_wireless.cmd` after building INET.
+2. **Optional short demonstration** (seed 42, rounds 1-20 of the 50-node MATLAB-equivalent model):
+   `run.cmd GuiDemo20Rounds`. Output goes to a new `runs\GuiDemo20Rounds-<timestamp>\` folder.
+3. **Full validation suite** (an experiment, not a quick check: reference check, a 1,000-round smoke run and five
+   1,000-round seeds): `validate.cmd`. Output and logs go to a new `validation_runs\<timestamp>\` folder.
+4. **Experiments**: `run.cmd V2_200Node_Environmental mixed 200` (abstract model, five seeds) or, in the OMNeT++ shell,
+   `./run_wireless.sh -c W_Environmental -r '"$scenario"=="mixed" && $N==200 && $seed==42'` (802.15.4).
 
-OMNeT++ (MSYS2) shell (IEEE 802.15.4 model):
-
-```bash
-./build_wireless.sh
-./run_wireless.sh -c W_Environmental -r '"$scenario"=="mixed" && $N==200 && $seed==42'
-python -P tools/research_upgrade.py
-```
+The wrappers never write into the published `results*` folders by default; set `RESULT_DIR` (for `run.cmd`) or pass
+`--result-dir` (for `run_wireless.sh`) to choose a folder. Details: [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
 
 Bulky per-event raw outputs are published as `.tar.xz` assets of the GitHub Release; see
 [docs/RAW_DATA_MANIFEST.md](docs/RAW_DATA_MANIFEST.md).
@@ -86,4 +85,4 @@ Bulky per-event raw outputs are published as `.tar.xz` assets of the GitHub Rele
 * UCI Beijing Multi-Site Air Quality (Chen S., 2017, DOI 10.24432/C5RK5G), CC BY 4.0, included with attribution.
 * Industrial-effluent and soil datasets are synthetic (deterministic generators), not measurements.
 
-Code licence: no licence file is included yet; all rights reserved by the author unless a licence is added.
+**Licence:** no licence is granted. All rights are reserved by the author; the code is public for reading and review only.
