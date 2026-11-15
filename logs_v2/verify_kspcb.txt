@@ -1,0 +1,25 @@
+PASS K1 consdata-MANAPPURAM.csv: raw file unchanged (MD5 8f11bcf5…)
+PASS K2 consdata-MANAPPURAM.csv: 1076 non-empty data cells = 439 written + 637 logged
+PASS K1 consdata-MANJUMMAL BUND.csv: raw file unchanged (MD5 11ba7524…)
+PASS K2 consdata-MANJUMMAL BUND.csv: 5732 non-empty data cells = 1958 written + 3774 logged
+PASS K1 consdata-PATHALAM BRIDGE.csv: raw file unchanged (MD5 eecad840…)
+PASS K2 consdata-PATHALAM BRIDGE.csv: 5181 non-empty data cells = 2636 written + 2545 logged
+PASS K1 consdata-PATHALAM BUND US.csv: raw file unchanged (MD5 e3d8320a…)
+PASS K2 consdata-PATHALAM BUND US.csv: 3871 non-empty data cells = 1727 written + 2144 logged
+PASS K1 consdata-PATHALAM BUNDS DS.csv: raw file unchanged (MD5 e773ba02…)
+PASS K2 consdata-PATHALAM BUNDS DS.csv: 5188 non-empty data cells = 2716 written + 2472 logged
+PASS K1 consdata-PURALLIKADAVU  DS.csv: raw file unchanged (MD5 5ce88c9f…)
+PASS K2 consdata-PURALLIKADAVU  DS.csv: 1762 non-empty data cells = 228 written + 1534 logged
+PASS K1 consdata-PURALLIKADAVU  US.csv: raw file unchanged (MD5 8e89f854…)
+PASS K2 consdata-PURALLIKADAVU  US.csv: 1859 non-empty data cells = 256 written + 1603 logged
+PASS K1 consdata-PURAPPILLIKADAVU BUND NAVIGATIO.csv: raw file unchanged (MD5 96ef6f75…)
+PASS K2 consdata-PURAPPILLIKADAVU BUND NAVIGATIO.csv: 1696 non-empty data cells = 242 written + 1454 logged
+PASS K1 consdata-PUTHALAM KADAVU.csv: raw file unchanged (MD5 2980964a…)
+PASS K2 consdata-PUTHALAM KADAVU.csv: 6163 non-empty data cells = 2129 written + 4034 logged
+PASS K1 consdata-VETTUKADAVU.csv: raw file unchanged (MD5 e23980fa…)
+PASS K2 consdata-VETTUKADAVU.csv: 5837 non-empty data cells = 2698 written + 3139 logged
+PASS K3 all 15029 written values found verbatim in the raw files at the same station/date/parameter (0 not found)
+PASS K4 date columns read 1814 = 276 rejected + 19 duplicate dates + 1519 unique station-dates (re-scan: 1814/276/19/1519); 1329 retained rows, 190 station-dates without any usable value
+PASS K5 loader format: 1329 rows, 10 stations, ISO dates, unquoted numeric cells
+
+23 checks, 0 failed

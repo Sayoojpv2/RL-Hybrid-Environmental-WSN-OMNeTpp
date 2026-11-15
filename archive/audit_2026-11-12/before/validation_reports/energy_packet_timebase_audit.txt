@@ -1,0 +1,129 @@
+SENSING ENERGY AUDIT (per node; 1 round = 1 h; 500 rounds = 500 h = 20.8 days)
+======================================================================================================================
+E = V x I x t  [V x A x s = J]. "events/h": samples per hour for sampled sensors; 1 h on-time per hour for continuously
+biased sensors; chemistry events once per 24 rounds (rounds 1, 25, ..., 481 = 21 events in 500 rounds).
+
+water_quality  (sampling every 15 min = 4 samples per 1-h round; report every 2 round(s), alarm reports every 1 round)
+  component              hardware                                         V      mA    on s  ev/500h   J/event    J/500 h  share  class
+  temperature_C          Maxim/Dallas DS18B20                           3.3    1.50   0.750     2000  0.003712      7.425   2.4%  VERIFIED
+  pH                     glass pH electrode + digital interface circu   3.3   15.00   1.000     2000    0.0495         99  32.5%  ASSUMPTION
+  conductivity_uScm      conductivity probe + digital interface (Atla   3.3   15.00   1.000     2000    0.0495         99  32.5%  ASSUMPTION
+  DO_mgL                 optical or galvanic DO probe + interface (At   3.3   15.00   1.000     2000    0.0495         99  32.5%  ASSUMPTION
+  MCU per sample         MCU wake / read / scale / threshold            3.3    5.00   0.010     2000  0.000165       0.33   0.1%  ASSUMPTION
+  TOTAL                                                                                                             304.8         = 0.6095 J/h = 0.1693 mW mean; 152 x the 2 J radio battery
+  [OK] dataset m2_sensing_mJ summed over 500 rounds = 304.7550 J per node (all 200 nodes; max |difference| to the SI recomputation 1.14e-13 J)
+
+industrial_effluent  (sampling every 15 min = 4 samples per 1-h round; report every 1 round(s), alarm reports every 1 round)
+  component              hardware                                         V      mA    on s  ev/500h   J/event    J/500 h  share  class
+  temperature_C          Maxim/Dallas DS18B20                           3.3    1.50   0.750     2000  0.003712      7.425   0.0%  VERIFIED
+  pH                     industrial pH electrode + interface            3.3   15.00   1.000     2000    0.0495         99   0.1%  ASSUMPTION
+  conductivity_uScm      conductivity probe + interface                 3.3   15.00   1.000     2000    0.0495         99   0.1%  ASSUMPTION
+  DO_mgL                 optical DO probe + interface                   3.3   15.00   1.000     2000    0.0495         99   0.1%  ASSUMPTION
+  turbidity_NTU          optical nephelometric turbidity probe          5.0   40.00   1.000     2000       0.2        400   0.3%  ASSUMPTION
+  COD_mgL                UV-Vis spectral probe (SAC254 surrogate for   12.0  250.00  20.000     2000        60    1.2e+05  99.3%  ASSUMPTION
+  NH3N_mgL               ammonium ion-selective electrode with K+ com   3.3   15.00   2.000     2000     0.099        198   0.2%  ASSUMPTION
+  MCU per sample         MCU wake / read / scale / threshold            3.3    5.00   0.010     2000  0.000165       0.33   0.0%  ASSUMPTION
+  TOTAL                                                                                                         1.209e+05         = 241.8 J/h = 67.17 mW mean; 60451 x the 2 J radio battery
+  [OK] dataset m2_sensing_mJ summed over 500 rounds = 120902.7550 J per node (all 200 nodes; max |difference| to the SI recomputation 9.46e-10 J)
+
+air_quality  (sampling every 15 min = 4 samples per 1-h round; report every 1 round(s), alarm reports every 1 round)
+  component              hardware                                         V      mA    on s  ev/500h   J/event    J/500 h  share  class
+  PM25_ugm3              Plantower PMS5003 (laser scattering)           5.0  100.00  30.000     2000        15      3e+04  55.7%  VERIFIED
+  CO_mgm3                Alphasense CO-B4 + ISB                         3.3    1.00 3600.000      500     11.88       5940  11.0%  ASSUMPTION
+  NO2_ugm3               Alphasense NO2-B43F + ISB                      3.3    1.00 3600.000      500     11.88       5940  11.0%  ASSUMPTION
+  SO2_ugm3               Alphasense SO2-B4 + ISB                        3.3    1.00 3600.000      500     11.88       5940  11.0%  ASSUMPTION
+  O3_ugm3                Alphasense OX-B431 + ISB                       3.3    1.00 3600.000      500     11.88       5940  11.0%  ASSUMPTION
+  temperature_C          Sensirion SHT45                                3.3    0.32   0.008     2000 8.765e-06    0.01753   0.0%  VERIFIED
+  wind_ms                cup anemometer, reed-switch pulse counter      3.3    0.01 3600.000      500    0.1188       59.4   0.1%  ASSUMPTION
+  MCU per sample         MCU wake / read / scale / threshold            3.3    5.00   0.010     2000  0.000165       0.33   0.0%  ASSUMPTION
+  TOTAL                                                                                                         5.382e+04         = 107.6 J/h = 29.9 mW mean; 26910 x the 2 J radio battery
+  [OK] dataset m2_sensing_mJ summed over 500 rounds = 53819.7475 J per node (all 200 nodes; max |difference| to the SI recomputation 2.04e-05 J)
+
+soil_monitoring  (sampling every 30 min = 2 samples per 1-h round; report every 4 round(s), alarm reports every 1 round)
+  component              hardware                                         V      mA    on s  ev/500h   J/event    J/500 h  share  class
+  VWC_pct                capacitance/TDR soil-moisture probe (METER T   5.0   10.00   0.150     1000    0.0075        7.5  26.2%  ASSUMPTION
+  soil_pH                soil pH ISE (occasional chemistry reading)     3.3   15.00   5.000       21    0.2475      5.197  18.2%  ASSUMPTION
+  N_mgkg                 nitrate ISE / optical nutrient sensor (occas   5.0   30.00   5.000       21      0.75      15.75  55.0%  ASSUMPTION
+  MCU per sample         MCU wake / read / scale / threshold            3.3    5.00   0.010     1000  0.000165      0.165   0.6%  ASSUMPTION
+  TOTAL                                                                                                             28.61         = 0.05722 J/h = 0.0159 mW mean; 14 x the 2 J radio battery
+  [OK] dataset m2_sensing_mJ summed over 500 rounds = 28.6125 J per node (all 200 nodes; max |difference| to the SI recomputation 2.31e-13 J)
+
+Questionable assumptions and sensitivities (per node, 500 h)
+  - Water counts the DO probe (99.0 J) although DO is NOT in the payload (KSPCB DO preprocessing invalid): 304.8 J with DO, 205.8 J without. EZO-class currents and the
+    1 s on-time are ASSUMPTIONS (datasheets not readable). Each extra second of on-time per pH/EC/DO reading adds 99 J per board.
+  - Standby/sleep currents are NOT in the ledger (sensors assumed power-gated between samples). Every 1 mA left on at 3.3 V costs 5940 J per 500 h, so an un-gated interface board would dominate water and soil.
+  - PMS5003: 15 J per wake-up = 5.0 V x 100 mA x 30 s, all VERIFIED values (manual v2.3), but 100 mA is the MAXIMUM
+    working current, so 30.0 kJ is an upper bound. If the sensor sleeps instead of being power-cut, the VERIFIED
+    standby current (<= 200 uA) adds 1740 J. Running it continuously would cost 900 kJ (30x).
+  - Air gases: 4 electrochemical sensors biased continuously (they cannot be duty-cycled quickly); the 1 mA ISB
+    supply current is an ASSUMPTION: 23760 J = 44 % of the air total.
+  - Effluent: the UV-Vis COD/BOD probe (12 V x 250 mA x 20 s, ASSUMPTION) is 120000 J = 99.3 % of 120903 J. Such multi-watt
+    analysers are normally mains- or solar-powered; without it the node needs 903 J.
+  - Soil: probe (5 V x 10 mA x 150 ms) and pH/NPK readings are ASSUMPTIONS; low-cost RS485 "NPK" probes infer
+    nutrients indirectly and their accuracy is unverified.
+  - Units: every term is V x mA x ms = uJ (generator) = V x A x s = J (this audit); both agree (checks above).
+  - All four profiles exceed the 2 J radio battery (soil 14x, water 152x, air 26,910x, effluent 60,451x), so
+    sensing is kept in a SEPARATE ledger. The runs measure communication-network lifetime, not node battery life.
+
+TIME BASE
+======================================================================================================================
+  1 round = 1 h of environmental time for sampling, reporting and the sensing ledger. 500 rounds = 500 h = 20.8 days.
+  OMNeT++ reserves 100 s of simulated time per round (scheduling only; the network work of a round ends far earlier);
+  path delay is a physical per-report time (k/Rbit + Tproc + d/c per hop), independent of the round slot.
+  water_quality        4 samples/round = every 15 min; periodic report every 2 h; alarm report at most every 1 h while an alarm is active
+  industrial_effluent  4 samples/round = every 15 min; periodic report every 1 h; alarm report at most every 1 h while an alarm is active
+  air_quality          4 samples/round = every 15 min; periodic report every 1 h; alarm report at most every 1 h while an alarm is active
+  soil_monitoring      2 samples/round = every 30 min; periodic report every 4 h; alarm report at most every 1 h while an alarm is active; chemistry every 24 rounds = daily
+  Water VALUES keep the validated KSPCB schedule: 212 sampling dates (2025-01-01 .. 2025-07-31) spread over
+    1000 rounds, i.e. one KSPCB date every 4.735 rounds; rounds 1-500 replay the dates up to ~date index 105 (mid-April 2025).
+    The value stream is therefore time-compressed 5.07x relative to the 1-h round (daily grab samples,
+    sample-and-hold). This affects which values / alarms appear, never energy or the schedule. If the round were taken
+    as the KSPCB slot (~5.07 h) instead, water sensing would rise to 1545 J: this inconsistency is removed by fixing 1 round = 1 h.
+  Air: 500 consecutive UCI hours (2016-12-01 00:00 + 0..499 h). Effluent, soil: synthetic hourly series T+0..499 h.
+
+PACKET SIZE AUDIT
+======================================================================================================================
+  Application header 10 B: node_id 2 B, sequence 2 B, round 2 B, profile_id 1 B, flags 1 B (alarm, priority, report type), field-presence bitmap 2 B.
+  Each field: 16-bit scaled integer (value / scale); absent fields are cleared in the presence bitmap and not sent.
+  MAC/PHY overhead 17 B: IEEE 802.15.4: PHY 6 B (preamble 4, SFD 1, PHR 1) + MAC 11 B (FCF 2, seq 1, dst PAN 2, dst 2, src 2, FCS 2) with 16-bit addresses and PAN-ID compression.
+  IEEE 802.15.4 limit: PSDU <= 127 B, i.e. <= 116 B of MAC payload with this 11 B MAC header + FCS.
+  profile                     fields payload B frame B frame bit reports/127B frame  Mode 2 data: mean frame bit (min-max)
+  water_quality                    4        18      35       280                  6  280.0 (280-280)
+  [OK] water_quality: no Mode 2 frame larger than the full-profile frame
+  industrial_effluent              9        28      45       360                  4  359.7 (328-360)
+  [OK] industrial_effluent: no Mode 2 frame larger than the full-profile frame
+  air_quality                      9        28      45       360                  4  359.5 (264-360)
+  [OK] air_quality: no Mode 2 frame larger than the full-profile frame
+  soil_monitoring no chem          3        16      33       264                  7  274.6 (264-328)
+  soil_monitoring chem             7        24      41       328                  4
+  [OK] soil_monitoring: no Mode 2 frame larger than the full-profile frame
+  Mode 1 / Mode 2T: the reference 4000-bit packet (500 B) of the MATLAB first-order radio model. It is an abstraction:
+    500 B exceeds the 127 B 802.15.4 PSDU (it would need 5 frames). The 18-28 B measurement payload is carried inside it.
+  Aggregation: the cluster head concatenates reports without compression and is charged per report (report-preserving
+    energy: m reports = m x packetSize on TX and RX, plus E_DA x packetSize x m). Aggregation never changes the bits per
+    report. Real 802.15.4 concatenation could share the 17 B overhead (up to the reports/127B column), which the model
+    does not credit, so Mode 2F radio energy is an upper bound for the given traffic.
+  Mode 2F charges every report its own profile frame (scenarioFrameBits: water 280, effluent 360, air 360, soil 264,
+    328 on chemistry rounds; mixed nodes keep their own profile). One-packet thresholds use the frame mean report bits;
+    the minimum-energy rule uses packetSize = the smallest frame of the scenario. Missing fields do not shrink M2F frames.
+    Side effects of a smaller packetSize inside the unchanged model (documented, not hidden):
+    - TX of one report over 50 m: 0.300 mJ at 4000 bit vs 0.0210-0.0270 mJ; the reward energy term
+      min(1, E/1 mJ) shrinks by the same 11-14x factor, so the learned trade-off shifts towards link quality/progress.
+    - minimum-operation rule E < E_elec x packetSize: 200 uJ at 4000 bit vs 14-18 uJ.
+    - hop delay k/Rbit: 16 ms at 4000 bit vs 1.1-1.4 ms; Tproc = 5 ms then dominates.
+    Mode 2T keeps all three exactly as in Mode 1; compare M2T with Mode 1 for the schedule effect and M2F with M2T for
+    the frame-size effect.
+
+MODE 2 PLAN: offered traffic at the sources; relaying multiplies transmissions by the hop count (Mode 1: 4.6)
+======================================================================================================================
+  scenario             reports priority       per node payload B    frame bit   M2F frame  MB M2T  MB M2F   own TX J/node sensing J/node
+  water_quality          68700    40780  343.5 (240-483)     18.00  280.0/280           280   34.35   2.405  0.103/ 0.0072          304.8
+  industrial_effluent    99306    16717  496.5 (476-500)     27.96  359.7/360           360   49.65   4.469  0.149/ 0.0134       120902.8
+  air_quality           100000    64787  500.0 (500-500)     27.93  359.5/360           360   50.00   4.500  0.150/ 0.0135        53819.7
+  soil_monitoring        25135      499  125.7 (117-132)     17.33  274.6/328       264/328   12.57   0.863  0.038/ 0.0026           28.6
+  mixed                  73306    31018  366.5 (121-500)     24.71  333.7/360   own profile   36.65   3.060  0.110/ 0.0092        43764.0
+  Mode 1 (every scenario)   96500        -  482.5 (448-500)         -         4000       -   48.25
+  Radio model (all modes): first-order, E_elec 50 nJ/bit, eps_fs 10 pJ/bit/m^2, eps_mp 0.0013 pJ/bit/m^4, E_DA 5 nJ/bit,
+  d0 = 87.7 m, 2 J per node, report-preserving energy. "own TX" = one 50 m hop of the node's own reports only.
+
+RESULT: all checks passed

@@ -1,0 +1,6 @@
+PASS seed 42: decision trace 33736 rows vs MATLAB 33736 rows -> IDENTICAL (every action, causal estimate, energy and channel outcome)
+PASS seed 42: per-round delivered/operational nodes/residual energy/Q-updates/explorations/epsilon identical in all 1000 rounds
+PASS seed 42: first-unavailable round and reason identical for all 50 nodes (5 became unavailable)
+PASS seed 42: all 23 headline metrics equal to the frozen MATLAB result
+
+4 checks, 0 failed

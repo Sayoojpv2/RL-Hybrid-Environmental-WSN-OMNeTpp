@@ -1,0 +1,2 @@
+seed 44 started 2026-11-15T21:31:51 launcher pid 9608
+seed 44 finished 2026-11-15T22:46:52 bash exit 127 peak_MB 175.2

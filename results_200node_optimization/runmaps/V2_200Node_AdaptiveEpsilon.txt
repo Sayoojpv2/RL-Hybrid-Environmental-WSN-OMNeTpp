@@ -1,0 +1,26 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Config: V2_200Node_AdaptiveEpsilon
+Number of runs: 15
+
+Run 0: $seed=42, $ei=0.05, $em=0.05, $ed=1.0, $repetition=0
+Run 1: $seed=42, $ei=0.25, $em=0.0, $ed=0.99, $repetition=0
+Run 2: $seed=42, $ei=0.25, $em=0.01, $ed=0.99, $repetition=0
+Run 3: $seed=43, $ei=0.05, $em=0.05, $ed=1.0, $repetition=0
+Run 4: $seed=43, $ei=0.25, $em=0.0, $ed=0.99, $repetition=0
+Run 5: $seed=43, $ei=0.25, $em=0.01, $ed=0.99, $repetition=0
+Run 6: $seed=44, $ei=0.05, $em=0.05, $ed=1.0, $repetition=0
+Run 7: $seed=44, $ei=0.25, $em=0.0, $ed=0.99, $repetition=0
+Run 8: $seed=44, $ei=0.25, $em=0.01, $ed=0.99, $repetition=0
+Run 9: $seed=45, $ei=0.05, $em=0.05, $ed=1.0, $repetition=0
+Run 10: $seed=45, $ei=0.25, $em=0.0, $ed=0.99, $repetition=0
+Run 11: $seed=45, $ei=0.25, $em=0.01, $ed=0.99, $repetition=0
+Run 12: $seed=46, $ei=0.05, $em=0.05, $ed=1.0, $repetition=0
+Run 13: $seed=46, $ei=0.25, $em=0.0, $ed=0.99, $repetition=0
+Run 14: $seed=46, $ei=0.25, $em=0.01, $ed=0.99, $repetition=0
+
+End.

@@ -1,0 +1,18 @@
+=== 50-node MATLAB validation (stages B-E + byte identity with the v1 baseline)
+validate_v2 exit 0
+PASS seed 46: decision trace 34908 rows vs MATLAB 34908 rows -> IDENTICAL (every action, causal estimate, energy and channel outcome)
+PASS seed 46: per-round delivered/operational nodes/residual energy/Q-updates/explorations/epsilon identical in all 1000 rounds
+PASS seed 46: first-unavailable round and reason identical for all 50 nodes (7 became unavailable)
+PASS seed 46: all 23 headline metrics equal to the frozen MATLAB result
+20 checks, 0 failed
+55 checks, 0 failed
+51 files compared, 0 different
+ALL STAGES PASSED
+=== MATLAB V2 10-node, seeds 42-46
+V2_10Node exit 0
+compare_v2 exit 0
+95 checks, 0 failed
+=== abstract environmental 200 + 500 nodes: rerun all 50 runs and compare byte for byte
+environmental reruns exit 0
+N=200: 300 files compared, 0 different
+N=500: 300 files compared, 0 different

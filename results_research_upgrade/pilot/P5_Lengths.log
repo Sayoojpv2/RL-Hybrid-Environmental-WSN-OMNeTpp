@@ -1,0 +1,84 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  2
+Loading NED files from <USER_HOME>/Downloads/omnetpp-6.4.0-windows-x86_64/omnetpp-6.4.0/samples/inet-4.7.0/src:  1262
+
+Preparing for running configuration P5_Lengths, run #0...
+Scenario: $len=10, $repetition=0
+Assigned runID=P5_Lengths-0-20261113-01:55:47-22608
+Setting up network "WirelessPilotNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 6e-06s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 28   present: 28   in FES: 2   Memory (RSS): 53.3711MiB
+** Event #22   t=30   Elapsed: 0.000618s (0m 00s)  100% completed  (25% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 48   present: 27   in FES: 0   Memory (RSS): 53.7461MiB
+
+<!> Simulation time limit reached -- at t=30s, event #22
+
+Calling finish() at end of Run #0...
+
+Preparing for running configuration P5_Lengths, run #1...
+Scenario: $len=34, $repetition=0
+Assigned runID=P5_Lengths-1-20261113-01:55:47-22608
+Setting up network "WirelessPilotNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 7e-06s (0m 00s)  0% completed  (25% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 28   present: 28   in FES: 2   Memory (RSS): 53.8516MiB
+** Event #22   t=30   Elapsed: 0.000199s (0m 00s)  100% completed  (50% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 48   present: 27   in FES: 0   Memory (RSS): 53.8516MiB
+
+<!> Simulation time limit reached -- at t=30s, event #22
+
+Calling finish() at end of Run #1...
+
+Preparing for running configuration P5_Lengths, run #2...
+Scenario: $len=60, $repetition=0
+Assigned runID=P5_Lengths-2-20261113-01:55:47-22608
+Setting up network "WirelessPilotNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 8e-06s (0m 00s)  0% completed  (50% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 28   present: 28   in FES: 2   Memory (RSS): 53.8516MiB
+** Event #22   t=30   Elapsed: 0.000208s (0m 00s)  100% completed  (75% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 48   present: 27   in FES: 0   Memory (RSS): 53.8516MiB
+
+<!> Simulation time limit reached -- at t=30s, event #22
+
+Calling finish() at end of Run #2...
+
+Preparing for running configuration P5_Lengths, run #3...
+Scenario: $len=118, $repetition=0
+Assigned runID=P5_Lengths-3-20261113-01:55:47-22608
+Setting up network "WirelessPilotNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 7e-06s (0m 00s)  0% completed  (75% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 28   present: 28   in FES: 2   Memory (RSS): 53.8516MiB
+** Event #22   t=30   Elapsed: 0.000199s (0m 00s)  100% completed  (100% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 48   present: 27   in FES: 0   Memory (RSS): 53.8516MiB
+
+<!> Simulation time limit reached -- at t=30s, event #22
+
+Calling finish() at end of Run #3...
+
+Run statistics: total 4, successful 4
+
+End.

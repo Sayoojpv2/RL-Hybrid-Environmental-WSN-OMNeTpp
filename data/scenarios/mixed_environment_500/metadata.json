@@ -1,0 +1,20 @@
+{
+ "dataset": "mixed_environment_500",
+ "scenario_id": "E",
+ "distribution": {
+  "water_quality": 125,
+  "industrial_effluent": 125,
+  "air_quality": 125,
+  "soil_monitoring": 125
+ },
+ "assignment_seed": 2103,
+ "rule": "nodes 1-10 (the real KSPCB station streams) are always water_quality; the remaining water slots and all other categories are drawn without replacement from nodes 11-200 with the assignment seed",
+ "how_to_read": "for node k take the rows of source_dataset with node_id == k (same node id, same position, same round). Each node keeps its own profile fields; all nodes use the same routing configuration; no relay-only nodes.",
+ "node_map_md5": "2f549fd76610a21e8ecea40cc342a2f6",
+ "source_md5": {
+  "water_quality_500": "3e91790505db34d7be385a72abd923d0",
+  "air_quality_500": "5698517edf2a431b8306b597c8536fce",
+  "industrial_effluent_500": "fd78c2c13230998dd08cf7ca9e08562e",
+  "soil_monitoring_500": "22cb426c62d3041f0fd55303aea8d128"
+ }
+}

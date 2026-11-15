@@ -1,0 +1,45 @@
+water_quality_500: ALL CHECKS PASSED
+PASS observations.csv MD5 matches metadata (3e91790505db34d7be385a72abd923d0)
+PASS 250000 rows = 500 nodes x 500 rounds
+PASS node ids 1..500 (500 nodes)
+PASS rounds 1..500
+PASS sample_id unique
+PASS no duplicate (node, round) records
+PASS field columns present with units: temperature_C [degC], pH [pH], conductivity_uScm [uS/cm], TDS_mgL [mg/L], DO_mgL [mg/L]
+PASS sensor_type / scenario_id labels
+PASS temperature_C: 241250 present, 8750 missing, range 29.4..35.6 within [15, 50], all encodable at scale 0.01
+PASS temperature_C: every missing value is an empty cell explained by quality_flag (8750/8750)
+PASS pH: 241250 present, 8750 missing, range 6.3..8.9 within [0, 14], all encodable at scale 0.001
+PASS pH: every missing value is an empty cell explained by quality_flag (8750/8750)
+PASS conductivity_uScm: 241250 present, 8750 missing, range 2.174..8.236e+04 within [0, 131070], all encodable at scale 2
+PASS conductivity_uScm: every missing value is an empty cell explained by quality_flag (8750/8750)
+PASS TDS_mgL: 241250 present, 8750 missing, range 1.258..4.767e+04 within [0, 65535], all encodable at scale 1
+PASS TDS_mgL: every missing value is an empty cell explained by quality_flag (8750/8750)
+PASS DO_mgL: 117300 present, 132700 missing, range 2.4..14.68 within [0, 15], all encodable at scale 0.01
+PASS DO_mgL: every missing value is an empty cell explained by quality_flag (132700/132700)
+     exact zero values per field (missing values are never written as 0): {"temperature_C": 0, "pH": 0, "conductivity_uScm": 0, "TDS_mgL": 0, "DO_mgL": 0}
+PASS conductivity_uScm non-negative
+PASS TDS_mgL non-negative
+PASS DO_mgL non-negative
+PASS rows of every node ordered by round with no gaps
+PASS sim_time_s = (round - 1) x 100 s
+PASS sampling dates non-decreasing per node (causal sample-and-hold)
+PASS node k -> source stream ((k - 1) mod 10) + 1
+PASS replay nodes 11-500 carry exactly the values of their station node in the same round
+PASS labels: is_real=1, is_synthetic=0, is_replayed=1 only for nodes > 10
+PASS 96500 of 96500 workload reports identical to the validated 200-node OMNeT++ workload (values + date)
+PASS 8750 slots before a station's first valid observation flagged no_observation_yet
+     DO extension: 117300 valid, 73400 invalid (> 15 mg/L or <= 0), 50550 missing in the KSPCB loader table (rows with data)
+PASS alarm_flag recomputed from the profile thresholds
+PASS Mode 1 mask = the 96,500 report slots of the validated 200-node workload (96500)
+PASS Mode 2 payload = 10 B + 2 B/field, frame bits = 8 x (17 B + payload)
+PASS Mode 2 field count = present payload fields
+PASS Mode 2 sends nothing when no field is present
+PASS Mode 2 schedule recomputed: periodic every 2 round(s), alarm reports every 1 round(s)
+PASS m2_sensing_mJ recomputed from sensor_profiles.json (V x mA x ms per sample x samples, continuous loads x 1 h, chemistry only on chemistry rounds, MCU per sample)
+     Mode 1: 96500 reports x 4000 bits = 48.2 MB offered
+     Mode 2: 171750 reports (343.5 per node), 101950 priority (alarm), 6.011 MB offered, mean frame 280 bits; triggers {'no_data': 8750, 'none': 69500, 'periodic': 69800, 'alarm': 51150, 'periodic+alarm': 50800}
+     Mode 2 sensing+processing energy per node: 304.755 J over 500 rounds (609.510..609.510 mJ per round)
+     alarm rows: 101950 (40.8%); anomaly rows: 101950; event types: {'none': 148050, 'observed_exceedance': 101950}
+     quality flags: {"no_observation_yet": 8750, "ok": 117300, "DO_invalid_value": 73400, "DO_missing": 50550}
+PASS reproducible: regenerated observations.csv is byte-identical (MD5)

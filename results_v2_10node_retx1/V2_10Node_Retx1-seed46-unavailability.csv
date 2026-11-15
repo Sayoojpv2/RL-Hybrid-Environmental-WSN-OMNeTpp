@@ -1,0 +1,11 @@
+node,firstUnavailableRound,reason
+1,NaN,
+2,NaN,
+3,NaN,
+4,NaN,
+5,NaN,
+6,121,insufficient_tx_energy
+7,115,insufficient_tx_energy
+8,432,insufficient_tx_energy
+9,NaN,
+10,NaN,

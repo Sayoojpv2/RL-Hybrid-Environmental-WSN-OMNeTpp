@@ -1,0 +1,6 @@
+scenario,reports_m2,priority_reports,reports_per_node_mean,reports_per_node_min,reports_per_node_max,payload_B_mean,frame_bits_mean,frame_bits_max,M2T_packet_bits,M2F_frame_bits,offered_MB_M2T,offered_MB_M2F,own_TX_J_per_node_50m_M2T,own_TX_J_per_node_50m_M2F,sensing_J_per_node_500h,mode1_reports,mode1_offered_MB
+water_quality,68700,40780,343.5,240,483,18.00,280.0,280,4000,280,34.35,2.405,0.1031,0.00721,304.8,96500,48.25
+industrial_effluent,99306,16717,496.5,476,500,27.96,359.7,360,4000,360,49.65,4.469,0.1490,0.01341,120902.8,96500,48.25
+air_quality,100000,64787,500.0,500,500,27.93,359.5,360,4000,360,50.00,4.500,0.1500,0.01350,53819.7,96500,48.25
+soil_monitoring,25135,499,125.7,117,132,17.33,274.6,328,4000,264/328,12.57,0.863,0.0377,0.00259,28.6,96500,48.25
+mixed,73306,31018,366.5,121,500,24.71,333.7,360,4000,own profile,36.65,3.060,0.1100,0.00918,43764.0,96500,48.25

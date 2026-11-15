@@ -1,0 +1,3 @@
+NOTE: PeriyarValidation.ned was renamed to PeriyarValidation.ned.archived after hashing (same content/MD5) so OMNeT++ does not load it as a duplicate NED type.
+NED recorded: c231e6af50d28714d3645045bad68d1d  renamed copy: c231e6af50d28714d3645045bad68d1d
+NOTE: MANIFEST.md5 lists itself (hashed while being written); that one line is expected to fail.

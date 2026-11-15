@@ -1,0 +1,51 @@
+industrial_effluent_200: ALL CHECKS PASSED
+PASS observations.csv MD5 matches metadata (b4b5327bd542320696dadbbbd003058a)
+PASS 100000 rows = 200 nodes x 500 rounds
+PASS node ids 1..200 (200 nodes)
+PASS rounds 1..500
+PASS sample_id unique
+PASS no duplicate (node, round) records
+PASS field columns present with units: temperature_C [degC], pH [pH], conductivity_uScm [uS/cm], TDS_mgL [mg/L], DO_mgL [mg/L], turbidity_NTU [NTU], COD_mgL [mg/L], BOD_mgL [mg/L], NH3N_mgL [mg/L as N]
+PASS sensor_type / scenario_id labels
+PASS temperature_C: 99110 present, 890 missing, range 26.54..40.53 within [0, 60], all encodable at scale 0.01
+PASS temperature_C: every missing value is an empty cell explained by quality_flag (890/890)
+PASS pH: 99098 present, 902 missing, range 2.444..12 within [0, 14], all encodable at scale 0.001
+PASS pH: every missing value is an empty cell explained by quality_flag (902/902)
+PASS conductivity_uScm: 99080 present, 920 missing, range 1290..9460 within [0, 131070], all encodable at scale 2
+PASS conductivity_uScm: every missing value is an empty cell explained by quality_flag (920/920)
+PASS TDS_mgL: 99112 present, 888 missing, range 783..6295 within [0, 65535], all encodable at scale 1
+PASS TDS_mgL: every missing value is an empty cell explained by quality_flag (888/888)
+PASS DO_mgL: 99097 present, 903 missing, range 0..6.89 within [0, 20], all encodable at scale 0.01
+PASS DO_mgL: every missing value is an empty cell explained by quality_flag (903/903)
+PASS turbidity_NTU: 99098 present, 902 missing, range 4.6..235.7 within [0, 4000], all encodable at scale 0.1
+PASS turbidity_NTU: every missing value is an empty cell explained by quality_flag (902/902)
+PASS COD_mgL: 99112 present, 888 missing, range 47..2374 within [0, 5000], all encodable at scale 1
+PASS COD_mgL: every missing value is an empty cell explained by quality_flag (888/888)
+PASS BOD_mgL: 99108 present, 892 missing, range 5.9..351.6 within [0, 3000], all encodable at scale 0.1
+PASS BOD_mgL: every missing value is an empty cell explained by quality_flag (892/892)
+PASS NH3N_mgL: 99107 present, 893 missing, range 2.87..165.1 within [0, 500], all encodable at scale 0.01
+PASS NH3N_mgL: every missing value is an empty cell explained by quality_flag (893/893)
+     exact zero values per field (missing values are never written as 0): {"temperature_C": 0, "pH": 0, "conductivity_uScm": 0, "TDS_mgL": 0, "DO_mgL": 79, "turbidity_NTU": 0, "COD_mgL": 0, "BOD_mgL": 0, "NH3N_mgL": 0}
+PASS conductivity_uScm non-negative
+PASS TDS_mgL non-negative
+PASS DO_mgL non-negative
+PASS turbidity_NTU non-negative
+PASS COD_mgL non-negative
+PASS BOD_mgL non-negative
+PASS NH3N_mgL non-negative
+PASS rows of every node ordered by round with no gaps
+PASS sim_time_s = (round - 1) x 100 s
+PASS env_time step 1 h (T+0000h .. T+0499h)
+PASS node k -> source stream ((k - 1) mod 20) + 1
+PASS labels: every row is_synthetic=1, is_real=0, data_source=SYNTHETIC
+PASS alarm_flag recomputed from the profile thresholds
+PASS Mode 1 mask = the 96,500 report slots of the validated 200-node workload (96500)
+PASS Mode 2 payload = 10 B + 2 B/field, frame bits = 8 x (17 B + payload)
+PASS Mode 2 field count = present payload fields
+PASS Mode 2 sends nothing when no field is present
+     Mode 1: 96500 reports x 4000 bits = 48.2 MB offered
+     Mode 2: 99306 reports (496.5 per node), 16717 priority (alarm), 4.465 MB offered, mean frame 360 bits; triggers {'periodic': 82589, 'periodic+alarm': 16717, 'no_data': 694}
+     Mode 2 sensing+processing energy per node: 120902.755 J over 500 rounds (241805.510..241805.510 mJ per round)
+     alarm rows: 16717 (16.7%); anomaly rows: 12730; event types: {'none': 86634, 'abnormal_discharge': 5376, 'treatment_upset': 7314, 'sensor_outage': 636, 'sensor_spike': 40}
+     quality flags: {"ok": 97489, "missing:COD_mgL": 194, "missing:conductivity_uScm": 226, "missing:turbidity_NTU": 208, "missing:BOD_mgL": 198, "missing:TDS_mgL": 194, "missing:pH": 208, "missing:temperature_C": 196, "missing:DO_mgL": 209, "missing:NH3N_mgL": 199, "sensor_outage": 694}
+PASS reproducible: regenerated observations.csv is byte-identical (MD5)

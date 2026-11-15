@@ -1,0 +1,144 @@
+PASS N=10 seed 42: S1 10 node modules + 1 BS; per-node energy closes (max error 2.0e-14 J)
+PASS N=10 seed 42: S2 10 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=10 seed 42: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 0 SYNTHETIC-labelled reports for nodes 11-10; all 10 nodes are report sources
+PASS N=10 seed 42: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=10 seed 43: S1 10 node modules + 1 BS; per-node energy closes (max error 6.4e-14 J)
+PASS N=10 seed 43: S2 10 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=10 seed 43: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 0 SYNTHETIC-labelled reports for nodes 11-10; all 10 nodes are report sources
+PASS N=10 seed 43: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=10 seed 44: S1 10 node modules + 1 BS; per-node energy closes (max error 6.1e-14 J)
+PASS N=10 seed 44: S2 10 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=10 seed 44: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 0 SYNTHETIC-labelled reports for nodes 11-10; all 10 nodes are report sources
+PASS N=10 seed 44: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=10 seed 45: S1 10 node modules + 1 BS; per-node energy closes (max error 1.2e-13 J)
+PASS N=10 seed 45: S2 10 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=10 seed 45: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 0 SYNTHETIC-labelled reports for nodes 11-10; all 10 nodes are report sources
+PASS N=10 seed 45: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=10 seed 46: S1 10 node modules + 1 BS; per-node energy closes (max error 6.9e-14 J)
+PASS N=10 seed 46: S2 10 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=10 seed 46: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 0 SYNTHETIC-labelled reports for nodes 11-10; all 10 nodes are report sources
+PASS N=10 seed 46: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=20 seed 42: S1 20 node modules + 1 BS; per-node energy closes (max error 7.2e-14 J)
+PASS N=20 seed 42: S2 20 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=20 seed 42: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 5000 SYNTHETIC-labelled reports for nodes 11-20; all 20 nodes are report sources
+PASS N=20 seed 42: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=20 seed 43: S1 20 node modules + 1 BS; per-node energy closes (max error 7.9e-14 J)
+PASS N=20 seed 43: S2 20 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=20 seed 43: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 5000 SYNTHETIC-labelled reports for nodes 11-20; all 20 nodes are report sources
+PASS N=20 seed 43: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=20 seed 44: S1 20 node modules + 1 BS; per-node energy closes (max error 3.6e-14 J)
+PASS N=20 seed 44: S2 20 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=20 seed 44: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 5000 SYNTHETIC-labelled reports for nodes 11-20; all 20 nodes are report sources
+PASS N=20 seed 44: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=20 seed 45: S1 20 node modules + 1 BS; per-node energy closes (max error 6.8e-14 J)
+PASS N=20 seed 45: S2 20 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=20 seed 45: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 5000 SYNTHETIC-labelled reports for nodes 11-20; all 20 nodes are report sources
+PASS N=20 seed 45: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=20 seed 46: S1 20 node modules + 1 BS; per-node energy closes (max error 7.9e-14 J)
+PASS N=20 seed 46: S2 20 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=20 seed 46: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 5000 SYNTHETIC-labelled reports for nodes 11-20; all 20 nodes are report sources
+PASS N=20 seed 46: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=50 seed 42: S1 50 node modules + 1 BS; per-node energy closes (max error 7.5e-14 J)
+PASS N=50 seed 42: S2 50 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=50 seed 42: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 20000 SYNTHETIC-labelled reports for nodes 11-50; all 50 nodes are report sources
+PASS N=50 seed 42: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=50 seed 43: S1 50 node modules + 1 BS; per-node energy closes (max error 1.2e-13 J)
+PASS N=50 seed 43: S2 50 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=50 seed 43: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 20000 SYNTHETIC-labelled reports for nodes 11-50; all 50 nodes are report sources
+PASS N=50 seed 43: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=50 seed 44: S1 50 node modules + 1 BS; per-node energy closes (max error 5.5e-14 J)
+PASS N=50 seed 44: S2 50 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=50 seed 44: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 20000 SYNTHETIC-labelled reports for nodes 11-50; all 50 nodes are report sources
+PASS N=50 seed 44: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=50 seed 45: S1 50 node modules + 1 BS; per-node energy closes (max error 5.3e-14 J)
+PASS N=50 seed 45: S2 50 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=50 seed 45: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 20000 SYNTHETIC-labelled reports for nodes 11-50; all 50 nodes are report sources
+PASS N=50 seed 45: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=50 seed 46: S1 50 node modules + 1 BS; per-node energy closes (max error 8.4e-14 J)
+PASS N=50 seed 46: S2 50 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=50 seed 46: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 20000 SYNTHETIC-labelled reports for nodes 11-50; all 50 nodes are report sources
+PASS N=50 seed 46: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=100 seed 42: S1 100 node modules + 1 BS; per-node energy closes (max error 1.1e-13 J)
+PASS N=100 seed 42: S2 100 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=100 seed 42: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 45000 SYNTHETIC-labelled reports for nodes 11-100; all 100 nodes are report sources
+PASS N=100 seed 42: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=100 seed 43: S1 100 node modules + 1 BS; per-node energy closes (max error 1.6e-13 J)
+PASS N=100 seed 43: S2 100 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=100 seed 43: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 45000 SYNTHETIC-labelled reports for nodes 11-100; all 100 nodes are report sources
+PASS N=100 seed 43: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=100 seed 44: S1 100 node modules + 1 BS; per-node energy closes (max error 1.5e-13 J)
+PASS N=100 seed 44: S2 100 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=100 seed 44: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 45000 SYNTHETIC-labelled reports for nodes 11-100; all 100 nodes are report sources
+PASS N=100 seed 44: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=100 seed 45: S1 100 node modules + 1 BS; per-node energy closes (max error 1.0e-13 J)
+PASS N=100 seed 45: S2 100 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=100 seed 45: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 45000 SYNTHETIC-labelled reports for nodes 11-100; all 100 nodes are report sources
+PASS N=100 seed 45: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=100 seed 46: S1 100 node modules + 1 BS; per-node energy closes (max error 1.2e-13 J)
+PASS N=100 seed 46: S2 100 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=100 seed 46: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 45000 SYNTHETIC-labelled reports for nodes 11-100; all 100 nodes are report sources
+PASS N=100 seed 46: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=200 seed 42: S1 200 node modules + 1 BS; per-node energy closes (max error 1.1e-13 J)
+PASS N=200 seed 42: S2 200 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=200 seed 42: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 95000 SYNTHETIC-labelled reports for nodes 11-200; all 200 nodes are report sources
+PASS N=200 seed 42: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=200 seed 43: S1 200 node modules + 1 BS; per-node energy closes (max error 1.7e-13 J)
+PASS N=200 seed 43: S2 200 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=200 seed 43: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 95000 SYNTHETIC-labelled reports for nodes 11-200; all 200 nodes are report sources
+PASS N=200 seed 43: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=200 seed 44: S1 200 node modules + 1 BS; per-node energy closes (max error 1.6e-13 J)
+PASS N=200 seed 44: S2 200 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=200 seed 44: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 95000 SYNTHETIC-labelled reports for nodes 11-200; all 200 nodes are report sources
+PASS N=200 seed 44: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=200 seed 45: S1 200 node modules + 1 BS; per-node energy closes (max error 1.4e-13 J)
+PASS N=200 seed 45: S2 200 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=200 seed 45: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 95000 SYNTHETIC-labelled reports for nodes 11-200; all 200 nodes are report sources
+PASS N=200 seed 45: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=200 seed 46: S1 200 node modules + 1 BS; per-node energy closes (max error 1.6e-13 J)
+PASS N=200 seed 46: S2 200 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=200 seed 46: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 95000 SYNTHETIC-labelled reports for nodes 11-200; all 200 nodes are report sources
+PASS N=200 seed 46: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=500 seed 42: S1 500 node modules + 1 BS; per-node energy closes (max error 1.9e-13 J)
+PASS N=500 seed 42: S2 500 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=500 seed 42: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 245000 SYNTHETIC-labelled reports for nodes 11-500; all 500 nodes are report sources
+PASS N=500 seed 42: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=500 seed 43: S1 500 node modules + 1 BS; per-node energy closes (max error 2.1e-13 J)
+PASS N=500 seed 43: S2 500 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=500 seed 43: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 245000 SYNTHETIC-labelled reports for nodes 11-500; all 500 nodes are report sources
+PASS N=500 seed 43: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=500 seed 44: S1 500 node modules + 1 BS; per-node energy closes (max error 1.7e-13 J)
+PASS N=500 seed 44: S2 500 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=500 seed 44: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 245000 SYNTHETIC-labelled reports for nodes 11-500; all 500 nodes are report sources
+PASS N=500 seed 44: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=500 seed 45: S1 500 node modules + 1 BS; per-node energy closes (max error 1.6e-13 J)
+PASS N=500 seed 45: S2 500 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=500 seed 45: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 245000 SYNTHETIC-labelled reports for nodes 11-500; all 500 nodes are report sources
+PASS N=500 seed 45: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+PASS N=500 seed 46: S1 500 node modules + 1 BS; per-node energy closes (max error 1.7e-13 J)
+PASS N=500 seed 46: S2 500 positions inside 600 x 50 m, distinct; nodes 1-10 = MATLAB V2 positions
+PASS N=500 seed 46: S3 nodes 1-10 = the 4825 real KSPCB reports of MATLAB V2; 245000 SYNTHETIC-labelled reports for nodes 11-500; all 500 nodes are report sources
+PASS N=500 seed 46: S4 end-of-run accounting and per-round invariants OK (500 rounds)
+
+120 checks, 0 failed
+
+| Metric | N = 10 | N = 20 | N = 50 | N = 100 | N = 200 | N = 500 |
+|---|---|---|---|---|---|---|
+| Operational nodes at end | 7.6 ± 0.9 | 13.2 ± 1.8 | 30.2 ± 4.4 | 55.6 ± 7.2 | 100.2 ± 7.2 | 201.2 ± 17.4 |
+|   (% of N) | 76.0 ± 8.9 | 66.0 ± 8.9 | 60.4 ± 8.8 | 55.6 ± 7.2 | 50.1 ± 3.6 | 40.2 ± 3.5 |
+| Residual energy (J) | 8.60 ± 1.27 | 13.82 ± 2.18 | 26.65 ± 8.37 | 49.50 ± 14.78 | 79.88 ± 15.88 | 148.43 ± 24.51 |
+|   (% of initial 2N J) | 43.0 ± 6.3 | 34.5 ± 5.5 | 26.6 ± 8.4 | 24.7 ± 7.4 | 20.0 ± 4.0 | 14.8 ± 2.5 |
+| Generated reports | 4327 ± 154 | 8328 ± 311 | 20115 ± 366 | 39407 ± 1115 | 76418 ± 1695 | 180558 ± 3287 |
+| Delivered reports | 1414 ± 369 | 4264 ± 427 | 9421 ± 967 | 17931 ± 1283 | 32948 ± 2367 | 76191 ± 3117 |
+|   of which real KSPCB (nodes 1-10) | 1414 ± 369 | 1792 ± 274 | 1668 ± 294 | 1645 ± 223 | 1553 ± 278 | 1334 ± 163 |
+| Valid-report delivery ratio (%) | 29.30 ± 7.66 | 43.40 ± 4.35 | 37.95 ± 3.89 | 35.99 ± 2.57 | 33.01 ± 2.37 | 30.50 ± 1.25 |
+| Source-packet PDR (%) | 32.81 ± 9.05 | 51.18 ± 4.41 | 46.80 ± 4.32 | 45.47 ± 2.25 | 43.10 ± 2.65 | 42.19 ± 1.31 |
+| Delivered / scheduled (%) | 28.28 ± 7.39 | 42.64 ± 4.27 | 37.68 ± 3.87 | 35.86 ± 2.57 | 32.95 ± 2.37 | 30.48 ± 1.25 |
+| Mean delay per report (ms) | 48.4 ± 11.8 | 61.9 ± 3.4 | 72.7 ± 7.3 | 83.2 ± 7.4 | 91.9 ± 4.0 | 107.3 ± 4.3 |
+| Mean delay, round-weighted (ms) | 42.0 ± 8.3 | 58.4 ± 2.5 | 67.8 ± 6.0 | 77.2 ± 6.2 | 86.0 ± 3.6 | 101.6 ± 5.3 |
+| Mean delivered hops | 2.31 ± 0.56 | 2.95 ± 0.16 | 3.46 ± 0.35 | 3.96 ± 0.35 | 4.37 ± 0.19 | 5.11 ± 0.20 |
+| First node failure (round) | 192.4 ± 87.0 | 111.6 ± 47.9 | 117.4 ± 47.7 | 111.6 ± 55.6 | 107.0 ± 20.1 | 81.2 ± 10.0 |
+| Nodes that received frames from others | 10.0 ± 0.0 | 20.0 ± 0.0 | 50.0 ± 0.0 | 100.0 ± 0.0 | 200.0 ± 0.0 | 500.0 ± 0.0 |
+| Q-table entries, all nodes | 520 ± 85 | 1986 ± 113 | 8321 ± 733 | 21897 ± 1974 | 55443 ± 2635 | 179541 ± 4432 |
+| Runtime per run (s) | 0.5 ± 0.1 | 0.7 ± 0.1 | 1.3 ± 0.2 | 2.5 ± 0.4 | 9.9 ± 0.6 | 48.7 ± 1.6 |
+| Peak memory per run (MiB) | 22 ± 0 | 22 ± 0 | 25 ± 0 | 30 ± 0 | 40 ± 0 | 73 ± 0 |
+graph: results_v2_scaling/v2_scaling_vs_N.png

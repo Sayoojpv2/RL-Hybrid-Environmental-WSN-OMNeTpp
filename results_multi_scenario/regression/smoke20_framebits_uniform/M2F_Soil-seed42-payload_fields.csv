@@ -1,0 +1,8 @@
+name,unit,origin,datasetColumn
+VWC_pct,see metadata.json,scenario,VWC_pct
+soil_temperature_C,see metadata.json,scenario,soil_temperature_C
+bulk_EC_dSm,see metadata.json,scenario,bulk_EC_dSm
+soil_pH,see metadata.json,scenario,soil_pH
+N_mgkg,see metadata.json,scenario,N_mgkg
+P_mgkg,see metadata.json,scenario,P_mgkg
+K_mgkg,see metadata.json,scenario,K_mgkg

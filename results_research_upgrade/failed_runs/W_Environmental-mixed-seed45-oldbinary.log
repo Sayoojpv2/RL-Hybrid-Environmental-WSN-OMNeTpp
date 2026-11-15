@@ -1,0 +1,32 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  2
+Loading NED files from <USER_HOME>/Downloads/omnetpp-6.4.0-windows-x86_64/omnetpp-6.4.0/samples/inet-4.7.0/src:  1262
+
+Preparing for running configuration W_Environmental, run #19...
+Scenario: $N=200, $rd=results_environmental, $seed=45, $scenario=mixed, $profile=mixed_environment, $repetition=0
+Assigned runID=W_Environmental-19-20261113-08:15:16-12596
+Setting up network "PeriyarWirelessNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.4e-05s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 3016   present: 3016   in FES: 2   Memory (RSS): 83.6445MiB
+** Event #27988736   t=3402.327523722875   Elapsed: 600.005s (10m 00s)  3% completed  (3% total)
+     Speed:     ev/sec=46647.5   simsec/sec=5.6705   ev/simsec=8226.35
+     Messages:  created: 43128795   present: 3562   in FES: 229   Memory (RSS): 93.8867MiB
+** Event #68824536   t=8323.847977818857   Elapsed: -136.184s (-2m -17s)  8% completed  (8% total)
+     Speed:     ev/sec=11474.7   simsec/sec=1.37735   ev/simsec=8330.98
+     Messages:  created: 106042843   present: 3016   in FES: 1   Memory (RSS): 94.7812MiB
+<!> Error: node 159: no MAC outcome for frame rl:159:739 within 20 s -- in module (SensorNode) PeriyarWirelessNetwork.node[158].rl (id=3235), at t=8323.847977818857s, event #68824536
+
+End.
+
+real	28m31.900s
+user	0m0.091s
+sys	0m0.167s

@@ -1,0 +1,4 @@
+round,simTime,node,reason,energyJ
+53,520.38100619479803,5,insufficient_tx_energy,0.00042675577618455133
+109,1080.432011795652,6,below_minimum_radio_operation_energy,9.4518673355611428e-05
+499,4980.0930016060602,2,insufficient_tx_energy,0.0022522432935501973

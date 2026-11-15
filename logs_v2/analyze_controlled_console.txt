@@ -1,0 +1,10 @@
+N=50: PDR 38.64 ± 0.86, deliv/emit 41.99 ± 0.75, hops 4.31 ± 0.08, tx/deliv 8.20 ± 0.27, txSucc 0.8381 ± 0.0018, LQ 0.8370 ± 0.0019, candRoute 10.3 ± 0.2, prog 72.2 ± 1.0, FND [500, 638, 702, 503, 564]
+N=100: PDR 35.84 ± 1.30, deliv/emit 37.60 ± 0.74, hops 5.17 ± 0.11, tx/deliv 9.92 ± 0.23, txSucc 0.8361 ± 0.0041, LQ 0.8393 ± 0.0026, candRoute 23.2 ± 0.7, prog 66.6 ± 2.0, FND [811, 846, 950, 720, 697]
+N=250: PDR 34.12 ± 0.90, deliv/emit 35.48 ± 0.65, hops 5.50 ± 0.20, tx/deliv 10.68 ± 0.35, txSucc 0.8306 ± 0.0031, LQ 0.8308 ± 0.0021, candRoute 56.5 ± 0.7, prog 67.9 ± 1.6, FND [755, 968, 904, 867, 579]
+N=500: PDR 31.64 ± 0.55, deliv/emit 32.96 ± 0.27, hops 6.04 ± 0.17, tx/deliv 11.78 ± 0.31, txSucc 0.8279 ± 0.0028, LQ 0.8276 ± 0.0024, candRoute 110.6 ± 2.6, prog 65.8 ± 2.0, FND [811, 684, 835, 778, 963]
+topo 900042: PDR 33.07, hops 5.83, maxGap 9.6, within100 42
+topo 910001: PDR 29.65, hops 5.39, maxGap 12.9, within100 43
+topo 910002: PDR 33.15, hops 5.36, maxGap 15.4, within100 34
+topo 910003: PDR 32.70, hops 5.61, maxGap 16.7, within100 44
+topo 910004: PDR 34.40, hops 5.55, maxGap 15.7, within100 49
+placement sd 1.77 vs run-seed sd 0.90

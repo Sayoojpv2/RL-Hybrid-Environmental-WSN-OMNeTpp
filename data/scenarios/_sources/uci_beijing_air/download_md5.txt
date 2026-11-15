@@ -1,0 +1,3 @@
+99b984f58bdf4feffd0769d30888721f  uci_download_501.zip (outer UCI download wrapper, 8,192,212 B, deleted after unwrapping)
+5ae0dea7626dd1dca091e08ee0cf5001  PRSA2017_Data_20130301-20170228.zip (inner archive, kept unchanged, 7,959,991 B)
+source: https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip  downloaded 2026-11-11

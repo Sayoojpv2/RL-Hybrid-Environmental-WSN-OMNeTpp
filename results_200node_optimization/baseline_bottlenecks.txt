@@ -1,0 +1,24 @@
+## Baseline bottlenecks (seeds 42-46)
+lossChannel: 34808 (54.5% of non-delivered valid reports)
+lossNoCand: 7576 (11.9% of non-delivered valid reports)
+deadSource: 21291 (33.3% of non-delivered valid reports)
+unattempted: 9 (0.0% of non-delivered valid reports)
+lossEnergy: 208 (0.3% of non-delivered valid reports)
+lossTTL: 6 (0.0% of non-delivered valid reports)
+dead nodes per seed [107, 98, 95, 89, 98]; mean distance to BS of dead nodes 334 m vs all nodes 303 m
+  distance to BS 0-100 m: 176 nodes, 37 died (21%), mean reports forwarded 2194, mean energy spent 1.321 J
+  distance to BS 100-200 m: 153 nodes, 5 died (3%), mean reports forwarded 1033, mean energy spent 1.201 J
+  distance to BS 200-300 m: 144 nodes, 106 died (74%), mean reports forwarded 697, mean energy spent 1.888 J
+  distance to BS 300-400 m: 177 nodes, 177 died (100%), mean reports forwarded 599, mean energy spent 1.995 J
+  distance to BS 400-650 m: 350 nodes, 162 died (46%), mean reports forwarded 1119, mean energy spent 1.559 J
+real station nodes (1-10) that died: 25 of 50 (5 seeds)
+seed 42: 5257 no-candidate losses; by round quartile [0, 0, 1723, 3534]
+seed 42: frame success 0.873; mean true LQ of chosen links 0.858; member-hop success 0.845; route-hop success 0.887
+seed 42: route decisions 157135; mean feasible candidates 31.7; share choosing BS 0.142; exploratory 0.182
+seed 42: cluster decisions 75185; self-head share 0.003; mean cluster candidates 91.8
+seed 42 death reasons: [('insufficient_tx_energy', 74), ('below_minimum_radio_operation_energy', 26), ('insufficient_rx_energy', 4), ('insufficient_aggregation_energy', 3)]
+seed 42 rounds 1-100: alive end 199, source PDR 40.5%, channel losses 9820, no-candidate 0, epsilon 0.250
+seed 42 rounds 101-200: alive end 193, source PDR 46.6%, channel losses 10496, no-candidate 0, epsilon 0.215
+seed 42 rounds 201-300: alive end 141, source PDR 47.1%, channel losses 8994, no-candidate 0, epsilon 0.185
+seed 42 rounds 301-400: alive end 109, source PDR 39.9%, channel losses 4433, no-candidate 2507, epsilon 0.159
+seed 42 rounds 401-500: alive end 93, source PDR 41.3%, channel losses 3160, no-candidate 2750, epsilon 0.137

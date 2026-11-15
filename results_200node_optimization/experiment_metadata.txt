@@ -1,0 +1,51 @@
+200-NODE ENVIRONMENTAL RL-HYBRID WSN - EXPERIMENT METADATA
+Extended OMNeT++ simulation (OMNeT++ 6.4.0). There is NO 200-node MATLAB reference; the MATLAB V2 model
+(<USER_HOME>\Documents\MATLAB\RL_WSN_Periyar_V2_10Nodes) is reproduced exactly only at 10 nodes (config V2_10Node,
+tools/compare_v2.py, 95/95 checks). All 200-node variants are compared with the 200-node OMNeT++ baseline V2_200Node.
+
+DATA SOURCE
+  Workbook: MATLAB V2 data/consdata.xlsx (MD5 6100b72899bd76df5a393fbbc5fb898a, unchanged), KSPCB "Analysis report of
+  River Periyar", January-July 2025, 10 sheets = 10 sampling points.
+  Parameters present in the workbook (22-30 rows per sheet): Temperature [degC], pH, Conductivity [uS/cm], TDS [mg/L],
+  Turbidity [NTU], Colour [Hazen], SS [mg/L], Chlorides, Hardness, D.O., COD, Calcium, Magnesium, Ammoniacal Nitrogen,
+  Free Ammonia, Phosphates, Hexa Chromium, Oil & Grease, Iron, Sulphides, Sulphates, Nitrate, Total Alkalinity, BOD,
+  TC/FC/FS [cfu/100ml], Sodium, Potassium [ppm], SAR [meq/L] (the last 8 only on 7 sheets); units marked "ditto" in the
+  sheet are mg/L.
+  MATLAB V2 reads (load_consdata_xlsx.m): Temperature, pH, Conductivity, TDS, D.O.
+  MATLAB V2 workload uses and carries (create_periyar_workload_continuous.m): temperature, pH, conductivity, TDS;
+  valid record = 15 <= T <= 50 degC, 0 <= pH <= 14, conductivity > 0, TDS > 0. Turbidity is NOT read by MATLAB and is
+  entirely "*" (turbidity meter out of order) in the workbook, so it is not part of the payload.
+  OMNeT++ input: data/v2_consdata_loaded.csv = the exact table MATLAB load_consdata_xlsx() returns (1273 records),
+  exported by matlab_reference/scripts/export_reference_v2.m; the OMNeT++ loader applies the same filter, the same
+  212-date -> 1000-round 'uniform' schedule, causal sample-and-hold, and simulates rounds 1-500.
+
+NODE ROLES (every node senses AND forwards; no relay-only nodes; one BS at (600, 25) m)
+  Nodes 1-10   : the 10 REAL KSPCB station streams, V2 positions (reference-layout nodes 4, 8, ..., 48) and V2 mapping:
+                 1 ALUVA - MANAPPURAM, 2 PURAPILLIKADAVU US, 3 PURAPILLIKADAVU BUND NAVIGATION, 4 PURAPILLIKADAVU BUND DS,
+                 5 PATHALAM BUND U/S, 6 PATHALAM BUND D/S, 7 PATHALAM BRIDGE, 8 PUTHALAM KADAVU, 9 MANJUMMAL BUND,
+                 10 VETTUKADAVU.
+  Nodes 11-200 : VIRTUAL DATASET-REPLAY sensor nodes (NOT additional KSPCB stations). Node k replays station
+                 s = ((k - 1) mod 10) + 1, i.e. the same measured values on the same sampling dates as station node s
+                 (19 replay nodes per station; 20 nodes per station stream including the real one). Workload label
+                 "REPLAY-n<k>:<station>". Positions: uniform in 600 x 50 m from MatlabTwister(900000 + seed), distinct.
+                 (omnetpp.ini: replaySources = "others")
+
+WORKLOAD COUNTS (rounds 1-500; identical for every seed and variant)
+                         scheduled slots   valid-data reports
+  real stations (1-10)        5,000             4,825   (= MATLAB V2)
+  replay nodes (11-200)      95,000            91,675   (= 19 x 4,825)
+  combined                  100,000            96,500
+  Valid reports per node in 500 rounds, by station stream: ALUVA 481; PURAPILLIKADAVU US / BUND NAVIGATION / BUND DS
+  448 each (first observation later); the other 6 stations 500 each (481 + 3 x 448 + 6 x 500 = 4,825 per 10 nodes).
+
+MODEL (unchanged from V2): 600 x 50 m; 2 J/node; 4000-bit packets; first-order radio (E_elec 50 nJ/bit, E_fs 10 pJ/bit/m^2,
+  E_mp 0.0013 pJ/bit/m^4, E_DA 5 nJ/bit); report-preserving energy (m reports = m packets); 200 uJ minimum-energy rule;
+  tabular Q-learning, 6561 states, alpha 0.1, gamma 0.9, epsilon 0.25 -> x0.9985/round, floor 0.05; TTL 15.
+  Links among nodes 1-10 and to the BS: MATLAB rng(seed + r) channel; links involving nodes 11-200: deterministic hash
+  stream with the same clipped distance law. Round slot 100 s of simulated time (OMNeT++ scheduling only).
+
+RETRANSMISSION CHANNEL (variants A0, A): MATLAB has one success bit per link per round, so a same-round retry would
+  repeat it. A retry instead draws an independent deterministic uniform (hash of seed, round, sender, receiver, attempt,
+  sender frame counter) against that round's true link quality. First-attempt outcomes are never changed by retries.
+
+SEEDS: development 42-46; final evaluation 47-66 (separate folders dev/ and final/). Paired comparisons by seed.

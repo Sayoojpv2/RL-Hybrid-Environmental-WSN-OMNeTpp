@@ -1,0 +1,69 @@
+MODE 2 screening, seed 42: 200 nodes, 500 rounds (1 round = 1 h), variant C (energyGuard 0.8), retransmission off,
+same topology / BS / first-order radio / 2 J radio battery. Sensing energy is a separate ledger, never charged to the 2 J.
+M2T keeps the 4000-bit MATLAB packet abstraction; M2F charges every report its own profile frame. Neither is MATLAB-equivalent.
+========================================================================================================================
+Frame sizes from sensor_profiles.json (8 x (17 B MAC/PHY + 10 B header + 2 B x fields)): water_quality 280, industrial_effluent 360, air_quality 360, soil_monitoring 264, soil_monitoring+chem 328
+  [OK] profile definitions give water 280, effluent 360, air 360, soil 264 / 328 (chemistry) bit
+  [OK] M2T_Water: class split covers all 68700 generated reports
+  [OK] M2T_Effluent: class split covers all 99306 generated reports
+  [OK] M2T_Air: class split covers all 100000 generated reports
+  [OK] M2T_Soil: class split covers all 25135 generated reports
+  [OK] M2T_Mixed: class split covers all 73306 generated reports
+  [OK] M2F_Water: all 68700 reports carry their own profile frame bits
+  [OK] M2F_Water: class split covers all 68700 generated reports
+  [OK] M2F_Effluent: all 99306 reports carry their own profile frame bits
+  [OK] M2F_Effluent: class split covers all 99306 generated reports
+  [OK] M2F_Air: all 100000 reports carry their own profile frame bits
+  [OK] M2F_Air: class split covers all 100000 generated reports
+  [OK] M2F_Soil: all 25135 reports carry their own profile frame bits
+  [OK] M2F_Soil: class split covers all 25135 generated reports
+  [OK] M2F_Mixed: all 73306 reports carry their own profile frame bits
+  [OK] M2F_Mixed: class split covers all 73306 generated reports
+
+config         sched  gener  deliv d/gen% d/sch% srcPDR% oper  FND  resid J  mJ/dlv delay ms frame b traffic Mbit sensing kJ run s
+M2T_Water      68700  68700  25730  37.45  37.45   42.27  117  336    96.77  11.785   105.28  4000.0        980.8       54.4   3.6
+M2T_Effluent   99306  99306  34710  34.95  34.95   43.92  101  249    57.75   9.860    99.42  4000.0       1282.1    19243.8   5.2
+M2T_Air       100000 100000  34359  34.36  34.36   44.14  100  228    57.67   9.963    99.72  4000.0       1268.1     8378.8   5.2
+M2T_Soil       25135  25135  10494  41.75  41.75   41.75  200   -1   251.90  14.113   101.68  4000.0        363.7        5.7   2.0
+M2T_Mixed      73306  73306  28294  38.60  38.60   44.53  115  316    98.45  10.658    98.05  4000.0        989.8     7483.8   5.0
+
+config         sched  gener  deliv d/gen% d/sch% srcPDR% oper  FND  resid J  mJ/dlv delay ms frame b traffic Mbit sensing kJ run s
+M2F_Water      68700  68700  31250  45.49  45.49   45.49  200   -1   377.48   0.721    30.82   280.0         77.4       61.0   4.7
+M2F_Effluent   99306  99306  46355  46.68  46.68   46.68  200   -1   358.24   0.901    36.02   360.0        159.4    24180.6   7.7
+M2F_Air       100000 100000  46308  46.31  46.31   46.31  200   -1   357.02   0.928    36.93   360.0        163.0    10763.9   7.7
+M2F_Soil       25135  25135  10590  42.13  42.13   42.13  200   -1   389.68   0.975    29.65   274.6         25.4        5.7   2.0
+M2F_Mixed      73306  73306  34021  46.41  46.41   46.41  200   -1   371.84   0.828    32.26   334.0         99.1     8752.8   5.9
+
+d/gen = delivered / generated; d/sch = delivered / scheduled (MATLAB PDR; Mode 2 slots = generated reports, so equal);
+srcPDR = delivered / reports emitted by sources operational at round start; oper = operational nodes after round 500;
+FND = first round with a node down (-1 = none); traffic = bits on air over all hops (report-preserving); sensing = ledger
+of operational node-rounds (kJ). Mode 1 reference (every scenario): 96,500 generated, 33,846 delivered, FND 250, 107 operational.
+
+By data class (real station streams / replayed virtual sensors / synthetic)
+config        sensor type          class     nodes  gener  deliv  d/gen% delay ms sensing kJ
+M2T_Water     water_quality        real         10   3435   1200   34.93   106.91       2.74
+M2T_Water     water_quality        replayed    190  65265  24530   37.59   105.20      51.67
+M2T_Effluent  industrial_effluent  synthetic   200  99306  34710   34.95    99.42   19243.85
+M2T_Air       air_quality          real         12   6000   1865   31.08   100.63     478.46
+M2T_Air       air_quality          replayed    188  94000  32494   34.57    99.67    7900.31
+M2T_Soil      soil_monitoring      synthetic   200  25135  10494   41.75   101.68       5.72
+M2T_Mixed     air_quality          real          2   1000    429   42.90    89.19      91.06
+M2T_Mixed     air_quality          replayed     48  24000  10430   43.46    89.70    2305.10
+M2T_Mixed     industrial_effluent  synthetic    50  24882   9211   37.02    99.79    5073.08
+M2T_Mixed     soil_monitoring      synthetic    50   6281   2448   38.97   103.72       1.29
+M2T_Mixed     water_quality        real         10   3435   1203   35.02   103.43       2.69
+M2T_Mixed     water_quality        replayed     40  13708   4573   33.36   109.97      10.59
+M2F_Water     water_quality        real         10   3435   1497   43.58    31.92       3.05
+M2F_Water     water_quality        replayed    190  65265  29753   45.59    30.77      57.90
+M2F_Effluent  industrial_effluent  synthetic   200  99306  46355   46.68    36.02   24180.55
+M2F_Air       air_quality          real         12   6000   2682   44.70    38.37     645.84
+M2F_Air       air_quality          replayed    188  94000  43626   46.41    36.84   10118.11
+M2F_Soil      soil_monitoring      synthetic   200  25135  10590   42.13    29.65       5.72
+M2F_Mixed     air_quality          real          2   1000    511   51.10    28.41     107.64
+M2F_Mixed     air_quality          replayed     48  24000  12116   50.48    29.88    2583.35
+M2F_Mixed     industrial_effluent  synthetic    50  24882  11334   45.55    33.22    6045.14
+M2F_Mixed     soil_monitoring      synthetic    50   6281   2862   45.57    32.69       1.43
+M2F_Mixed     water_quality        real         10   3435   1521   44.28    32.89       3.05
+M2F_Mixed     water_quality        replayed     40  13708   5677   41.41    35.40      12.19
+
+RESULT: all checks passed

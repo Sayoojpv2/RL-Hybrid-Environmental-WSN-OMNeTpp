@@ -1,0 +1,7 @@
+round,simTime,node,reason,energyJ
+472,4710.8420106651638,28,below_minimum_radio_operation_energy,2.2985343891597379e-05
+748,7470.7710076056364,34,below_minimum_radio_operation_energy,0.00018806057716238604
+757,7560.6920074593254,22,below_minimum_radio_operation_energy,0.00016934885664369917
+855,8540.5600081930625,33,below_minimum_radio_operation_energy,0.00016007018573524988
+934,9330.829007013328,36,below_minimum_radio_operation_energy,1.4496148542832296e-05
+988,9870.6030072760404,38,below_minimum_radio_operation_energy,2.4057806637487887e-05

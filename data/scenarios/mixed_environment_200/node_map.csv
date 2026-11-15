@@ -1,0 +1,201 @@
+node_id,sensor_type,profile_id,source_dataset,source_node_id,data_class
+1,water_quality,1,water_quality_200/observations.csv,1,real (replayed)
+2,water_quality,1,water_quality_200/observations.csv,2,real (replayed)
+3,water_quality,1,water_quality_200/observations.csv,3,real (replayed)
+4,water_quality,1,water_quality_200/observations.csv,4,real (replayed)
+5,water_quality,1,water_quality_200/observations.csv,5,real (replayed)
+6,water_quality,1,water_quality_200/observations.csv,6,real (replayed)
+7,water_quality,1,water_quality_200/observations.csv,7,real (replayed)
+8,water_quality,1,water_quality_200/observations.csv,8,real (replayed)
+9,water_quality,1,water_quality_200/observations.csv,9,real (replayed)
+10,water_quality,1,water_quality_200/observations.csv,10,real (replayed)
+11,air_quality,3,air_quality_200/observations.csv,11,real (replayed)
+12,air_quality,3,air_quality_200/observations.csv,12,real (replayed)
+13,industrial_effluent,2,industrial_effluent_200/observations.csv,13,synthetic
+14,water_quality,1,water_quality_200/observations.csv,14,real (replayed)
+15,water_quality,1,water_quality_200/observations.csv,15,real (replayed)
+16,water_quality,1,water_quality_200/observations.csv,16,real (replayed)
+17,soil_monitoring,4,soil_monitoring_200/observations.csv,17,synthetic
+18,air_quality,3,air_quality_200/observations.csv,18,real (replayed)
+19,soil_monitoring,4,soil_monitoring_200/observations.csv,19,synthetic
+20,water_quality,1,water_quality_200/observations.csv,20,real (replayed)
+21,water_quality,1,water_quality_200/observations.csv,21,real (replayed)
+22,soil_monitoring,4,soil_monitoring_200/observations.csv,22,synthetic
+23,industrial_effluent,2,industrial_effluent_200/observations.csv,23,synthetic
+24,industrial_effluent,2,industrial_effluent_200/observations.csv,24,synthetic
+25,air_quality,3,air_quality_200/observations.csv,25,real (replayed)
+26,soil_monitoring,4,soil_monitoring_200/observations.csv,26,synthetic
+27,soil_monitoring,4,soil_monitoring_200/observations.csv,27,synthetic
+28,air_quality,3,air_quality_200/observations.csv,28,real (replayed)
+29,soil_monitoring,4,soil_monitoring_200/observations.csv,29,synthetic
+30,air_quality,3,air_quality_200/observations.csv,30,real (replayed)
+31,air_quality,3,air_quality_200/observations.csv,31,real (replayed)
+32,industrial_effluent,2,industrial_effluent_200/observations.csv,32,synthetic
+33,industrial_effluent,2,industrial_effluent_200/observations.csv,33,synthetic
+34,air_quality,3,air_quality_200/observations.csv,34,real (replayed)
+35,industrial_effluent,2,industrial_effluent_200/observations.csv,35,synthetic
+36,water_quality,1,water_quality_200/observations.csv,36,real (replayed)
+37,air_quality,3,air_quality_200/observations.csv,37,real (replayed)
+38,air_quality,3,air_quality_200/observations.csv,38,real (replayed)
+39,soil_monitoring,4,soil_monitoring_200/observations.csv,39,synthetic
+40,soil_monitoring,4,soil_monitoring_200/observations.csv,40,synthetic
+41,air_quality,3,air_quality_200/observations.csv,41,real (replayed)
+42,water_quality,1,water_quality_200/observations.csv,42,real (replayed)
+43,air_quality,3,air_quality_200/observations.csv,43,real (replayed)
+44,soil_monitoring,4,soil_monitoring_200/observations.csv,44,synthetic
+45,soil_monitoring,4,soil_monitoring_200/observations.csv,45,synthetic
+46,air_quality,3,air_quality_200/observations.csv,46,real (replayed)
+47,water_quality,1,water_quality_200/observations.csv,47,real (replayed)
+48,air_quality,3,air_quality_200/observations.csv,48,real (replayed)
+49,industrial_effluent,2,industrial_effluent_200/observations.csv,49,synthetic
+50,air_quality,3,air_quality_200/observations.csv,50,real (replayed)
+51,water_quality,1,water_quality_200/observations.csv,51,real (replayed)
+52,air_quality,3,air_quality_200/observations.csv,52,real (replayed)
+53,water_quality,1,water_quality_200/observations.csv,53,real (replayed)
+54,water_quality,1,water_quality_200/observations.csv,54,real (replayed)
+55,soil_monitoring,4,soil_monitoring_200/observations.csv,55,synthetic
+56,industrial_effluent,2,industrial_effluent_200/observations.csv,56,synthetic
+57,air_quality,3,air_quality_200/observations.csv,57,real (replayed)
+58,air_quality,3,air_quality_200/observations.csv,58,real (replayed)
+59,industrial_effluent,2,industrial_effluent_200/observations.csv,59,synthetic
+60,industrial_effluent,2,industrial_effluent_200/observations.csv,60,synthetic
+61,air_quality,3,air_quality_200/observations.csv,61,real (replayed)
+62,water_quality,1,water_quality_200/observations.csv,62,real (replayed)
+63,industrial_effluent,2,industrial_effluent_200/observations.csv,63,synthetic
+64,soil_monitoring,4,soil_monitoring_200/observations.csv,64,synthetic
+65,industrial_effluent,2,industrial_effluent_200/observations.csv,65,synthetic
+66,industrial_effluent,2,industrial_effluent_200/observations.csv,66,synthetic
+67,soil_monitoring,4,soil_monitoring_200/observations.csv,67,synthetic
+68,soil_monitoring,4,soil_monitoring_200/observations.csv,68,synthetic
+69,industrial_effluent,2,industrial_effluent_200/observations.csv,69,synthetic
+70,industrial_effluent,2,industrial_effluent_200/observations.csv,70,synthetic
+71,industrial_effluent,2,industrial_effluent_200/observations.csv,71,synthetic
+72,industrial_effluent,2,industrial_effluent_200/observations.csv,72,synthetic
+73,soil_monitoring,4,soil_monitoring_200/observations.csv,73,synthetic
+74,air_quality,3,air_quality_200/observations.csv,74,real (replayed)
+75,air_quality,3,air_quality_200/observations.csv,75,real (replayed)
+76,soil_monitoring,4,soil_monitoring_200/observations.csv,76,synthetic
+77,air_quality,3,air_quality_200/observations.csv,77,real (replayed)
+78,soil_monitoring,4,soil_monitoring_200/observations.csv,78,synthetic
+79,industrial_effluent,2,industrial_effluent_200/observations.csv,79,synthetic
+80,soil_monitoring,4,soil_monitoring_200/observations.csv,80,synthetic
+81,water_quality,1,water_quality_200/observations.csv,81,real (replayed)
+82,water_quality,1,water_quality_200/observations.csv,82,real (replayed)
+83,industrial_effluent,2,industrial_effluent_200/observations.csv,83,synthetic
+84,air_quality,3,air_quality_200/observations.csv,84,real (replayed)
+85,soil_monitoring,4,soil_monitoring_200/observations.csv,85,synthetic
+86,soil_monitoring,4,soil_monitoring_200/observations.csv,86,synthetic
+87,water_quality,1,water_quality_200/observations.csv,87,real (replayed)
+88,industrial_effluent,2,industrial_effluent_200/observations.csv,88,synthetic
+89,soil_monitoring,4,soil_monitoring_200/observations.csv,89,synthetic
+90,air_quality,3,air_quality_200/observations.csv,90,real (replayed)
+91,soil_monitoring,4,soil_monitoring_200/observations.csv,91,synthetic
+92,water_quality,1,water_quality_200/observations.csv,92,real (replayed)
+93,industrial_effluent,2,industrial_effluent_200/observations.csv,93,synthetic
+94,soil_monitoring,4,soil_monitoring_200/observations.csv,94,synthetic
+95,air_quality,3,air_quality_200/observations.csv,95,real (replayed)
+96,soil_monitoring,4,soil_monitoring_200/observations.csv,96,synthetic
+97,water_quality,1,water_quality_200/observations.csv,97,real (replayed)
+98,water_quality,1,water_quality_200/observations.csv,98,real (replayed)
+99,water_quality,1,water_quality_200/observations.csv,99,real (replayed)
+100,water_quality,1,water_quality_200/observations.csv,100,real (replayed)
+101,industrial_effluent,2,industrial_effluent_200/observations.csv,101,synthetic
+102,soil_monitoring,4,soil_monitoring_200/observations.csv,102,synthetic
+103,air_quality,3,air_quality_200/observations.csv,103,real (replayed)
+104,water_quality,1,water_quality_200/observations.csv,104,real (replayed)
+105,air_quality,3,air_quality_200/observations.csv,105,real (replayed)
+106,soil_monitoring,4,soil_monitoring_200/observations.csv,106,synthetic
+107,soil_monitoring,4,soil_monitoring_200/observations.csv,107,synthetic
+108,water_quality,1,water_quality_200/observations.csv,108,real (replayed)
+109,industrial_effluent,2,industrial_effluent_200/observations.csv,109,synthetic
+110,soil_monitoring,4,soil_monitoring_200/observations.csv,110,synthetic
+111,soil_monitoring,4,soil_monitoring_200/observations.csv,111,synthetic
+112,soil_monitoring,4,soil_monitoring_200/observations.csv,112,synthetic
+113,air_quality,3,air_quality_200/observations.csv,113,real (replayed)
+114,water_quality,1,water_quality_200/observations.csv,114,real (replayed)
+115,industrial_effluent,2,industrial_effluent_200/observations.csv,115,synthetic
+116,water_quality,1,water_quality_200/observations.csv,116,real (replayed)
+117,industrial_effluent,2,industrial_effluent_200/observations.csv,117,synthetic
+118,soil_monitoring,4,soil_monitoring_200/observations.csv,118,synthetic
+119,industrial_effluent,2,industrial_effluent_200/observations.csv,119,synthetic
+120,air_quality,3,air_quality_200/observations.csv,120,real (replayed)
+121,soil_monitoring,4,soil_monitoring_200/observations.csv,121,synthetic
+122,air_quality,3,air_quality_200/observations.csv,122,real (replayed)
+123,industrial_effluent,2,industrial_effluent_200/observations.csv,123,synthetic
+124,industrial_effluent,2,industrial_effluent_200/observations.csv,124,synthetic
+125,air_quality,3,air_quality_200/observations.csv,125,real (replayed)
+126,soil_monitoring,4,soil_monitoring_200/observations.csv,126,synthetic
+127,air_quality,3,air_quality_200/observations.csv,127,real (replayed)
+128,air_quality,3,air_quality_200/observations.csv,128,real (replayed)
+129,industrial_effluent,2,industrial_effluent_200/observations.csv,129,synthetic
+130,industrial_effluent,2,industrial_effluent_200/observations.csv,130,synthetic
+131,industrial_effluent,2,industrial_effluent_200/observations.csv,131,synthetic
+132,air_quality,3,air_quality_200/observations.csv,132,real (replayed)
+133,water_quality,1,water_quality_200/observations.csv,133,real (replayed)
+134,soil_monitoring,4,soil_monitoring_200/observations.csv,134,synthetic
+135,air_quality,3,air_quality_200/observations.csv,135,real (replayed)
+136,water_quality,1,water_quality_200/observations.csv,136,real (replayed)
+137,water_quality,1,water_quality_200/observations.csv,137,real (replayed)
+138,water_quality,1,water_quality_200/observations.csv,138,real (replayed)
+139,soil_monitoring,4,soil_monitoring_200/observations.csv,139,synthetic
+140,industrial_effluent,2,industrial_effluent_200/observations.csv,140,synthetic
+141,water_quality,1,water_quality_200/observations.csv,141,real (replayed)
+142,air_quality,3,air_quality_200/observations.csv,142,real (replayed)
+143,water_quality,1,water_quality_200/observations.csv,143,real (replayed)
+144,soil_monitoring,4,soil_monitoring_200/observations.csv,144,synthetic
+145,industrial_effluent,2,industrial_effluent_200/observations.csv,145,synthetic
+146,industrial_effluent,2,industrial_effluent_200/observations.csv,146,synthetic
+147,industrial_effluent,2,industrial_effluent_200/observations.csv,147,synthetic
+148,soil_monitoring,4,soil_monitoring_200/observations.csv,148,synthetic
+149,soil_monitoring,4,soil_monitoring_200/observations.csv,149,synthetic
+150,soil_monitoring,4,soil_monitoring_200/observations.csv,150,synthetic
+151,water_quality,1,water_quality_200/observations.csv,151,real (replayed)
+152,industrial_effluent,2,industrial_effluent_200/observations.csv,152,synthetic
+153,water_quality,1,water_quality_200/observations.csv,153,real (replayed)
+154,air_quality,3,air_quality_200/observations.csv,154,real (replayed)
+155,industrial_effluent,2,industrial_effluent_200/observations.csv,155,synthetic
+156,soil_monitoring,4,soil_monitoring_200/observations.csv,156,synthetic
+157,soil_monitoring,4,soil_monitoring_200/observations.csv,157,synthetic
+158,industrial_effluent,2,industrial_effluent_200/observations.csv,158,synthetic
+159,industrial_effluent,2,industrial_effluent_200/observations.csv,159,synthetic
+160,water_quality,1,water_quality_200/observations.csv,160,real (replayed)
+161,soil_monitoring,4,soil_monitoring_200/observations.csv,161,synthetic
+162,industrial_effluent,2,industrial_effluent_200/observations.csv,162,synthetic
+163,air_quality,3,air_quality_200/observations.csv,163,real (replayed)
+164,water_quality,1,water_quality_200/observations.csv,164,real (replayed)
+165,air_quality,3,air_quality_200/observations.csv,165,real (replayed)
+166,air_quality,3,air_quality_200/observations.csv,166,real (replayed)
+167,soil_monitoring,4,soil_monitoring_200/observations.csv,167,synthetic
+168,soil_monitoring,4,soil_monitoring_200/observations.csv,168,synthetic
+169,soil_monitoring,4,soil_monitoring_200/observations.csv,169,synthetic
+170,air_quality,3,air_quality_200/observations.csv,170,real (replayed)
+171,water_quality,1,water_quality_200/observations.csv,171,real (replayed)
+172,industrial_effluent,2,industrial_effluent_200/observations.csv,172,synthetic
+173,air_quality,3,air_quality_200/observations.csv,173,real (replayed)
+174,air_quality,3,air_quality_200/observations.csv,174,real (replayed)
+175,industrial_effluent,2,industrial_effluent_200/observations.csv,175,synthetic
+176,air_quality,3,air_quality_200/observations.csv,176,real (replayed)
+177,air_quality,3,air_quality_200/observations.csv,177,real (replayed)
+178,soil_monitoring,4,soil_monitoring_200/observations.csv,178,synthetic
+179,soil_monitoring,4,soil_monitoring_200/observations.csv,179,synthetic
+180,industrial_effluent,2,industrial_effluent_200/observations.csv,180,synthetic
+181,soil_monitoring,4,soil_monitoring_200/observations.csv,181,synthetic
+182,soil_monitoring,4,soil_monitoring_200/observations.csv,182,synthetic
+183,air_quality,3,air_quality_200/observations.csv,183,real (replayed)
+184,water_quality,1,water_quality_200/observations.csv,184,real (replayed)
+185,industrial_effluent,2,industrial_effluent_200/observations.csv,185,synthetic
+186,industrial_effluent,2,industrial_effluent_200/observations.csv,186,synthetic
+187,water_quality,1,water_quality_200/observations.csv,187,real (replayed)
+188,water_quality,1,water_quality_200/observations.csv,188,real (replayed)
+189,air_quality,3,air_quality_200/observations.csv,189,real (replayed)
+190,air_quality,3,air_quality_200/observations.csv,190,real (replayed)
+191,industrial_effluent,2,industrial_effluent_200/observations.csv,191,synthetic
+192,soil_monitoring,4,soil_monitoring_200/observations.csv,192,synthetic
+193,water_quality,1,water_quality_200/observations.csv,193,real (replayed)
+194,air_quality,3,air_quality_200/observations.csv,194,real (replayed)
+195,air_quality,3,air_quality_200/observations.csv,195,real (replayed)
+196,industrial_effluent,2,industrial_effluent_200/observations.csv,196,synthetic
+197,water_quality,1,water_quality_200/observations.csv,197,real (replayed)
+198,industrial_effluent,2,industrial_effluent_200/observations.csv,198,synthetic
+199,industrial_effluent,2,industrial_effluent_200/observations.csv,199,synthetic
+200,industrial_effluent,2,industrial_effluent_200/observations.csv,200,synthetic

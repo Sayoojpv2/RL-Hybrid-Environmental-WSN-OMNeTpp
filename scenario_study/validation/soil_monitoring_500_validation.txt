@@ -1,0 +1,46 @@
+soil_monitoring_500: ALL CHECKS PASSED
+PASS observations.csv MD5 matches metadata (22cb426c62d3041f0fd55303aea8d128)
+PASS 250000 rows = 500 nodes x 500 rounds
+PASS node ids 1..500 (500 nodes)
+PASS rounds 1..500
+PASS sample_id unique
+PASS no duplicate (node, round) records
+PASS field columns present with units: VWC_pct [% (m3/m3 x 100)], soil_temperature_C [degC], bulk_EC_dSm [dS/m], soil_pH [pH], N_mgkg [mg/kg], P_mgkg [mg/kg], K_mgkg [mg/kg]
+PASS sensor_type / scenario_id labels
+PASS VWC_pct: 248094 present, 1906 missing, range 17.33..100 within [0, 100], all encodable at scale 0.01
+PASS VWC_pct: every missing value is an empty cell explained by quality_flag (1906/1906)
+PASS soil_temperature_C: 248094 present, 1906 missing, range 21.3..32.51 within [-20, 70], all encodable at scale 0.01
+PASS soil_temperature_C: every missing value is an empty cell explained by quality_flag (1906/1906)
+PASS bulk_EC_dSm: 248094 present, 1906 missing, range 0.126..1.04 within [0, 20], all encodable at scale 0.001
+PASS bulk_EC_dSm: every missing value is an empty cell explained by quality_flag (1906/1906)
+PASS soil_pH: 10424 present, 239576 missing, range 4.407..6.67 within [3, 10], all encodable at scale 0.001
+PASS soil_pH: every missing value is an empty cell explained by quality_flag (239576/239576)
+PASS N_mgkg: 10424 present, 239576 missing, range 48.6..219.8 within [0, 2000], all encodable at scale 0.1
+PASS N_mgkg: every missing value is an empty cell explained by quality_flag (239576/239576)
+PASS P_mgkg: 10424 present, 239576 missing, range 8.6..45.1 within [0, 2000], all encodable at scale 0.1
+PASS P_mgkg: every missing value is an empty cell explained by quality_flag (239576/239576)
+PASS K_mgkg: 10424 present, 239576 missing, range 51.4..241.8 within [0, 2000], all encodable at scale 0.1
+PASS K_mgkg: every missing value is an empty cell explained by quality_flag (239576/239576)
+     exact zero values per field (missing values are never written as 0): {"VWC_pct": 0, "soil_temperature_C": 0, "bulk_EC_dSm": 0, "soil_pH": 0, "N_mgkg": 0, "P_mgkg": 0, "K_mgkg": 0}
+PASS bulk_EC_dSm non-negative
+PASS N_mgkg non-negative
+PASS P_mgkg non-negative
+PASS K_mgkg non-negative
+PASS rows of every node ordered by round with no gaps
+PASS sim_time_s = (round - 1) x 100 s
+PASS env_time step 1 h (T+0000h .. T+0499h)
+PASS node k -> source stream ((k - 1) mod 10) + 1
+PASS labels: every row is_synthetic=1, is_real=0, data_source=SYNTHETIC
+PASS alarm_flag recomputed from the profile thresholds
+PASS Mode 1 mask = the 96,500 report slots of the validated 200-node workload (96500)
+PASS Mode 2 payload = 10 B + 2 B/field, frame bits = 8 x (17 B + payload)
+PASS Mode 2 field count = present payload fields
+PASS Mode 2 sends nothing when no field is present
+PASS Mode 2 schedule recomputed: periodic every 4 round(s), alarm reports every 1 round(s), chemistry fields only on rounds 1 + 24k
+PASS m2_sensing_mJ recomputed from sensor_profiles.json (V x mA x ms per sample x samples, continuous loads x 1 h, chemistry only on chemistry rounds, MCU per sample)
+     Mode 1: 96500 reports x 4000 bits = 48.2 MB offered
+     Mode 2: 62984 reports (126.0 per node), 1299 priority (alarm), 2.162 MB offered, mean frame 275 bits; triggers {'periodic+chem': 10418, 'none': 185110, 'periodic': 51267, 'no_data': 1906, 'alarm': 960, 'periodic+alarm': 333, 'periodic+alarm+chem': 6}
+     Mode 2 sensing+processing energy per node: 28.613 J over 500 rounds (15.330..1012.830 mJ per round)
+     alarm rows: 1299 (0.5%); anomaly rows: 134; event types: {'none': 238436, 'rainfall': 8449, 'sensor_outage': 1905, 'fertiliser_application': 996, 'sensor_spike': 134, 'irrigation': 80}
+     quality flags: {"ok": 10424, "chem_not_scheduled": 237670, "sensor_outage": 1906}
+PASS reproducible: regenerated observations.csv is byte-identical (MD5)

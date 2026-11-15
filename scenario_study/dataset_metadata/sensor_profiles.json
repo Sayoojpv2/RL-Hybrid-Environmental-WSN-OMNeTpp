@@ -1,0 +1,187 @@
+{
+  "_about": "Single source of truth for the scenario-study sensor profiles. Read by generators/generate_scenarios.py (datasets, SENSOR_PARAMETER_MATRIX.csv), generators/validate_scenarios.py and generators/plot_profiles.py. Source classes: VERIFIED = manufacturer document read in this study; DATASET = public dataset measurement; REFERENCE = published standard / engineering reference; ASSUMPTION = simulation assumption (not a device measurement).",
+  "round_hours": 1.0,
+  "round_note": "Mode 2 network epoch = 1 h of environmental time for air, effluent and soil. The water stream keeps the unchanged MATLAB V2 KSPCB schedule (212 sampling dates -> 1000 rounds; rounds 1-500 simulated), so one water round is a schedule slot, not a fixed hour.",
+  "frame": {
+    "app_header_bytes": 10,
+    "app_header_layout": "node_id 2 B, sequence 2 B, round 2 B, profile_id 1 B, flags 1 B (alarm, priority, report type), field-presence bitmap 2 B",
+    "field_bytes": 2,
+    "field_encoding": "every field is a scaled 16-bit integer (value / scale); missing = 0xFFFF sentinel, never 0",
+    "mac_phy_overhead_bytes": 17,
+    "mac_phy_overhead_note": "IEEE 802.15.4: PHY 6 B (preamble 4, SFD 1, PHR 1) + MAC 11 B (FCF 2, seq 1, dst PAN 2, dst 2, src 2, FCS 2) with 16-bit addresses and PAN-ID compression",
+    "mac_phy_class": "REFERENCE",
+    "mode1_packet_bits": 4000,
+    "mode1_note": "Mode 1 keeps the existing 4000-bit abstract packet of the validated RL-Hybrid model for every report"
+  },
+  "radio_reference": {
+    "Eelec_J_per_bit": 5e-08, "Efs_J_per_bit_m2": 1e-11, "Eda_J_per_bit": 5e-09,
+    "note": "first-order radio model of the existing simulator (PeriyarModel.h); used only to compare sensing energy with radio energy"
+  },
+  "processing": {
+    "mcu_active_V": 3.3, "mcu_active_mA": 5.0, "mcu_ms_per_sample": 10.0, "class": "ASSUMPTION",
+    "note": "MCU wake, read, scale and check thresholds; no compression or local aggregation beyond the round mean"
+  },
+  "profiles": {
+    "water_quality": {
+      "profile_id": 1, "code": "WQ", "scenario": "A",
+      "description": "River water-quality monitoring (Periyar River, KSPCB data)",
+      "samples_per_round": 4, "sampling_note": "in-situ sonde reading every 15 min, round value = carried KSPCB observation (sample-and-hold of daily grab samples)",
+      "report_interval_rounds": 2, "alarm_interval_rounds": 1, "chem_interval_rounds": null,
+      "report_class": "ASSUMPTION", "report_note": "river parameters change over hours; 2-round periodic report, every round while an alarm is active",
+      "fields": [
+        {"name": "temperature_C", "unit": "degC", "min": 15, "max": 50, "valid_rule": "15 <= T <= 50 (MATLAB V2 validity filter)", "scale": 0.01,
+         "resolution": "0.0625 degC (12-bit)", "range_sensor": "-55 to +125 degC; +/-0.5 degC from -10 to +85 degC",
+         "hardware": "Maxim/Dallas DS18B20", "class": "VERIFIED", "source": "https://cdn.sparkfun.com/datasheets/Sensors/Temp/DS18B20.pdf (Dallas DS18B20 datasheet copy)",
+         "energy": {"V": 3.3, "mA": 1.5, "ms": 750, "class": "VERIFIED", "note": "max active current 1.5 mA, max 12-bit conversion 750 ms; V = 3.3 V chosen within 3.0-5.5 V"}},
+        {"name": "pH", "unit": "pH", "min": 0, "max": 14, "valid_rule": "0 <= pH <= 14 (MATLAB V2 validity filter)", "scale": 0.001,
+         "resolution": "0.001 pH (assumed)", "range_sensor": "0-14 pH (assumed)",
+         "hardware": "glass pH electrode + digital interface circuit (Atlas Scientific EZO-pH class; datasheet not readable in this study)", "class": "ASSUMPTION", "source": "https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf (fetch failed: >10 MB)",
+         "energy": {"V": 3.3, "mA": 15.0, "ms": 1000, "class": "ASSUMPTION", "note": "order-of-magnitude assumption for a powered pH interface board; replace with datasheet values"}},
+        {"name": "conductivity_uScm", "unit": "uS/cm", "min": 0, "max": 131070, "valid_rule": "conductivity > 0 (MATLAB V2 validity filter)", "scale": 2,
+         "resolution": "2 uS/cm (16-bit encoding step; KSPCB maximum 82362 uS/cm)", "range_sensor": "assumed 0-50000 uS/cm",
+         "hardware": "conductivity probe + digital interface (Atlas EZO-EC class; datasheet not readable)", "class": "ASSUMPTION", "source": "https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf (fetch failed: >10 MB)",
+         "energy": {"V": 3.3, "mA": 15.0, "ms": 1000, "class": "ASSUMPTION", "note": "order-of-magnitude assumption"}},
+        {"name": "TDS_mgL", "unit": "mg/L", "min": 0, "max": 65535, "valid_rule": "TDS > 0 (MATLAB V2 validity filter)", "scale": 1,
+         "resolution": "1 mg/L (encoding)", "range_sensor": "derived from conductivity on a real node",
+         "hardware": "computed from conductivity (TDS = k x EC); KSPCB values are laboratory measurements", "class": "DATASET", "source": "KSPCB River Periyar analysis reports Jan-Jul 2025 (MATLAB V2 data/consdata.xlsx)",
+         "energy": {"V": 0, "mA": 0, "ms": 0, "class": "ASSUMPTION", "note": "no extra sensor: derived from the EC reading"}}
+      ],
+      "extension_fields": [
+        {"name": "DO_mgL", "unit": "mg/L", "min": 0, "max": 15, "valid_rule": "0 < DO <= 15 mg/L (about 2x saturation at 30 degC); other KSPCB-loader values are flagged invalid", "scale": 0.01,
+         "resolution": "0.01 mg/L (assumed)", "range_sensor": "assumed 0-20 mg/L",
+         "hardware": "optical or galvanic DO probe + interface (Atlas EZO-DO class; datasheet not readable)", "class": "ASSUMPTION", "source": "https://files.atlas-scientific.com/DO_EZO_Datasheet.pdf (text not decodable)",
+         "energy": {"V": 3.3, "mA": 15.0, "ms": 1000, "class": "ASSUMPTION", "note": "order-of-magnitude assumption"}}
+      ],
+      "excluded_fields": [{"name": "turbidity_NTU", "reason": "all KSPCB workbook cells are '*' (turbidity meter out of order); no real observations, none fabricated"}],
+      "alarms": [
+        {"field": "pH", "op": "outside", "lo": 6.5, "hi": 8.5, "class": "REFERENCE", "source": "CPCB designated-best-use criteria, Class B (outdoor bathing): pH 6.5-8.5, https://cpcb.gov.in/water-quality-criteria/"},
+        {"field": "conductivity_uScm", "op": ">", "value": 2250, "class": "REFERENCE", "source": "CPCB criteria Class E (irrigation): EC max 2250 umhos/cm, https://cpcb.gov.in/water-quality-criteria/"},
+        {"field": "DO_mgL", "op": "<", "value": 4, "class": "REFERENCE", "source": "CPCB criteria Class C: DO 4 mg/L or more, https://cpcb.gov.in/water-quality-criteria/ (extension field only)"}
+      ]
+    },
+    "industrial_effluent": {
+      "profile_id": 2, "code": "EF", "scenario": "B",
+      "description": "Industrial effluent / wastewater outfall monitoring (synthetic)",
+      "samples_per_round": 4, "sampling_note": "15-min samples; round value = mean of the four samples",
+      "report_interval_rounds": 1, "alarm_interval_rounds": 1, "chem_interval_rounds": null,
+      "report_class": "ASSUMPTION", "report_note": "continuous compliance monitoring: hourly report, alarm reports carry priority",
+      "fields": [
+        {"name": "temperature_C", "unit": "degC", "min": 0, "max": 60, "valid_rule": "0-60 degC", "scale": 0.01, "resolution": "0.0625 degC", "range_sensor": "-55 to +125 degC",
+         "hardware": "Maxim/Dallas DS18B20", "class": "VERIFIED", "source": "https://cdn.sparkfun.com/datasheets/Sensors/Temp/DS18B20.pdf",
+         "energy": {"V": 3.3, "mA": 1.5, "ms": 750, "class": "VERIFIED", "note": "as water profile"}},
+        {"name": "pH", "unit": "pH", "min": 0, "max": 14, "valid_rule": "0-14", "scale": 0.001, "resolution": "0.001 pH (assumed)", "range_sensor": "0-14 (assumed)",
+         "hardware": "industrial pH electrode + interface", "class": "ASSUMPTION", "source": "assumption",
+         "energy": {"V": 3.3, "mA": 15.0, "ms": 1000, "class": "ASSUMPTION", "note": "as water profile"}},
+        {"name": "conductivity_uScm", "unit": "uS/cm", "min": 0, "max": 131070, "valid_rule": ">= 0", "scale": 2, "resolution": "2 uS/cm (16-bit encoding step; KSPCB maximum 82362 uS/cm)", "range_sensor": "assumed 0-50000 uS/cm",
+         "hardware": "conductivity probe + interface", "class": "ASSUMPTION", "source": "assumption",
+         "energy": {"V": 3.3, "mA": 15.0, "ms": 1000, "class": "ASSUMPTION", "note": "as water profile"}},
+        {"name": "TDS_mgL", "unit": "mg/L", "min": 0, "max": 65535, "valid_rule": ">= 0", "scale": 1, "resolution": "1 mg/L", "range_sensor": "derived from EC",
+         "hardware": "computed TDS = k x EC (k 0.60-0.70)", "class": "ASSUMPTION", "source": "assumption",
+         "energy": {"V": 0, "mA": 0, "ms": 0, "class": "ASSUMPTION", "note": "derived"}},
+        {"name": "DO_mgL", "unit": "mg/L", "min": 0, "max": 20, "valid_rule": "0-20 mg/L", "scale": 0.01, "resolution": "0.01 mg/L (assumed)", "range_sensor": "assumed 0-20 mg/L",
+         "hardware": "optical DO probe + interface", "class": "ASSUMPTION", "source": "assumption",
+         "energy": {"V": 3.3, "mA": 15.0, "ms": 1000, "class": "ASSUMPTION", "note": "assumption"}},
+        {"name": "turbidity_NTU", "unit": "NTU", "min": 0, "max": 4000, "valid_rule": "0-4000 NTU", "scale": 0.1, "resolution": "0.1 NTU (assumed)", "range_sensor": "assumed 0-4000 NTU",
+         "hardware": "optical nephelometric turbidity probe", "class": "ASSUMPTION", "source": "assumption",
+         "energy": {"V": 5.0, "mA": 40.0, "ms": 1000, "class": "ASSUMPTION", "note": "LED + photodiode with wiper not modelled"}},
+        {"name": "COD_mgL", "unit": "mg/L", "min": 0, "max": 5000, "valid_rule": "0-5000 mg/L", "scale": 1, "resolution": "1 mg/L", "range_sensor": "assumed 0-5000 mg/L (UV254 surrogate, site-calibrated)",
+         "hardware": "UV-Vis spectral probe (SAC254 surrogate for COD/BOD)", "class": "ASSUMPTION", "source": "assumption (no manufacturer document read)",
+         "energy": {"V": 12.0, "mA": 250.0, "ms": 20000, "class": "ASSUMPTION", "note": "lamp + spectrometer cycle, shared by COD and BOD; multi-watt class device"}},
+        {"name": "BOD_mgL", "unit": "mg/L", "min": 0, "max": 3000, "valid_rule": "0-3000 mg/L", "scale": 0.1, "resolution": "0.1 mg/L", "range_sensor": "estimated from the spectral probe (BOD5/BOD3 is a laboratory test)",
+         "hardware": "same spectral probe as COD (correlation model)", "class": "ASSUMPTION", "source": "assumption",
+         "energy": {"V": 0, "mA": 0, "ms": 0, "class": "ASSUMPTION", "note": "shares the COD measurement cycle"}},
+        {"name": "NH3N_mgL", "unit": "mg/L as N", "min": 0, "max": 500, "valid_rule": "0-500 mg/L", "scale": 0.01, "resolution": "0.01 mg/L", "range_sensor": "assumed 0-500 mg/L",
+         "hardware": "ammonium ion-selective electrode with K+ compensation", "class": "ASSUMPTION", "source": "assumption",
+         "energy": {"V": 3.3, "mA": 15.0, "ms": 2000, "class": "ASSUMPTION", "note": "ISE interface"}}
+      ],
+      "alarms": [
+        {"field": "pH", "op": "outside", "lo": 5.5, "hi": 9.0, "class": "REFERENCE", "source": "Environment (Protection) Rules 1986 Schedule VI, inland surface water: pH 5.5-9.0, https://cpcb.gov.in/GeneralStandards.pdf"},
+        {"field": "BOD_mgL", "op": ">", "value": 30, "class": "REFERENCE", "source": "Schedule VI inland surface water: BOD (3 days at 27 degC) max 30 mg/L"},
+        {"field": "COD_mgL", "op": ">", "value": 250, "class": "REFERENCE", "source": "Schedule VI inland surface water: COD max 250 mg/L"},
+        {"field": "NH3N_mgL", "op": ">", "value": 50, "class": "REFERENCE", "source": "Schedule VI inland surface water: ammonical nitrogen (as N) max 50 mg/L"}
+      ]
+    },
+    "air_quality": {
+      "profile_id": 3, "code": "AQ", "scenario": "C",
+      "description": "Ambient air-quality monitoring (UCI Beijing multi-site hourly measurements, replayed)",
+      "samples_per_round": 4, "sampling_note": "PM sensor woken 4x per hour (30 s warm-up each), gas sensors continuously biased and averaged; dataset gives one hourly value",
+      "report_interval_rounds": 1, "alarm_interval_rounds": 1, "chem_interval_rounds": null,
+      "report_class": "REFERENCE", "report_note": "hourly averages are the reporting basis of the source network and of 1-h ambient limits",
+      "fields": [
+        {"name": "PM25_ugm3", "unit": "ug/m3", "min": 0, "max": 2000, "valid_rule": ">= 0", "scale": 1, "resolution": "1 ug/m3", "range_sensor": "effective 0-500 ug/m3, maximum >= 1000 ug/m3; consistency +/-10 ug/m3 (0-100), +/-10% (100-500)",
+         "hardware": "Plantower PMS5003 (laser scattering)", "class": "VERIFIED", "source": "Plantower PMS5003 series data manual V2.3, https://cdn-shop.adafruit.com/product-files/3686/plantower-pms5003-manual_v2-3.pdf",
+         "energy": {"V": 5.0, "mA": 100.0, "ms": 30000, "class": "VERIFIED", "note": "active current <= 100 mA at 5.0 V; stable data at least 30 s after wake-up (upper bound per sample; PM2.5 and PM10 share the cycle)"}},
+        {"name": "PM10_ugm3", "unit": "ug/m3", "min": 0, "max": 2000, "valid_rule": ">= 0; PM10 >= PM2.5 checked and flagged, not altered", "scale": 1, "resolution": "1 ug/m3", "range_sensor": "as PM2.5",
+         "hardware": "Plantower PMS5003 (same cycle)", "class": "VERIFIED", "source": "as PM2.5",
+         "energy": {"V": 0, "mA": 0, "ms": 0, "class": "VERIFIED", "note": "same measurement cycle as PM2.5"}},
+        {"name": "CO_mgm3", "unit": "mg/m3", "min": 0, "max": 100, "valid_rule": ">= 0 (dataset CO in ug/m3 divided by 1000)", "scale": 0.001, "resolution": "0.001 mg/m3 (encoding)", "range_sensor": "0-1000 ppm; sensitivity 420-650 nA/ppm; t90 < 30 s",
+         "hardware": "Alphasense CO-B4 + ISB", "class": "VERIFIED", "source": "https://www.alphasense.com/products/view-by-target-gas/co-b4 (range, sensitivity, t90)",
+         "energy": {"V": 3.3, "mA": 1.0, "ms": 3600000, "class": "ASSUMPTION", "note": "ISB potentiostat biased continuously; supply current not stated on the pages read; assumed 1 mA for the whole hour, per round not per sample"}},
+        {"name": "NO2_ugm3", "unit": "ug/m3", "min": 0, "max": 2000, "valid_rule": ">= 0", "scale": 1, "resolution": "1 ug/m3 (encoding)", "range_sensor": "0-20 ppm; sensitivity -200 to -650 nA/ppm; t90 < 80 s",
+         "hardware": "Alphasense NO2-B43F + ISB", "class": "VERIFIED", "source": "https://www.alphasense.com/products/view-by-target-gas/no2-b43f",
+         "energy": {"V": 3.3, "mA": 1.0, "ms": 3600000, "class": "ASSUMPTION", "note": "as CO"}},
+        {"name": "SO2_ugm3", "unit": "ug/m3", "min": 0, "max": 2000, "valid_rule": ">= 0", "scale": 1, "resolution": "1 ug/m3 (encoding)", "range_sensor": "0-100 ppm; noise 5 ppb equivalent; t90 < 60 s",
+         "hardware": "Alphasense SO2-B4 + ISB", "class": "VERIFIED", "source": "https://www.alphasense.com/products/view-by-target-gas/so2-b4",
+         "energy": {"V": 3.3, "mA": 1.0, "ms": 3600000, "class": "ASSUMPTION", "note": "as CO"}},
+        {"name": "O3_ugm3", "unit": "ug/m3", "min": 0, "max": 2000, "valid_rule": ">= 0", "scale": 1, "resolution": "1 ug/m3 (encoding)", "range_sensor": "0-20 ppm O3 (O3+NO2 sensor, NO2 subtracted); t90 < 80 s",
+         "hardware": "Alphasense OX-B431 + ISB", "class": "VERIFIED", "source": "https://www.alphasense.com/products/view-by-target-gas/ox-b431",
+         "energy": {"V": 3.3, "mA": 1.0, "ms": 3600000, "class": "ASSUMPTION", "note": "as CO"}},
+        {"name": "temperature_C", "unit": "degC", "min": -40, "max": 60, "valid_rule": "-40 to 60 degC", "scale": 0.01, "resolution": "0.01 degC", "range_sensor": "-40 to 125 degC; SHT45 accuracy typ. +/-0.1 degC",
+         "hardware": "Sensirion SHT45", "class": "VERIFIED", "source": "Sensirion SHT4x datasheet Version 3, April 2022, https://cdn.sparkfun.com/assets/9/7/7/a/d/SHT45-AD1B-R2_datasheet.pdf",
+         "energy": {"V": 3.3, "mA": 0.32, "ms": 8.3, "class": "VERIFIED", "note": "measurement current 320 uA typ (500 max); high-repeatability duration 6.9 typ / 8.3 max ms; 1.08-3.6 V"}},
+        {"name": "RH_pct", "unit": "%", "min": 0, "max": 100, "valid_rule": "0-100 %", "scale": 0.01, "resolution": "0.01 %RH", "range_sensor": "0-100 %RH; SHT45 accuracy typ. +/-1.0 %RH",
+         "hardware": "Sensirion SHT45 (same measurement); dataset RH derived from TEMP and DEWP (Magnus formula)", "class": "VERIFIED", "source": "as temperature",
+         "energy": {"V": 0, "mA": 0, "ms": 0, "class": "VERIFIED", "note": "same measurement as temperature"}},
+        {"name": "wind_ms", "unit": "m/s", "min": 0, "max": 60, "valid_rule": "0-60 m/s", "scale": 0.01, "resolution": "0.1 m/s (dataset)", "range_sensor": "assumed 0-60 m/s",
+         "hardware": "cup anemometer, reed-switch pulse counter", "class": "ASSUMPTION", "source": "assumption",
+         "energy": {"V": 3.3, "mA": 0.01, "ms": 3600000, "class": "ASSUMPTION", "note": "pull-up and counter current, per round"}}
+      ],
+      "continuous_fields": ["CO_mgm3", "NO2_ugm3", "SO2_ugm3", "O3_ugm3", "wind_ms"],
+      "alarms": [
+        {"field": "PM25_ugm3", "op": ">", "value": 60, "class": "REFERENCE", "source": "India NAAQS 2009: PM2.5 60 ug/m3 (24 h); applied to the hourly value as a conservative screening trigger"},
+        {"field": "PM10_ugm3", "op": ">", "value": 100, "class": "REFERENCE", "source": "India NAAQS 2009: PM10 100 ug/m3 (24 h); hourly screening"},
+        {"field": "NO2_ugm3", "op": ">", "value": 80, "class": "REFERENCE", "source": "India NAAQS 2009: NO2 80 ug/m3 (24 h); hourly screening"},
+        {"field": "SO2_ugm3", "op": ">", "value": 80, "class": "REFERENCE", "source": "India NAAQS 2009: SO2 80 ug/m3 (24 h); hourly screening"},
+        {"field": "O3_ugm3", "op": ">", "value": 180, "class": "REFERENCE", "source": "India NAAQS 2009: O3 180 ug/m3 (1 h)"},
+        {"field": "CO_mgm3", "op": ">", "value": 4, "class": "REFERENCE", "source": "India NAAQS 2009: CO 4 mg/m3 (1 h)"}
+      ]
+    },
+    "soil_monitoring": {
+      "profile_id": 4, "code": "SM", "scenario": "D",
+      "description": "Soil and agricultural monitoring (synthetic)",
+      "samples_per_round": 2, "sampling_note": "VWC, soil temperature and bulk EC every 30 min; pH and N/P/K once per 24 rounds",
+      "report_interval_rounds": 4, "alarm_interval_rounds": 1, "chem_interval_rounds": 24,
+      "report_class": "ASSUMPTION", "report_note": "soil moisture changes over hours; 4-round periodic report, every round while an alarm is active, chemistry once per day",
+      "fields": [
+        {"name": "VWC_pct", "unit": "% (m3/m3 x 100)", "min": 0, "max": 100, "valid_rule": "0-100 %", "scale": 0.01, "resolution": "0.1 % (assumed)", "range_sensor": "assumed 0-70 % mineral soil",
+         "hardware": "capacitance/TDR soil-moisture probe (METER TEROS 12 class; datasheet not readable: HTTP 403)", "class": "ASSUMPTION", "source": "https://metergroup.com/products/teros-12/teros-12-tech-specs/ (HTTP 403)",
+         "energy": {"V": 5.0, "mA": 10.0, "ms": 150, "class": "ASSUMPTION", "note": "VWC, temperature and bulk EC come from one probe reading"}},
+        {"name": "soil_temperature_C", "unit": "degC", "min": -20, "max": 70, "valid_rule": "-20 to 70 degC", "scale": 0.01, "resolution": "0.1 degC (assumed)", "range_sensor": "assumed -40 to 60 degC",
+         "hardware": "same probe", "class": "ASSUMPTION", "source": "assumption", "energy": {"V": 0, "mA": 0, "ms": 0, "class": "ASSUMPTION", "note": "same reading"}},
+        {"name": "bulk_EC_dSm", "unit": "dS/m", "min": 0, "max": 20, "valid_rule": "0-20 dS/m", "scale": 0.001, "resolution": "0.001 dS/m (assumed)", "range_sensor": "assumed 0-20 dS/m",
+         "hardware": "same probe", "class": "ASSUMPTION", "source": "assumption", "energy": {"V": 0, "mA": 0, "ms": 0, "class": "ASSUMPTION", "note": "same reading"}},
+        {"name": "soil_pH", "unit": "pH", "min": 3, "max": 10, "valid_rule": "3-10", "scale": 0.001, "resolution": "0.01 pH (assumed)", "range_sensor": "assumed 3-10",
+         "hardware": "soil pH ISE (occasional chemistry reading)", "class": "ASSUMPTION", "source": "assumption", "chem": true,
+         "energy": {"V": 3.3, "mA": 15.0, "ms": 5000, "class": "ASSUMPTION", "note": "once per 24 rounds"}},
+        {"name": "N_mgkg", "unit": "mg/kg", "min": 0, "max": 2000, "valid_rule": ">= 0", "scale": 0.1, "resolution": "1 mg/kg (assumed)", "range_sensor": "assumed",
+         "hardware": "nitrate ISE / optical nutrient sensor (occasional; low-cost RS485 'NPK' probes have unverified accuracy)", "class": "ASSUMPTION", "source": "assumption", "chem": true,
+         "energy": {"V": 5.0, "mA": 30.0, "ms": 5000, "class": "ASSUMPTION", "note": "one reading gives N, P and K"}},
+        {"name": "P_mgkg", "unit": "mg/kg", "min": 0, "max": 2000, "valid_rule": ">= 0", "scale": 0.1, "resolution": "1 mg/kg (assumed)", "range_sensor": "assumed",
+         "hardware": "same nutrient reading", "class": "ASSUMPTION", "source": "assumption", "chem": true, "energy": {"V": 0, "mA": 0, "ms": 0, "class": "ASSUMPTION", "note": "same reading"}},
+        {"name": "K_mgkg", "unit": "mg/kg", "min": 0, "max": 2000, "valid_rule": ">= 0", "scale": 0.1, "resolution": "1 mg/kg (assumed)", "range_sensor": "assumed",
+         "hardware": "same nutrient reading", "class": "ASSUMPTION", "source": "assumption", "chem": true, "energy": {"V": 0, "mA": 0, "ms": 0, "class": "ASSUMPTION", "note": "same reading"}}
+      ],
+      "alarms": [
+        {"field": "VWC_pct", "op": "<", "value": 15, "class": "ASSUMPTION", "source": "irrigation trigger (assumed management allowable depletion)"},
+        {"field": "VWC_pct", "op": ">", "value": 45, "class": "ASSUMPTION", "source": "near-saturation / waterlogging (assumed)"}
+      ]
+    }
+  },
+  "mixed_environment": {
+    "scenario": "E", "code": "MX",
+    "distribution": {"water_quality": 50, "industrial_effluent": 50, "air_quality": 50, "soil_monitoring": 50},
+    "assignment_seed": 2103,
+    "rule": "nodes 1-10 (the real KSPCB station streams) are always water_quality; the remaining water slots and all other categories are drawn without replacement from nodes 11-200 with the assignment seed"
+  },
+  "seeds": {"industrial_effluent": 2101, "soil_monitoring": 2102, "mixed_assignment": 2103}
+}

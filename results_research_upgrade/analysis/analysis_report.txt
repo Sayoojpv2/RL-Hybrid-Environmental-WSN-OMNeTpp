@@ -1,0 +1,81 @@
+RESEARCH UPGRADE ANALYSIS (results_research_upgrade/analysis)
+runs found: 57; not run (listed, never filled in): 143
+  abstract     25 runs present,  0 not run
+  abstract500  25 runs present,  0 not run
+  wireless      5 runs present, 20 not run  (mixed/42, mixed/43, mixed/44, mixed/45, mixed/46)
+  eventaware    1 runs present, 24 not run  (mixed/42)
+  wireless500   0 runs present, 25 not run
+  density500    0 runs present, 25 not run
+  placement     0 runs present, 25 not run
+  matlabprior   1 runs present, 24 not run  (mixed/42)
+
+== abstract (mean ± SD over seeds)
+  Water     PDR 45.26 ± 2.80 %  hops 5.16 ± 0.24  FND n/a  spent 22.81 ± 0.62 J  latency n/a s  critical PDR 46.66 ± 4.23 %  critical on time n/a %
+  Effluent  PDR 46.74 ± 1.71 %  hops 5.38 ± 0.14  FND n/a  spent 41.91 ± 1.21 J  latency n/a s  critical PDR 45.24 ± 1.50 %  critical on time n/a %
+  Air       PDR 46.88 ± 1.65 %  hops 5.30 ± 0.22  FND n/a  spent 41.96 ± 0.67 J  latency n/a s  critical PDR 47.21 ± 1.79 %  critical on time n/a %
+  Soil      PDR 41.93 ± 1.93 %  hops 4.84 ± 0.09  FND n/a  spent 10.09 ± 0.17 J  latency n/a s  critical PDR 43.86 ± 3.89 %  critical on time n/a %
+  Mixed     PDR 45.08 ± 1.47 %  hops 5.41 ± 0.22  FND n/a  spent 29.35 ± 1.11 J  latency n/a s  critical PDR 46.63 ± 2.66 %  critical on time n/a %
+
+== wireless (mean ± SD over seeds)
+  Water     PDR n/a %  hops n/a  FND n/a  spent n/a J  latency n/a s  critical PDR n/a %  critical on time n/a %
+  Effluent  PDR n/a %  hops n/a  FND n/a  spent n/a J  latency n/a s  critical PDR n/a %  critical on time n/a %
+  Air       PDR n/a %  hops n/a  FND n/a  spent n/a J  latency n/a s  critical PDR n/a %  critical on time n/a %
+  Soil      PDR n/a %  hops n/a  FND n/a  spent n/a J  latency n/a s  critical PDR n/a %  critical on time n/a %
+  Mixed     PDR 89.80 ± 0.34 %  hops 7.66 ± 0.12  FND n/a  spent 24.29 ± 0.23 J  latency 3.058 ± 0.004 s  critical PDR 90.94 ± 0.28 %  critical on time 0.08 ± 0.02 %
+
+== eventaware (mean ± SD over seeds)
+  Water     PDR n/a %  hops n/a  FND n/a  spent n/a J  latency n/a s  critical PDR n/a %  critical on time n/a %
+  Effluent  PDR n/a %  hops n/a  FND n/a  spent n/a J  latency n/a s  critical PDR n/a %  critical on time n/a %
+  Air       PDR n/a %  hops n/a  FND n/a  spent n/a J  latency n/a s  critical PDR n/a %  critical on time n/a %
+  Soil      PDR n/a %  hops n/a  FND n/a  spent n/a J  latency n/a s  critical PDR n/a %  critical on time n/a %
+  Mixed     PDR 94.30 %  hops 7.49  FND n/a  spent 25.93 J  latency 2.424 s  critical PDR 97.02 %  critical on time 94.17 %
+
+== paired differences (b - a), 95 % CI
+  wireless - abstract    mixed    pdr_pct                +44.72  [+42.74, +46.7]  n=5
+  wireless - abstract    mixed    delivered              +3.278e+04  [+3.133e+04, +3.423e+04]  n=5
+  wireless - abstract    mixed    meanHops               +2.247  [+1.857, +2.636]  n=5
+  wireless - abstract    mixed    relay_top10_share_pct  +9.582  [+7.241, +11.92]  n=5
+  wireless - abstract    mixed    route_failures         -3.278e+04  [-3.423e+04, -3.133e+04]  n=5
+  wireless - abstract    mixed    node_rounds            +0  [+0, +0]  n=5
+  wireless - abstract    mixed    residualJ              +5.056  [+3.706, +6.406]  n=5
+  wireless - abstract    mixed    spentJ                 -5.056  [-6.406, -3.706]  n=5
+  wireless - abstract    mixed    energyPerDeliveredJ    -0.0005194  [-0.0005576, -0.0004813]  n=5
+  wireless - abstract    mixed    path_delay_s           +0.04596  [+0.04279, +0.04913]  n=5
+  wireless - abstract    mixed    qUpdates               +1.204e+05  [+1.025e+05, +1.382e+05]  n=5
+  eventaware - wireless  mixed    pdr_pct                +4.79  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    critical_pdr_pct       +5.693  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    critical_latency_s     -1.991  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    critical_deadline_pct  +94.06  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    warning_pdr_pct        +4.297  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    warning_deadline_pct   +4.297  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    routine_pdr_pct        +4.375  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    routine_latency_s      +0.03546  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    routine_deadline_pct   +4.375  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    routine_max_queue_s    -0.02783  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    latency_s              -0.6333  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    spentJ                 +1.66  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    energyPerDeliveredJ    +5.229e-06  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    E_radio_active         +122.5  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    E_radio_dc             +122.4  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    sensing_J              +0  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    mac_tx                 +5.538e+04  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    mac_retries            -8652  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    corrupted_rx           -2.491e+05  [+nan, +nan]  n=1
+  eventaware - wireless  mixed    node_rounds            +0  [+nan, +nan]  n=1
+
+radio energy: adapter state integration = INET energy meter in 7/7 wireless runs
+2 J ledger: TX charges = INET MAC transmissions for every node in 7/7 wireless runs
+
+== physical energy per operational node-round (J): CC2420 radio duty-cycled (active window measured + sleep for the rest
+   of a 3600 s round), sensing and processing from the dataset ledger; 2 J ledger = first-order TX+RX
+  wireless   Mixed     radio dc 0.4888 (active 0.2514, sleep 0.2373)  sensing 87.5274  processing 0.00058  2 J ledger 2.36e-04
+  eventaware Mixed     radio dc 0.4900 (active 0.2526, sleep 0.2373)  sensing 87.5274  processing 0.00058  2 J ledger 2.51e-04
+
+== event-aware vs variant C, mixed seed 42, rounds 1-100 (paired: same topology, workload, seeds)
+  all reports: PDR 87.39 % -> 93.69 %; 2 J-ledger energy 4.872 -> 4.985 J; per delivered report 0.4007 -> 0.3824 mJ
+  critical variant C   generated  4323  PDR  89.64 %  delay 3.036 s (p95 3.946)  deadline met   0.21 %  max queue wait 0.068 s
+  critical event-aware generated  4323  PDR  97.18 %  delay 1.054 s (p95 1.951)  deadline met  94.56 %  max queue wait 0.037 s
+  warning  variant C   generated  1496  PDR  89.57 %  delay 3.072 s (p95 3.950)  deadline met  89.57 %  max queue wait 0.080 s
+  warning  event-aware generated  1496  PDR  94.39 %  delay 3.059 s (p95 3.996)  deadline met  94.39 %  max queue wait 0.047 s
+  routine  variant C   generated  8095  PDR  85.79 %  delay 3.056 s (p95 3.959)  deadline met  85.79 %  max queue wait 0.080 s
+  routine  event-aware generated  8095  PDR  91.70 %  delay 3.085 s (p95 3.994)  deadline met  91.70 %  max queue wait 0.067 s

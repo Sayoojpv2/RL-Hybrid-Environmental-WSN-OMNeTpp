@@ -1,0 +1,6 @@
+name,unit,origin,datasetColumn
+temperature_C,see metadata.json,scenario,temperature_C
+pH,see metadata.json,scenario,pH
+conductivity_uScm,see metadata.json,scenario,conductivity_uScm
+TDS_mgL,see metadata.json,scenario,TDS_mgL
+DO_mgL,see metadata.json,scenario,DO_mgL

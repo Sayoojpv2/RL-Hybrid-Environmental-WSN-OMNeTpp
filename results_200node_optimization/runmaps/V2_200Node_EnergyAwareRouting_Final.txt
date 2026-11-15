@@ -1,0 +1,31 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Config: V2_200Node_EnergyAwareRouting_Final
+Number of runs: 20
+
+Run 0: $seed=47, $repetition=0
+Run 1: $seed=48, $repetition=0
+Run 2: $seed=49, $repetition=0
+Run 3: $seed=50, $repetition=0
+Run 4: $seed=51, $repetition=0
+Run 5: $seed=52, $repetition=0
+Run 6: $seed=53, $repetition=0
+Run 7: $seed=54, $repetition=0
+Run 8: $seed=55, $repetition=0
+Run 9: $seed=56, $repetition=0
+Run 10: $seed=57, $repetition=0
+Run 11: $seed=58, $repetition=0
+Run 12: $seed=59, $repetition=0
+Run 13: $seed=60, $repetition=0
+Run 14: $seed=61, $repetition=0
+Run 15: $seed=62, $repetition=0
+Run 16: $seed=63, $repetition=0
+Run 17: $seed=64, $repetition=0
+Run 18: $seed=65, $repetition=0
+Run 19: $seed=66, $repetition=0
+
+End.

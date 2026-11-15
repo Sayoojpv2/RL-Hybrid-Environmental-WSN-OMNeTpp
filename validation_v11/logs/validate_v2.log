@@ -1,0 +1,79 @@
+
+=== Stage B: reference check (workload, topology, channel) for seeds 42-46 ===
+PASS seed 42: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS seed 43: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS seed 44: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS seed 45: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS seed 46: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS workload summary (counts, r_events milestones, station order, node ids) identical to MATLAB
+PASS expected counts: raw 1273 valid 1251 dates 212 scheduled 10000 available 9825 unavailable 175
+PASS station -> node mapping as in create_periyar_workload_continuous.m: {'PATHALAM BUND U/S': 22, 'PATHALAM BUND D/S': 28, 'PATHALAM BRIDGE': 32, 'PUTHALAM KADAVU': 38, 'MANJUMMAL BUND': 42, 'VETTUKADAVU': 48, 'ALUVA - MANAPPURAM': 4, 'PURAPILLIKADAVU US': 8, 'PURAPILLIKADAVU BUND NAVIGATION': 12, 'PURAPILLIKADAVU BUND DS': 18}
+PASS at most one report per station per round, all 1000 rounds present
+PASS no station emits twice in a round
+PASS no future observation used: 0 reports carry a date after their round
+PASS pre-first-observation slots = sum over stations of (first round - 1) = 175
+PASS seed 42: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 42: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+PASS seed 43: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 43: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+PASS seed 44: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 44: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+PASS seed 45: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 45: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+PASS seed 46: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 46: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+
+22 checks, 0 failed
+
+=== Stage C: seed-42 smoke test ===
+PASS seed 42: decision trace 33736 rows vs MATLAB 33736 rows -> IDENTICAL (every action, causal estimate, energy and channel outcome)
+PASS seed 42: per-round delivered/operational nodes/residual energy/Q-updates/explorations/epsilon identical in all 1000 rounds
+PASS seed 42: first-unavailable round and reason identical for all 50 nodes (5 became unavailable)
+PASS seed 42: all 23 headline metrics equal to the frozen MATLAB result
+
+4 checks, 0 failed
+PASS seed 42: E1 every one of the 9825 valid-data slots has exactly one recorded fate
+PASS seed 42: E1 10000 slots = 175 pre-observation + 9825 data; 9825 = 605 source-down + 9220 emitted; emitted = 3877 delivered + 5343 lost + 0 unattempted
+PASS seed 42: E2 delivered <= emitted, PDR = delivered / 10000 scheduled = 38.770 % (conditional delivered/emitted = 42.050 % reported separately)
+PASS seed 42: E3 energy reconciles per node (max |E0-residual-(tx+rx+agg)| = 1.4e-13 J); spent 47.533124 + residual 52.466876 = 100 J budget
+PASS seed 42: E3 BS counted 3877 delivered reports = report log
+PASS seed 42: E4 no node acts after it became unavailable (5 nodes became unavailable; 0 late actions, 0 choices of an unavailable target)
+PASS seed 42: E5 TTL respected: largest route hop 15 <= 15, largest delivered hop count 16 (<= 15 route hops + 1 member hop); TTL losses 0
+PASS seed 42: E6 every action indexes Q(state 1..6561, action 1..51); 748 distinct states visited; self-head actions target the actor
+PASS seed 42: E6 Q-learning active: 33736 updates summed over the 50 per-node tables = network total; 4252 exploratory and 29484 greedy decisions
+PASS seed 42: E7 logged radio actions (member 8981, relay 20306, to BS 4210) = physical frames 33497; self-head choices 239; decoded member frames 7697
+PASS seed 42: E8 roles: reports generated only by 10 sensing nodes [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]; source actions only by them; 40 relay-only nodes; 50 battery-node modules + 1 BS
+
+11 checks, 0 failed
+
+=== Stage D: five seeds 42-46 ===
+PASS seed 42: decision trace 33736 rows vs MATLAB 33736 rows -> IDENTICAL (every action, causal estimate, energy and channel outcome)
+PASS seed 42: per-round delivered/operational nodes/residual energy/Q-updates/explorations/epsilon identical in all 1000 rounds
+PASS seed 42: first-unavailable round and reason identical for all 50 nodes (5 became unavailable)
+PASS seed 42: all 23 headline metrics equal to the frozen MATLAB result
+PASS seed 43: decision trace 32788 rows vs MATLAB 32788 rows -> IDENTICAL (every action, causal estimate, energy and channel outcome)
+PASS seed 43: per-round delivered/operational nodes/residual energy/Q-updates/explorations/epsilon identical in all 1000 rounds
+PASS seed 43: first-unavailable round and reason identical for all 50 nodes (6 became unavailable)
+PASS seed 43: all 23 headline metrics equal to the frozen MATLAB result
+PASS seed 44: decision trace 31125 rows vs MATLAB 31125 rows -> IDENTICAL (every action, causal estimate, energy and channel outcome)
+PASS seed 44: per-round delivered/operational nodes/residual energy/Q-updates/explorations/epsilon identical in all 1000 rounds
+PASS seed 44: first-unavailable round and reason identical for all 50 nodes (4 became unavailable)
+PASS seed 44: all 23 headline metrics equal to the frozen MATLAB result
+PASS seed 45: decision trace 31632 rows vs MATLAB 31632 rows -> IDENTICAL (every action, causal estimate, energy and channel outcome)
+PASS seed 45: per-round delivered/operational nodes/residual energy/Q-updates/explorations/epsilon identical in all 1000 rounds
+PASS seed 45: first-unavailable round and reason identical for all 50 nodes (6 became unavailable)
+PASS seed 45: all 23 headline metrics equal to the frozen MATLAB result
+PASS seed 46: decision trace 34908 rows vs MATLAB 34908 rows -> IDENTICAL (every action, causal estimate, energy and channel outcome)
+PASS seed 46: per-round delivered/operational nodes/residual energy/Q-updates/explorations/epsilon identical in all 1000 rounds
+PASS seed 46: first-unavailable round and reason identical for all 50 nodes (7 became unavailable)
+PASS seed 46: all 23 headline metrics equal to the frozen MATLAB result
+
+20 checks, 0 failed
+
+=== Stage E: internal verification of the five-seed runs ===
+55 checks, 0 failed
+
+=== Byte identity with the archived v1 baseline (logs/baseline_unmodified_copy) ===
+51 files compared, 0 different
+
+ALL STAGES PASSED

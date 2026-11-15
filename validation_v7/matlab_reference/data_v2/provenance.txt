@@ -1,0 +1,13 @@
+matlab_release 2026a
+protocols/RL_Hybrid.m md5 a5e1fc55c6fa9bcba6af042967f55d8b
+simulation/generate_scenario.m md5 74cda89960e0545fdee3118250b1aa11
+simulation/create_periyar_workload_continuous.m md5 44702ddaee97ddbf40d1869b8021696e
+simulation/load_consdata_xlsx.m md5 e94ac8a47ac4a401ac38fafd36471500
+simulation/tx_energy.m md5 6ecc50837bc39f9362ca217028d4ddab
+simulation/rx_energy.m md5 62656380fa0c07724751c17d005d33db
+simulation/extract_metrics.m md5 dd41b28bc75425f8d3548118b1da9b33
+wsn_config.m md5 bb5570d93ed93d5bf1646c4324146690
+run_experiment.m md5 cd42ed459ebcf54d6313e6855ef77640
+data/consdata.xlsx md5 6100b72899bd76df5a393fbbc5fb898a
+results/results_500rounds.mat md5 407012aa28e86b4cca42d383a00919eb
+numNodes 10 numRounds 500 scheduleRounds 1000 seeds [42 43 44 45 46] sensingNodes [1 2 3 4 5 6 7 8 9 10] stationNodeIds [4 8 12 18 22 28 32 38 42 48] topology stationPositions

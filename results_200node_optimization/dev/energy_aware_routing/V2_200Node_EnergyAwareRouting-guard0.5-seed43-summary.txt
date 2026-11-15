@@ -1,0 +1,23 @@
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 43   rounds simulated: 500 of 500
+network                  : 200 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scheduled slots          : 100000   (200 per round)
+  pre-observation slots  : 3500   (no data yet; never a report)
+  valid-data slots       : 96500
+    source unavailable   : 19507   (valid data, source down at round start)
+    reports emitted      : 76993
+      unattempted        : 10
+      attempted          : 76983
+        delivered        : 35038
+        network losses   : 41945  (channel 35514, energy 70, no candidate 6354, TTL 7)
+PDR (delivered/scheduled): 35.038 %
+delivered / emitted      : 45.508 %  (conditional; not the MATLAB PDR)
+FND (first round < 200 op): 142
+first unavailable node   : 177  (MATLAB firstUnavailableRound 143.000)
+final operational nodes  : 106
+residual energy          : 81.4632 J   spent 318.5368 J (tx 267.8507, rx 46.0716, aggregation 4.6145)
+energy / delivered report: 0.009091 J
+mean delivered hops      : 4.500
+mean path delay          : 0.09449 s  (sum of k/Rbit + Tproc + d/c per hop, MATLAB definition)
+Q updates / explorations : 222807 / 40573  (exploitation 182243, agent RNG draws 445632)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)

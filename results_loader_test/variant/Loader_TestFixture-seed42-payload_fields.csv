@@ -1,0 +1,4 @@
+name,unit,origin,datasetColumn
+waterTemp,degC,dataset,water_temp_C
+turbidity,NTU,dataset,turbidity_NTU
+nitrate,mg/L,dataset,nitrate_mgL

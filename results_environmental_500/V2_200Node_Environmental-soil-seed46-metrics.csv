@@ -1,0 +1,2 @@
+seed,scheduled,workloadAvailable,sourceAvailable,attempts,unattempted,delivered,stageLoss,lossNoCandidate,lossChannel,lossEnergy,lossTTL,PDR,FND,finalAlive,residualJ,spentJ,energyPerDeliveredJ,meanHops,meanDelayS,qUpdates,explorations,exploitations,physicalFrames
+46,62984,62984,62984,62984,0,25385,37599,0,37597,0,2,40.303886701384478,-1,500,971.37724935826259,28.622750641744204,0.0011275458200411348,5.572897380342722,0.03896497095023941,185296,32861,152435,185176

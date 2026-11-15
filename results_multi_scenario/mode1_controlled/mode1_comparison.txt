@@ -1,0 +1,50 @@
+MODE 1 controlled multi-scenario comparison (200 nodes, 500 rounds, seed 42, variant C energyGuard 0.8, retx off, 4000 bit)
+==============================================================================================================
+1. Network-level outputs, all five scenarios against M1_Water
+  [OK] decisions.csv                byte-identical in all 5 scenarios (md5 ddd4b22d680d)
+  [OK] per_round.csv                byte-identical in all 5 scenarios (md5 c3b654549924)
+  [OK] metrics.csv                  byte-identical in all 5 scenarios (md5 8a34f7bd6e35)
+  [OK] unavailability.csv           byte-identical in all 5 scenarios (md5 e18822d195f3)
+  [OK] unavailability_events.csv    byte-identical in all 5 scenarios (md5 d594d0c49d1a)
+  [OK] nodes.csv                    byte-identical in all 5 scenarios (md5 05c635ee0798)
+  [OK] reports.csv without station/date labels identical (96500 report fates)
+  [OK] summary.txt identical apart from the sensing-ledger line
+  [OK] generated report slots identical (reportIndex, round, sourceNode: 96500 reports)
+      payload content differs from water in 96500 of 96500 reports (Effluent: fields temperature_C,pH,conductivity_uScm,TDS_mgL,DO_mgL,turbidity_NTU,COD_mgL,BOD_mgL,NH3N_mgL)
+      payload content differs from water in 96500 of 96500 reports (Air: fields PM25_ugm3,PM10_ugm3,CO_mgm3,NO2_ugm3,SO2_ugm3,O3_ugm3,temperature_C,RH_pct,wind_ms)
+      payload content differs from water in 96500 of 96500 reports (Soil: fields VWC_pct,soil_temperature_C,bulk_EC_dSm,soil_pH,N_mgkg,P_mgkg,K_mgkg)
+      payload content differs from water in 72569 of 96500 reports (Mixed: fields value1,value2,value3,value4,value5,value6,value7,value8,value9)
+
+2. M1_Water against the validated run of the original KSPCB loader (old binary)
+   reference: results_200node_optimization\dev\energy_aware_routing\V2_200Node_EnergyAwareRouting-guard0.8-seed42-*
+  [OK] per_round.csv                byte-identical to the reference
+  [OK] metrics.csv                  byte-identical to the reference
+  [OK] unavailability.csv           byte-identical to the reference
+  [OK] unavailability_events.csv    byte-identical to the reference
+  [OK] nodes.csv                    byte-identical to the reference
+  [OK] reports.csv identical except the source label (REPLAY-n<k>:<station> vs water_quality:<station>)
+  [OK] workload.csv: same 96500 reports, dates and T, pH, EC, TDS values (DO extension column added)
+
+3. Network metrics (identical in all five scenarios)
+   generated reports (valid-data slots) 96500 of 100000 slots; emitted 76661; attempted 76655; delivered 33846
+   PDR 33.846 %   FND round 250   operational nodes at round 500: 107
+   residual 66.5624 J   spent 333.4376 J   mean path delay 96.73 ms   mean hops 4.606
+   routing decisions logged 216592   Q updates 216592   explorations 39737   frames 216156
+
+4. Separate sensing-energy ledger (NOT charged to the 2 J radio battery; 1 round = 1 h)
+   scenario  sensor type          nodes  J/node, operational rounds  J/node, all 500 rounds  x radio energy spent
+   Water     water_quality          200                       244.3                   304.8
+   Water     total (operational)    200                     48858.9                                           147
+   Effluent  industrial_effluent    200                     96916.9                120902.8
+   Effluent  total (operational)    200                  19383371.5                                         58132
+   Air       air_quality            200                     43142.4                 53819.7
+   Air       total (operational)    200                   8628489.6                                         25877
+   Soil      soil_monitoring        200                        23.1                    28.6
+   Soil      total (operational)    200                      4623.4                                            14
+   Mixed     air_quality             50                     45383.0                 53819.7
+   Mixed     industrial_effluent     50                     92094.0                120902.8
+   Mixed     soil_monitoring         50                        23.6                    28.6
+   Mixed     water_quality           50                       238.0                   304.8
+   Mixed     total (operational)    200                   6886932.1                                         20654
+
+RESULT: identical network-level metrics and routing decisions in all five scenarios; only payload values, labels and the sensing ledger differ

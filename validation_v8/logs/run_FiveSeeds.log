@@ -1,0 +1,216 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  1
+
+Preparing for running configuration FiveSeeds, run #0...
+Scenario: $seed=42, $repetition=0
+Assigned runID=FiveSeeds-0-20261111-12:27:57-17180
+Setting up network "PeriyarRiverNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 7e-06s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 102   present: 102   in FES: 2   Memory (RSS): 22.0391MiB
+** Event #135473   t=10000   Elapsed: 0.733257s (0m 00s)  100% completed  (20% total)
+     Speed:     ev/sec=184756   simsec/sec=13625.4   ev/simsec=13.5596
+     Messages:  created: 78765   present: 102   in FES: 0   Memory (RSS): 22.7422MiB
+
+<!> Simulation time limit reached -- at t=10000s, event #135473
+
+Calling finish() at end of Run #0...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 42   rounds simulated: 1000 of 1000
+network                  : 50 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scheduled slots          : 10000   (10 per round)
+  pre-observation slots  : 175   (no data yet; never a report)
+  valid-data slots       : 9825
+    source unavailable   : 605   (valid data, source down at round start)
+    reports emitted      : 9220
+      unattempted        : 0
+      attempted          : 9220
+        delivered        : 3877
+        network losses   : 5343  (channel 5340, energy 3, no candidate 0, TTL 0)
+PDR (delivered/scheduled): 38.770 %
+delivered / emitted      : 42.050 %  (conditional; not the MATLAB PDR)
+FND (first round < 50 op): 450
+first unavailable node   : 32  (MATLAB firstUnavailableRound 451.000)
+final operational nodes  : 45
+residual energy          : 52.4669 J   spent 47.5331 J (tx 42.0965, rx 4.9230, aggregation 0.5136)
+energy / delivered report: 0.012260 J
+mean delivered hops      : 4.644
+mean path delay          : 0.09753 s  (sum of k/Rbit + Tproc + d/c per hop, MATLAB definition)
+Q updates / explorations : 33736 / 4252  (exploitation 29484, agent RNG draws 67472)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+
+Preparing for running configuration FiveSeeds, run #1...
+Scenario: $seed=43, $repetition=0
+Assigned runID=FiveSeeds-1-20261111-12:27:57-17180
+Setting up network "PeriyarRiverNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 2.3e-05s (0m 00s)  0% completed  (20% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 102   present: 102   in FES: 2   Memory (RSS): 22.4648MiB
+** Event #131049   t=10000   Elapsed: 0.717843s (0m 00s)  100% completed  (40% total)
+     Speed:     ev/sec=182560   simsec/sec=13917.5   ev/simsec=13.1173
+     Messages:  created: 77009   present: 102   in FES: 0   Memory (RSS): 22.7188MiB
+
+<!> Simulation time limit reached -- at t=10000s, event #131049
+
+Calling finish() at end of Run #1...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 43   rounds simulated: 1000 of 1000
+network                  : 50 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scheduled slots          : 10000   (10 per round)
+  pre-observation slots  : 175   (no data yet; never a report)
+  valid-data slots       : 9825
+    source unavailable   : 298   (valid data, source down at round start)
+    reports emitted      : 9527
+      unattempted        : 0
+      attempted          : 9527
+        delivered        : 4484
+        network losses   : 5043  (channel 5037, energy 6, no candidate 0, TTL 0)
+PDR (delivered/scheduled): 44.840 %
+delivered / emitted      : 47.066 %  (conditional; not the MATLAB PDR)
+FND (first round < 50 op): 591
+first unavailable node   : 25  (MATLAB firstUnavailableRound 592.000)
+final operational nodes  : 44
+residual energy          : 57.3628 J   spent 42.6372 J (tx 37.5100, rx 4.6350, aggregation 0.4922)
+energy / delivered report: 0.009509 J
+mean delivered hops      : 4.088
+mean path delay          : 0.08586 s  (sum of k/Rbit + Tproc + d/c per hop, MATLAB definition)
+Q updates / explorations : 32788 / 3985  (exploitation 28803, agent RNG draws 65576)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+
+Preparing for running configuration FiveSeeds, run #2...
+Scenario: $seed=44, $repetition=0
+Assigned runID=FiveSeeds-2-20261111-12:27:58-17180
+Setting up network "PeriyarRiverNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 6e-06s (0m 00s)  0% completed  (40% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 102   present: 102   in FES: 2   Memory (RSS): 22.4961MiB
+** Event #124769   t=10000   Elapsed: 0.680545s (0m 00s)  100% completed  (60% total)
+     Speed:     ev/sec=183338   simsec/sec=14680.5   ev/simsec=12.4885
+     Messages:  created: 73650   present: 102   in FES: 0   Memory (RSS): 22.7461MiB
+
+<!> Simulation time limit reached -- at t=10000s, event #124769
+
+Calling finish() at end of Run #2...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 44   rounds simulated: 1000 of 1000
+network                  : 50 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scheduled slots          : 10000   (10 per round)
+  pre-observation slots  : 175   (no data yet; never a report)
+  valid-data slots       : 9825
+    source unavailable   : 614   (valid data, source down at round start)
+    reports emitted      : 9211
+      unattempted        : 0
+      attempted          : 9211
+        delivered        : 4409
+        network losses   : 4802  (channel 4800, energy 2, no candidate 0, TTL 0)
+PDR (delivered/scheduled): 44.090 %
+delivered / emitted      : 47.867 %  (conditional; not the MATLAB PDR)
+FND (first round < 50 op): 386
+first unavailable node   : 22  (MATLAB firstUnavailableRound 387.000)
+final operational nodes  : 46
+residual energy          : 58.6011 J   spent 41.3989 J (tx 36.5269, rx 4.4072, aggregation 0.4648)
+energy / delivered report: 0.009390 J
+mean delivered hops      : 4.125
+mean path delay          : 0.08663 s  (sum of k/Rbit + Tproc + d/c per hop, MATLAB definition)
+Q updates / explorations : 31125 / 4007  (exploitation 27118, agent RNG draws 62250)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+
+Preparing for running configuration FiveSeeds, run #3...
+Scenario: $seed=45, $repetition=0
+Assigned runID=FiveSeeds-3-20261111-12:27:59-17180
+Setting up network "PeriyarRiverNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 8e-06s (0m 00s)  0% completed  (60% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 102   present: 102   in FES: 2   Memory (RSS): 22.4961MiB
+** Event #126659   t=10000   Elapsed: 0.688487s (0m 00s)  100% completed  (80% total)
+     Speed:     ev/sec=183968   simsec/sec=14511   ev/simsec=12.6779
+     Messages:  created: 73874   present: 102   in FES: 0   Memory (RSS): 22.8945MiB
+
+<!> Simulation time limit reached -- at t=10000s, event #126659
+
+Calling finish() at end of Run #3...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 45   rounds simulated: 1000 of 1000
+network                  : 50 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scheduled slots          : 10000   (10 per round)
+  pre-observation slots  : 175   (no data yet; never a report)
+  valid-data slots       : 9825
+    source unavailable   : 783   (valid data, source down at round start)
+    reports emitted      : 9042
+      unattempted        : 0
+      attempted          : 9042
+        delivered        : 3825
+        network losses   : 5217  (channel 5217, energy 0, no candidate 0, TTL 0)
+PDR (delivered/scheduled): 38.250 %
+delivered / emitted      : 42.303 %  (conditional; not the MATLAB PDR)
+FND (first round < 50 op): 472
+first unavailable node   : 28  (MATLAB firstUnavailableRound 473.000)
+final operational nodes  : 44
+residual energy          : 52.5279 J   spent 47.4721 J (tx 42.4802, rx 4.5130, aggregation 0.4789)
+energy / delivered report: 0.012411 J
+mean delivered hops      : 4.366
+mean path delay          : 0.09169 s  (sum of k/Rbit + Tproc + d/c per hop, MATLAB definition)
+Q updates / explorations : 31632 / 4200  (exploitation 27432, agent RNG draws 63264)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+
+Preparing for running configuration FiveSeeds, run #4...
+Scenario: $seed=46, $repetition=0
+Assigned runID=FiveSeeds-4-20261111-12:27:59-17180
+Setting up network "PeriyarRiverNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 6e-06s (0m 00s)  0% completed  (80% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 102   present: 102   in FES: 2   Memory (RSS): 22.5859MiB
+** Event #139729   t=10000   Elapsed: 0.751798s (0m 00s)  100% completed  (100% total)
+     Speed:     ev/sec=185861   simsec/sec=13288.7   ev/simsec=13.9864
+     Messages:  created: 80848   present: 102   in FES: 0   Memory (RSS): 22.8984MiB
+
+<!> Simulation time limit reached -- at t=10000s, event #139729
+
+Calling finish() at end of Run #4...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 46   rounds simulated: 1000 of 1000
+network                  : 50 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scheduled slots          : 10000   (10 per round)
+  pre-observation slots  : 175   (no data yet; never a report)
+  valid-data slots       : 9825
+    source unavailable   : 450   (valid data, source down at round start)
+    reports emitted      : 9375
+      unattempted        : 0
+      attempted          : 9375
+        delivered        : 3917
+        network losses   : 5458  (channel 5423, energy 5, no candidate 27, TTL 3)
+PDR (delivered/scheduled): 39.170 %
+delivered / emitted      : 41.781 %  (conditional; not the MATLAB PDR)
+FND (first round < 50 op): 241
+first unavailable node   : 29  (MATLAB firstUnavailableRound 242.000)
+final operational nodes  : 43
+residual energy          : 56.7683 J   spent 43.2317 J (tx 37.5977, rx 5.0950, aggregation 0.5390)
+energy / delivered report: 0.011037 J
+mean delivered hops      : 4.457
+mean path delay          : 0.09359 s  (sum of k/Rbit + Tproc + d/c per hop, MATLAB definition)
+Q updates / explorations : 34908 / 4385  (exploitation 30523, agent RNG draws 69816)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+
+Run statistics: total 5, successful 5
+
+End.

@@ -1,0 +1,113 @@
+PASS seed 42: 10 node positions identical to MATLAB generate_scenario(seed, cfg) 'stationPositions'
+PASS seed 42: channel success bits rounds 1-500 identical (55000 links)
+PASS seed 42: workload identical (4825 reports with data in rounds 1-500, stations on nodes 1-10, payload values)
+PASS seed 42: decisions 8064/8064 identical (OMNeT++ 8064) - round, type, actor, chosen target, reports, link history and outcome exactly; q-estimate, prior and energies within 1e-9 (bit-identical rows 7601; largest floating difference 2.2e-16)
+PASS seed 42: per-round delivered identical in all 500 rounds
+PASS seed 42: per-round aliveCount identical in all 500 rounds
+PASS seed 42: per-round residualJ identical in all 500 rounds (tolerance 1e-12 relative)
+PASS seed 42: per-round qUpdates identical in all 500 rounds
+PASS seed 42: per-round explorations identical in all 500 rounds
+PASS seed 42: per-round epsilon identical in all 500 rounds
+PASS seed 42: per-round scheduled identical in all 500 rounds
+PASS seed 42: per-round sourceAvailable identical in all 500 rounds
+PASS seed 42: per-round attempts identical in all 500 rounds
+PASS seed 42: per-round stageLoss identical in all 500 rounds
+PASS seed 42: per-round unattempted identical in all 500 rounds
+PASS seed 42: per-round energy spent equal within 1e-12 relative
+PASS seed 42: residual energy of each of the 10 nodes equal within 1e-12 relative; unavailability round and reason identical per node
+PASS seed 42: the MATLAB rerun equals the published results_500rounds.mat
+PASS seed 42: delivered, PDR, valid-report and source-packet PDR, residual, energy/report, delays (1e-9 relative) and FND/HND/LND equal to MATLAB extract_metrics
+PASS seed 43: 10 node positions identical to MATLAB generate_scenario(seed, cfg) 'stationPositions'
+PASS seed 43: channel success bits rounds 1-500 identical (55000 links)
+PASS seed 43: workload identical (4825 reports with data in rounds 1-500, stations on nodes 1-10, payload values)
+PASS seed 43: decisions 9607/9607 identical (OMNeT++ 9607) - round, type, actor, chosen target, reports, link history and outcome exactly; q-estimate, prior and energies within 1e-9 (bit-identical rows 9390; largest floating difference 2.2e-16)
+PASS seed 43: per-round delivered identical in all 500 rounds
+PASS seed 43: per-round aliveCount identical in all 500 rounds
+PASS seed 43: per-round residualJ identical in all 500 rounds (tolerance 1e-12 relative)
+PASS seed 43: per-round qUpdates identical in all 500 rounds
+PASS seed 43: per-round explorations identical in all 500 rounds
+PASS seed 43: per-round epsilon identical in all 500 rounds
+PASS seed 43: per-round scheduled identical in all 500 rounds
+PASS seed 43: per-round sourceAvailable identical in all 500 rounds
+PASS seed 43: per-round attempts identical in all 500 rounds
+PASS seed 43: per-round stageLoss identical in all 500 rounds
+PASS seed 43: per-round unattempted identical in all 500 rounds
+PASS seed 43: per-round energy spent equal within 1e-12 relative
+PASS seed 43: residual energy of each of the 10 nodes equal within 1e-12 relative; unavailability round and reason identical per node
+PASS seed 43: the MATLAB rerun equals the published results_500rounds.mat
+PASS seed 43: delivered, PDR, valid-report and source-packet PDR, residual, energy/report, delays (1e-9 relative) and FND/HND/LND equal to MATLAB extract_metrics
+PASS seed 44: 10 node positions identical to MATLAB generate_scenario(seed, cfg) 'stationPositions'
+PASS seed 44: channel success bits rounds 1-500 identical (55000 links)
+PASS seed 44: workload identical (4825 reports with data in rounds 1-500, stations on nodes 1-10, payload values)
+PASS seed 44: decisions 8883/8883 identical (OMNeT++ 8883) - round, type, actor, chosen target, reports, link history and outcome exactly; q-estimate, prior and energies within 1e-9 (bit-identical rows 8601; largest floating difference 1.1e-16)
+PASS seed 44: per-round delivered identical in all 500 rounds
+PASS seed 44: per-round aliveCount identical in all 500 rounds
+PASS seed 44: per-round residualJ identical in all 500 rounds (tolerance 1e-12 relative)
+PASS seed 44: per-round qUpdates identical in all 500 rounds
+PASS seed 44: per-round explorations identical in all 500 rounds
+PASS seed 44: per-round epsilon identical in all 500 rounds
+PASS seed 44: per-round scheduled identical in all 500 rounds
+PASS seed 44: per-round sourceAvailable identical in all 500 rounds
+PASS seed 44: per-round attempts identical in all 500 rounds
+PASS seed 44: per-round stageLoss identical in all 500 rounds
+PASS seed 44: per-round unattempted identical in all 500 rounds
+PASS seed 44: per-round energy spent equal within 1e-12 relative
+PASS seed 44: residual energy of each of the 10 nodes equal within 1e-12 relative; unavailability round and reason identical per node
+PASS seed 44: the MATLAB rerun equals the published results_500rounds.mat
+PASS seed 44: delivered, PDR, valid-report and source-packet PDR, residual, energy/report, delays (1e-9 relative) and FND/HND/LND equal to MATLAB extract_metrics
+PASS seed 45: 10 node positions identical to MATLAB generate_scenario(seed, cfg) 'stationPositions'
+PASS seed 45: channel success bits rounds 1-500 identical (55000 links)
+PASS seed 45: workload identical (4825 reports with data in rounds 1-500, stations on nodes 1-10, payload values)
+PASS seed 45: decisions 10138/10138 identical (OMNeT++ 10138) - round, type, actor, chosen target, reports, link history and outcome exactly; q-estimate, prior and energies within 1e-9 (bit-identical rows 10138; largest floating difference 0)
+PASS seed 45: per-round delivered identical in all 500 rounds
+PASS seed 45: per-round aliveCount identical in all 500 rounds
+PASS seed 45: per-round residualJ identical in all 500 rounds (tolerance 1e-12 relative)
+PASS seed 45: per-round qUpdates identical in all 500 rounds
+PASS seed 45: per-round explorations identical in all 500 rounds
+PASS seed 45: per-round epsilon identical in all 500 rounds
+PASS seed 45: per-round scheduled identical in all 500 rounds
+PASS seed 45: per-round sourceAvailable identical in all 500 rounds
+PASS seed 45: per-round attempts identical in all 500 rounds
+PASS seed 45: per-round stageLoss identical in all 500 rounds
+PASS seed 45: per-round unattempted identical in all 500 rounds
+PASS seed 45: per-round energy spent equal within 1e-12 relative
+PASS seed 45: residual energy of each of the 10 nodes equal within 1e-12 relative; unavailability round and reason identical per node
+PASS seed 45: the MATLAB rerun equals the published results_500rounds.mat
+PASS seed 45: delivered, PDR, valid-report and source-packet PDR, residual, energy/report, delays (1e-9 relative) and FND/HND/LND equal to MATLAB extract_metrics
+PASS seed 46: 10 node positions identical to MATLAB generate_scenario(seed, cfg) 'stationPositions'
+PASS seed 46: channel success bits rounds 1-500 identical (55000 links)
+PASS seed 46: workload identical (4825 reports with data in rounds 1-500, stations on nodes 1-10, payload values)
+PASS seed 46: decisions 9970/9970 identical (OMNeT++ 9970) - round, type, actor, chosen target, reports, link history and outcome exactly; q-estimate, prior and energies within 1e-9 (bit-identical rows 9970; largest floating difference 0)
+PASS seed 46: per-round delivered identical in all 500 rounds
+PASS seed 46: per-round aliveCount identical in all 500 rounds
+PASS seed 46: per-round residualJ identical in all 500 rounds (tolerance 1e-12 relative)
+PASS seed 46: per-round qUpdates identical in all 500 rounds
+PASS seed 46: per-round explorations identical in all 500 rounds
+PASS seed 46: per-round epsilon identical in all 500 rounds
+PASS seed 46: per-round scheduled identical in all 500 rounds
+PASS seed 46: per-round sourceAvailable identical in all 500 rounds
+PASS seed 46: per-round attempts identical in all 500 rounds
+PASS seed 46: per-round stageLoss identical in all 500 rounds
+PASS seed 46: per-round unattempted identical in all 500 rounds
+PASS seed 46: per-round energy spent equal within 1e-12 relative
+PASS seed 46: residual energy of each of the 10 nodes equal within 1e-12 relative; unavailability round and reason identical per node
+PASS seed 46: the MATLAB rerun equals the published results_500rounds.mat
+PASS seed 46: delivered, PDR, valid-report and source-packet PDR, residual, energy/report, delays (1e-9 relative) and FND/HND/LND equal to MATLAB extract_metrics
+
+| Metric (mean over seeds 42,43,44,45,46) | MATLAB V2 | OMNeT++ | max abs difference per seed |
+|---|---|---|---|
+| generated | 4326.8 | 4326.8 | 0 |
+| delivered | 1413.8 | 1413.8 | 0 |
+| PDR | 28.276 | 28.276 | 0 |
+| validPDR | 29.3016 | 29.3016 | 0 |
+| sourcePDR | 32.8083 | 32.8083 | 0 |
+| FND | 192.4 | 192.4 | 0 |
+| HND | none | none | 0 |
+| LND | none | none | 0 |
+| finalAlive | 7.6 | 7.6 | 0 |
+| residualJ | 8.59845 | 8.59845 | 0 |
+| energyPerDeliveredJ | 0.00879145 | 0.00879145 | 8.67e-19 |
+| meanDelayRound | 0.0419726 | 0.0419726 | 2.79e-13 |
+| meanDelayPacket | 0.0484351 | 0.0484351 | 2.65e-13 |
+
+95 checks, 0 failed

@@ -1,0 +1,172 @@
+#ifndef __PERIYAR_SENSORNODE_H
+#define __PERIYAR_SENSORNODE_H
+
+#include <omnetpp.h>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+#include "Messages_m.h"
+
+using namespace omnetpp;
+
+class Controller;
+struct Scenario;
+
+/**
+ * Battery-powered WSN node (50 per network). Ten of them are sensing stations
+ * (MATLAB ids 4 8 12 18 22 28 32 38 42 48); all 50 can act as cluster head or relay.
+ * Implements protocols/RL_Hybrid.m: per-node tabular Q(s,a) with 3^8 = 6561 states and
+ * 51 actions (nodes 1..50 and BS), candidate-conditioned states, epsilon-greedy selection,
+ * the frozen reward and update rules, and the operational death rules.
+ */
+class SensorNode : public cSimpleModule
+{
+  public:
+    // ---- state other nodes may read (RL_Hybrid.m reads the global E/alive/load arrays)
+    int id() const { return myId; }
+    bool isAlive() const { return alive; }
+    double energy() const { return E; }
+    double loadForState() const { return nodeLoad + loadEWMA; }   // load + forwardingLoadEWMA
+    double roundLoad() const { return nodeLoad; }
+    bool hasOwnReport() const { return ownReportValid; }
+    const ReportRecord& ownReport() const { return own; }
+    void clearOwnReport() { ownReportValid = false; }
+    int clusterReportCount() const { return (int)clusterBuf.size(); }
+    double firstUnavailable() const { return firstUnavailableRound; }
+    const std::string& unavailableReason() const { return reason; }
+    long qEntries() const { return (long)Q.size(); }
+    // ---- called by the controller
+    void beginRound();
+    void assignReport(const ReportRecord& r) { own = r; ownReportValid = true; }
+    void endRoundLoadUpdate();                 // forwardingLoadEWMA = 0.9*EWMA + 0.1*nodeLoad
+    bool applyMinimumEnergyRule();            // E < E_elec*k  -> unavailable (end of round)
+    void setUnavailable(const char *why);
+    void deliverCommand(int command, int round, simtime_t delay = SIMTIME_ZERO);   // controller step (ieee802154: with jitter)
+    void setDisplayRole(bool sensing, const std::string& station) { sensingRole = sensing; stationName = station; }   // display only
+
+  protected:
+    struct Cand { int target; int state; double q; };          // target: MATLAB id, 51 = BS
+    struct Outstanding {
+        bool active = false; int type = 0; int target = 0; int state = 0;
+        double lq = 0, eTx = 0, d = 0, localMeanLoad = 0; double ctx[6];
+        bool explored = false; int nCands = 0; simtime_t decisionTime; int hop = 0;
+        std::vector<ReportRecord> reports;                      // copies, for fate accounting
+        // experimental retransmission (only used when enabled): pristine copy of the frame and how it was sent
+        DataFrame *retry = nullptr; int attempt = 0; double eTxAttempt = 0;
+        cGate *gate = nullptr; simtime_t prop, dur;
+    };
+
+    int myId = 0, n = 50;
+    int BS_ID = 51, NUM_ACTIONS = 51;                           // set to n+1 in initialize (scalable action space)
+    Controller *ctl = nullptr;
+    const Scenario *sc = nullptr;
+    double E = 0, E0 = 0;
+    bool alive = true;
+    double firstUnavailableRound = NAN;
+    std::string reason;
+    std::vector<long> linkSucc, linkAtt;                        // this node's OWN row, size n+1
+    std::unordered_map<long, double> Q;                         // sparse; key (state-1)*NUM_ACTIONS + (action-1), NUM_ACTIONS = n+1
+    double nodeLoad = 0, loadEWMA = 0;
+    long rxReports = 0;          // reports received from other nodes (forwarding / aggregation workload)
+    double retryE = 0;           // TX energy spent on retransmissions (experimental option)
+    // round-local
+    bool ownReportValid = false;
+    ReportRecord own;
+    std::vector<ReportRecord> clusterBuf;                       // clusterReports(ch)
+    std::vector<int> clusterMembers;                            // clusterMemberNodes{ch}
+    // multi-hop route state while this node holds the aggregate
+    DataFrame *held = nullptr;
+    bool heldHasPending = false;                                // previous hop awaits feedback
+    int heldPrev = -1;
+    Outstanding out;
+    struct Pending { bool active = false; int state = 0; int action = 0; double reward = 0; } pending;
+    cMessage *ackTimer = nullptr, *processTimer = nullptr;
+    simtime_t ackTimeout, tProc;
+    double Rbit = 250e3, cLight = 3e8;
+    long txFrames = 0, rxFrames = 0, qUpdates = 0;
+    double txE = 0, rxE = 0, aggE = 0;
+    bool sensingRole = false;                                   // display only
+    std::string stationName;                                    // display only
+
+    // ---- communicationModel = "ieee802154": data frames go through INET's IEEE 802.15.4 MAC/PHY (wireless/
+    // RadioAdapter plugin); routing feedback (receiver energy and load, next-hop value) stays out of band
+    struct Queued { DataFrame *f; simtime_t arrival; simtime_t proc; };
+    bool wireless = false;
+    simtime_t wirelessAckTimeout;
+    std::string outName;                                        // outstanding data frame (MAC failure notices match it)
+    long frameSeq = 0;                                          // this node's data-frame counter
+    long lostNoOutcome = 0, staleAcks = 0;                      // hops with no outcome (lost in a MAC); late answers
+    std::vector<long> lastSeqFrom;                              // duplicate filter: last frame accepted per sender
+    std::vector<Queued> inbox;                                  // frames waiting for this node (one transmission at a time)
+    simtime_t heldArrival, heldProc;
+    bool pendingCluster = false;                                // cluster decision deferred while the node is busy
+    bool radioOffSent = false;
+    struct TxLog { long seq = -1; int attempts = 0; double energy = 0; };
+    TxLog txLog[8];                                             // MAC transmissions of the last own frames (by seq % 8)
+    double deferredTxJ = 0;                                     // retry energy that fell between rounds
+    simtime_t txTime;                                           // the outstanding frame went to the MAC at
+    double macDelaySum = 0; long macDelayN = 0;                 // MAC hop delay: to the MAC -> accepted by the next hop
+    size_t inboxMax = 0;                                        // largest number of frames waiting at this node
+    void txWireless(DataFrame *f, int target);
+    void onTxAttempt(const char *name);
+    double chargeRetry(double e);
+    void popInbox();
+    bool busy() const { return held || out.active; }
+    double valueAtReception(const DataFrame *f) const;
+    DataFrame *newRouteFrame(const std::vector<ReportRecord>& recs, const std::vector<int>& members);
+    void startRouteWireless(const std::vector<ReportRecord>& recs, const std::vector<int>& members);
+    void runCluster();
+
+    virtual int numInitStages() const override { return 2; }
+    virtual void initialize(int stage) override;
+    virtual void handleMessage(cMessage *msg) override;
+    virtual void refreshDisplay() const override;
+    virtual void finish() override;
+
+    // ---- RL_Hybrid.m helpers
+    double qEst(int j) const;                                   // currentLinkEstimate(), own row
+    int stateFor(int cand, int hops) const;                     // hybridState()
+    double neighborLoadMean(const std::vector<int>& cands) const;
+    double cheapestAllowedTx(const std::vector<int>& visited, double oneBits) const;
+    std::vector<int> routeCandidates(int reports, const std::vector<int>& visited, double frameBits) const;
+    // frame bits of reports (packetSize each unless Scenario::perReportBits) and the aggregation energy for them
+    double bitsOf(const ReportRecord& r) const;
+    double sumBits(const std::vector<ReportRecord>& v) const;
+    double sumBits(const DataFrame *f) const;
+    double aggEnergy(double bits, int reports) const;
+    int selectAction(std::vector<Cand>& c, bool& explored);
+    double& qref(int state, int action);
+    double qval(int state, int action) const;
+    void qUpdate(int state, int action, double reward, double nextMax);
+    double dist(int target) const;                              // distanceTo()
+
+    // ---- behaviour
+    void clusterDecision();
+    void startRoute();
+    void routeStep();
+    void transmit(int type, int target, const Cand& c, bool explored, int nCands, DataFrame *f);
+    void onFrame(DataFrame *f);
+    void onAck(LinkAck *a);
+    void onTimeout();
+    void onFeedback(ValueFeedback *fb);
+    void finishRoute();                                         // route ended (any outcome) -> Done
+    void failHeld(int fate, bool strandOwnAsUnattempted);
+    void sendFeedback(double value, bool terminal);
+    void loseRecords(const std::vector<ReportRecord>& recs, int fate);
+    void spendTx(double e);
+    void armRetry(DataFrame *f, double d, cGate *g, double eTx);   // keep a copy for a possible retransmission
+    void dropRetry();
+    long retrySeq = 0;
+    // experimental variants B and C (no effect unless enabled)
+    double qOrPrior(int state, int target, int reports, bool member, double localMeanLoad) const;
+    double qPriorValue(int target, int reports, bool member, double localMeanLoad) const;
+    void keepChosenPrior(const Cand& c);
+    void applyEnergyGuard(std::vector<int>& cands) const;
+    void sendDone();
+
+  public:
+    virtual ~SensorNode();
+};
+
+#endif

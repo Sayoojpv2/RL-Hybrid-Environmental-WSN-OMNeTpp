@@ -1,0 +1,4 @@
+case,rounds,scheduled,delivered,lost: MAC / channel,lost: TTL (15 hops)
+"200 nodes, 600 m",1-5,674,545,116,13
+"500, fixed area",1-5,1716,651,1052,13
+"500, fixed density",1-5,1716,564,701,451

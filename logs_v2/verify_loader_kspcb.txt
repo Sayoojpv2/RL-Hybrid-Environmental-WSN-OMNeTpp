@@ -1,0 +1,12 @@
+﻿PASS Loader_KSPCB: workload columns ['temperature', 'pH', 'conductivity', 'TDS', 'DO']
+PASS Loader_KSPCB: raw 1329, valid 1254, unique times 212, scheduled 10000, with data 9825 (expected 1329/1254/212/10000/9825)
+PASS Loader_KSPCB: all 9825 reports match the independent recomputation (round, node, station, timestamp, every payload value; 4397 NaN payload values)
+PASS Loader_KSPCB: payload field names/units/columns temperature[degC]<-Temperature, pH[pH]<-pH, conductivity[uS/cm]<-Conductivity, TDS[mg/L]<-TDS, DO[mg/L]<-DO
+PASS Loader_KSPCB: report sources [4, 22, 28, 32, 38, 42, 48] and cluster-phase actors [4, 22, 28, 32, 38, 42, 48] are mapped nodes [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]; every workload report of the 20 simulated rounds has exactly one fate
+PASS Loader_KSPCB: accounting OK; fates {'lost_channel': 64, 'delivered': 57}
+PASS Loader_KSPCB: 57 delivered reports; payload received at the BS identical to the dataset values for every one
+PASS Loader_KSPCB: packet delivery observed (57 reports delivered)
+
+8 checks, 0 failed
+Consistency: KSPCB-converted run vs Periyar SmokeSeed42 rounds 1-20: decisions identical True (374); report fates identical True (121)
+line endings v1 decisions CRLF: True | KSPCB: True

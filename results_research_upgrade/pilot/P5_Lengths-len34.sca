@@ -1,0 +1,1744 @@
+version 3
+run P5_Lengths-1-20261113-01:55:47-22608
+attr configname P5_Lengths
+attr datetime 20261113-01:55:47
+attr datetimef 20261113-015547
+attr experiment P5_Lengths
+attr inifile wireless/pilot.ini
+attr iterationvars $len=34
+attr iterationvarsd len=34
+attr iterationvarsf len=34-
+attr measurement $len=34
+attr network WirelessPilotNetwork
+attr processid 22608
+attr repetition 0
+attr replication #0
+attr resultdir ../results_research_upgrade/pilot
+attr runnumber 1
+attr seedset 1
+itervar len 34
+config description "frame length handling: one frame per payload size (bytes, MAC payload limit 118)"
+config extends P1_TwoNodeAck
+config *.node[0].app.sendTimes "\"1\""
+config *.node[0].app.payloadBytes 34
+config output-scalar-file ../results_research_upgrade/pilot/P5_Lengths-len34.sca
+config description "two nodes 30 m apart: 20 frames, all MAC-ACKed"
+config *.numNodes 2
+config *.node[0].mobility.initialX 0m
+config *.node[1].mobility.initialX 30m
+config *.node[0].app.destNode 2
+config *.node[0].app.sendTimes "\"1 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9\""
+config network WirelessPilotNetwork
+config sim-time-limit 30s
+config cmdenv-express-mode true
+config **.cmdenv-log-level warn
+config num-rngs 2
+config **.wlan.mac.rng-0 1
+config result-dir ../results_research_upgrade/pilot
+config output-scalar-file ../results_research_upgrade/pilot/P5_Lengths.sca
+config output-vector-file ../results_research_upgrade/pilot/P5_Lengths.vec
+config **.vector-recording false
+config *.node[*].app.logFile "\"results_research_upgrade/pilot/pilot_events.csv\""
+config **.energyStorage.**.result-recording-modes -vector
+config **.wlan.**.result-recording-modes -vector,-vector(packetBytes)
+config **.wlan.radio.transmitter.power 1mW
+config **.wlan.radio.receiver.sensitivity -95dBm
+config **.wlan.radio.receiver.energyDetection -77dBm
+config *.node[*].wlan.radio.energyConsumer.typename StateBasedEpEnergyConsumer
+config **.energyConsumer.offPowerConsumption 0.000066mW
+config **.energyConsumer.sleepPowerConsumption 0.066mW
+config **.energyConsumer.switchingPowerConsumption 1.4058mW
+config **.energyConsumer.receiverIdlePowerConsumption 62.04mW
+config **.energyConsumer.receiverBusyPowerConsumption 62.04mW
+config **.energyConsumer.receiverReceivingPowerConsumption 62.04mW
+config **.energyConsumer.transmitterIdlePowerConsumption 1.4058mW
+config **.energyConsumer.transmitterTransmittingPowerConsumption 57.42mW
+config **.mobility.initialY 0m
+config **.mobility.initialZ 0m
+
+par WirelessPilotNetwork.radioMedium.propagation typename "\"inet.physicallayer.wireless.common.propagation.ConstantSpeedPropagation\""
+par WirelessPilotNetwork.radioMedium.propagation displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.radioMedium.propagation propagationSpeed 299792458mps
+attr unit mps
+par WirelessPilotNetwork.radioMedium.propagation ignoreMovementDuringTransmission true
+par WirelessPilotNetwork.radioMedium.propagation ignoreMovementDuringPropagation true
+par WirelessPilotNetwork.radioMedium.propagation ignoreMovementDuringReception true
+scalar WirelessPilotNetwork.radioMedium.propagation "Arrival computation count" 2
+par WirelessPilotNetwork.radioMedium.analogModel typename "\"inet.physicallayer.wireless.common.analogmodel.scalar.ScalarMediumAnalogModel\""
+par WirelessPilotNetwork.radioMedium.analogModel displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.radioMedium.analogModel ignorePartialInterference false
+par WirelessPilotNetwork.radioMedium.backgroundNoise typename "\"inet.physicallayer.wireless.common.backgroundnoise.IsotropicScalarBackgroundNoise\""
+par WirelessPilotNetwork.radioMedium.backgroundNoise displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.radioMedium.backgroundNoise power -96.616dBm
+attr unit dBm
+par WirelessPilotNetwork.radioMedium.backgroundNoise bandwidth "nan Hz"
+attr unit Hz
+par WirelessPilotNetwork.radioMedium.pathLoss typename "\"inet.physicallayer.wireless.common.pathloss.BreakpointPathLoss\""
+par WirelessPilotNetwork.radioMedium.pathLoss displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.radioMedium.pathLoss l01 40.2dB
+attr unit dB
+par WirelessPilotNetwork.radioMedium.pathLoss l02 58.5dB
+attr unit dB
+par WirelessPilotNetwork.radioMedium.pathLoss alpha1 2
+par WirelessPilotNetwork.radioMedium.pathLoss alpha2 3.3
+par WirelessPilotNetwork.radioMedium.pathLoss breakpointDistance 8m
+attr unit m
+par WirelessPilotNetwork.radioMedium.mediumLimitCache typename "\"inet.physicallayer.wireless.common.medium.MediumLimitCache\""
+par WirelessPilotNetwork.radioMedium.mediumLimitCache displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.radioMedium.mediumLimitCache centerFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.radioMedium.mediumLimitCache maxSpeed "nan mps"
+attr unit mps
+par WirelessPilotNetwork.radioMedium.mediumLimitCache maxTransmissionPower "nan W"
+attr unit W
+par WirelessPilotNetwork.radioMedium.mediumLimitCache minInterferencePower "nan dBm"
+attr unit dBm
+par WirelessPilotNetwork.radioMedium.mediumLimitCache minReceptionPower "nan dBm"
+attr unit dBm
+par WirelessPilotNetwork.radioMedium.mediumLimitCache maxAntennaGain 0dB
+attr unit dB
+par WirelessPilotNetwork.radioMedium.mediumLimitCache minInterferenceTime 1e-12s
+attr unit s
+par WirelessPilotNetwork.radioMedium.mediumLimitCache maxTransmissionDuration 0.01s
+attr unit s
+par WirelessPilotNetwork.radioMedium.mediumLimitCache maxCommunicationRange "nan m"
+attr unit m
+par WirelessPilotNetwork.radioMedium.mediumLimitCache maxInterferenceRange "nan m"
+attr unit m
+par WirelessPilotNetwork.radioMedium.communicationCache typename "\"inet.physicallayer.wireless.common.communicationcache.VectorCommunicationCache\""
+par WirelessPilotNetwork.radioMedium.communicationCache displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.radioMedium typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandScalarRadioMedium\""
+par WirelessPilotNetwork.radioMedium displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.radioMedium physicalEnvironmentModule "\"physicalEnvironment\""
+par WirelessPilotNetwork.radioMedium signalAnalogRepresentation "\"scalar\""
+attr enum unitDisk,scalar,dimensional
+par WirelessPilotNetwork.radioMedium rangeFilter "\"\""
+par WirelessPilotNetwork.radioMedium radioModeFilter false
+par WirelessPilotNetwork.radioMedium listeningFilter false
+par WirelessPilotNetwork.radioMedium macAddressFilter false
+par WirelessPilotNetwork.radioMedium recordTransmissionLog false
+par WirelessPilotNetwork.radioMedium recordReceptionLog false
+par WirelessPilotNetwork.radioMedium sameTransmissionStartTimeCheck "\"error\""
+attr enum ignore,warning,error
+scalar WirelessPilotNetwork.radioMedium "transmission count" 2
+scalar WirelessPilotNetwork.radioMedium "signal send count" 2
+scalar WirelessPilotNetwork.radioMedium "reception computation count" 2
+scalar WirelessPilotNetwork.radioMedium "interference computation count" 12
+scalar WirelessPilotNetwork.radioMedium "reception decision computation count" 2
+scalar WirelessPilotNetwork.radioMedium "listening decision computation count" 8
+scalar WirelessPilotNetwork.radioMedium "reception cache hit" 85.71428571428571
+attr unit %
+scalar WirelessPilotNetwork.radioMedium "interference cache hit" 66.66666666666667
+attr unit %
+scalar WirelessPilotNetwork.radioMedium "noise cache hit" 0
+attr unit %
+scalar WirelessPilotNetwork.radioMedium "snir cache hit" 50
+attr unit %
+scalar WirelessPilotNetwork.radioMedium "reception decision cache hit" 50
+attr unit %
+scalar WirelessPilotNetwork.radioMedium "reception result cache hit" 0
+attr unit %
+par WirelessPilotNetwork.node[0].mobility typename "\"inet.mobility.static.StationaryMobility\""
+par WirelessPilotNetwork.node[0].mobility displayStringTextFormat "\"p: {position}\\nv: {velocity}\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].mobility subjectModule "\"^\""
+par WirelessPilotNetwork.node[0].mobility coordinateSystemModule "\"\""
+par WirelessPilotNetwork.node[0].mobility updateDisplayString true
+par WirelessPilotNetwork.node[0].mobility constraintAreaMinX "-inf m"
+attr unit m
+par WirelessPilotNetwork.node[0].mobility constraintAreaMinY "-inf m"
+attr unit m
+par WirelessPilotNetwork.node[0].mobility constraintAreaMinZ "-inf m"
+attr unit m
+par WirelessPilotNetwork.node[0].mobility constraintAreaMaxX "inf m"
+attr unit m
+par WirelessPilotNetwork.node[0].mobility constraintAreaMaxY "inf m"
+attr unit m
+par WirelessPilotNetwork.node[0].mobility constraintAreaMaxZ "inf m"
+attr unit m
+par WirelessPilotNetwork.node[0].mobility initialX 0m
+attr unit m
+par WirelessPilotNetwork.node[0].mobility initialY 0m
+attr unit m
+par WirelessPilotNetwork.node[0].mobility initialZ 0m
+attr unit m
+par WirelessPilotNetwork.node[0].mobility initialLatitude "nan deg"
+attr unit deg
+par WirelessPilotNetwork.node[0].mobility initialLongitude "nan deg"
+attr unit deg
+par WirelessPilotNetwork.node[0].mobility initialAltitude 0m
+attr unit m
+par WirelessPilotNetwork.node[0].mobility initialHeading 0deg
+attr unit deg
+par WirelessPilotNetwork.node[0].mobility initialElevation 0deg
+attr unit deg
+par WirelessPilotNetwork.node[0].mobility initialBank 0deg
+attr unit deg
+par WirelessPilotNetwork.node[0].mobility initFromDisplayString false
+par WirelessPilotNetwork.node[0].mobility updateFromDisplayString true
+par WirelessPilotNetwork.node[0].interfaceTable typename "\"inet.networklayer.common.InterfaceTable\""
+par WirelessPilotNetwork.node[0].interfaceTable displayStringTextFormat "\"{numInterfaces} interfaces\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].interfaceTable displayAddresses false
+par WirelessPilotNetwork.node[0].energyStorage typename "\"inet.power.storage.IdealEpEnergyStorage\""
+par WirelessPilotNetwork.node[0].energyStorage displayStringTextFormat "\"\""
+attr mutable ""
+scalar WirelessPilotNetwork.node[0].energyStorage residualEnergyCapacity:last -0.062211713370161514
+attr interpolationmode linear
+attr recordingmode last
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity, last"
+attr unit J
+par WirelessPilotNetwork.node[0].wlan.upperLayerIn.channel typename "\"ned.IdealChannel\""
+par WirelessPilotNetwork.node[0].wlan.radioIn.channel typename "\"ned.IdealChannel\""
+par WirelessPilotNetwork.node[0].wlan.mac.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par WirelessPilotNetwork.node[0].wlan.queue typename "\"inet.queueing.queue.DropTailQueue\""
+par WirelessPilotNetwork.node[0].wlan.queue displayStringTextFormat "\"contains %p pk (%l) pushed %u\\npulled %o removed %r dropped %d\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.queue packetCapacity 100
+par WirelessPilotNetwork.node[0].wlan.queue dataCapacity -1b
+attr unit b
+par WirelessPilotNetwork.node[0].wlan.queue dropperClass "\"inet::queueing::PacketAtCollectionEndDropper\""
+par WirelessPilotNetwork.node[0].wlan.queue comparatorClass "\"\""
+par WirelessPilotNetwork.node[0].wlan.queue bufferModule "\"\""
+scalar WirelessPilotNetwork.node[0].wlan.queue queueLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, last"
+attr unit pk
+scalar WirelessPilotNetwork.node[0].wlan.queue queueLength:max 1
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, max"
+attr unit pk
+scalar WirelessPilotNetwork.node[0].wlan.queue queueLength:timeavg 2.5600000000000002e-05
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, timeavg"
+attr unit pk
+scalar WirelessPilotNetwork.node[0].wlan.queue queueBitLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, last"
+attr unit b
+scalar WirelessPilotNetwork.node[0].wlan.queue queueBitLength:max 272
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, max"
+attr unit b
+scalar WirelessPilotNetwork.node[0].wlan.queue queueBitLength:timeavg 0.0069632
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, timeavg"
+attr unit b
+statistic WirelessPilotNetwork.node[0].wlan.queue queueingTime:histogram
+field count 1
+field mean 0.000768
+field stddev nan
+field min 0.000768
+field max 0.000768
+field sum 0.000768
+field sqrsum 5.898240000000001e-07
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+bin	-inf	0
+bin	0	1
+bin	0.01	0
+bin	0.02	0
+bin	0.03	0
+bin	0.04	0
+bin	0.05	0
+bin	0.06	0
+bin	0.07	0
+bin	0.08	0
+bin	0.09	0
+bin	0.1	0
+bin	0.11	0
+bin	0.12	0
+bin	0.13	0
+bin	0.14	0
+bin	0.15	0
+bin	0.16	0
+bin	0.17	0
+bin	0.18	0
+bin	0.19	0
+bin	0.2	0
+bin	0.21	0
+bin	0.22	0
+bin	0.23	0
+bin	0.24	0
+bin	0.25	0
+bin	0.26	0
+bin	0.27	0
+bin	0.28	0
+bin	0.29	0
+bin	0.3	0
+bin	0.31	0
+bin	0.32	0
+bin	0.33	0
+bin	0.34	0
+bin	0.35000000000000003	0
+bin	0.36	0
+bin	0.37	0
+bin	0.38	0
+bin	0.39	0
+bin	0.4	0
+bin	0.41000000000000003	0
+bin	0.42	0
+bin	0.43	0
+bin	0.44	0
+bin	0.45	0
+bin	0.46	0
+bin	0.47000000000000003	0
+bin	0.48	0
+bin	0.49	0
+bin	0.5	0
+bin	0.51	0
+scalar WirelessPilotNetwork.node[0].wlan.queue outgoingPackets:count 1
+attr recordingmode count
+attr source packetPulled
+attr title "outgoing packets, count"
+attr unit pk
+scalar WirelessPilotNetwork.node[0].wlan.queue outgoingPacketLengths:sum 272
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths, sum"
+attr unit b
+statistic WirelessPilotNetwork.node[0].wlan.queue outgoingPacketLengths:histogram
+field count 1
+field mean 272
+field stddev nan
+field min 272
+field max 272
+field sum 272
+field sqrsum 73984
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+bin	-inf	0
+bin	271	0
+bin	272	1
+bin	273	0
+statistic WirelessPilotNetwork.node[0].wlan.queue flowQueueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar WirelessPilotNetwork.node[0].wlan.queue incomingPackets:count 1
+attr recordingmode count
+attr source packetPushStarted
+attr title "incoming packets, count"
+attr unit pk
+scalar WirelessPilotNetwork.node[0].wlan.queue incomingPacketLengths:sum 272
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths, sum"
+attr unit b
+statistic WirelessPilotNetwork.node[0].wlan.queue incomingPacketLengths:histogram
+field count 1
+field mean 272
+field stddev nan
+field min 272
+field max 272
+field sum 272
+field sqrsum 73984
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+bin	-inf	0
+bin	271	0
+bin	272	1
+bin	273	0
+scalar WirelessPilotNetwork.node[0].wlan.queue droppedPacketsQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "dropped packets: queue overflow, count"
+attr unit pk
+scalar WirelessPilotNetwork.node[0].wlan.queue droppedPacketLengthsQueueOverflow:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow, sum"
+attr unit b
+par WirelessPilotNetwork.node[0].wlan.mac typename "\"inet.linklayer.ieee802154.Ieee802154NarrowbandMac\""
+par WirelessPilotNetwork.node[0].wlan.mac displayStringTextFormat "\"{macStatus}\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.mac interfaceTableModule "\"WirelessPilotNetwork.node[0].wlan.^.interfaceTable\""
+par WirelessPilotNetwork.node[0].wlan.mac address "\"auto\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.mac headerLength 72b
+attr unit b
+par WirelessPilotNetwork.node[0].wlan.mac mtu 118B
+attr unit B
+par WirelessPilotNetwork.node[0].wlan.mac bitrate 250000bps
+attr unit bps
+par WirelessPilotNetwork.node[0].wlan.mac ccaDetectionTime 0.000128s
+attr unit s
+par WirelessPilotNetwork.node[0].wlan.mac rxSetupTime 0s
+attr unit s
+par WirelessPilotNetwork.node[0].wlan.mac aTurnaroundTime 0.000192s
+attr unit s
+par WirelessPilotNetwork.node[0].wlan.mac useMACAcks true
+par WirelessPilotNetwork.node[0].wlan.mac macMaxFrameRetries 3
+par WirelessPilotNetwork.node[0].wlan.mac macAckWaitDuration 0.00056s
+attr unit s
+par WirelessPilotNetwork.node[0].wlan.mac ackLength 40b
+attr unit b
+par WirelessPilotNetwork.node[0].wlan.mac sifs 0.000192s
+attr unit s
+par WirelessPilotNetwork.node[0].wlan.mac backoffMethod "\"exponential\""
+par WirelessPilotNetwork.node[0].wlan.mac macMaxCSMABackoffs 4
+par WirelessPilotNetwork.node[0].wlan.mac aUnitBackoffPeriod 0.00032s
+attr unit s
+par WirelessPilotNetwork.node[0].wlan.mac contentionWindow 2
+par WirelessPilotNetwork.node[0].wlan.mac macMinBE 3
+par WirelessPilotNetwork.node[0].wlan.mac macMaxBE 5
+par WirelessPilotNetwork.node[0].wlan.mac radioModule "\"^.radio\""
+scalar WirelessPilotNetwork.node[0].wlan.mac nbTxFrames 1
+scalar WirelessPilotNetwork.node[0].wlan.mac nbRxFrames 0
+scalar WirelessPilotNetwork.node[0].wlan.mac nbDroppedFrames 0
+scalar WirelessPilotNetwork.node[0].wlan.mac nbMissedAcks 0
+scalar WirelessPilotNetwork.node[0].wlan.mac nbRecvdAcks 1
+scalar WirelessPilotNetwork.node[0].wlan.mac nbTxAcks 0
+scalar WirelessPilotNetwork.node[0].wlan.mac nbDuplicates 0
+scalar WirelessPilotNetwork.node[0].wlan.mac meanBackoff 0.0006399999999999999
+scalar WirelessPilotNetwork.node[0].wlan.mac nbBackoffs 1
+scalar WirelessPilotNetwork.node[0].wlan.mac backoffDurations 0.0006399999999999999
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropNotAddressToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropNotAddressToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, count"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropRetryLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, count"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropRetryLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropBackoffLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, count"
+scalar WirelessPilotNetwork.node[0].wlan.mac packetDropBackoffLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[0].wlan.mac linkBroken:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source linkBroken
+attr title "link break, count"
+par WirelessPilotNetwork.node[0].wlan.radio.antenna typename "\"inet.physicallayer.wireless.common.antenna.IsotropicAntenna\""
+par WirelessPilotNetwork.node[0].wlan.radio.antenna displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.radio.antenna mobilityModule "\"WirelessPilotNetwork.node[0].mobility\""
+par WirelessPilotNetwork.node[0].wlan.radio.antenna numAntennas 1
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter.analogModel typename "\"inet.physicallayer.wireless.common.analogmodel.scalar.ScalarTransmitterAnalogModel\""
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter.analogModel displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter.analogModel power 0.001W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter.analogModel centerFrequency "nan Hz"
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter.analogModel bandwidth "nan Hz"
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandTransmitter\""
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter signalAnalogRepresentation "\"scalar\""
+attr enum unitDisk,scalar,dimensional
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter preambleDuration 0.000128s
+attr unit s
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter headerLength 16b
+attr unit b
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter bitrate 250000bps
+attr unit bps
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter power 0.001W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter centerFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter bandwidth 2800000Hz
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter codeRate 1
+par WirelessPilotNetwork.node[0].wlan.radio.transmitter modulation "\"DSSS-OQPSK-16\""
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.analogModel typename "\"inet.physicallayer.wireless.common.analogmodel.scalar.ScalarReceiverAnalogModel\""
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.analogModel displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.analogModel defaultCenterFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.analogModel defaultBandwidth 2800000Hz
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.analogModel defaultSensitivity -95dBm
+attr unit dBm
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.errorModel typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.errormodel.Ieee802154ErrorModel\""
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.errorModel displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.errorModel corruptionMode "\"packet\""
+attr enum packet,chunk,byte,bit
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.errorModel snirMode "\"min\""
+attr enum min,mean
+par WirelessPilotNetwork.node[0].wlan.radio.receiver.errorModel snirOffset 0dB
+attr unit dB
+par WirelessPilotNetwork.node[0].wlan.radio.receiver typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandReceiver\""
+par WirelessPilotNetwork.node[0].wlan.radio.receiver displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.radio.receiver ignoreInterference false
+par WirelessPilotNetwork.node[0].wlan.radio.receiver signalAnalogRepresentation "\"scalar\""
+attr enum unitDisk,scalar,dimensional
+par WirelessPilotNetwork.node[0].wlan.radio.receiver snirThreshold -8dB
+attr unit dB
+par WirelessPilotNetwork.node[0].wlan.radio.receiver snirThresholdMode "\"min\""
+attr enum min,mean
+par WirelessPilotNetwork.node[0].wlan.radio.receiver energyDetection -77dBm
+attr unit dBm
+par WirelessPilotNetwork.node[0].wlan.radio.receiver sensitivity -95dBm
+attr unit dBm
+par WirelessPilotNetwork.node[0].wlan.radio.receiver centerFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio.receiver bandwidth 2800000Hz
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio.receiver modulation "\"DSSS-OQPSK-16\""
+par WirelessPilotNetwork.node[0].wlan.radio.receiver minInterferencePower -120dBm
+attr unit dBm
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer typename "\"inet.physicallayer.wireless.common.energyconsumer.StateBasedEpEnergyConsumer\""
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer energySourceModule "\"WirelessPilotNetwork.node[0].wlan.^.energyStorage\""
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer offPowerConsumption 6.600000000000001e-08W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer sleepPowerConsumption 6.6e-05W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer switchingPowerConsumption 0.0014058W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer receiverIdlePowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer receiverBusyPowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer receiverReceivingPowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer receiverReceivingPreamblePowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer receiverReceivingHeaderPowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer receiverReceivingDataPowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer transmitterIdlePowerConsumption 0.0014058W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer transmitterTransmittingPowerConsumption 0.057420000000000006W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer transmitterTransmittingPreamblePowerConsumption 0.057420000000000006W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer transmitterTransmittingHeaderPowerConsumption 0.057420000000000006W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio.energyConsumer transmitterTransmittingDataPowerConsumption 0.057420000000000006W
+attr unit W
+par WirelessPilotNetwork.node[0].wlan.radio typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandRadio\""
+par WirelessPilotNetwork.node[0].wlan.radio displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan.radio radioMediumModule "\"radioMedium\""
+par WirelessPilotNetwork.node[0].wlan.radio energySourceModule "\"WirelessPilotNetwork.node[0].wlan.^.energyStorage\""
+par WirelessPilotNetwork.node[0].wlan.radio initialRadioMode "\"off\""
+attr enum off,sleep,receiver,transmitter,transceiver
+par WirelessPilotNetwork.node[0].wlan.radio switchingTimes "\"ms 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\""
+par WirelessPilotNetwork.node[0].wlan.radio sendRawBytes false
+par WirelessPilotNetwork.node[0].wlan.radio separateTransmissionParts false
+par WirelessPilotNetwork.node[0].wlan.radio separateReceptionParts false
+par WirelessPilotNetwork.node[0].wlan.radio displayCommunicationRange false
+par WirelessPilotNetwork.node[0].wlan.radio displayInterferenceRange false
+par WirelessPilotNetwork.node[0].wlan.radio signalAnalogRepresentation "\"scalar\""
+attr enum unitDisk,scalar,dimensional
+par WirelessPilotNetwork.node[0].wlan.radio centerFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.node[0].wlan.radio bandwidth 2800000Hz
+attr unit Hz
+statistic WirelessPilotNetwork.node[0].wlan.radio minSnir:histogram
+field count 1
+field mean 82.6602694249944
+field stddev nan
+field min 82.6602694249944
+field max 82.6602694249944
+field sum 82.6602694249944
+field sqrsum 6832.720141412664
+attr recordingmode histogram
+attr source minimumSnir(packetSentToUpper)
+attr title "Min SNIR"
+bin	-inf	0
+bin	82.16	0
+bin	82.17999999999999	0
+bin	82.2	0
+bin	82.22	0
+bin	82.24	0
+bin	82.25999999999999	0
+bin	82.28	0
+bin	82.3	0
+bin	82.32	0
+bin	82.34	0
+bin	82.36	0
+bin	82.38	0
+bin	82.39999999999999	0
+bin	82.42	0
+bin	82.44	0
+bin	82.46	0
+bin	82.47999999999999	0
+bin	82.5	0
+bin	82.52	0
+bin	82.53999999999999	0
+bin	82.56	0
+bin	82.58	0
+bin	82.6	0
+bin	82.61999999999999	0
+bin	82.64	0
+bin	82.66	1
+bin	82.67999999999999	0
+bin	82.7	0
+bin	82.72	0
+bin	82.74	0
+bin	82.75999999999999	0
+bin	82.78	0
+bin	82.8	0
+bin	82.82	0
+bin	82.84	0
+bin	82.86	0
+bin	82.88	0
+bin	82.89999999999999	0
+bin	82.92	0
+bin	82.94	0
+bin	82.96	0
+bin	82.97999999999999	0
+bin	83	0
+bin	83.02	0
+bin	83.03999999999999	0
+bin	83.06	0
+bin	83.08	0
+bin	83.1	0
+bin	83.11999999999999	0
+bin	83.14	0
+bin	83.16	0
+bin	83.17999999999999	0
+statistic WirelessPilotNetwork.node[0].wlan.radio packetErrorRate:histogram
+field count 1
+field mean 0
+field stddev nan
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source packetErrorRate(packetSentToUpper)
+attr title "Packet error rate"
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	1
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+statistic WirelessPilotNetwork.node[0].wlan.radio bitErrorRate:histogram
+field count 1
+field mean 0
+field stddev nan
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source bitErrorRate(packetSentToUpper)
+attr title "Bit error rate"
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	1
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+statistic WirelessPilotNetwork.node[0].wlan.radio symbolErrorRate:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source symbolErrorRate(packetSentToUpper)
+attr title "Symbol error rate"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar WirelessPilotNetwork.node[0].wlan.radio transmissionState:count 4
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source transmissionStateChanged
+attr title "Radio transmission state, count"
+attr type enum
+scalar WirelessPilotNetwork.node[0].wlan.radio receptionState:count 5
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source receptionStateChanged
+attr title "Radio reception state, count"
+attr type enum
+scalar WirelessPilotNetwork.node[0].wlan.radio radioMode:count 5
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source radioModeChanged
+attr title "Radio mode, count"
+attr type enum
+par WirelessPilotNetwork.node[0].wlan typename "\"inet.linklayer.ieee802154.Ieee802154NarrowbandInterface\""
+par WirelessPilotNetwork.node[0].wlan displayStringTextFormat "\"%a (%i)\\n%m\""
+attr mutable ""
+par WirelessPilotNetwork.node[0].wlan recordPcap false
+par WirelessPilotNetwork.node[0].wlan numPcapRecorders 0
+par WirelessPilotNetwork.node[0].wlan interfaceTableModule "\"^.interfaceTable\""
+par WirelessPilotNetwork.node[0].wlan energySourceModule "\"^.energyStorage\""
+scalar WirelessPilotNetwork.node[0].wlan packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar WirelessPilotNetwork.node[0].wlan packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[0].wlan packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar WirelessPilotNetwork.node[0].wlan packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par WirelessPilotNetwork.node[0].adapter typename "\"RadioAdapter\""
+scalar WirelessPilotNetwork.node[0].adapter timeActive:off 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap:off 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeActive:sleep 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap:sleep 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeActive:switching 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap:switching 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeActive:rxIdle 29.997888
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap:rxIdle 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeActive:rxBusy 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap:rxBusy 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeActive:rxReceiving 0.000352
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap:rxReceiving 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeActive:txIdle 0.000192
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap:txIdle 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeActive:tx 0.001568
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap:tx 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeActive 29.999999999999996
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter timeGap 0
+attr unit s
+scalar WirelessPilotNetwork.node[0].adapter rounds 0
+scalar WirelessPilotNetwork.node[0].adapter radioEnergyActive 1.8611811140736
+attr unit J
+scalar WirelessPilotNetwork.node[0].adapter radioEnergyGap 0
+attr unit J
+scalar WirelessPilotNetwork.node[0].adapter radioEnergyInet 1.8611811140736
+attr unit J
+scalar WirelessPilotNetwork.node[0].adapter power:off 6.600000000000001e-08
+attr unit W
+scalar WirelessPilotNetwork.node[0].adapter power:sleep 6.6e-05
+attr unit W
+scalar WirelessPilotNetwork.node[0].adapter power:switching 0.0014058
+attr unit W
+scalar WirelessPilotNetwork.node[0].adapter power:rxIdle 0.06204
+attr unit W
+scalar WirelessPilotNetwork.node[0].adapter power:rxBusy 0.06204
+attr unit W
+scalar WirelessPilotNetwork.node[0].adapter power:rxReceiving 0.06204
+attr unit W
+scalar WirelessPilotNetwork.node[0].adapter power:txIdle 0.0014058
+attr unit W
+scalar WirelessPilotNetwork.node[0].adapter power:tx 0.057420000000000006
+attr unit W
+scalar WirelessPilotNetwork.node[0].adapter rssiMean nan
+attr unit dBm
+scalar WirelessPilotNetwork.node[0].adapter rssiMin nan
+attr unit dBm
+scalar WirelessPilotNetwork.node[0].adapter snirMinMean nan
+attr unit dB
+scalar WirelessPilotNetwork.node[0].adapter snirMin nan
+attr unit dB
+scalar WirelessPilotNetwork.node[0].adapter framesDown 1
+scalar WirelessPilotNetwork.node[0].adapter framesUp 0
+scalar WirelessPilotNetwork.node[0].adapter corruptedReceptions 0
+scalar WirelessPilotNetwork.node[0].adapter duplicatesDropped 0
+scalar WirelessPilotNetwork.node[0].adapter overheardFrames 0
+scalar WirelessPilotNetwork.node[0].adapter dropRetryLimit 0
+scalar WirelessPilotNetwork.node[0].adapter dropChannelAccess 0
+scalar WirelessPilotNetwork.node[0].adapter dropQueueOverflow 0
+scalar WirelessPilotNetwork.node[0].adapter dropOther 0
+scalar WirelessPilotNetwork.node[0].adapter linkBroken 0
+par WirelessPilotNetwork.node[0].app typename "\"PilotSource\""
+par WirelessPilotNetwork.node[0].app nodeId 1
+par WirelessPilotNetwork.node[0].app destNode 2
+par WirelessPilotNetwork.node[0].app sendTimes "\"1\""
+par WirelessPilotNetwork.node[0].app sendJitter 0s
+attr unit s
+par WirelessPilotNetwork.node[0].app payloadBytes 34
+par WirelessPilotNetwork.node[0].app logFile "\"results_research_upgrade/pilot/pilot_events.csv\""
+scalar WirelessPilotNetwork.node[0].app framesSent 1
+scalar WirelessPilotNetwork.node[0].app framesReceived 0
+scalar WirelessPilotNetwork.node[0].app framesFailed 0
+scalar WirelessPilotNetwork.node[0].app macTransmissions 1
+scalar WirelessPilotNetwork.node[0].app meanDelay nan
+attr unit s
+par WirelessPilotNetwork.node[0] typename "\"PilotNode\""
+par WirelessPilotNetwork.node[0] nodeId 1
+par WirelessPilotNetwork.node[1].mobility typename "\"inet.mobility.static.StationaryMobility\""
+par WirelessPilotNetwork.node[1].mobility displayStringTextFormat "\"p: {position}\\nv: {velocity}\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].mobility subjectModule "\"^\""
+par WirelessPilotNetwork.node[1].mobility coordinateSystemModule "\"\""
+par WirelessPilotNetwork.node[1].mobility updateDisplayString true
+par WirelessPilotNetwork.node[1].mobility constraintAreaMinX "-inf m"
+attr unit m
+par WirelessPilotNetwork.node[1].mobility constraintAreaMinY "-inf m"
+attr unit m
+par WirelessPilotNetwork.node[1].mobility constraintAreaMinZ "-inf m"
+attr unit m
+par WirelessPilotNetwork.node[1].mobility constraintAreaMaxX "inf m"
+attr unit m
+par WirelessPilotNetwork.node[1].mobility constraintAreaMaxY "inf m"
+attr unit m
+par WirelessPilotNetwork.node[1].mobility constraintAreaMaxZ "inf m"
+attr unit m
+par WirelessPilotNetwork.node[1].mobility initialX 30m
+attr unit m
+par WirelessPilotNetwork.node[1].mobility initialY 0m
+attr unit m
+par WirelessPilotNetwork.node[1].mobility initialZ 0m
+attr unit m
+par WirelessPilotNetwork.node[1].mobility initialLatitude "nan deg"
+attr unit deg
+par WirelessPilotNetwork.node[1].mobility initialLongitude "nan deg"
+attr unit deg
+par WirelessPilotNetwork.node[1].mobility initialAltitude 0m
+attr unit m
+par WirelessPilotNetwork.node[1].mobility initialHeading 0deg
+attr unit deg
+par WirelessPilotNetwork.node[1].mobility initialElevation 0deg
+attr unit deg
+par WirelessPilotNetwork.node[1].mobility initialBank 0deg
+attr unit deg
+par WirelessPilotNetwork.node[1].mobility initFromDisplayString false
+par WirelessPilotNetwork.node[1].mobility updateFromDisplayString true
+par WirelessPilotNetwork.node[1].interfaceTable typename "\"inet.networklayer.common.InterfaceTable\""
+par WirelessPilotNetwork.node[1].interfaceTable displayStringTextFormat "\"{numInterfaces} interfaces\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].interfaceTable displayAddresses false
+par WirelessPilotNetwork.node[1].energyStorage typename "\"inet.power.storage.IdealEpEnergyStorage\""
+par WirelessPilotNetwork.node[1].energyStorage displayStringTextFormat "\"\""
+attr mutable ""
+scalar WirelessPilotNetwork.node[1].energyStorage residualEnergyCapacity:last -0.06221732508188076
+attr interpolationmode linear
+attr recordingmode last
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity, last"
+attr unit J
+par WirelessPilotNetwork.node[1].wlan.upperLayerIn.channel typename "\"ned.IdealChannel\""
+par WirelessPilotNetwork.node[1].wlan.radioIn.channel typename "\"ned.IdealChannel\""
+par WirelessPilotNetwork.node[1].wlan.mac.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par WirelessPilotNetwork.node[1].wlan.queue typename "\"inet.queueing.queue.DropTailQueue\""
+par WirelessPilotNetwork.node[1].wlan.queue displayStringTextFormat "\"contains %p pk (%l) pushed %u\\npulled %o removed %r dropped %d\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.queue packetCapacity 100
+par WirelessPilotNetwork.node[1].wlan.queue dataCapacity -1b
+attr unit b
+par WirelessPilotNetwork.node[1].wlan.queue dropperClass "\"inet::queueing::PacketAtCollectionEndDropper\""
+par WirelessPilotNetwork.node[1].wlan.queue comparatorClass "\"\""
+par WirelessPilotNetwork.node[1].wlan.queue bufferModule "\"\""
+scalar WirelessPilotNetwork.node[1].wlan.queue queueLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, last"
+attr unit pk
+scalar WirelessPilotNetwork.node[1].wlan.queue queueLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, max"
+attr unit pk
+scalar WirelessPilotNetwork.node[1].wlan.queue queueLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, timeavg"
+attr unit pk
+scalar WirelessPilotNetwork.node[1].wlan.queue queueBitLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, last"
+attr unit b
+scalar WirelessPilotNetwork.node[1].wlan.queue queueBitLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, max"
+attr unit b
+scalar WirelessPilotNetwork.node[1].wlan.queue queueBitLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, timeavg"
+attr unit b
+statistic WirelessPilotNetwork.node[1].wlan.queue queueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar WirelessPilotNetwork.node[1].wlan.queue outgoingPackets:count 0
+attr recordingmode count
+attr source packetPulled
+attr title "outgoing packets, count"
+attr unit pk
+scalar WirelessPilotNetwork.node[1].wlan.queue outgoingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths, sum"
+attr unit b
+statistic WirelessPilotNetwork.node[1].wlan.queue outgoingPacketLengths:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic WirelessPilotNetwork.node[1].wlan.queue flowQueueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar WirelessPilotNetwork.node[1].wlan.queue incomingPackets:count 0
+attr recordingmode count
+attr source packetPushStarted
+attr title "incoming packets, count"
+attr unit pk
+scalar WirelessPilotNetwork.node[1].wlan.queue incomingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths, sum"
+attr unit b
+statistic WirelessPilotNetwork.node[1].wlan.queue incomingPacketLengths:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar WirelessPilotNetwork.node[1].wlan.queue droppedPacketsQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "dropped packets: queue overflow, count"
+attr unit pk
+scalar WirelessPilotNetwork.node[1].wlan.queue droppedPacketLengthsQueueOverflow:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow, sum"
+attr unit b
+par WirelessPilotNetwork.node[1].wlan.mac typename "\"inet.linklayer.ieee802154.Ieee802154NarrowbandMac\""
+par WirelessPilotNetwork.node[1].wlan.mac displayStringTextFormat "\"{macStatus}\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.mac interfaceTableModule "\"WirelessPilotNetwork.node[1].wlan.^.interfaceTable\""
+par WirelessPilotNetwork.node[1].wlan.mac address "\"auto\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.mac headerLength 72b
+attr unit b
+par WirelessPilotNetwork.node[1].wlan.mac mtu 118B
+attr unit B
+par WirelessPilotNetwork.node[1].wlan.mac bitrate 250000bps
+attr unit bps
+par WirelessPilotNetwork.node[1].wlan.mac ccaDetectionTime 0.000128s
+attr unit s
+par WirelessPilotNetwork.node[1].wlan.mac rxSetupTime 0s
+attr unit s
+par WirelessPilotNetwork.node[1].wlan.mac aTurnaroundTime 0.000192s
+attr unit s
+par WirelessPilotNetwork.node[1].wlan.mac useMACAcks true
+par WirelessPilotNetwork.node[1].wlan.mac macMaxFrameRetries 3
+par WirelessPilotNetwork.node[1].wlan.mac macAckWaitDuration 0.00056s
+attr unit s
+par WirelessPilotNetwork.node[1].wlan.mac ackLength 40b
+attr unit b
+par WirelessPilotNetwork.node[1].wlan.mac sifs 0.000192s
+attr unit s
+par WirelessPilotNetwork.node[1].wlan.mac backoffMethod "\"exponential\""
+par WirelessPilotNetwork.node[1].wlan.mac macMaxCSMABackoffs 4
+par WirelessPilotNetwork.node[1].wlan.mac aUnitBackoffPeriod 0.00032s
+attr unit s
+par WirelessPilotNetwork.node[1].wlan.mac contentionWindow 2
+par WirelessPilotNetwork.node[1].wlan.mac macMinBE 3
+par WirelessPilotNetwork.node[1].wlan.mac macMaxBE 5
+par WirelessPilotNetwork.node[1].wlan.mac radioModule "\"^.radio\""
+scalar WirelessPilotNetwork.node[1].wlan.mac nbTxFrames 0
+scalar WirelessPilotNetwork.node[1].wlan.mac nbRxFrames 1
+scalar WirelessPilotNetwork.node[1].wlan.mac nbDroppedFrames 0
+scalar WirelessPilotNetwork.node[1].wlan.mac nbMissedAcks 0
+scalar WirelessPilotNetwork.node[1].wlan.mac nbRecvdAcks 0
+scalar WirelessPilotNetwork.node[1].wlan.mac nbTxAcks 1
+scalar WirelessPilotNetwork.node[1].wlan.mac nbDuplicates 0
+scalar WirelessPilotNetwork.node[1].wlan.mac meanBackoff 0
+scalar WirelessPilotNetwork.node[1].wlan.mac nbBackoffs 0
+scalar WirelessPilotNetwork.node[1].wlan.mac backoffDurations 0
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropNotAddressToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropNotAddressToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, count"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropRetryLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, count"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropRetryLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropBackoffLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, count"
+scalar WirelessPilotNetwork.node[1].wlan.mac packetDropBackoffLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[1].wlan.mac linkBroken:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source linkBroken
+attr title "link break, count"
+par WirelessPilotNetwork.node[1].wlan.radio.antenna typename "\"inet.physicallayer.wireless.common.antenna.IsotropicAntenna\""
+par WirelessPilotNetwork.node[1].wlan.radio.antenna displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.radio.antenna mobilityModule "\"WirelessPilotNetwork.node[1].mobility\""
+par WirelessPilotNetwork.node[1].wlan.radio.antenna numAntennas 1
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter.analogModel typename "\"inet.physicallayer.wireless.common.analogmodel.scalar.ScalarTransmitterAnalogModel\""
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter.analogModel displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter.analogModel power 0.001W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter.analogModel centerFrequency "nan Hz"
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter.analogModel bandwidth "nan Hz"
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandTransmitter\""
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter signalAnalogRepresentation "\"scalar\""
+attr enum unitDisk,scalar,dimensional
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter preambleDuration 0.000128s
+attr unit s
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter headerLength 16b
+attr unit b
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter bitrate 250000bps
+attr unit bps
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter power 0.001W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter centerFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter bandwidth 2800000Hz
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter codeRate 1
+par WirelessPilotNetwork.node[1].wlan.radio.transmitter modulation "\"DSSS-OQPSK-16\""
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.analogModel typename "\"inet.physicallayer.wireless.common.analogmodel.scalar.ScalarReceiverAnalogModel\""
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.analogModel displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.analogModel defaultCenterFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.analogModel defaultBandwidth 2800000Hz
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.analogModel defaultSensitivity -95dBm
+attr unit dBm
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.errorModel typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.errormodel.Ieee802154ErrorModel\""
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.errorModel displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.errorModel corruptionMode "\"packet\""
+attr enum packet,chunk,byte,bit
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.errorModel snirMode "\"min\""
+attr enum min,mean
+par WirelessPilotNetwork.node[1].wlan.radio.receiver.errorModel snirOffset 0dB
+attr unit dB
+par WirelessPilotNetwork.node[1].wlan.radio.receiver typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandReceiver\""
+par WirelessPilotNetwork.node[1].wlan.radio.receiver displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.radio.receiver ignoreInterference false
+par WirelessPilotNetwork.node[1].wlan.radio.receiver signalAnalogRepresentation "\"scalar\""
+attr enum unitDisk,scalar,dimensional
+par WirelessPilotNetwork.node[1].wlan.radio.receiver snirThreshold -8dB
+attr unit dB
+par WirelessPilotNetwork.node[1].wlan.radio.receiver snirThresholdMode "\"min\""
+attr enum min,mean
+par WirelessPilotNetwork.node[1].wlan.radio.receiver energyDetection -77dBm
+attr unit dBm
+par WirelessPilotNetwork.node[1].wlan.radio.receiver sensitivity -95dBm
+attr unit dBm
+par WirelessPilotNetwork.node[1].wlan.radio.receiver centerFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio.receiver bandwidth 2800000Hz
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio.receiver modulation "\"DSSS-OQPSK-16\""
+par WirelessPilotNetwork.node[1].wlan.radio.receiver minInterferencePower -120dBm
+attr unit dBm
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer typename "\"inet.physicallayer.wireless.common.energyconsumer.StateBasedEpEnergyConsumer\""
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer energySourceModule "\"WirelessPilotNetwork.node[1].wlan.^.energyStorage\""
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer offPowerConsumption 6.600000000000001e-08W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer sleepPowerConsumption 6.6e-05W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer switchingPowerConsumption 0.0014058W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer receiverIdlePowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer receiverBusyPowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer receiverReceivingPowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer receiverReceivingPreamblePowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer receiverReceivingHeaderPowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer receiverReceivingDataPowerConsumption 0.06204W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer transmitterIdlePowerConsumption 0.0014058W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer transmitterTransmittingPowerConsumption 0.057420000000000006W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer transmitterTransmittingPreamblePowerConsumption 0.057420000000000006W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer transmitterTransmittingHeaderPowerConsumption 0.057420000000000006W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio.energyConsumer transmitterTransmittingDataPowerConsumption 0.057420000000000006W
+attr unit W
+par WirelessPilotNetwork.node[1].wlan.radio typename "\"inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandRadio\""
+par WirelessPilotNetwork.node[1].wlan.radio displayStringTextFormat "\"\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan.radio radioMediumModule "\"radioMedium\""
+par WirelessPilotNetwork.node[1].wlan.radio energySourceModule "\"WirelessPilotNetwork.node[1].wlan.^.energyStorage\""
+par WirelessPilotNetwork.node[1].wlan.radio initialRadioMode "\"off\""
+attr enum off,sleep,receiver,transmitter,transceiver
+par WirelessPilotNetwork.node[1].wlan.radio switchingTimes "\"ms 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\""
+par WirelessPilotNetwork.node[1].wlan.radio sendRawBytes false
+par WirelessPilotNetwork.node[1].wlan.radio separateTransmissionParts false
+par WirelessPilotNetwork.node[1].wlan.radio separateReceptionParts false
+par WirelessPilotNetwork.node[1].wlan.radio displayCommunicationRange false
+par WirelessPilotNetwork.node[1].wlan.radio displayInterferenceRange false
+par WirelessPilotNetwork.node[1].wlan.radio signalAnalogRepresentation "\"scalar\""
+attr enum unitDisk,scalar,dimensional
+par WirelessPilotNetwork.node[1].wlan.radio centerFrequency 2.45e+09Hz
+attr unit Hz
+par WirelessPilotNetwork.node[1].wlan.radio bandwidth 2800000Hz
+attr unit Hz
+statistic WirelessPilotNetwork.node[1].wlan.radio minSnir:histogram
+field count 1
+field mean 82.6602694249944
+field stddev nan
+field min 82.6602694249944
+field max 82.6602694249944
+field sum 82.6602694249944
+field sqrsum 6832.720141412664
+attr recordingmode histogram
+attr source minimumSnir(packetSentToUpper)
+attr title "Min SNIR"
+bin	-inf	0
+bin	82.16	0
+bin	82.17999999999999	0
+bin	82.2	0
+bin	82.22	0
+bin	82.24	0
+bin	82.25999999999999	0
+bin	82.28	0
+bin	82.3	0
+bin	82.32	0
+bin	82.34	0
+bin	82.36	0
+bin	82.38	0
+bin	82.39999999999999	0
+bin	82.42	0
+bin	82.44	0
+bin	82.46	0
+bin	82.47999999999999	0
+bin	82.5	0
+bin	82.52	0
+bin	82.53999999999999	0
+bin	82.56	0
+bin	82.58	0
+bin	82.6	0
+bin	82.61999999999999	0
+bin	82.64	0
+bin	82.66	1
+bin	82.67999999999999	0
+bin	82.7	0
+bin	82.72	0
+bin	82.74	0
+bin	82.75999999999999	0
+bin	82.78	0
+bin	82.8	0
+bin	82.82	0
+bin	82.84	0
+bin	82.86	0
+bin	82.88	0
+bin	82.89999999999999	0
+bin	82.92	0
+bin	82.94	0
+bin	82.96	0
+bin	82.97999999999999	0
+bin	83	0
+bin	83.02	0
+bin	83.03999999999999	0
+bin	83.06	0
+bin	83.08	0
+bin	83.1	0
+bin	83.11999999999999	0
+bin	83.14	0
+bin	83.16	0
+bin	83.17999999999999	0
+statistic WirelessPilotNetwork.node[1].wlan.radio packetErrorRate:histogram
+field count 1
+field mean 0
+field stddev nan
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source packetErrorRate(packetSentToUpper)
+attr title "Packet error rate"
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	1
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+statistic WirelessPilotNetwork.node[1].wlan.radio bitErrorRate:histogram
+field count 1
+field mean 0
+field stddev nan
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source bitErrorRate(packetSentToUpper)
+attr title "Bit error rate"
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	1
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+statistic WirelessPilotNetwork.node[1].wlan.radio symbolErrorRate:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source symbolErrorRate(packetSentToUpper)
+attr title "Symbol error rate"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar WirelessPilotNetwork.node[1].wlan.radio transmissionState:count 4
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source transmissionStateChanged
+attr title "Radio transmission state, count"
+attr type enum
+scalar WirelessPilotNetwork.node[1].wlan.radio receptionState:count 5
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source receptionStateChanged
+attr title "Radio reception state, count"
+attr type enum
+scalar WirelessPilotNetwork.node[1].wlan.radio radioMode:count 5
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source radioModeChanged
+attr title "Radio mode, count"
+attr type enum
+par WirelessPilotNetwork.node[1].wlan typename "\"inet.linklayer.ieee802154.Ieee802154NarrowbandInterface\""
+par WirelessPilotNetwork.node[1].wlan displayStringTextFormat "\"%a (%i)\\n%m\""
+attr mutable ""
+par WirelessPilotNetwork.node[1].wlan recordPcap false
+par WirelessPilotNetwork.node[1].wlan numPcapRecorders 0
+par WirelessPilotNetwork.node[1].wlan interfaceTableModule "\"^.interfaceTable\""
+par WirelessPilotNetwork.node[1].wlan energySourceModule "\"^.energyStorage\""
+scalar WirelessPilotNetwork.node[1].wlan packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar WirelessPilotNetwork.node[1].wlan packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar WirelessPilotNetwork.node[1].wlan packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar WirelessPilotNetwork.node[1].wlan packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par WirelessPilotNetwork.node[1].adapter typename "\"RadioAdapter\""
+scalar WirelessPilotNetwork.node[1].adapter timeActive:off 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap:off 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeActive:sleep 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap:sleep 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeActive:switching 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap:switching 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeActive:rxIdle 29.997888
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap:rxIdle 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeActive:rxBusy 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap:rxBusy 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeActive:rxReceiving 0.001568
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap:rxReceiving 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeActive:txIdle 0.000192
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap:txIdle 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeActive:tx 0.000352
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap:tx 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeActive 29.999999999999996
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter timeGap 0
+attr unit s
+scalar WirelessPilotNetwork.node[1].adapter rounds 0
+scalar WirelessPilotNetwork.node[1].adapter radioEnergyActive 1.8611867319935997
+attr unit J
+scalar WirelessPilotNetwork.node[1].adapter radioEnergyGap 0
+attr unit J
+scalar WirelessPilotNetwork.node[1].adapter radioEnergyInet 1.8611867319935997
+attr unit J
+scalar WirelessPilotNetwork.node[1].adapter power:off 6.600000000000001e-08
+attr unit W
+scalar WirelessPilotNetwork.node[1].adapter power:sleep 6.6e-05
+attr unit W
+scalar WirelessPilotNetwork.node[1].adapter power:switching 0.0014058
+attr unit W
+scalar WirelessPilotNetwork.node[1].adapter power:rxIdle 0.06204
+attr unit W
+scalar WirelessPilotNetwork.node[1].adapter power:rxBusy 0.06204
+attr unit W
+scalar WirelessPilotNetwork.node[1].adapter power:rxReceiving 0.06204
+attr unit W
+scalar WirelessPilotNetwork.node[1].adapter power:txIdle 0.0014058
+attr unit W
+scalar WirelessPilotNetwork.node[1].adapter power:tx 0.057420000000000006
+attr unit W
+scalar WirelessPilotNetwork.node[1].adapter rssiMean -77.3908074112283
+attr unit dBm
+scalar WirelessPilotNetwork.node[1].adapter rssiMin -77.3908074112283
+attr unit dBm
+scalar WirelessPilotNetwork.node[1].adapter snirMinMean 19.17296816498528
+attr unit dB
+scalar WirelessPilotNetwork.node[1].adapter snirMin 19.17296816498528
+attr unit dB
+scalar WirelessPilotNetwork.node[1].adapter framesDown 0
+scalar WirelessPilotNetwork.node[1].adapter framesUp 1
+scalar WirelessPilotNetwork.node[1].adapter corruptedReceptions 0
+scalar WirelessPilotNetwork.node[1].adapter duplicatesDropped 0
+scalar WirelessPilotNetwork.node[1].adapter overheardFrames 0
+scalar WirelessPilotNetwork.node[1].adapter dropRetryLimit 0
+scalar WirelessPilotNetwork.node[1].adapter dropChannelAccess 0
+scalar WirelessPilotNetwork.node[1].adapter dropQueueOverflow 0
+scalar WirelessPilotNetwork.node[1].adapter dropOther 0
+scalar WirelessPilotNetwork.node[1].adapter linkBroken 0
+par WirelessPilotNetwork.node[1].app typename "\"PilotSource\""
+par WirelessPilotNetwork.node[1].app nodeId 2
+par WirelessPilotNetwork.node[1].app destNode -1
+par WirelessPilotNetwork.node[1].app sendTimes "\"\""
+par WirelessPilotNetwork.node[1].app sendJitter 0s
+attr unit s
+par WirelessPilotNetwork.node[1].app payloadBytes 34
+par WirelessPilotNetwork.node[1].app logFile "\"results_research_upgrade/pilot/pilot_events.csv\""
+scalar WirelessPilotNetwork.node[1].app framesSent 0
+scalar WirelessPilotNetwork.node[1].app framesReceived 1
+scalar WirelessPilotNetwork.node[1].app framesFailed 0
+scalar WirelessPilotNetwork.node[1].app macTransmissions 0
+scalar WirelessPilotNetwork.node[1].app meanDelay 0.002528100069
+attr unit s
+par WirelessPilotNetwork.node[1] typename "\"PilotNode\""
+par WirelessPilotNetwork.node[1] nodeId 2
+par WirelessPilotNetwork typename "\"WirelessPilotNetwork\""
+par WirelessPilotNetwork numNodes 2
+

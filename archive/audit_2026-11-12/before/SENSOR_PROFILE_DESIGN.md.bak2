@@ -1,0 +1,140 @@
+# Sensor profile design, dataset modes and expected WSN effects
+
+> **Status (12 Nov 2026):** the simulator now uses one model, `[Config V2_200Node_Environmental]`. It applies each profile's own reporting schedule (`m2_report`) and frame sizes. Mode 1 and the 4000-bit M2T variant described below are retired, and their results are kept in `results_multi_scenario/`.
+
+The single source of truth is `dataset_metadata/sensor_profiles.json`. The per-field table (range, resolution, hardware, energy, source and source class) is `SENSOR_PARAMETER_MATRIX.csv`, which the generator writes from that file.
+
+Source classes used throughout:
+
+- **VERIFIED**: a manufacturer document read in this study.
+- **DATASET**: a public dataset measurement.
+- **REFERENCE**: a published standard.
+- **ASSUMPTION**: a simulation assumption, not a device measurement.
+
+## 1. Profiles
+
+| Profile | Sampling | Report every | Alarm rule (source) | App payload | 802.15.4 frame | Sensing + processing per round |
+|---|---|---|---|---|---|---|
+| Water | 4 × 15 min | 2 rounds | pH outside 6.5–8.5; EC > 2,250 µS/cm; DO < 4 mg/L (extension only) (CPCB criteria, REFERENCE) | 10 + 4×2 = 18 B | 280 bit | 0.61 J |
+| Effluent | 4 × 15 min | 1 round | pH outside 5.5–9.0; BOD > 30; COD > 250; NH₃-N > 50 mg/L (Schedule VI, REFERENCE) | 10 + 9×2 = 28 B | 360 bit | 241.8 J |
+| Air | 4 PM wake-ups per hour; gases continuous | 1 round | PM2.5 > 60; PM10 > 100; NO₂ > 80; SO₂ > 80; O₃ > 180 µg/m³; CO > 4 mg/m³ (NAAQS 2009, REFERENCE) | 10 + 9×2 = 28 B | 360 bit | 107.6 J |
+| Soil | 2 × 30 min; chemistry every 24 rounds | 4 rounds | VWC < 15% or > 45% (ASSUMPTION) | 16 B; 24 B with chemistry | 264 / 328 bit | 0.015 J; 1.01 J on chemistry rounds |
+
+**Payload:**
+
+- The 10 B application header holds node id, sequence number, round, profile id, flags and a field-presence bitmap.
+- Each field is a 16-bit scaled integer, using the encoding scale in the JSON.
+- A missing value is the sentinel 0xFFFF, never 0.
+- The frame adds 17 B of IEEE 802.15.4 PHY + MAC overhead (16-bit addresses, PAN-ID compression).
+- In Mode 1 every report keeps the existing 4,000-bit packet.
+
+**Verified hardware values** (matrix rows marked VERIFIED):
+
+- **DS18B20:** −55 to +125 °C; ±0.5 °C over −10 to 85 °C; 9–12 bit (0.5–0.0625 °C); 750 ms at 12 bit; 1–1.5 mA active; 3.0–5.5 V.
+- **Plantower PMS5003 manual v2.3:**
+  - PM2.5 effective range 0–500 µg/m³, maximum ≥ 1,000 µg/m³; resolution 1 µg/m³; ±10 µg/m³ (0–100) or ±10% (100–500).
+  - 5.0 V, ≤ 100 mA active, ≤ 200 µA standby.
+  - Stable data only from 30 s after wake-up.
+- **Sensirion SHT4x datasheet v3 (2022), SHT45:** ±1.0 %RH, ±0.1 °C; 0–100 %RH; −40 to 125 °C; 320 µA typical (500 max) while measuring; 6.9 / 8.3 ms at high repeatability; 1.08–3.6 V.
+- **Alphasense product pages:**
+  - CO-B4: 0–1,000 ppm, t90 < 30 s.
+  - NO2-B43F: 0–20 ppm, t90 < 80 s.
+  - SO2-B4: 0–100 ppm, noise 5 ppb, t90 < 60 s.
+  - OX-B431: 0–20 ppm, t90 < 80 s.
+  - The power drawn by their ISB boards is not stated, so it is an ASSUMPTION.
+
+**Not verified:**
+
+- The Atlas EZO datasheets (pH, EC, DO) could not be read: the PDFs are over 10 MB or not decodable.
+- The METER TEROS 12 page returned HTTP 403.
+- The UV-Vis COD probe, ammonium ion-selective electrode, turbidity probe, soil pH/NPK sensors and anemometer have no manufacturer document behind them.
+
+All of these are ASSUMPTION values, chosen at plausible orders of magnitude.
+
+**Gas unit conversion** (25 °C, 1 atm; only for comparing sensor ranges in ppm with data in µg/m³):
+
+| Gas | Conversion |
+|---|---|
+| NO₂ | 1 ppb = 1.88 µg/m³ |
+| SO₂ | 1 ppb = 2.62 µg/m³ |
+| O₃ | 1 ppb = 1.96 µg/m³ |
+| CO | 1 ppm = 1.145 mg/m³ |
+
+## 2. The two dataset modes (both are columns in every dataset)
+
+**Mode 1, controlled comparison (`m1_report`):**
+
+- Every scenario uses the identical mask of 96,500 report slots of the validated `V2_200Node` workload: same nodes, same rounds, same 4,000-bit packet, same topology, energy and radio.
+- A slot whose fields are missing is still sent, with the missing fields flagged. Only the measurement content and the sensor labels differ between scenarios.
+- Mode 1 water is therefore exactly the existing validated 200-node experiment.
+
+**Mode 2, sensor-realistic comparison (`m2_*`):** each profile's own sampling, reporting interval, alarm-driven extra reports, payload, frame bits and sensing energy.
+
+| Dataset | Mode 1 reports | Mode 2 reports | of which priority (alarm) | Mode 2 offered |
+|---|---|---|---|---|
+| water_quality_200 | 96,500 | 68,700 | 40,780 | 2.41 MB |
+| industrial_effluent_200 | 96,500 | 99,306 | 16,717 | 4.47 MB |
+| air_quality_200 | 96,500 | 100,000 | 64,787 | 4.49 MB |
+| soil_monitoring_200 | 96,500 | 25,135 | 499 | 0.86 MB |
+| mixed (50/50/50/50) | 96,500 | 73,306 | – | 3.06 MB |
+
+For comparison, Mode 1 offers 48.2 MB in every scenario.
+
+Do not compare a Mode 2 result with a Mode 1 result as an "application effect":
+
+- Mode 2 changes traffic volume, frame size and energy all at once.
+- Its frames are 11–15 times smaller than the 4,000-bit abstraction.
+
+Every Mode 2 scenario needs its own Mode 2 reference. Use either the water profile or the "Mode 2 with sensing energy off" variant.
+
+## 3. How sensor differences reach the network
+
+The routing code (`SensorNode.cc`) never reads the measurement values. The routing state, reward, energy terms and channel depend only on energy, distance, link quality, load and hop progress.
+
+Each difference changes network results only through a mechanism the simulator models:
+
+| # | Difference | Layer | Supported now? | Measurable effect (and why) |
+|---|---|---|---|---|
+| 1 | Measurement count | application | yes: `values[16]` carries up to 16 fields | **None by itself.** Packet bits are the fixed `packetSize`. It matters only through #2. |
+| 2 | Packet size | traffic / energy | only one global `packetSize` | TX, RX and aggregation energy are linear in bits. Hop delay includes bits / Rbit. Smaller frames mean longer lifetime and shorter delay. There is no collision model, so no PDR effect from airtime. |
+| 3 | Sampling frequency | sensing energy | no | Energy only, unless every sample is reported. |
+| 4 | Reporting interval | traffic | one global `reportInterval` | Changes the load relayed by near-BS nodes (energy hole), so it affects first node failure (FND) and alive nodes. Fewer reports also mean fewer Q-updates, so slower learning. |
+| 5 | Sensing energy | energy | no: only TX, RX and E_DA are charged | In a shared 2 J budget it dominates and kills nodes regardless of routing (see §4). |
+| 6 | Processing | energy | no | Small: 0.17 mJ per sample assumed. |
+| 7 | Missing measurements | application / traffic | NaN in payload; rows dropped per the MATLAB policy | Mode 1: none. Mode 2: skipped reports, so less traffic. |
+| 8 | Alarm-triggered reporting | traffic | no | Bursty, spatially correlated load (whole outfall groups, city-wide haze). The load-balance reward reacts to it, and energy drains on the alarm paths. |
+| 9 | Sudden events | application → traffic | no | Through #8. Simultaneous alarms raise per-round load on shared relays. |
+| 10 | Reporting priority | routing / MAC | no | Routing treats every report the same. A per-class PDR can be measured, but any priority handling is a routing change, kept out of this phase. |
+
+**Mode 1 result (run 2026-11-11, seed 42, variant C):** all five scenarios gave byte-identical routing decisions, per-round energy, node failures and metrics, and M1_Water is identical to the validated original-loader run (`tools/compare_mode1.py`, output in `results_multi_scenario/mode1_controlled/mode1_comparison.txt`).
+
+**Expected effects in Mode 2:** water, effluent and air change PDR, delay, lifetime and energy, through traffic volume, frame size and sensing energy; soil changes them mainly through its 4× lower report rate. The direction is predictable: less traffic and smaller frames give more lifetime. How large the effect is, and how it interacts with Q-learning convergence and energy-aware next-hop selection (Variant C), needs the simulation.
+
+## 4. Energy-budget finding
+
+**Decision for the initial experiments:** the 2 J radio battery is kept, and sensing energy goes to a separate ledger (`<prefix>-sensing_ledger.csv`) that is never deducted from it. The runs therefore measure communication-network lifetime, not complete sensor-node battery lifetime.
+
+**Time base:** 1 round = 1 h of environmental time for sampling, reporting and the ledger. The water values keep the KSPCB schedule, which replays them about 5.07× faster than real time; this affects values only.
+
+The independent audit, with every term recomputed in SI units, is `validation/energy_packet_timebase_audit.txt`, written by `generators/audit_energy_packets.py`.
+
+Sensing + processing energy per node over 500 rounds, with the source class of the dominant term:
+
+| Profile | Energy per node, 500 rounds | Dominant term |
+|---|---|---|
+| Soil | 28.6 J | ASSUMPTION |
+| Water | 305 J | ASSUMPTION |
+| Air | 53.8 kJ | PMS5003 fan: 5 V × ≤ 100 mA × 30 s = 15 J per wake-up, from VERIFIED values |
+| Effluent | 120.9 kJ | ASSUMPTION |
+
+The radio energy of a node's own Mode 2 reports over one 50 m hop is only 2.6–13 mJ.
+
+The model's 2 J per node is a first-order radio budget, not a battery. If sensing were charged against the same 2 J, every profile would die from sensing alone and routing would be irrelevant.
+
+Options for integration:
+
+- **(a) Radio-only budget:** as now. Report sensing energy separately.
+- **(b) Separate sensing budget:** for example a mains or solar sensing supply, with the radio still on 2 J.
+- **(c) Realistic battery capacity for all energy:** for example 2 × AA alkaline cells, about 2 × 1.5 V × 2.5 Ah ≈ 27 kJ (a nominal estimate, not a datasheet value).
+
+Option (b) keeps comparability with the existing results. This choice belongs to the researcher and should be made before Mode 2 runs.

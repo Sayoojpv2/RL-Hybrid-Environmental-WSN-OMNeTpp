@@ -1,0 +1,52 @@
+PASS seed 42: S1 100 battery-node modules (expected 100) and 1 BS
+PASS seed 42: S2 100 coordinates; nodes 1..50 bit-identical to MATLAB; 50 added relays inside 600 x 50 m, all distinct
+PASS seed 42: S3 workload identical to the MATLAB Periyar workload (9825 reports); report sources [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]
+PASS seed 42: S4 nodes other than the 10 stations never originate reports or source actions (0 violations)
+PASS seed 42: S5 targets within 1..101 (max 101), to-BS actions target 101, states within 1..6561 (544 visited)
+PASS seed 42: S6 50 of 50 added relays were chosen as next hop or cluster head (50 as cluster head)
+PASS seed 42: S8 energy closes per node (max error 8.8e-14 J); spent 50.8704 + residual 149.1296 = 200 J
+PASS seed 42: S9 10000 slots (1000 rounds); 9402 emitted = 3584 delivered + 5818 lost + 0 unattempted; each report counted once; BS count matches
+PASS seed 42: S10 2 nodes became unavailable; 0 late actions (0), 0 unavailable targets (0); max route hop 15
+PASS seed 42: S11 longest round 1.22 s of 10 s; 34780 Q-updates, 4399 exploratory decisions
+PASS seed 43: S1 100 battery-node modules (expected 100) and 1 BS
+PASS seed 43: S2 100 coordinates; nodes 1..50 bit-identical to MATLAB; 50 added relays inside 600 x 50 m, all distinct
+PASS seed 43: S3 workload identical to the MATLAB Periyar workload (9825 reports); report sources [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]
+PASS seed 43: S4 nodes other than the 10 stations never originate reports or source actions (0 violations)
+PASS seed 43: S5 targets within 1..101 (max 101), to-BS actions target 101, states within 1..6561 (562 visited)
+PASS seed 43: S6 50 of 50 added relays were chosen as next hop or cluster head (50 as cluster head)
+PASS seed 43: S8 energy closes per node (max error 2.7e-13 J); spent 50.6937 + residual 149.3063 = 200 J
+PASS seed 43: S9 10000 slots (1000 rounds); 9624 emitted = 4188 delivered + 5436 lost + 0 unattempted; each report counted once; BS count matches
+PASS seed 43: S10 1 nodes became unavailable; 0 late actions (0), 0 unavailable targets (0); max route hop 14
+PASS seed 43: S11 longest round 1.17 s of 10 s; 34419 Q-updates, 4187 exploratory decisions
+PASS seed 44: S1 100 battery-node modules (expected 100) and 1 BS
+PASS seed 44: S2 100 coordinates; nodes 1..50 bit-identical to MATLAB; 50 added relays inside 600 x 50 m, all distinct
+PASS seed 44: S3 workload identical to the MATLAB Periyar workload (9825 reports); report sources [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]
+PASS seed 44: S4 nodes other than the 10 stations never originate reports or source actions (0 violations)
+PASS seed 44: S5 targets within 1..101 (max 101), to-BS actions target 101, states within 1..6561 (497 visited)
+PASS seed 44: S6 50 of 50 added relays were chosen as next hop or cluster head (50 as cluster head)
+PASS seed 44: S8 energy closes per node (max error 6.5e-14 J); spent 45.7066 + residual 154.2934 = 200 J
+PASS seed 44: S9 10000 slots (1000 rounds); 9825 emitted = 4408 delivered + 5417 lost + 0 unattempted; each report counted once; BS count matches
+PASS seed 44: S10 0 nodes became unavailable; 0 late actions (0), 0 unavailable targets (0); max route hop 15
+PASS seed 44: S11 longest round 1.18 s of 10 s; 34934 Q-updates, 4359 exploratory decisions
+PASS seed 45: S1 100 battery-node modules (expected 100) and 1 BS
+PASS seed 45: S2 100 coordinates; nodes 1..50 bit-identical to MATLAB; 50 added relays inside 600 x 50 m, all distinct
+PASS seed 45: S3 workload identical to the MATLAB Periyar workload (9825 reports); report sources [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]
+PASS seed 45: S4 nodes other than the 10 stations never originate reports or source actions (0 violations)
+PASS seed 45: S5 targets within 1..101 (max 101), to-BS actions target 101, states within 1..6561 (693 visited)
+PASS seed 45: S6 50 of 50 added relays were chosen as next hop or cluster head (50 as cluster head)
+PASS seed 45: S8 energy closes per node (max error 6.8e-14 J); spent 55.9474 + residual 144.0526 = 200 J
+PASS seed 45: S9 10000 slots (1000 rounds); 9131 emitted = 3493 delivered + 5638 lost + 0 unattempted; each report counted once; BS count matches
+PASS seed 45: S10 2 nodes became unavailable; 0 late actions (0), 0 unavailable targets (0); max route hop 15
+PASS seed 45: S11 longest round 1.17 s of 10 s; 33143 Q-updates, 4309 exploratory decisions
+PASS seed 46: S1 100 battery-node modules (expected 100) and 1 BS
+PASS seed 46: S2 100 coordinates; nodes 1..50 bit-identical to MATLAB; 50 added relays inside 600 x 50 m, all distinct
+PASS seed 46: S3 workload identical to the MATLAB Periyar workload (9825 reports); report sources [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]
+PASS seed 46: S4 nodes other than the 10 stations never originate reports or source actions (0 violations)
+PASS seed 46: S5 targets within 1..101 (max 101), to-BS actions target 101, states within 1..6561 (575 visited)
+PASS seed 46: S6 50 of 50 added relays were chosen as next hop or cluster head (50 as cluster head)
+PASS seed 46: S8 energy closes per node (max error 1.0e-13 J); spent 51.7995 + residual 148.2005 = 200 J
+PASS seed 46: S9 10000 slots (1000 rounds); 9330 emitted = 3597 delivered + 5733 lost + 0 unattempted; each report counted once; BS count matches
+PASS seed 46: S10 2 nodes became unavailable; 0 late actions (0), 0 unavailable targets (0); max route hop 14
+PASS seed 46: S11 longest round 1.09 s of 10 s; 33380 Q-updates, 4204 exploratory decisions
+
+50 checks, 0 failed

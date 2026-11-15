@@ -1,0 +1,291 @@
+--- archive/v1_2026-10-25/PeriyarModel.h	2026-10-25 16:20:21.207617900 +0530
++++ PeriyarModel.h	2026-10-25 16:47:07.370401100 +0530
+@@ -29,19 +29,25 @@
+     int numRounds = 1000;
+     double Eelec = 50e-9, Efs = 10e-12, Emp = 0.0013e-12, Eda = 5e-9;
+     double d0 = 0;
+-    int seed = 0;
++    int seed = 0;                    // RUN seed: channel streams (and, in Controller, the agent stream)
++    int topologySeed = 0;            // seed of the nodes 1..50 layout (= seed in the MATLAB experiment)
++    bool independentChannel = false; // false: MATLAB rng(seed + r); true: rng(1000000*seed + r) (no overlap between runs)
+     std::vector<double> X, Y;        // node coordinates (m), sorted by X as in MATLAB
+     std::vector<double> prior;       // n x (n+1) geometry prior p0, row-major [i*(n+1)+j]
+ 
+     // generate_scenario.m topology for nodes 1..50 (exactly as MATLAB); if totalNodes > 50, relays
+     // 51..N are appended from a dedicated MatlabTwister(extraTopoSeed) stream (no re-sorting).
+-    void generate(int seed, int totalNodes = 50, uint32_t extraTopoSeed = 0);
++    // topoSeed < 0 means topoSeed = seed (MATLAB). The defaults reproduce the MATLAB experiment exactly.
++    void generate(int seed, int totalNodes = 50, uint32_t extraTopoSeed = 0, int topoSeed = -1,
++                  bool independentChannelStream = false);
++    uint32_t channelSeed(int round) const;                     // MATLAB: seed + r
+     // success_history(:,:,r) of the ORIGINAL 50 x 51 block (nodes 1..50 + BS), column-major,
+     // bit-exact MATLAB stream rng(seed + r). Unchanged for every network size.
+-    void channelForRound(int round, std::vector<unsigned char>& success) const;
++    void channelForRound(int round, std::vector<unsigned char>& success, std::vector<double> *lqOut = nullptr) const;
+     // Outcome of a link that involves an ADDED relay (i or j > 50; ids 1-based, BS = N+1): same
+     // clipped distance law, uniform draws from a counter-based hash of (seed, round, i, j).
+     bool extraLinkSuccess(int round, int i, int j) const;
++    double extraLinkLQ(int round, int i, int j) const;         // the lq behind extraLinkSuccess (diagnostics)
+     double txEnergy(double d) const;                           // tx_energy(k,d,env) for one packet
+     double rxEnergy() const { return packetSize * Eelec; }     // rx_energy(k,env)
+     double distNode(int i, int j) const;                       // hypot as in RL_Hybrid.m
+--- archive/v1_2026-10-25/PeriyarModel.cc	2026-10-25 16:20:40.340800000 +0530
++++ PeriyarModel.cc	2026-10-25 16:47:12.897730700 +0530
+@@ -13,13 +13,15 @@
+ 
+ // ---------------------------------------------------------------- Scenario
+ 
+-void Scenario::generate(int s, int totalNodes, uint32_t extraTopoSeed)
++void Scenario::generate(int s, int totalNodes, uint32_t extraTopoSeed, int topoSeed, bool independentChannelStream)
+ {
+     // generate_scenario.m: rng(seed,'twister'); X = rand(1,n)*L; Y = rand(1,n)*W; sort by X  (n = 50)
+     if (totalNodes < MATLAB_NODES) throw std::runtime_error("numNodes must be >= 50 (the MATLAB topology)");
+     seed = s;
++    topologySeed = topoSeed < 0 ? s : topoSeed;   // MATLAB: the topology uses the run seed
++    independentChannel = independentChannelStream;
+     const int n0 = MATLAB_NODES;
+-    MatlabTwister rng((uint32_t)s);
++    MatlabTwister rng((uint32_t)topologySeed);
+     std::vector<double> x(n0), y(n0);
+     for (int i = 0; i < n0; i++) x[i] = rng.rand() * riverLength;
+     for (int i = 0; i < n0; i++) y[i] = rng.rand() * riverWidth;
+@@ -48,12 +50,21 @@
+     computePrior();
+ }
+ 
+-void Scenario::channelForRound(int r, std::vector<unsigned char>& success) const
++uint32_t Scenario::channelSeed(int r) const
++{
++    // MATLAB: rng(seed + r). Run seed s+1 then reuses run s's stream shifted by one round, which is harmless
++    // only while the topology changes with the seed. With a fixed topology use the independent mapping
++    // 1000000*seed + r: distinct for every (seed, round) with round < 1e6, and disjoint from the topology,
++    // agent and added-relay seeds (< 1e6).
++    return independentChannel ? (uint32_t)(1000000u * (uint32_t)seed + (uint32_t)r) : (uint32_t)(seed + r);
++}
++
++void Scenario::channelForRound(int r, std::vector<unsigned char>& success, std::vector<double> *lqOut) const
+ {
+     // generate_scenario.m, loop body for round r: rng(seed + r,'twister'); per-link lq; rand(n,n+1) < lq
+     // Always the ORIGINAL 50-node block (nodes 1..50 + BS), whatever the network size.
+     const int n = MATLAB_NODES, m = MATLAB_NODES + 1;
+-    MatlabTwister rng((uint32_t)(seed + r));
++    MatlabTwister rng(channelSeed(r));
+     std::vector<double> lq(n * m, 0.0);   // column-major like MATLAB: lq[i + j*n]
+     for (int i = 0; i < n; i++) {
+         for (int j = 0; j < n; j++) {
+@@ -75,6 +86,7 @@
+     for (int j = 0; j < m; j++)            // rand(n, n+1) fills column-major
+         for (int i = 0; i < n; i++)
+             success[i + j * n] = rng.rand() < lq[i + j * n] ? 1 : 0;
++    if (lqOut) *lqOut = lq;                 // diagnostics only (same draws, nothing else changes)
+ }
+ 
+ 
+@@ -89,6 +101,21 @@
+ 
+ static double unitFromHash(uint64_t h) { return (h >> 11) * (1.0 / 9007199254740992.0); }   // [0,1)
+ 
++double Scenario::extraLinkLQ(int r, int i, int j) const
++{
++    // identical computation to extraLinkSuccess (u1 part only); used for diagnostics, never by routing
++    if (i == j) return 0;
++    uint64_t h = splitmix64(0x5CA1AB1E00000000ULL ^ (uint64_t)(uint32_t)seed);
++    h = splitmix64(h ^ (uint64_t)r);
++    h = splitmix64(h ^ (uint64_t)i);
++    h = splitmix64(h ^ (uint64_t)j);
++    double u1 = unitFromHash(splitmix64(h ^ 1));
++    double dx, dy, base;
++    if (j == numNodes + 1) { dx = X[i - 1] - bsX; dy = Y[i - 1] - bsY; base = 1.0 - (std::sqrt(dx * dx + dy * dy) / (riverLength * 1.2)); }
++    else { dx = X[i - 1] - X[j - 1]; dy = Y[i - 1] - Y[j - 1]; base = 1.0 - (std::sqrt(dx * dx + dy * dy) / (riverLength * 0.8)); }
++    return std::max(0.1, std::min(0.95, base + 0.3 * (u1 - 0.5)));
++}
++
+ bool Scenario::extraLinkSuccess(int r, int i, int j) const
+ {
+     // Same clipped law as generate_scenario.m (lq = clip(base + 0.3*(u1 - 0.5), 0.1, 0.95); success = u2 < lq),
+--- archive/v1_2026-10-25/Controller.h	2026-10-25 16:18:18.251384300 +0530
++++ Controller.h	2026-10-25 16:47:36.164068600 +0530
+@@ -56,6 +56,12 @@
+     int numRounds = 1000;
+     int round = 0;                    // current round (1-based); 0 before the first round
+     std::vector<unsigned char> success;   // success_history(:,:,round), column-major
++    // diagnostics (exportDiagnostics = true): true link quality of the original block this round, and a
++    // per-transmission log. Written after the outcome is known; never read by any routing decision.
++    bool diagnostics = false;
++    std::vector<double> lqRound;
++    std::ofstream diagLog;
++    double trueLQ(int i, int j) const;
+     simtime_t roundPeriod, guard;
+ 
+     std::vector<SensorNode *> nodes;  // index = MATLAB id - 1
+--- archive/v1_2026-10-25/Controller.cc	2026-10-25 16:21:30.334151200 +0530
++++ Controller.cc	2026-10-25 16:48:12.278673200 +0530
+@@ -54,7 +54,11 @@
+     int totalNodes = getParentModule()->par("numNodes").intValue();
+     int extraSeed = par("extraTopologySeed").intValue();
+     if (extraSeed < 0) extraSeed = 900000 + seed;          // dedicated stream for the added relays' coordinates
+-    try { sc.generate(seed, totalNodes, (uint32_t)extraSeed); }   // generate_scenario.m (+ added relays if N > 50)
++    int topoSeed = par("topologySeed").intValue();          // -1: nodes 1..50 from rng(seed) exactly as MATLAB
++    std::string chMode = par("channelStream").stdstringValue();
++    if (chMode != "matlab" && chMode != "independent") throw cRuntimeError("channelStream must be \"matlab\" or \"independent\"");
++    diagnostics = par("exportDiagnostics").boolValue();
++    try { sc.generate(seed, totalNodes, (uint32_t)extraSeed, topoSeed, chMode == "independent"); }   // generate_scenario.m (+ added relays if N > 50)
+     catch (std::exception& e) { throw cRuntimeError("%s", e.what()); }
+     try { wl.build(par("datasetPath").stdstringValue(), sc.numRounds); }   // loader + workload builder
+     catch (std::exception& e) { throw cRuntimeError("%s", e.what()); }
+@@ -93,6 +97,15 @@
+ 
+     if (par("exportReference").boolValue())
+         exportReferenceData();
++    if (diagnostics) {
++        openOut(diagLog, prefix + "-hops.csv",
++                "round,hopType,actor,target,hop,reports,numCandidates,explored,outcome,trueLQ,qHat,prior,distanceM,"
++                "actorAdded,targetAdded");
++        std::ofstream d(prefix + "-design.txt");
++        d << "runSeed " << sc.seed << "\ntopologySeed " << sc.topologySeed << "\nextraTopologySeed " << sc.extraTopologySeed
++          << "\nnumNodes " << sc.numNodes << "\nchannelStream " << chMode << "\nagentStreamSeed " << seed
++          << "\nchannelSeedRound1 " << sc.channelSeed(1) << "\n";
++    }
+     roundTimer = new cMessage("roundStart");
+     nextStepTimer = new cMessage("nextStep");
+     if (numRounds > 0)
+@@ -167,7 +180,7 @@
+     recentHops.clear();                              // display only
+     rc = RoundCounters();
+     rc.epsilon = epsilon;
+-    sc.channelForRound(round, success);              // success_history(:,:,round)
++    sc.channelForRound(round, success, diagnostics ? &lqRound : nullptr);   // success_history(:,:,round)
+     energyStartOfRound = 0;
+     for (auto nd : nodes) { energyStartOfRound += nd->energy(); nd->beginRound(); }
+ 
+@@ -308,6 +321,25 @@
+                 << num(ctx[1]) << "," << (long)ctx[2] << "," << (long)ctx[3] << "," << num(ctx[4]) << "," << num(ctx[5])
+                 << "," << num(outcome) << "," << (explored ? 1 : 0) << "," << state << "," << numCandidates << ","
+                 << num(simTime().dbl()) << "," << num(decisionTime.dbl()) << "," << hop << "\n";
++    if (diagnostics && target != actor) {        // a real transmission; its outcome is already known here
++        int bsId = sc.numNodes + 1;
++        double dist = target == bsId ? sc.distBS(actor - 1) : sc.distNode(actor - 1, target - 1);
++        diagLog << round << "," << hopType << "," << actor << "," << target << "," << hop << "," << reports << ","
++                << numCandidates << "," << (explored ? 1 : 0) << "," << num(outcome) << "," << num(trueLQ(actor, target)) << ","
++                << num(ctx[0]) << "," << num(ctx[1]) << "," << num(dist) << "," << (actor > Scenario::MATLAB_NODES ? 1 : 0) << ","
++                << (target > Scenario::MATLAB_NODES && target != bsId ? 1 : 0) << "\n";
++    }
++}
++
++double Controller::trueLQ(int i, int j) const
++{
++    // diagnostics only: the link quality that produced this round's outcome on link i -> j
++    const int n0 = Scenario::MATLAB_NODES;
++    if (i <= n0 && (j <= n0 || j == sc.numNodes + 1)) {
++        int jb = (j == sc.numNodes + 1) ? n0 + 1 : j;
++        return lqRound[(i - 1) + (jb - 1) * n0];
++    }
++    return sc.extraLinkLQ(round, i, j);
+ }
+ 
+ void Controller::logUnavailable(int nd, const char *reason, double energy)
+--- archive/v1_2026-10-25/PeriyarValidation.ned.archived	2026-10-25 16:30:32.470079600 +0530
++++ PeriyarValidation.ned	2026-10-25 16:48:12.354901500 +0530
+@@ -59,6 +59,9 @@
+         double epsilonMinimum = default(0.05);
+         double epsilonDecayPerRound = default(0.9985);
+         int extraTopologySeed = default(-1);                // added relays (N > 50): MatlabTwister seed; -1 = 900000 + scenarioSeed
++        int topologySeed = default(-1);                     // nodes 1..50 layout: -1 = scenarioSeed (MATLAB); >= 0 fixes the layout
++        string channelStream = default("matlab");           // "matlab": rng(seed + r); "independent": rng(1000000*seed + r)
++        bool exportDiagnostics = default(false);            // write <prefix>-hops.csv (true link quality per transmission)
+ }
+ 
+ network PeriyarRiverNetwork
+--- archive/v1_2026-10-25/omnetpp.ini	2026-10-25 16:21:48.686144000 +0530
++++ omnetpp.ini	2026-10-25 17:00:34.420677100 +0530
+@@ -115,3 +115,90 @@
+ **.controller.scenarioSeed = ${seed=42}
+ **.controller.numRounds = 20
+ sim-time-limit = 200s
++
++# =====================================================================================================
++# CONTROLLED SCALABILITY DESIGN (v2, 25 Oct 2026). See reports_v2/01_seed_topology_design_audit.md.
++# Fixed topology per node count across run seeds; independent per-run randomness; nested relays.
++#   topologySeed = 42          nodes 1..50 = MATLAB generate_scenario(42) layout for EVERY run seed
++#   extraTopologySeed = 900042 relays 51..N, one stream => N=100 uses the first 50 of the N=500 relays, etc.
++#   channelStream = independent  original block per round from rng(1000000*runSeed + r) (MATLAB's rng(seed + r)
++#                              overlaps between consecutive seeds once the topology is fixed)
++#   run seed (42..46)          channel streams + RL agent stream (rng(runSeed), as in RL_Hybrid.m)
++# Results go to their own directories; the v1 results/ directory is never written by these configs.
++# =====================================================================================================
++[Config Ctrl_Common]
++description = "abstract base of the controlled design (not meant to be run alone)"
++result-dir = results_controlled
++**.controller.topologySeed = 42
++**.controller.extraTopologySeed = 900042
++**.controller.channelStream = "independent"
++**.controller.exportDiagnostics = true
++**.controller.exportReference = true
++**.controller.scenarioSeed = ${seed=42,43,44,45,46}
++cmdenv-status-frequency = 5s
++
++[Config Ctrl50]
++description = "CONTROLLED: 50 nodes (MATLAB seed-42 layout fixed), run seeds 42-46, 1000 rounds"
++extends = Ctrl_Common
++PeriyarRiverNetwork.numNodes = 50
++
++[Config Ctrl100]
++description = "CONTROLLED: 100 nodes (10 sources + 90 relays), fixed nested topology, run seeds 42-46"
++extends = Ctrl_Common
++PeriyarRiverNetwork.numNodes = 100
++
++[Config Ctrl250]
++description = "CONTROLLED: 250 nodes (10 sources + 240 relays), fixed nested topology, run seeds 42-46"
++extends = Ctrl_Common
++PeriyarRiverNetwork.numNodes = 250
++
++[Config Ctrl500]
++description = "CONTROLLED: 500 nodes (10 sources + 490 relays), fixed nested topology, run seeds 42-46"
++extends = Ctrl_Common
++PeriyarRiverNetwork.numNodes = 500
++
++# Plumbing check: with the MATLAB channel mapping and topologySeed = 42 the new parameters must reproduce
++# the v1 seed-42 outputs byte for byte (SmokeSeed42 at N = 50, PeriyarN_RelayScaling seed 42 at N > 50).
++[Config Check_MatlabModeSeed42]
++description = "CHECK: new seed parameters in MATLAB mode reproduce the v1 seed-42 runs (N = 50/100/250/500)"
++result-dir = results_checks
++PeriyarRiverNetwork.numNodes = ${N=50,100,250,500}
++**.controller.scenarioSeed = ${seed=42}
++**.controller.topologySeed = 42
++**.controller.extraTopologySeed = 900042
++**.controller.channelStream = "matlab"
++**.controller.exportReference = true
++**.controller.outputPrefix = "${resultdir}/${configname}-N${N}-seed${seed}"
++
++# Audit: channel-stream overlap between consecutive run seeds with a FIXED topology (no rounds simulated;
++# all 1000 rounds of the 50 x 51 success bits are exported and compared offline).
++[Config Audit_ChannelMatlabMapping]
++description = "AUDIT: fixed topology, MATLAB channel mapping rng(seed + r), run seeds 42 and 43, channel export only"
++result-dir = results_checks
++**.controller.scenarioSeed = ${seed=42,43}
++**.controller.topologySeed = 42
++**.controller.channelStream = "matlab"
++**.controller.exportReference = true
++**.controller.exportChannel = true
++**.controller.numRounds = 0
++sim-time-limit = 1s
++
++[Config Audit_ChannelIndependent]
++description = "AUDIT: fixed topology, independent channel mapping, run seeds 42 and 43, channel export only"
++extends = Audit_ChannelMatlabMapping
++**.controller.channelStream = "independent"
++
++# Placement sensitivity (separate experiment): 250 nodes, run seed fixed at 42, nodes 1..50 fixed (layout 42),
++# only the placement of the 200 added relays changes (documented extraTopologySeed values).
++[Config Place250]
++description = "PLACEMENT SENSITIVITY: 250 nodes, run seed 42, five added-relay placements"
++result-dir = results_placement
++PeriyarRiverNetwork.numNodes = 250
++**.controller.scenarioSeed = ${seed=42}
++**.controller.topologySeed = 42
++**.controller.extraTopologySeed = ${topo=900042,910001,910002,910003,910004}
++**.controller.channelStream = "independent"
++**.controller.exportDiagnostics = true
++**.controller.exportReference = true
++**.controller.outputPrefix = "${resultdir}/${configname}-topo${topo}-seed42"
++cmdenv-status-frequency = 5s

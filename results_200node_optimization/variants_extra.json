@@ -1,0 +1,5 @@
+{"dev": [["C+D guard 0.8 + eps floor 0.01", "dev/guard_eps", "V2_200Node_GuardEps", "V2_200Node_GuardEps", {}],
+         ["C+A guard 0.8 + retry reserve 0.5", "dev/guard_retx", "V2_200Node_GuardRetx", "V2_200Node_GuardRetx", {}]],
+ "final": [["Baseline", "final/baseline", "V2_200Node_Final", "V2_200Node_Final", {}],
+           ["C energy guard 0.8 (selected)", "final/energy_aware_routing", "V2_200Node_EnergyAwareRouting_Final", "V2_200Node_EnergyAwareRouting_Final", {}],
+           ["C+A guard 0.8 + retry reserve 0.5", "final/guard_retx", "V2_200Node_GuardRetx_Final", "V2_200Node_GuardRetx_Final", {}]]}

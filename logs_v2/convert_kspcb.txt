@@ -1,0 +1,12 @@
+consdata-MANAPPURAM.csv: station 'ALUVA - MANAPPURAM', period 2025-01-01..2025-07-31, tables 1, date columns 209, rejected columns 19, duplicate dates 3
+consdata-MANJUMMAL BUND.csv: station 'MANJUMMAL BUND', period 2025-01-01..2025-07-31, tables 1, date columns 197, rejected columns 0, duplicate dates 0
+consdata-PATHALAM BRIDGE.csv: station 'PATHALAM BRIDGE', period 2025-01-01..2025-07-31, tables 1, date columns 212, rejected columns 0, duplicate dates 0
+consdata-PATHALAM BUND US.csv: station 'PATHALAM BUND U/S', period 2025-01-01..2025-07-31, tables 1, date columns 208, rejected columns 1, duplicate dates 0
+consdata-PATHALAM BUNDS DS.csv: station 'PATHALAM BUND D/S', period 2025-01-01..2025-07-31, tables 1, date columns 212, rejected columns 0, duplicate dates 0
+consdata-PURALLIKADAVU  DS.csv: station 'PURAPILLIKADAVU BUND DS', period 2025-01-01..2025-07-31, tables 1, date columns 112, rejected columns 85, duplicate dates 0
+consdata-PURALLIKADAVU  US.csv: station 'PURAPILLIKADAVU US', period 2025-01-01..2025-07-31, tables 1, date columns 112, rejected columns 85, duplicate dates 0
+consdata-PURAPPILLIKADAVU BUND NAVIGATIO.csv: station 'PURAPILLIKADAVU BUND NAVIGATION', period 2025-01-01..2025-07-31, tables 1, date columns 112, rejected columns 84, duplicate dates 0
+consdata-PUTHALAM KADAVU.csv: station 'PUTHALAM KADAVU', period 2025-01-01..2025-07-31, tables 1, date columns 212, rejected columns 1, duplicate dates 0
+consdata-VETTUKADAVU.csv: station 'VETTUKADAVU', period 2025-01-01..2025-07-31, tables 2, date columns 228, rejected columns 1, duplicate dates 16
+records (station-date columns) read: 1814 | rejected (bad/out-of-period/missing date): 276 | duplicates merged: 19 | unique station-dates: 1519 | retained rows: 1329 | station-dates with no usable value: 190
+cells written: 15029 | cells logged: 23666 (deduplicated 222 , conflict 0 )

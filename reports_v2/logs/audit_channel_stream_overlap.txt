@@ -1,0 +1,8 @@
+Audit_ChannelMatlabMapping (topology fixed at layout 42; run seeds 42 vs 43, 1000 rounds x 2550 links)
+  seed43 round r vs seed42 round r+0: 0 of 1000 rounds bit-identical; bitwise agreement 0.6559
+  seed43 round r vs seed42 round r+1: 999 of 999 rounds bit-identical; bitwise agreement 1.0000
+  seed43 round r vs seed42 round r+2: 0 of 998 rounds bit-identical; bitwise agreement 0.6560
+Audit_ChannelIndependent (topology fixed at layout 42; run seeds 42 vs 43, 1000 rounds x 2550 links)
+  seed43 round r vs seed42 round r+0: 0 of 1000 rounds bit-identical; bitwise agreement 0.6561
+  seed43 round r vs seed42 round r+1: 0 of 999 rounds bit-identical; bitwise agreement 0.6560
+  seed43 round r vs seed42 round r+2: 0 of 998 rounds bit-identical; bitwise agreement 0.6560

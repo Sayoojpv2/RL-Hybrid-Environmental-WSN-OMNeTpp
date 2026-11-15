@@ -1,0 +1,12 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Config: V2_200Node_Diag
+Number of runs: 1
+
+Run 0: $seed=42, $repetition=0
+
+End.

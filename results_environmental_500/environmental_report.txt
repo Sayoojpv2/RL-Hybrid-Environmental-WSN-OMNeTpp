@@ -1,0 +1,215 @@
+ENVIRONMENTAL WSN (V2_200Node_Environmental), N = 500: 500 sensing + forwarding nodes, one BS, 600 x 50 m, 500 rounds
+(1 round = 1 h of environmental time; 100 s of OMNeT++ scheduling time), 2 J radio energy per node, first-order radio,
+tabular Q-learning RL-Hybrid with variant C (energyGuard 0.8), no retransmission. Only the scenario workload changes.
+Every report is one 802.15.4 frame of its own profile (only its present fields); energy, feasibility and airtime use the
+actual frame bits. Sensing energy is a separate ledger, never charged to the 2 J battery: lifetimes are communication-network
+lifetimes. A run seed sets topology + channel + RL stream, identical in every scenario.
+======================================================================================================================
+Sensor profiles (sensor_profiles.json): payload = 10 B header + 2 B per present field; frame = payload + 17 B 802.15.4 MAC/PHY
+  water_quality        fields temperature_C, pH, conductivity_uScm, TDS_mgL
+                       full payload 144 bit, frame 280 bit; 4 samples per round, report every 2 h, alarm reports every 1 h; sensed but not transmitted: DO_mgL
+  industrial_effluent  fields temperature_C, pH, conductivity_uScm, TDS_mgL, DO_mgL, turbidity_NTU, COD_mgL, BOD_mgL, NH3N_mgL
+                       full payload 224 bit, frame 360 bit; 4 samples per round, report every 1 h, alarm reports every 1 h
+  air_quality          fields PM25_ugm3, PM10_ugm3, CO_mgm3, NO2_ugm3, SO2_ugm3, O3_ugm3, temperature_C, RH_pct, wind_ms
+                       full payload 224 bit, frame 360 bit; 4 samples per round, report every 1 h, alarm reports every 1 h
+  soil_monitoring      fields VWC_pct, soil_temperature_C, bulk_EC_dSm; chemistry rounds add soil_pH, N_mgkg, P_mgkg, K_mgkg
+                       full payload 128 bit, frame 264 bit (192 / 328 bit on chemistry rounds, every 24 h); 2 samples per round, report every 4 h, alarm reports every 1 h
+
+Checks
+  [OK] profile payload / frame bits: water 144/280, effluent 224/360, air 224/360, soil 128/264 (chemistry 192/328)
+  [OK] the five scenario datasets for N = 500 match their recorded md5
+  [OK] mixed node map: 125 water + 125 effluent + 125 air + 125 soil nodes; nodes 1-10 (KSPCB stations) water
+  [OK] runs present for all five scenarios and seeds [42, 43, 44, 45, 46]
+  [OK] 25 runs: identical parameters except scenario / dataset / seed / output prefix; 500 node modules, BS (600, 25), 600 x 50 m, 2 J, 500 rounds, variant C 0.8, no retransmission, node-death k = 4000 bit, frames from the dataset; valid unique positions, same topology for a seed in every scenario, first 200 nodes = the 200-node layout; same schedule in every seed; every report carries its own dataset frame bits; TX + RX + aggregation = spent; run invariants OK
+  [OK] every one of the 500 nodes generates reports (no relay-only nodes)
+
+Results (mean +- sample SD over seeds [42, 43, 44, 45, 46]; generated = scheduled = valid reports, identical in every seed)
+                             Water         Effluent              Air             Soil            Mixed
+  generated                 171750           248086           250000            62984           182752
+  delivered            75273+-1690     110914+-2278     112684+-2810       25487+-313      79408+-1706
+  deliv. ratio %       43.83+-0.98      44.71+-0.92      45.07+-1.12      40.47+-0.50      43.45+-0.93
+  srcPDR %             43.83+-0.98      44.71+-0.92      45.07+-1.12      40.47+-0.50      43.45+-0.93
+  FND                  not reached      not reached      not reached      not reached      not reached
+  HND                  not reached      not reached      not reached      not reached      not reached
+  alive500              500.0+-0.0       500.0+-0.0       500.0+-0.0       500.0+-0.0       500.0+-0.0
+  node-rounds            250000+-0        250000+-0        250000+-0        250000+-0        250000+-0
+  resid J             936.49+-0.99     885.46+-1.99     885.77+-1.33     971.85+-0.60     920.07+-1.16
+  resid % of 2N J      93.65+-0.10      88.55+-0.20      88.58+-0.13      97.18+-0.06      92.01+-0.12
+  sensing kJ                152+-0         60451+-0         26910+-0            14+-0         21882+-0
+  mJ/deliv            0.844+-0.023     1.033+-0.026     1.014+-0.027     1.105+-0.025     1.007+-0.028
+  delay ms             41.11+-1.28      48.79+-1.46      47.80+-1.61      38.90+-1.77      43.12+-1.23
+  hops                  5.92+-0.17       6.34+-0.18       6.20+-0.17       5.53+-0.24       5.98+-0.15
+  frame bit             280.0+-0.0       359.7+-0.0       359.5+-0.0       274.6+-0.0       333.8+-0.0
+  payload bit           144.0+-0.0       223.7+-0.0       223.5+-0.0       138.6+-0.0       197.8+-0.0
+  tx Mbit               207.9+-3.3       416.1+-7.1       413.6+-6.5        66.0+-1.6       266.1+-3.5
+  run s                  25.7+-2.4        39.6+-4.1        37.4+-3.8         7.3+-0.4        30.1+-3.9
+  peak MB                   116+-0           148+-0           128+-0            92+-0           123+-0
+
+Radio energy by component (J) and network losses (reports, mean over seeds)
+  Water     TX 54.71+-0.82  RX 8.01+-0.17  aggregation 0.801+-0.017  | lost: channel 95542, energy 0.0, no candidate 877.4, TTL 57.2  | lowest node residual 1.330 J
+  Effluent  TX 96.53+-1.74  RX 16.37+-0.32  aggregation 1.637+-0.032  | lost: channel 135718, energy 0.0, no candidate 1238.6, TTL 215.8  | lowest node residual 0.911 J
+  Air       TX 96.39+-1.27  RX 16.21+-0.30  aggregation 1.622+-0.030  | lost: channel 135922, energy 0.0, no candidate 1156.2, TTL 237.4  | lowest node residual 0.994 J
+  Soil      TX 25.47+-0.56  RX 2.44+-0.07  aggregation 0.244+-0.007  | lost: channel 37210, energy 0.0, no candidate 284.4, TTL 2.6  | lowest node residual 1.722 J
+  Mixed     TX 68.64+-1.17  RX 10.27+-0.15  aggregation 1.027+-0.015  | lost: channel 102454, energy 0.0, no candidate 829.0, TTL 61.0  | lowest node residual 1.219 J
+  Node-death rule E < E_elec x 4000 bit = 0.2 mJ (validated threshold, unchanged).
+
+Sensing-energy ledger (separate estimate, never charged to the 2 J radio battery), kJ over operational node-rounds
+  Water     total     152.38 = transmitted-field sensors     102.88 + local-only sensors    49.50
+  Effluent  total   60451.38 = transmitted-field sensors   60451.38 + local-only sensors     0.00
+  Air       total   26909.87 = transmitted-field sensors   26909.87 + local-only sensors     0.00
+  Soil      total      14.31 = transmitted-field sensors      14.31 + local-only sensors     0.00
+  Mixed     total   21881.98 = transmitted-field sensors   21869.61 + local-only sensors    12.38
+  local-only = the water DO probe (198.0 mJ per water node-round): read every round for the alarm DO_mgL < 4 mg/L, which raises alarm reports, but DO is not in the 4-field payload
+
+Scalability (mean over seeds)
+  Water     routing decisions 581878, Q updates 581878, Q-table entries 159456 (319 per node), physical frames 581664, frames received 454531, relaying nodes 500/500, longest round 14.02 s of 100 s, output 38.4 MB per run
+  Effluent  routing decisions 855625, Q updates 855625, Q-table entries 191743 (383 per node), physical frames 855352, frames received 682503, relaying nodes 500/500, longest round 15.36 s of 100 s, output 64.5 MB per run
+  Air       routing decisions 849089, Q updates 849089, Q-table entries 192363 (385 per node), physical frames 848826, frames received 675462, relaying nodes 500/500, longest round 15.08 s of 100 s, output 54.7 MB per run
+  Soil      routing decisions 183796, Q updates 183796, Q-table entries 90959 (182 per node), physical frames 183676, frames received 138273, relaying nodes 500/500, longest round 12.73 s of 100 s, output 13.7 MB per run
+  Mixed     routing decisions 634527, Q updates 634527, Q-table entries 166045 (332 per node), physical frames 634318, frames received 496045, relaying nodes 500/500, longest round 13.72 s of 100 s, output 43.6 MB per run
+
+Actual frame sizes per report (first seed; bits: count)
+  Water     water_quality        280: 171750
+  Effluent  industrial_effluent  360: 243618, 344: 4432, 328: 36
+  Air       air_quality          360: 243431, 344: 5856, 328: 420, 312: 42, 296: 42, 264: 209
+  Soil      soil_monitoring      328: 10424, 264: 52560
+  Mixed     air_quality          360: 60698, 344: 1610, 328: 103, 312: 13, 296: 13, 264: 63
+  Mixed     industrial_effluent  360: 60936, 344: 1087, 328: 11
+  Mixed     soil_monitoring      328: 2606, 264: 13138
+  Mixed     water_quality        280: 42474
+
+Delivery by data source (delivered / generated %, mean +- SD; routing never reads measurement values)
+  Water     water_quality        real        10 nodes, generated   3435   43.64 +- 2.71   delay  41.19 ms
+  Water     water_quality        replayed   490 nodes, generated 168315   43.83 +- 0.99   delay  41.10 ms
+  Effluent  industrial_effluent  synthetic  500 nodes, generated 248086   44.71 +- 0.92   delay  48.79 ms
+  Air       air_quality          real        12 nodes, generated   6000   47.20 +- 3.44   delay  47.04 ms
+  Air       air_quality          replayed   488 nodes, generated 244000   45.02 +- 1.15   delay  47.82 ms
+  Soil      soil_monitoring      synthetic  500 nodes, generated  62984   40.47 +- 0.50   delay  38.90 ms
+  Mixed     air_quality          real         1 nodes, generated    500   61.24 +- 16.96   delay  36.44 ms
+  Mixed     air_quality          replayed   124 nodes, generated  62000   43.18 +- 2.54   delay  44.08 ms
+  Mixed     industrial_effluent  synthetic  125 nodes, generated  62034   42.73 +- 1.77   delay  43.58 ms
+  Mixed     soil_monitoring      synthetic  125 nodes, generated  15744   44.94 +- 1.08   delay  42.25 ms
+  Mixed     water_quality        real        10 nodes, generated   3435   43.41 +- 2.97   delay  42.05 ms
+  Mixed     water_quality        replayed   115 nodes, generated  39039   44.21 +- 0.97   delay  41.73 ms
+
+Paired comparisons by seed (same topology and channel stream per seed): paired t-test, df 4, Holm over 42 tests
+  A         B         metric                       mean A     mean B       B-A   B-A %   p Holm  sig
+  water     effluent  delivery_ratio_pct           43.827     44.708     0.881     2.0    0.021  yes
+  water     effluent  source_packet_pdr_pct        43.827     44.708     0.881     2.0    0.021  yes
+  water     effluent  residual_radio_J            936.488    885.462   -51.027    -5.4    2e-06  yes
+  water     effluent  energy_per_delivered_mJ       0.844      1.033     0.189    22.4  5.6e-05  yes
+  water     effluent  mean_delay_ms                41.105     48.787     7.682    18.7   0.0056  yes
+  water     effluent  transmitted_Mbit            207.920    416.120   208.200   100.1  7.1e-06  yes
+  water     air       delivery_ratio_pct           43.827     45.074     1.247     2.8   0.0098  yes
+  water     air       source_packet_pdr_pct        43.827     45.074     1.247     2.8   0.0098  yes
+  water     air       residual_radio_J            936.488    885.771   -50.717    -5.4  1.5e-07  yes
+  water     air       energy_per_delivered_mJ       0.844      1.014     0.170    20.2  3.4e-05  yes
+  water     air       mean_delay_ms                41.105     47.800     6.695    16.3    0.021  yes
+  water     air       transmitted_Mbit            207.920    413.620   205.700    98.9  1.5e-05  yes
+  water     soil      delivery_ratio_pct           43.827     40.466    -3.361    -7.7    0.011  yes
+  water     soil      source_packet_pdr_pct        43.827     40.466    -3.361    -7.7    0.011  yes
+  water     soil      residual_radio_J            936.488    971.847    35.358     3.8  1.2e-06  yes
+  water     soil      energy_per_delivered_mJ       0.844      1.105     0.261    30.9  0.00099  yes
+  water     soil      mean_delay_ms                41.105     38.900    -2.206    -5.4     0.31  no
+  water     soil      transmitted_Mbit            207.920     65.980  -141.940   -68.3  4.8e-06  yes
+  water     mixed     delivery_ratio_pct           43.827     43.451    -0.376    -0.9     0.41  no
+  water     mixed     source_packet_pdr_pct        43.827     43.451    -0.376    -0.9     0.41  no
+  water     mixed     residual_radio_J            936.488    920.067   -16.421    -1.8  2.4e-05  yes
+  water     mixed     energy_per_delivered_mJ       0.844      1.007     0.163    19.3  0.00077  yes
+  water     mixed     mean_delay_ms                41.105     43.123     2.017     4.9     0.18  no
+  water     mixed     transmitted_Mbit            207.920    266.060    58.140    28.0  0.00029  yes
+  effluent  mixed     delivery_ratio_pct           44.708     43.451    -1.256    -2.8    0.011  yes
+  effluent  mixed     source_packet_pdr_pct        44.708     43.451    -1.256    -2.8    0.011  yes
+  effluent  mixed     residual_radio_J            885.462    920.067    34.605     3.9  8.4e-06  yes
+  effluent  mixed     energy_per_delivered_mJ       1.033      1.007    -0.026    -2.5    0.057  no
+  effluent  mixed     mean_delay_ms                48.787     43.123    -5.665   -11.6    0.001  yes
+  effluent  mixed     transmitted_Mbit            416.120    266.060  -150.060   -36.1  1.7e-05  yes
+  air       mixed     delivery_ratio_pct           45.074     43.451    -1.622    -3.6   0.0098  yes
+  air       mixed     source_packet_pdr_pct        45.074     43.451    -1.622    -3.6   0.0098  yes
+  air       mixed     residual_radio_J            885.771    920.067    34.296     3.9  1.1e-06  yes
+  air       mixed     energy_per_delivered_mJ       1.014      1.007    -0.007    -0.7     0.41  no
+  air       mixed     mean_delay_ms                47.800     43.123    -4.678    -9.8    0.021  yes
+  air       mixed     transmitted_Mbit            413.620    266.060  -147.560   -35.7  3.3e-05  yes
+  soil      mixed     delivery_ratio_pct           40.466     43.451     2.985     7.4   0.0098  yes
+  soil      mixed     source_packet_pdr_pct        40.466     43.451     2.985     7.4   0.0098  yes
+  soil      mixed     residual_radio_J            971.847    920.067   -51.780    -5.3  3.7e-07  yes
+  soil      mixed     energy_per_delivered_mJ       1.105      1.007    -0.098    -8.8    0.011  yes
+  soil      mixed     mean_delay_ms                38.900     43.123     4.223    10.9   0.0042  yes
+  soil      mixed     transmitted_Mbit             65.980    266.060   200.080   303.2  1.2e-07  yes
+
+Workload drivers (identical in every seed)
+  Water      171750 reports = 0.687 per node-hour; mean frame 280.0 bit (payload 144.0); offered 48.1 Mbit
+  Effluent   248086 reports = 0.992 per node-hour; mean frame 359.7 bit (payload 223.7); offered 89.2 Mbit
+  Air        250000 reports = 1.000 per node-hour; mean frame 359.5 bit (payload 223.5); offered 89.9 Mbit
+  Soil        62984 reports = 0.252 per node-hour; mean frame 274.6 bit (payload 138.6); offered 17.3 Mbit
+  Mixed      182752 reports = 0.731 per node-hour; mean frame 333.8 bit (payload 197.8); offered 61.0 Mbit
+
+200 versus 500 nodes: mean +- sample SD, 200 nodes over seeds [42, 43, 44, 45, 46], 500 nodes over seeds [42, 43, 44, 45, 46] (same per-node workload,
+area, BS, radio and routing; residual energy also as % of the initial 2 J x N; runtime and peak memory from different sessions)
+  Water
+    delivery ratio %           200:        45.26 +- 2.80   500:        43.83 +- 0.98
+    delivered reports          200:        31096 +- 1925   500:        75273 +- 1690
+    source-packet PDR %        200:        45.26 +- 2.80   500:        43.83 +- 0.98
+    residual radio J           200:         377.2 +- 0.6   500:         936.5 +- 1.0
+    residual % of initial      200:        94.30 +- 0.16   500:        93.65 +- 0.10
+    mJ per delivered           200:       0.736 +- 0.055   500:       0.844 +- 0.023
+    delay ms                   200:        35.53 +- 1.68   500:        41.11 +- 1.28
+    operational nodes r500     200:             200 +- 0   500:             500 +- 0
+    operational node-rounds    200:          100000 +- 0   500:          250000 +- 0
+    transmitted Mbit           200:          79.1 +- 2.3   500:         207.9 +- 3.3
+    runtime s                  200:           4.4 +- 0.2   500:          25.7 +- 2.4
+    peak memory MB             200:              62 +- 0   500:             116 +- 0
+  Effluent
+    delivery ratio %           200:        46.74 +- 1.71   500:        44.71 +- 0.92
+    delivered reports          200:        46416 +- 1700   500:       110914 +- 2278
+    source-packet PDR %        200:        46.74 +- 1.71   500:        44.71 +- 0.92
+    residual radio J           200:         358.1 +- 1.2   500:         885.5 +- 2.0
+    residual % of initial      200:        89.52 +- 0.30   500:        88.55 +- 0.20
+    mJ per delivered           200:       0.904 +- 0.046   500:       1.033 +- 0.026
+    delay ms                   200:        41.01 +- 1.18   500:        48.79 +- 1.46
+    operational nodes r500     200:             200 +- 0   500:             500 +- 0
+    operational node-rounds    200:          100000 +- 0   500:          250000 +- 0
+    transmitted Mbit           200:         154.2 +- 3.7   500:         416.1 +- 7.1
+    runtime s                  200:           6.7 +- 0.4   500:          39.6 +- 4.1
+    peak memory MB             200:              71 +- 0   500:             148 +- 0
+  Air
+    delivery ratio %           200:        46.88 +- 1.65   500:        45.07 +- 1.12
+    delivered reports          200:        46875 +- 1646   500:       112684 +- 2810
+    source-packet PDR %        200:        46.88 +- 1.65   500:        45.07 +- 1.12
+    residual radio J           200:         358.0 +- 0.7   500:         885.8 +- 1.3
+    residual % of initial      200:        89.51 +- 0.17   500:        88.58 +- 0.13
+    mJ per delivered           200:       0.896 +- 0.034   500:       1.014 +- 0.027
+    delay ms                   200:        40.41 +- 1.87   500:        47.80 +- 1.61
+    operational nodes r500     200:             200 +- 0   500:             500 +- 0
+    operational node-rounds    200:          100000 +- 0   500:          250000 +- 0
+    transmitted Mbit           200:         153.7 +- 4.4   500:         413.6 +- 6.5
+    runtime s                  200:           6.4 +- 0.2   500:          37.4 +- 3.8
+    peak memory MB             200:              63 +- 0   500:             128 +- 0
+  Soil
+    delivery ratio %           200:        41.93 +- 1.93   500:        40.47 +- 0.50
+    delivered reports          200:         10539 +- 485   500:         25487 +- 313
+    source-packet PDR %        200:        41.93 +- 1.93   500:        40.47 +- 0.50
+    residual radio J           200:         389.9 +- 0.2   500:         971.8 +- 0.6
+    residual % of initial      200:        97.48 +- 0.04   500:        97.18 +- 0.06
+    mJ per delivered           200:       0.959 +- 0.055   500:       1.105 +- 0.025
+    delay ms                   200:        33.76 +- 0.84   500:        38.90 +- 1.77
+    operational nodes r500     200:             200 +- 0   500:             500 +- 0
+    operational node-rounds    200:          100000 +- 0   500:          250000 +- 0
+    transmitted Mbit           200:          25.2 +- 0.3   500:          66.0 +- 1.6
+    runtime s                  200:           1.8 +- 0.1   500:           7.3 +- 0.4
+    peak memory MB             200:              49 +- 0   500:              92 +- 0
+  Mixed
+    delivery ratio %           200:        45.08 +- 1.47   500:        43.45 +- 0.93
+    delivered reports          200:        33046 +- 1078   500:        79408 +- 1706
+    source-packet PDR %        200:        45.08 +- 1.47   500:        43.45 +- 0.93
+    residual radio J           200:         370.7 +- 1.1   500:         920.1 +- 1.2
+    residual % of initial      200:        92.66 +- 0.28   500:        92.01 +- 0.12
+    mJ per delivered           200:       0.888 +- 0.032   500:       1.007 +- 0.028
+    delay ms                   200:        38.68 +- 1.41   500:        43.12 +- 1.23
+    operational nodes r500     200:             200 +- 0   500:             500 +- 0
+    operational node-rounds    200:          100000 +- 0   500:          250000 +- 0
+    transmitted Mbit           200:         103.9 +- 3.3   500:         266.1 +- 3.5
+    runtime s                  200:           5.5 +- 0.1   500:          30.1 +- 3.9
+    peak memory MB             200:              65 +- 0   500:             123 +- 0
+
+RESULT: all checks passed

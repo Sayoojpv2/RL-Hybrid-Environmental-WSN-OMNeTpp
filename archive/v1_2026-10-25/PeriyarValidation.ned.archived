@@ -1,0 +1,154 @@
+//
+// Periyar RL-Hybrid validation model (OMNeT++ 6.4, native modules, no INET).
+//
+// Faithful port of the frozen MATLAB experiment RL_WSN_Periyar:
+//   50 battery nodes placed by generate_scenario.m (seed-dependent, 600 x 50 m river),
+//   base station at (600, 25) m, 10 sensing stations (nodes 4 8 12 18 22 28 32 38 42 48),
+//   Periyar workload (10,000 slots), RL_Hybrid.m routing and learning.
+//
+// Radio links: the MATLAB channel has NO hard radio range; every node can try to reach
+// every other node and the BS. Frames are therefore sent with sendDirect() to the chosen
+// receiver; whether a frame is decoded is decided by success_history(i,j,round) of
+// generate_scenario.m, evaluated when the frame arrives. Node icons are drawn at a scaled
+// graphical position (x*1.6+40, y*6+90 px); physical positions are in metres.
+//
+
+simple SensorNode
+{
+    parameters:
+        @class(SensorNode);
+        @display("i=misc/node;is=vs");
+        int nodeId;                                         // MATLAB id 1..50
+        double ackTimeout @unit(s) = default(20ms);         // > frame duration + 2 x propagation
+        double processingDelay @unit(s) = default(5ms);     // Tproc in RL_Hybrid.m
+        double bitRate @unit(bps) = default(250kbps);       // Rbit in RL_Hybrid.m
+    gates:
+        input radioIn @directIn;
+}
+
+simple BaseStation
+{
+    parameters:
+        @class(BaseStation);
+        @display("i=device/antennatower;is=s");
+        double processingDelay @unit(s) = default(5ms);
+        @signal[pathDelay](type=double);
+        @statistic[pathDelay](title="path delay per delivered report (MATLAB definition)"; unit=s; record=mean,count);
+        @signal[latency](type=simtime_t);
+        @statistic[latency](title="OMNeT++ latency from round start to BS"; unit=s; record=mean);
+        @signal[hops](type=long);
+        @statistic[hops](title="hops per delivered report"; record=mean,histogram);
+    gates:
+        input radioIn @directIn;
+}
+
+simple Controller
+{
+    parameters:
+        @class(Controller);
+        @display("i=block/cogwheel;is=s");
+        int scenarioSeed;                                   // 42..46 (topology, channel and agent streams)
+        string datasetPath;                                 // copy of RL_WSN_Periyar/data/Periyar_WaterQuality_Project.csv
+        int numRounds = default(1000);
+        double roundPeriod @unit(s) = default(10s);         // simulated time reserved for one MATLAB round
+        double stepGuard @unit(s) = default(1ms);           // gap between sequential decision steps
+        string outputPrefix;
+        bool exportReference = default(false);              // write workload / topology files (Stage B)
+        bool exportChannel = default(false);                // also write all success_history bits
+        double epsilonInitial = default(0.25);              // RL_Hybrid.m lines 37-39
+        double epsilonMinimum = default(0.05);
+        double epsilonDecayPerRound = default(0.9985);
+        int extraTopologySeed = default(-1);                // added relays (N > 50): MatlabTwister seed; -1 = 900000 + scenarioSeed
+}
+
+network PeriyarRiverNetwork
+{
+    parameters:
+        int numNodes = default(50);   // battery nodes N >= 50: n1..n50 = the MATLAB topology, relay[k] = node id 51+k
+        // ---- DISPLAY ONLY. Nothing below affects routing, energy or channel calculations.
+        // Map area: node (x, y) in metres is drawn at (60 + 1.6*x, 140 + 6.8*y) px, i.e. the 50 m
+        // river width is exaggerated 4.25x relative to the 600 m length (see Controller.cc).
+        @display("bgb=1180,705;bgg=,0");
+        @figure[panel](type=rectangle; pos=10,8; size=1160,96; fillColor=#f3f6fa; lineColor=#b8c4d4; cornerRadius=6; zIndex=-3);
+        @figure[status](type=text; pos=150,14; text="status"; font=,9; color=#1b2a3a);
+        @figure[ctrlNote](type=text; pos=14,72; text="simulation\ncontroller\n(not a radio node)"; font=,7; color=#666666);
+        @figure[mapCaption](type=text; pos=60,114; text="Map of the river section (display-scaled: 1.6 px/m along the river, 6.8 px/m across = 4.25x vertical exaggeration). Routing and energy use the real coordinates in metres."; font=,8; color=#555555);
+        @figure[river](type=rectangle; pos=60,140; size=960,340; fillColor=#dcecf8; lineColor=#9cc3e0; zIndex=-2);
+        @figure[downstream](type=text; pos=1024,140; text="downstream\nend (BS)"; font=,7; color=#4a7fa8);
+        @figure[hops](type=group; zIndex=-1);
+        // legend: roles
+        @figure[lgTitle](type=text; pos=20,498; text="Legend"; font=,9,bold);
+        @figure[lgSrc](type=oval; pos=22,522; size=14,14; fillColor=#1f6fd1; lineColor=#0b3d80);
+        @figure[lgSrcT](type=text; pos=42,522; text="sensing/source node (10): label  nK \"station\""; font=,8);
+        @figure[lgRel](type=oval; pos=25,545; size=9,9; fillColor=#a8a8a8; lineColor=#6e6e6e);
+        @figure[lgRelT](type=text; pos=42,543; text="relay-only node (N - 10): label  nK"; font=,8);
+        @figure[lgDead](type=oval; pos=23,564; size=12,12; fillColor=#d62728; lineColor=#7a0000);
+        @figure[lgDeadT](type=text; pos=42,563; text="unavailable node (energy rules)"; font=,8);
+        @figure[lgIds](type=text; pos=20,584; text="nK = node K (1..50 MATLAB topology, 51..N added relays);  BS = base station"; font=,8);
+        // legend: packets and link outcomes
+        @figure[lgOk](type=line; points=330,529, 370,529; lineColor=#2e9e44; lineWidth=3);
+        @figure[lgOkT](type=text; pos=378,522; text="frame decoded by the receiver (this round)"; font=,8);
+        @figure[lgLost](type=line; points=330,550, 370,550; lineColor=#d62728; lineWidth=2; lineStyle=dashed);
+        @figure[lgLostT](type=text; pos=378,543; text="frame lost on the channel (not decoded)"; font=,8);
+        @figure[lgPk](type=text; pos=330,563; text="moving dots: cyan = report to cluster head, blue = aggregate frame,\ngreen = ACK, red = NACK, grey = Q-value feedback"; font=,8);
+        @figure[lgNoLinks](type=text; pos=330,600; text="No fixed links are drawn: as in MATLAB, any node may try any other node or the BS."; font=,8; color=#555555);
+        // station table (filled in at runtime from the workload's station -> node mapping)
+        @figure[stations](type=text; pos=760,498; text=""; font=,8; color=#1b2a3a);
+    submodules:
+        controller: Controller {
+            @display("p=40,46;i=block/cogwheel;is=s");
+        }
+        BS: BaseStation;
+        n1: SensorNode { nodeId = 1; }
+        n2: SensorNode { nodeId = 2; }
+        n3: SensorNode { nodeId = 3; }
+        n4: SensorNode { nodeId = 4; }
+        n5: SensorNode { nodeId = 5; }
+        n6: SensorNode { nodeId = 6; }
+        n7: SensorNode { nodeId = 7; }
+        n8: SensorNode { nodeId = 8; }
+        n9: SensorNode { nodeId = 9; }
+        n10: SensorNode { nodeId = 10; }
+        n11: SensorNode { nodeId = 11; }
+        n12: SensorNode { nodeId = 12; }
+        n13: SensorNode { nodeId = 13; }
+        n14: SensorNode { nodeId = 14; }
+        n15: SensorNode { nodeId = 15; }
+        n16: SensorNode { nodeId = 16; }
+        n17: SensorNode { nodeId = 17; }
+        n18: SensorNode { nodeId = 18; }
+        n19: SensorNode { nodeId = 19; }
+        n20: SensorNode { nodeId = 20; }
+        n21: SensorNode { nodeId = 21; }
+        n22: SensorNode { nodeId = 22; }
+        n23: SensorNode { nodeId = 23; }
+        n24: SensorNode { nodeId = 24; }
+        n25: SensorNode { nodeId = 25; }
+        n26: SensorNode { nodeId = 26; }
+        n27: SensorNode { nodeId = 27; }
+        n28: SensorNode { nodeId = 28; }
+        n29: SensorNode { nodeId = 29; }
+        n30: SensorNode { nodeId = 30; }
+        n31: SensorNode { nodeId = 31; }
+        n32: SensorNode { nodeId = 32; }
+        n33: SensorNode { nodeId = 33; }
+        n34: SensorNode { nodeId = 34; }
+        n35: SensorNode { nodeId = 35; }
+        n36: SensorNode { nodeId = 36; }
+        n37: SensorNode { nodeId = 37; }
+        n38: SensorNode { nodeId = 38; }
+        n39: SensorNode { nodeId = 39; }
+        n40: SensorNode { nodeId = 40; }
+        n41: SensorNode { nodeId = 41; }
+        n42: SensorNode { nodeId = 42; }
+        n43: SensorNode { nodeId = 43; }
+        n44: SensorNode { nodeId = 44; }
+        n45: SensorNode { nodeId = 45; }
+        n46: SensorNode { nodeId = 46; }
+        n47: SensorNode { nodeId = 47; }
+        n48: SensorNode { nodeId = 48; }
+        n49: SensorNode { nodeId = 49; }
+        n50: SensorNode { nodeId = 50; }
+        // SCALABILITY EXTENSION: relay-only nodes 51..N (empty when numNodes = 50)
+        relay[numNodes - 50]: SensorNode { nodeId = 51 + index; }
+}

@@ -1,0 +1,152 @@
+{
+ "dataset": "soil_monitoring_200",
+ "scenario_id": "D",
+ "sensor_type": "soil_monitoring",
+ "description": "Soil and agricultural monitoring (synthetic)",
+ "data_class": "synthetic",
+ "source": "SYNTHETIC: deterministic generator, 10 virtual fields x 20 nodes; not measurements.",
+ "generator": "scenario_study/generators/generate_scenarios.py",
+ "generator_seed": 2102,
+ "numpy_version": "2.5.3",
+ "nodes": 200,
+ "rounds": [
+  1,
+  500
+ ],
+ "rows": 100000,
+ "observations_md5": "8787ec598eb0cc17fc484ac3996787d9",
+ "columns": {
+  "scenario_id": "A water, B effluent, C air, D soil",
+  "sample_id": "unique observation id <code>-n<node>-r<round>",
+  "node_id": "1..200, same node ids and positions as the 200-node OMNeT++ topology",
+  "sensor_type": "profile name",
+  "round": "network round 1..500",
+  "sim_time_s": "OMNeT++ round start, (round-1) x 100 s (V2_200Node roundPeriod)",
+  "env_time": "environmental time: KSPCB sampling date of the carried sample / Beijing local hour / T+hours since synthetic origin",
+  "source_station_id": "station or virtual source stream the node reports",
+  "source_station": "its name",
+  "data_source": "KSPCB | KSPCB-replay | UCI-Beijing | UCI-Beijing-replay | SYNTHETIC",
+  "is_real": "1 = values are real measurements",
+  "is_replayed": "1 = virtual node replaying another real stream",
+  "is_synthetic": "1 = generated values",
+  "quality_flag": "'ok' or ';'-separated flags (missing:<field>, sensor_outage, no_observation_yet, DO_invalid_value, pm10_lt_pm25_in_source, chem_not_scheduled)",
+  "anomaly_flag": "synthetic: 1 inside an injected abnormal event or glitch (ground truth); real: = alarm_flag (no ground truth)",
+  "alarm_flag": "1 if any profile alarm threshold is exceeded by this round value",
+  "event_type": "ground-truth event label (synthetic) or observed-exceedance label (real)",
+  "m1_report": "Mode 1 (controlled): 1 = report slot of the validated 200-node workload (identical mask in all scenarios), 4000-bit packet",
+  "m2_report": "Mode 2 (sensor-realistic): 1 = report sent this round",
+  "m2_trigger": "periodic | alarm | periodic+alarm | +chem | none | no_data",
+  "m2_priority": "1 = alarm report",
+  "m2_fields": "measurement fields in the Mode 2 payload",
+  "m2_payload_bytes": "application payload = 10 B header + 2 B per present field",
+  "m2_frame_bits": "8 x (17 B IEEE 802.15.4 PHY+MAC overhead + payload)",
+  "m2_sensing_mJ": "sensing + processing energy of this round (mJ), from sensor_profiles.json energy entries"
+ },
+ "fields": {
+  "VWC_pct": {
+   "unit": "% (m3/m3 x 100)",
+   "valid_rule": "0-100 %",
+   "encoding_scale": 0.01,
+   "hardware": "capacitance/TDR soil-moisture probe (METER TEROS 12 class; datasheet not readable: HTTP 403)",
+   "spec_class": "ASSUMPTION"
+  },
+  "soil_temperature_C": {
+   "unit": "degC",
+   "valid_rule": "-20 to 70 degC",
+   "encoding_scale": 0.01,
+   "hardware": "same probe",
+   "spec_class": "ASSUMPTION"
+  },
+  "bulk_EC_dSm": {
+   "unit": "dS/m",
+   "valid_rule": "0-20 dS/m",
+   "encoding_scale": 0.001,
+   "hardware": "same probe",
+   "spec_class": "ASSUMPTION"
+  },
+  "soil_pH": {
+   "unit": "pH",
+   "valid_rule": "3-10",
+   "encoding_scale": 0.001,
+   "hardware": "soil pH ISE (occasional chemistry reading)",
+   "spec_class": "ASSUMPTION"
+  },
+  "N_mgkg": {
+   "unit": "mg/kg",
+   "valid_rule": ">= 0",
+   "encoding_scale": 0.1,
+   "hardware": "nitrate ISE / optical nutrient sensor (occasional; low-cost RS485 'NPK' probes have unverified accuracy)",
+   "spec_class": "ASSUMPTION"
+  },
+  "P_mgkg": {
+   "unit": "mg/kg",
+   "valid_rule": ">= 0",
+   "encoding_scale": 0.1,
+   "hardware": "same nutrient reading",
+   "spec_class": "ASSUMPTION"
+  },
+  "K_mgkg": {
+   "unit": "mg/kg",
+   "valid_rule": ">= 0",
+   "encoding_scale": 0.1,
+   "hardware": "same nutrient reading",
+   "spec_class": "ASSUMPTION"
+  }
+ },
+ "payload_fields_mode2": [
+  "VWC_pct",
+  "soil_temperature_C",
+  "bulk_EC_dSm",
+  "soil_pH",
+  "N_mgkg",
+  "P_mgkg",
+  "K_mgkg"
+ ],
+ "sampling": {
+  "samples_per_round": 2,
+  "note": "VWC, soil temperature and bulk EC every 30 min; pH and N/P/K once per 24 rounds",
+  "report_interval_rounds": 4,
+  "alarm_interval_rounds": 1,
+  "chem_interval_rounds": 24,
+  "round_note": "Mode 2 network epoch = 1 h of environmental time for air, effluent and soil. The water stream keeps the unchanged MATLAB V2 KSPCB schedule (212 sampling dates -> 1000 rounds; rounds 1-500 simulated), so one water round is a schedule slot, not a fixed hour."
+ },
+ "alarms": [
+  {
+   "field": "VWC_pct",
+   "op": "<",
+   "value": 15,
+   "class": "ASSUMPTION",
+   "source": "irrigation trigger (assumed management allowable depletion)"
+  },
+  {
+   "field": "VWC_pct",
+   "op": ">",
+   "value": 45,
+   "class": "ASSUMPTION",
+   "source": "near-saturation / waterlogging (assumed)"
+  }
+ ],
+ "missing_value_policy": "missing = empty cell, listed in quality_flag; never converted to 0. Mode 1 still sends the slot (missing fields flagged in the packet); Mode 2 sends only present fields and skips a round with none.",
+ "stats": {
+  "fields": 10,
+  "rain_events": [
+   [
+    8,
+    3
+   ],
+   [
+    143,
+    7
+   ],
+   [
+    488,
+    4
+   ],
+   [
+    70,
+    3
+   ]
+  ],
+  "irrigations": 14
+ }
+}

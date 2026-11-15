@@ -1,0 +1,10 @@
+name,unit,origin,datasetColumn
+PM25_ugm3,see metadata.json,scenario,PM25_ugm3
+PM10_ugm3,see metadata.json,scenario,PM10_ugm3
+CO_mgm3,see metadata.json,scenario,CO_mgm3
+NO2_ugm3,see metadata.json,scenario,NO2_ugm3
+SO2_ugm3,see metadata.json,scenario,SO2_ugm3
+O3_ugm3,see metadata.json,scenario,O3_ugm3
+temperature_C,see metadata.json,scenario,temperature_C
+RH_pct,see metadata.json,scenario,RH_pct
+wind_ms,see metadata.json,scenario,wind_ms

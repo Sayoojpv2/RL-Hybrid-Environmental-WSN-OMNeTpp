@@ -1,0 +1,136 @@
+ONE 200-NODE ENVIRONMENTAL WSN (V2_200Node_Environmental): 200 sensing + forwarding nodes, one BS, 600 x 50 m, 500 rounds
+(1 round = 1 h), 2 J radio energy per node, first-order radio, tabular Q-learning RL-Hybrid with variant C (energyGuard 0.8),
+no retransmission. Only the scenario workload changes. Every report is one 802.15.4 frame of its own profile; energy,
+feasibility and airtime use the actual frame bits. Sensing energy is a separate ledger, never charged to the 2 J battery:
+lifetimes are communication-network lifetimes. Seeds 42-46 set topology + channel + RL stream, identical across scenarios.
+======================================================================================================================
+Sensor profiles (sensor_profiles.json): payload = 10 B header + 2 B per field; frame = payload + 17 B 802.15.4 MAC/PHY
+  water_quality        fields temperature_C, pH, conductivity_uScm, TDS_mgL
+                       payload 144 bit, frame 280 bit; 4 samples per round, report every 2 h, alarm reports every 1 h; sensed but not transmitted: DO_mgL
+  industrial_effluent  fields temperature_C, pH, conductivity_uScm, TDS_mgL, DO_mgL, turbidity_NTU, COD_mgL, BOD_mgL, NH3N_mgL
+                       payload 224 bit, frame 360 bit; 4 samples per round, report every 1 h, alarm reports every 1 h
+  air_quality          fields PM25_ugm3, PM10_ugm3, CO_mgm3, NO2_ugm3, SO2_ugm3, O3_ugm3, temperature_C, RH_pct, wind_ms
+                       payload 224 bit, frame 360 bit; 4 samples per round, report every 1 h, alarm reports every 1 h
+  soil_monitoring      fields VWC_pct, soil_temperature_C, bulk_EC_dSm; chemistry rounds add soil_pH, N_mgkg, P_mgkg, K_mgkg
+                       payload 128 bit, frame 264 bit (192 / 328 bit on chemistry rounds, every 24 h); 2 samples per round, report every 4 h, alarm reports every 1 h
+
+Checks
+  [OK] profile frames: water 280, effluent 360, air 360, soil 264 / 328 bit
+  [OK] the five scenario datasets are unchanged (md5)
+  [OK] mixed node map: 50 water + 50 effluent + 50 air + 50 soil nodes
+  [OK] 25 runs: identical parameters except scenario / dataset / seed / output prefix; scenario label matches its dataset; 200 nodes, BS (600, 25), 600 x 50 m, 2 J, 500 rounds, variant C 0.8, no retransmission, node-death k = 4000 bit; same topology for a seed in every scenario; same schedule in every seed; every report carries its profile frame; TX + RX + aggregation = spent radio energy; run invariants OK
+
+Results (mean +- sample SD over seeds 42-46; generated = scheduled = valid reports, identical in every seed)
+                             Water         Effluent              Air             Soil            Mixed
+  generated                  68700            99306           100000            25135            73306
+  delivered            31096+-1925      46525+-1563      46783+-1791       10539+-485      33121+-1127
+  deliv. ratio %       45.26+-2.80      46.85+-1.57      46.78+-1.79      41.93+-1.93      45.18+-1.54
+  srcPDR %             45.26+-2.80      46.85+-1.57      46.78+-1.79      41.93+-1.93      45.18+-1.54
+  FND                  not reached      not reached      not reached      not reached      not reached
+  HND                  not reached      not reached      not reached      not reached      not reached
+  alive500              200.0+-0.0       200.0+-0.0       200.0+-0.0       200.0+-0.0       200.0+-0.0
+  node-rounds            100000+-0        100000+-0        100000+-0        100000+-0        100000+-0
+  resid J             377.19+-0.62     358.15+-1.32     357.64+-0.52     389.91+-0.17     370.88+-1.12
+  sensing kJ                 61+-0         24181+-0         10764+-0             6+-0          8753+-0
+  mJ/deliv            0.736+-0.055     0.901+-0.052     0.906+-0.035     0.959+-0.055     0.880+-0.036
+  delay ms             35.53+-1.68      41.05+-1.33      41.45+-2.19      33.76+-0.84      38.27+-1.37
+  frame bit             280.0+-0.0       360.0+-0.0       360.0+-0.0       274.6+-0.0       334.0+-0.0
+  tx Mbit                79.1+-2.3       154.7+-3.5       156.7+-6.0        25.2+-0.3       103.1+-2.7
+  run s                   4.6+-0.2         7.5+-0.5         7.5+-0.5         1.7+-0.0         6.4+-0.7
+
+Radio energy by component (J, mean +- SD) and network losses (mean reports)
+  Water     TX 19.50+-0.55  RX 3.01+-0.13  aggregation 0.301+-0.013  | lost: channel 36943, energy 0.0, no candidate 638.8, TTL 21.2  | lowest node residual 1.506 J
+  Effluent  TX 35.29+-1.24  RX 5.96+-0.18  aggregation 0.596+-0.018  | lost: channel 52109, energy 0.0, no candidate 638.4, TTL 33.2  | lowest node residual 1.345 J
+  Air       TX 35.70+-0.48  RX 6.05+-0.31  aggregation 0.605+-0.031  | lost: channel 52465, energy 0.0, no candidate 699.8, TTL 51.4  | lowest node residual 1.321 J
+  Soil      TX 9.08+-0.16  RX 0.92+-0.02  aggregation 0.092+-0.002  | lost: channel 14419, energy 0.0, no candidate 176.0, TTL 1.0  | lowest node residual 1.819 J
+  Mixed     TX 24.79+-1.14  RX 3.94+-0.14  aggregation 0.394+-0.014  | lost: channel 39616, energy 0.0, no candidate 547.8, TTL 21.4  | lowest node residual 1.467 J
+  Node-death rule E < E_elec x 4000 bit = 0.2 mJ (validated threshold, unchanged).
+
+Delivery by data source (delivered / generated %, mean +- SD; routing never reads measurement values)
+  Water     water_quality        real      generated   3435   45.16 +- 1.76   delay  36.19 ms
+  Water     water_quality        replayed  generated  65265   45.27 +- 2.92   delay  35.50 ms
+  Effluent  industrial_effluent  synthetic generated  99306   46.85 +- 1.57   delay  41.05 ms
+  Air       air_quality          real      generated   6000   48.15 +- 2.99   delay  40.55 ms
+  Air       air_quality          replayed  generated  94000   46.70 +- 1.89   delay  41.52 ms
+  Soil      soil_monitoring      synthetic generated  25135   41.93 +- 1.93   delay  33.76 ms
+  Mixed     air_quality          real      generated   1000   58.92 +- 11.73   delay  31.47 ms
+  Mixed     air_quality          replayed  generated  24000   46.20 +- 4.54   delay  37.94 ms
+  Mixed     industrial_effluent  synthetic generated  24882   43.56 +- 1.68   delay  40.11 ms
+  Mixed     soil_monitoring      synthetic generated   6281   47.10 +- 3.39   delay  36.33 ms
+  Mixed     water_quality        real      generated   3435   45.76 +- 1.77   delay  36.94 ms
+  Mixed     water_quality        replayed  generated  13708   44.32 +- 4.66   delay  38.39 ms
+
+Paired comparisons by seed (same topology and channel stream per seed): paired t-test, df 4, Holm over 42 tests
+  A         B         metric                       mean A     mean B       B-A   B-A %   p Holm  sig
+  water     effluent  delivery_ratio_pct           45.263     46.850     1.587     3.5     0.58  no
+  water     effluent  source_packet_pdr_pct        45.263     46.850     1.587     3.5     0.58  no
+  water     effluent  alive_r500                  200.000    200.000     0.000     0.0      nan  n/a (identical in every seed)
+  water     effluent  residual_radio_J            377.190    358.153   -19.036    -5.0  5.1e-05  yes
+  water     effluent  energy_per_delivered_mJ       0.736      0.901     0.165    22.4   0.0012  yes
+  water     effluent  mean_delay_ms                35.534     41.052     5.518    15.5    0.055  no
+  water     effluent  transmitted_Mbit             79.140    154.680    75.540    95.5  5.1e-05  yes
+  water     effluent  sensing_kJ_operational       60.951  24180.551 24119.600 39572.1      nan  n/a (identical in every seed)
+  water     air       delivery_ratio_pct           45.263     46.783     1.520     3.4     0.58  no
+  water     air       source_packet_pdr_pct        45.263     46.783     1.520     3.4     0.58  no
+  water     air       alive_r500                  200.000    200.000     0.000     0.0      nan  n/a (identical in every seed)
+  water     air       residual_radio_J            377.190    357.641   -19.548    -5.2    1e-05  yes
+  water     air       energy_per_delivered_mJ       0.736      0.906     0.170    23.1   0.0054  yes
+  water     air       mean_delay_ms                35.534     41.449     5.914    16.6      0.1  no
+  water     air       transmitted_Mbit             79.140    156.740    77.600    98.1  0.00023  yes
+  water     air       sensing_kJ_operational       60.951  10763.950 10702.999 17560.0      nan  n/a (identical in every seed)
+  water     soil      delivery_ratio_pct           45.263     41.930    -3.334    -7.4    0.029  yes
+  water     soil      source_packet_pdr_pct        45.263     41.930    -3.334    -7.4    0.029  yes
+  water     soil      alive_r500                  200.000    200.000     0.000     0.0      nan  n/a (identical in every seed)
+  water     soil      residual_radio_J            377.190    389.912    12.722     3.4  5.1e-05  yes
+  water     soil      energy_per_delivered_mJ       0.736      0.959     0.223    30.3   0.0012  yes
+  water     soil      mean_delay_ms                35.534     33.760    -1.774    -5.0     0.58  no
+  water     soil      transmitted_Mbit             79.140     25.180   -53.960   -68.2  2.8e-05  yes
+  water     soil      sensing_kJ_operational       60.951      5.722   -55.229   -90.6      nan  n/a (identical in every seed)
+  water     mixed     delivery_ratio_pct           45.263     45.181    -0.082    -0.2        1  no
+  water     mixed     source_packet_pdr_pct        45.263     45.181    -0.082    -0.2        1  no
+  water     mixed     alive_r500                  200.000    200.000     0.000     0.0      nan  n/a (identical in every seed)
+  water     mixed     residual_radio_J            377.190    370.879    -6.311    -1.7   0.0012  yes
+  water     mixed     energy_per_delivered_mJ       0.736      0.880     0.144    19.5    0.037  yes
+  water     mixed     mean_delay_ms                35.534     38.270     2.736     7.7     0.58  no
+  water     mixed     transmitted_Mbit             79.140    103.080    23.940    30.3   0.0024  yes
+  water     mixed     sensing_kJ_operational       60.951   8752.794  8691.843 14260.4      nan  n/a (identical in every seed)
+  effluent  mixed     delivery_ratio_pct           46.850     45.181    -1.669    -3.6     0.32  no
+  effluent  mixed     source_packet_pdr_pct        46.850     45.181    -1.669    -3.6     0.32  no
+  effluent  mixed     alive_r500                  200.000    200.000     0.000     0.0      nan  n/a (identical in every seed)
+  effluent  mixed     residual_radio_J            358.153    370.879    12.726     3.6   0.0012  yes
+  effluent  mixed     energy_per_delivered_mJ       0.901      0.880    -0.021    -2.3        1  no
+  effluent  mixed     mean_delay_ms                41.052     38.270    -2.782    -6.8     0.58  no
+  effluent  mixed     transmitted_Mbit            154.680    103.080   -51.600   -33.4   0.0012  yes
+  effluent  mixed     sensing_kJ_operational    24180.551   8752.794 -15427.757   -63.8      nan  n/a (identical in every seed)
+  air       mixed     delivery_ratio_pct           46.783     45.181    -1.602    -3.4     0.58  no
+  air       mixed     source_packet_pdr_pct        46.783     45.181    -1.602    -3.4     0.58  no
+  air       mixed     alive_r500                  200.000    200.000     0.000     0.0      nan  n/a (identical in every seed)
+  air       mixed     residual_radio_J            357.641    370.879    13.238     3.7  0.00036  yes
+  air       mixed     energy_per_delivered_mJ       0.906      0.880    -0.027    -2.9        1  no
+  air       mixed     mean_delay_ms                41.449     38.270    -3.179    -7.7     0.58  no
+  air       mixed     transmitted_Mbit            156.740    103.080   -53.660   -34.2    0.003  yes
+  air       mixed     sensing_kJ_operational    10763.950   8752.794 -2011.156   -18.7      nan  n/a (identical in every seed)
+  soil      mixed     delivery_ratio_pct           41.930     45.181     3.252     7.8     0.03  yes
+  soil      mixed     source_packet_pdr_pct        41.930     45.181     3.252     7.8     0.03  yes
+  soil      mixed     alive_r500                  200.000    200.000     0.000     0.0      nan  n/a (identical in every seed)
+  soil      mixed     residual_radio_J            389.912    370.879   -19.033    -4.9  0.00013  yes
+  soil      mixed     energy_per_delivered_mJ       0.959      0.880    -0.079    -8.3     0.58  no
+  soil      mixed     mean_delay_ms                33.760     38.270     4.510    13.4     0.18  no
+  soil      mixed     transmitted_Mbit             25.180    103.080    77.900   309.4    2e-05  yes
+  soil      mixed     sensing_kJ_operational        5.722   8752.794  8747.071 152854.0      nan  n/a (identical in every seed)
+
+Workload drivers (identical in every seed)
+  Water       68700 reports = 0.687 per node-hour; mean frame 280.0 bit (payload 144.0); offered 19.2 Mbit
+  Effluent    99306 reports = 0.993 per node-hour; mean frame 360.0 bit (payload 224.0); offered 35.8 Mbit
+  Air        100000 reports = 1.000 per node-hour; mean frame 360.0 bit (payload 224.0); offered 36.0 Mbit
+  Soil        25135 reports = 0.251 per node-hour; mean frame 274.6 bit (payload 138.6); offered 6.9 Mbit
+  Mixed       73306 reports = 0.733 per node-hour; mean frame 334.0 bit (payload 198.0); offered 24.5 Mbit
+
+Effect of the frame-exact rules, seed 42 (retired M2F: one-packet checks and airtime, node-death k = smallest frame)
+  Water     delivery  45.49 ->  45.49 %   delay  30.82 ->  34.43 ms   residual  377.48 ->  377.48 J
+  Effluent  delivery  46.68 ->  46.68 %   delay  36.02 ->  42.87 ms   residual  358.24 ->  358.24 J
+  Air       delivery  46.31 ->  46.31 %   delay  36.93 ->  43.96 ms   residual  357.02 ->  357.02 J
+  Soil      delivery  42.13 ->  42.13 %   delay  29.65 ->  34.56 ms   residual  389.68 ->  389.68 J
+  Mixed     delivery  46.41 ->  46.41 %   delay  32.26 ->  36.51 ms   residual  371.84 ->  371.84 J
+
+RESULT: all checks passed

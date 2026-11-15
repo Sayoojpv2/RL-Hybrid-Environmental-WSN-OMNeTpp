@@ -1,0 +1,15 @@
+mixed_environment_500: ALL CHECKS PASSED
+PASS node_map.csv MD5 matches metadata
+PASS every node 1..500 mapped exactly once
+PASS distribution {'water_quality': 125, 'air_quality': 125, 'soil_monitoring': 125, 'industrial_effluent': 125} (equal split)
+PASS nodes 1-10 (real KSPCB stations) are water_quality
+PASS water_quality_500 MD5 equals the one the manifest was built with
+PASS air_quality_500 MD5 equals the one the manifest was built with
+PASS industrial_effluent_500 MD5 equals the one the manifest was built with
+PASS soil_monitoring_500 MD5 equals the one the manifest was built with
+PASS each node resolves to 500 rows of its own profile, same node id
+     air_quality: 125 nodes, Mode 1 reports 23625, Mode 2 reports 62500, Mode 2 bits 22463440, sensing 53819.75 J/node
+     industrial_effluent: 125 nodes, Mode 1 reports 22144, Mode 2 reports 62034, Mode 2 bits 22314496, sensing 120902.76 J/node
+     soil_monitoring: 125 nodes, Mode 1 reports 22352, Mode 2 reports 15744, Mode 2 bits 4323200, sensing 28.61 J/node
+     water_quality: 125 nodes, Mode 1 reports 28379, Mode 2 reports 42474, Mode 2 bits 11892720, sensing 304.75 J/node
+PASS reproducible: regenerated node_map.csv is byte-identical (MD5)

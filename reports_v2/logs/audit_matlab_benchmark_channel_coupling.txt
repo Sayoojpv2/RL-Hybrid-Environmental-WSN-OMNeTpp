@@ -1,0 +1,6 @@
+Frozen MATLAB benchmark (topology differs per seed): success_history seed 43 round r vs seed 42 round r+shift
+  shift 0: 0 identical rounds; bitwise agreement 0.6527
+  shift 1: 0 identical rounds; bitwise agreement 0.9365
+  shift 2: 0 identical rounds; bitwise agreement 0.6529
+Interpretation: the same uniform draws are reused one round later but applied to a different topology,
+so outcomes are partially correlated (common random numbers), not identical.

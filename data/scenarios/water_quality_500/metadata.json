@@ -1,0 +1,127 @@
+{
+ "dataset": "water_quality_500",
+ "scenario_id": "A",
+ "sensor_type": "water_quality",
+ "description": "River water-quality monitoring (Periyar River, KSPCB data)",
+ "data_class": "real (replayed)",
+ "source": "REAL: KSPCB River Periyar analysis reports Jan-Jul 2025 (MATLAB V2 consdata.xlsx -> data/v2_consdata_loaded.csv), rows identical to the validated 200-node OMNeT++ workload (results_200node_optimization/final/baseline, seed 47). Nodes 1-10 = the 10 station streams; nodes 11-500 = virtual REPLAY nodes, node k replays station ((k-1) mod 10)+1. Nodes 201-500 copy their station node row by row (the 200-node workload covers nodes 1-200).",
+ "generator": "scenario_study/generators/generate_scenarios.py",
+ "generator_seed": null,
+ "numpy_version": "2.5.3",
+ "nodes": 500,
+ "rounds": [
+  1,
+  500
+ ],
+ "rows": 250000,
+ "observations_md5": "3e91790505db34d7be385a72abd923d0",
+ "columns": {
+  "scenario_id": "A water, B effluent, C air, D soil",
+  "sample_id": "unique observation id <code>-n<node>-r<round>",
+  "node_id": "1..500, same node ids and positions as the 500-node OMNeT++ topology",
+  "sensor_type": "profile name",
+  "round": "network round 1..500",
+  "sim_time_s": "OMNeT++ round start, (round-1) x 100 s (V2_200Node roundPeriod)",
+  "env_time": "environmental time: KSPCB sampling date of the carried sample / Beijing local hour / T+hours since synthetic origin",
+  "source_station_id": "station or virtual source stream the node reports",
+  "source_station": "its name",
+  "data_source": "KSPCB | KSPCB-replay | UCI-Beijing | UCI-Beijing-replay | SYNTHETIC",
+  "is_real": "1 = values are real measurements",
+  "is_replayed": "1 = virtual node replaying another real stream",
+  "is_synthetic": "1 = generated values",
+  "quality_flag": "'ok' or ';'-separated flags (missing:<field>, sensor_outage, no_observation_yet, DO_invalid_value, pm10_lt_pm25_in_source, chem_not_scheduled)",
+  "anomaly_flag": "synthetic: 1 inside an injected abnormal event or glitch (ground truth); real: = alarm_flag (no ground truth)",
+  "alarm_flag": "1 if any profile alarm threshold is exceeded by this round value",
+  "event_type": "ground-truth event label (synthetic) or observed-exceedance label (real)",
+  "m1_report": "Mode 1 (controlled): 1 = report slot of the validated 200-node workload (identical mask in all scenarios), 4000-bit packet; retired, defined for nodes 1-200 only (0 for nodes > 200)",
+  "m2_report": "Mode 2 (sensor-realistic): 1 = report sent this round",
+  "m2_trigger": "periodic | alarm | periodic+alarm | +chem | none | no_data",
+  "m2_priority": "1 = alarm report",
+  "m2_fields": "measurement fields in the Mode 2 payload",
+  "m2_payload_bytes": "application payload = 10 B header + 2 B per present field",
+  "m2_frame_bits": "8 x (17 B IEEE 802.15.4 PHY+MAC overhead + payload)",
+  "m2_sensing_mJ": "sensing + processing energy of this round (mJ), from sensor_profiles.json energy entries"
+ },
+ "fields": {
+  "temperature_C": {
+   "unit": "degC",
+   "valid_rule": "15 <= T <= 50 (MATLAB V2 validity filter)",
+   "encoding_scale": 0.01,
+   "hardware": "Maxim/Dallas DS18B20",
+   "spec_class": "VERIFIED"
+  },
+  "pH": {
+   "unit": "pH",
+   "valid_rule": "0 <= pH <= 14 (MATLAB V2 validity filter)",
+   "encoding_scale": 0.001,
+   "hardware": "glass pH electrode + digital interface circuit (Atlas Scientific EZO-pH class; datasheet not readable in this study)",
+   "spec_class": "ASSUMPTION"
+  },
+  "conductivity_uScm": {
+   "unit": "uS/cm",
+   "valid_rule": "conductivity > 0 (MATLAB V2 validity filter)",
+   "encoding_scale": 2,
+   "hardware": "conductivity probe + digital interface (Atlas EZO-EC class; datasheet not readable)",
+   "spec_class": "ASSUMPTION"
+  },
+  "TDS_mgL": {
+   "unit": "mg/L",
+   "valid_rule": "TDS > 0 (MATLAB V2 validity filter)",
+   "encoding_scale": 1,
+   "hardware": "computed from conductivity (TDS = k x EC); KSPCB values are laboratory measurements",
+   "spec_class": "DATASET"
+  },
+  "DO_mgL": {
+   "unit": "mg/L",
+   "valid_rule": "0 < DO <= 15 mg/L (about 2x saturation at 30 degC); other KSPCB-loader values are flagged invalid",
+   "encoding_scale": 0.01,
+   "hardware": "optical or galvanic DO probe + interface (Atlas EZO-DO class; datasheet not readable)",
+   "spec_class": "ASSUMPTION"
+  }
+ },
+ "payload_fields_mode2": [
+  "temperature_C",
+  "pH",
+  "conductivity_uScm",
+  "TDS_mgL"
+ ],
+ "sampling": {
+  "samples_per_round": 4,
+  "note": "in-situ sonde reading every 15 min, round value = carried KSPCB observation (sample-and-hold of daily grab samples)",
+  "report_interval_rounds": 2,
+  "alarm_interval_rounds": 1,
+  "chem_interval_rounds": null,
+  "round_note": "Mode 2 network epoch = 1 h of environmental time for air, effluent and soil. The water stream keeps the unchanged MATLAB V2 KSPCB schedule (212 sampling dates -> 1000 rounds; rounds 1-500 simulated), so one water round is a schedule slot, not a fixed hour."
+ },
+ "alarms": [
+  {
+   "field": "pH",
+   "op": "outside",
+   "lo": 6.5,
+   "hi": 8.5,
+   "class": "REFERENCE",
+   "source": "CPCB designated-best-use criteria, Class B (outdoor bathing): pH 6.5-8.5, https://cpcb.gov.in/water-quality-criteria/"
+  },
+  {
+   "field": "conductivity_uScm",
+   "op": ">",
+   "value": 2250,
+   "class": "REFERENCE",
+   "source": "CPCB criteria Class E (irrigation): EC max 2250 umhos/cm, https://cpcb.gov.in/water-quality-criteria/"
+  },
+  {
+   "field": "DO_mgL",
+   "op": "<",
+   "value": 4,
+   "class": "REFERENCE",
+   "source": "CPCB criteria Class C: DO 4 mg/L or more, https://cpcb.gov.in/water-quality-criteria/ (extension field only)"
+  }
+ ],
+ "missing_value_policy": "missing = empty cell, listed in quality_flag; never converted to 0. Mode 1 still sends the slot (missing fields flagged in the packet); Mode 2 sends only present fields and skips a round with none.",
+ "stats": {
+  "workload_rows": 96500,
+  "do_valid": 117300,
+  "do_invalid": 73400,
+  "do_missing": 50550
+ }
+}

@@ -1,0 +1,109 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  2
+Loading NED files from <USER_HOME>/Downloads/omnetpp-6.4.0-windows-x86_64/omnetpp-6.4.0/samples/inet-4.7.0/src:  1262
+
+Preparing for running configuration W_Environmental, run #29...
+Scenario: $N=500, $rd=results_environmental_500, $seed=42, $scenario=mixed, $profile=mixed_environment, $repetition=0
+Assigned runID=W_Environmental-29-20261113-01:59:12-12888
+Setting up network "PeriyarWirelessNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 9e-06s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 7516   present: 7516   in FES: 2   Memory (RSS): 129.938MiB
+** Event #1392384   t=2.18471352948   Elapsed: 5.00092s (0m 05s)  0% completed  (0% total)
+     Speed:     ev/sec=278426   simsec/sec=0.436863   ev/simsec=637331
+     Messages:  created: 2175774   present: 12200   in FES: 1741   Memory (RSS): 154.906MiB
+** Event #2644224   t=2.860935361945   Elapsed: 10.0016s (0m 10s)  0% completed  (0% total)
+     Speed:     ev/sec=250335   simsec/sec=0.135227   ev/simsec=1.85123e+06
+     Messages:  created: 4103297   present: 9792   in FES: 874   Memory (RSS): 154.117MiB
+** Event #3866880   t=3.47818825129   Elapsed: 15.0023s (0m 15s)  0% completed  (0% total)
+     Speed:     ev/sec=244495   simsec/sec=0.123432   ev/simsec=1.9808e+06
+     Messages:  created: 5988230   present: 13205   in FES: 2112   Memory (RSS): 156.082MiB
+** Event #5096448   t=4.130914815259   Elapsed: 20.0023s (0m 20s)  0% completed  (0% total)
+     Speed:     ev/sec=245913   simsec/sec=0.130545   ev/simsec=1.88374e+06
+     Messages:  created: 7878243   present: 8748   in FES: 412   Memory (RSS): 149.414MiB
+** Event #6475264   t=102.485338747862   Elapsed: 25.0026s (0m 25s)  20% completed  (20% total)
+     Speed:     ev/sec=275750   simsec/sec=19.67   ev/simsec=14018.9
+     Messages:  created: 10018136   present: 10257   in FES: 1162   Memory (RSS): 152.984MiB
+** Event #7771904   t=103.320340556852   Elapsed: 30.0033s (0m 30s)  20% completed  (20% total)
+     Speed:     ev/sec=259290   simsec/sec=0.166976   ev/simsec=1.55286e+06
+     Messages:  created: 12021144   present: 11725   in FES: 1590   Memory (RSS): 153.531MiB
+** Event #9052928   t=104.080279606213   Elapsed: 35.0039s (0m 35s)  20% completed  (20% total)
+     Speed:     ev/sec=256174   simsec/sec=0.151969   ev/simsec=1.68569e+06
+     Messages:  created: 13997560   present: 8947   in FES: 476   Memory (RSS): 153.531MiB
+** Event #10423040   t=202.315428425184   Elapsed: 40.0046s (0m 40s)  40% completed  (40% total)
+     Speed:     ev/sec=273986   simsec/sec=19.6444   ev/simsec=13947.3
+     Messages:  created: 16123316   present: 9048   in FES: 705   Memory (RSS): 154.562MiB
+** Event #11695872   t=203.143238082318   Elapsed: 45.0052s (0m 45s)  40% completed  (40% total)
+     Speed:     ev/sec=254536   simsec/sec=0.165542   ev/simsec=1.53759e+06
+     Messages:  created: 18088563   present: 10459   in FES: 1126   Memory (RSS): 154.562MiB
+** Event #12925696   t=203.789908641749   Elapsed: 50.0052s (0m 50s)  40% completed  (40% total)
+     Speed:     ev/sec=245962   simsec/sec=0.129333   ev/simsec=1.90178e+06
+     Messages:  created: 19985626   present: 13539   in FES: 2024   Memory (RSS): 156.07MiB
+** Event #14317568   t=302.267430914642   Elapsed: 55.0061s (0m 55s)  60% completed  (60% total)
+     Speed:     ev/sec=278328   simsec/sec=19.6922   ev/simsec=14133.9
+     Messages:  created: 22143546   present: 11358   in FES: 1390   Memory (RSS): 152.801MiB
+** Event #15598848   t=303.08866919698   Elapsed: 60.0061s (1m 00s)  60% completed  (60% total)
+     Speed:     ev/sec=256255   simsec/sec=0.164247   ev/simsec=1.56018e+06
+     Messages:  created: 24120157   present: 9240   in FES: 631   Memory (RSS): 154.332MiB
+** Event #16862720   t=303.879078493059   Elapsed: 65.007s (1m 05s)  60% completed  (60% total)
+     Speed:     ev/sec=252725   simsec/sec=0.158051   ev/simsec=1.59901e+06
+     Messages:  created: 26070193   present: 10354   in FES: 949   Memory (RSS): 154.965MiB
+** Event #18268928   t=402.088469716557   Elapsed: 70.0074s (1m 10s)  80% completed  (80% total)
+     Speed:     ev/sec=281222   simsec/sec=19.6405   ev/simsec=14318.5
+     Messages:  created: 28257145   present: 10768   in FES: 1273   Memory (RSS): 155.121MiB
+** Event #19477760   t=402.630769392013   Elapsed: 75.0076s (1m 15s)  80% completed  (80% total)
+     Speed:     ev/sec=241759   simsec/sec=0.108456   ev/simsec=2.22908e+06
+     Messages:  created: 30118110   present: 9445   in FES: 779   Memory (RSS): 158.434MiB
+** Event #20699136   t=403.228995423279   Elapsed: 80.0081s (1m 20s)  80% completed  (80% total)
+     Speed:     ev/sec=244247   simsec/sec=0.119632   ev/simsec=2.04166e+06
+     Messages:  created: 32000641   present: 10243   in FES: 1147   Memory (RSS): 158.434MiB
+** Event #21918464   t=403.831391052534   Elapsed: 85.0094s (1m 25s)  80% completed  (80% total)
+     Speed:     ev/sec=243803   simsec/sec=0.120448   ev/simsec=2.02413e+06
+     Messages:  created: 33880077   present: 13204   in FES: 2060   Memory (RSS): 158.426MiB
+** Event #22580764   t=500   Elapsed: 87.7538s (1m 27s)  100% completed  (100% total)
+     Speed:     ev/sec=241325   simsec/sec=0.125667   ev/simsec=1.92035e+06
+     Messages:  created: 34896203   present: 7516   in FES: 0   Memory (RSS): 159.422MiB
+
+<!> Simulation time limit reached -- at t=500s, event #22580764
+
+Calling finish() at end of Run #29...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 42   rounds simulated: 5 of 500
+network                  : 500 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scenario                 : mixed   (data/scenarios/mixed_environment_500)
+scheduled slots          : 1716   (m2 profile schedule: one slot per report)
+  pre-observation slots  : 0   (no data yet; never a report)
+  valid-data slots       : 1716
+    source unavailable   : 0   (valid data, source down at round start)
+    reports emitted      : 1716
+      unattempted        : 0
+      attempted          : 1716
+        delivered        : 651
+        network losses   : 1065  (channel 1052, energy 0, no candidate 0, TTL 13)
+PDR (delivered/scheduled): 37.937 %
+delivered / emitted      : 37.937 %  (conditional; not the MATLAB PDR)
+FND (first round < 500 op): -1
+first unavailable node   : 0  (MATLAB firstUnavailableRound nan)
+final operational nodes  : 500
+residual energy          : 999.3726 J   spent 0.6274 J (tx 0.4834, rx 0.1300, aggregation 0.0140)
+energy / delivered report: 0.000964 J
+mean delivered hops      : 7.917
+mean path delay          : 0.11839 s  (sum of frame bits/Rbit + Tproc + d/c per hop)
+Q updates / explorations : 7967 / 2013  (exploitation 5954, agent RNG draws 15934)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+radio traffic            : 3.4 Mbit on air in 10232 report transmissions (mean 335.9 bit); mean generated frame 333.8 bit (per-report frames)
+sensing ledger (separate): 218918.3 J in operational node-rounds (218918.3 J if all nodes sensed all 5 rounds); NOT charged to the 2.0 J radio battery
+
+End.
+
+real	1m32.026s
+user	0m0.030s
+sys	0m0.045s

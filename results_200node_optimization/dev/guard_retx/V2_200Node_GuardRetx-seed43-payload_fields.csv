@@ -1,0 +1,5 @@
+name,unit,origin,datasetColumn
+temperature,degC,dataset,Temperature
+pH,pH,dataset,pH
+conductivity,uS/cm,dataset,Conductivity
+TDS,mg/L,dataset,TDS

@@ -1,0 +1,106 @@
+500-node IEEE 802.15.4 (W_Environmental, mixed) - completed seeds: [42]
+
+[802.15.4 seed 42]
+  scheduled = 182752
+  delivered = 91085
+  lossChannel = 83162
+  lossNoCandidate = 0
+  lossTTL = 8505
+  lossEnergy = 0
+  residualJ = 941.095
+  spentJ = 58.9054
+  energyPerDeliveredJ = 0.000646708
+  meanHops = 7.05465
+  qUpdates = 889004
+  pdr_pct = 49.8408
+  first_node_failure_round = None
+  n10_round = None
+  n50_round = None
+  alive_end = 500
+  dead_end = 0
+  critical_generated = 57077
+  critical_delivered = 29350
+  critical_pdr_pct = 51.4218
+  critical_delay_s = 3.08881
+  critical_within_deadline_pct = 0.00350404
+  critical_max_queue_wait_s = 0.330536
+  warning_generated = 17875
+  warning_delivered = 8894
+  warning_pdr_pct = 49.7566
+  warning_delay_s = 3.09693
+  warning_within_deadline_pct = 49.7566
+  warning_max_queue_wait_s = 0.187998
+  routine_generated = 107800
+  routine_delivered = 52841
+  routine_pdr_pct = 49.0176
+  routine_delay_s = 3.08633
+  routine_within_deadline_pct = 49.0176
+  routine_max_queue_wait_s = 0.330536
+  delay_mean_s = 3.08816
+  delay_p95_s = 4.01959
+  queue_delay_mean_s = 0.00523855
+  check_radio_energy_eq_inet_meter = True
+  check_tx_charges_eq_mac_tx = True
+  mac_transmissions = 1.28387e+06
+  mac_retransmissions = 433663
+  mac_retx_pct = 33.7777
+  mac_missed_ack_pct = 36.457
+  mac_drop_retry_limit = 34398
+  mac_drop_channel_access = 38565
+  mac_drop_queue_overflow = 0
+  hops_lost_in_receiver_mac = 0
+  corrupted_receptions = 3.61093e+07
+  mac_hop_delay_ms = 9.17485
+  rssi_bs_dBm = -67.3285
+  snir_bs_dB = 26.4166
+  rssi_nodes_mean_dBm = -78.8323
+  channel_utilisation_pct = 29.3284
+  active_window_s = 4.16631
+  node_queue_max_frames = 6
+  mac_queue_max_frames = 1
+  radio_active_J_per_node_round = 0.258332
+  radio_idle_listening_J_per_node_round = 0.184121
+  radio_tx_J_per_node_round = 0.000598081
+  radio_rx_J_per_node_round = 0.0736103
+  radio_duty_cycled_J_per_node_round = 0.495657
+  radio_listen_all_hour_J_per_node_round = 223.344
+  runtime_h = 5.37309
+  peak_memory_MB = 168.7
+
+[abstract seed 42]
+  scheduled = 182752
+  delivered = 81402
+  lossChannel = 101323
+  lossNoCandidate = 0
+  lossTTL = 27
+  lossEnergy = 0
+  residualJ = 921.293
+  spentJ = 78.7067
+  energyPerDeliveredJ = 0.000966889
+  meanHops = 6.1671
+  qUpdates = 642374
+  pdr_pct = 44.5423
+  first_node_failure_round = None
+  n10_round = None
+  n50_round = None
+  alive_end = 500
+  dead_end = 0
+  critical_generated = 57077
+  critical_delivered = 25846
+  critical_pdr_pct = 45.2827
+  warning_generated = 17875
+  warning_delivered = 7884
+  warning_pdr_pct = 44.1063
+  routine_generated = 107800
+  routine_delivered = 47672
+  routine_pdr_pct = 44.2226
+
+paired difference 802.15.4 - abstract (same seed: same topology, workload and agent stream)
+  pdr_pct: +5.298 (one seed, no interval)
+  delivered: +9683 (one seed, no interval)
+  meanHops: +0.8876 (one seed, no interval)
+  spentJ: -19.8 (one seed, no interval)
+  energyPerDeliveredJ: -0.0003202 (one seed, no interval)
+  critical_pdr_pct: +6.139 (one seed, no interval)
+  routine_pdr_pct: +4.795 (one seed, no interval)
+  alive_end: +0 (one seed, no interval)

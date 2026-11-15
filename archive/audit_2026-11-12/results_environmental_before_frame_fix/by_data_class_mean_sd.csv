@@ -1,0 +1,13 @@
+scenario,sensor_type,data_class,generated,delivered_mean,delivery_ratio_pct_mean,delivery_ratio_pct_sd,mean_delay_ms_mean
+water,water_quality,real,3435,1551.4,45.1645,1.75611,36.1894
+water,water_quality,replayed,65265,29544.6,45.2687,2.91849,35.5048
+effluent,industrial_effluent,synthetic,99306,46525,46.8501,1.57418,41.0521
+air,air_quality,real,6000,2888.8,48.1467,2.98513,40.5476
+air,air_quality,replayed,94000,43894.2,46.696,1.8939,41.5222
+soil,soil_monitoring,synthetic,25135,10539,41.9296,1.9311,33.7598
+mixed,air_quality,real,1000,589.2,58.92,11.7346,31.4712
+mixed,air_quality,replayed,24000,11088.4,46.2017,4.53749,37.9382
+mixed,industrial_effluent,synthetic,24882,10837.4,43.5552,1.67569,40.1098
+mixed,soil_monitoring,synthetic,6281,2958.6,47.104,3.38766,36.3344
+mixed,water_quality,real,3435,1572,45.7642,1.76675,36.9449
+mixed,water_quality,replayed,13708,6075,44.3172,4.66461,38.387

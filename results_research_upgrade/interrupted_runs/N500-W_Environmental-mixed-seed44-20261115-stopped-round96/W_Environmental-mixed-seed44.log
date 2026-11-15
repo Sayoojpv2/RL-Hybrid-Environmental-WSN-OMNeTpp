@@ -1,0 +1,23 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  2
+Loading NED files from <USER_HOME>/Downloads/omnetpp-6.4.0-windows-x86_64/omnetpp-6.4.0/samples/inet-4.7.0/src:  1262
+
+Preparing for running configuration W_Environmental, run #39...
+Scenario: $N=500, $rd=results_environmental_500, $seed=44, $scenario=mixed, $profile=mixed_environment, $repetition=0
+Assigned runID=W_Environmental-39-20261115-21:32:06-24140
+Setting up network "PeriyarWirelessNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.2e-05s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 7516   present: 7516   in FES: 2   Memory (RSS): 132.965MiB
+
+real	74m10.857s
+user	0m0.015s
+sys	0m0.105s

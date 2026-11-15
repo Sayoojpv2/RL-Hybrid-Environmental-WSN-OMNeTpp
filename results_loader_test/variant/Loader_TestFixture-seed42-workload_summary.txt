@@ -1,0 +1,4 @@
+raw 12 valid 9 dates 6 scheduled 60 available 8 unavailable 52
+r_events 1 5 9 12 16 20 
+stations TESTFIX-A|TESTFIX-B|TESTFIX-C
+nodes 7 23 41 

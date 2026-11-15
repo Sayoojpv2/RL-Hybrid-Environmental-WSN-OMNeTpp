@@ -1,0 +1,601 @@
+variant,busiest_nodes_percent,share_of_forwarded_reports_percent
+Baseline,0.5,1.8247065354766316
+Baseline,1.0,3.5951421058572066
+Baseline,1.5,5.320186004649281
+Baseline,2.0,7.014256475151381
+Baseline,2.5,8.677117580074027
+Baseline,3.0,10.29553645556334
+Baseline,3.5,11.877957974621456
+Baseline,4.0,13.404592894202379
+Baseline,4.5,14.860193282984724
+Baseline,5.0,16.25169151274275
+Baseline,5.5,17.59398139832476
+Baseline,6.0,18.89516869875262
+Baseline,6.5,20.159531406941905
+Baseline,7.0,21.386987152669555
+Baseline,7.5,22.584575393227638
+Baseline,8.0,23.74673805449627
+Baseline,8.5,24.88029263321342
+Baseline,9.0,25.993609184056286
+Baseline,9.5,27.080123828421147
+Baseline,10.0,28.137299528951683
+Baseline,10.5,29.172600240266007
+Baseline,11.0,30.19412417471379
+Baseline,11.5,31.19537081508186
+Baseline,12.0,32.17619577376934
+Baseline,12.5,33.143474499820336
+Baseline,13.0,34.09051078604251
+Baseline,13.5,35.02556332278706
+Baseline,14.0,35.94047634918535
+Baseline,14.5,36.838143768545045
+Baseline,15.0,37.71777080648033
+Baseline,15.5,38.57981861488844
+Baseline,16.0,39.42015696102156
+Baseline,16.5,40.24872983383484
+Baseline,17.0,41.06045418867019
+Baseline,17.5,41.858724387119096
+Baseline,18.0,42.63982908799449
+Baseline,18.5,43.40811283187491
+Baseline,19.0,44.16345176349399
+Baseline,19.5,44.90455966936448
+Baseline,20.0,45.63521237312233
+Baseline,20.5,46.353968631693654
+Baseline,21.0,47.063089624948134
+Baseline,21.5,47.76305432476394
+Baseline,22.0,48.448658909961374
+Baseline,22.5,49.12177343294163
+Baseline,23.0,49.78002348941367
+Baseline,23.5,50.424107978148314
+Baseline,24.0,51.05780222047984
+Baseline,24.5,51.68588408368524
+Baseline,25.0,52.30743867714746
+Baseline,25.5,52.91636777986232
+Baseline,26.0,53.51783542351661
+Baseline,26.5,54.108426968946
+Baseline,27.0,54.691332962345975
+Baseline,27.5,55.26810744489897
+Baseline,28.0,55.83679243421051
+Baseline,28.5,56.39920045701792
+Baseline,29.0,56.952300083821925
+Baseline,29.5,57.499111806055055
+Baseline,30.0,58.0395939692186
+Baseline,30.5,58.57180733097782
+Baseline,31.0,59.09599011937382
+Baseline,31.5,59.61324214953201
+Baseline,32.0,60.122612343085336
+Baseline,32.5,60.62602533444112
+Baseline,33.0,61.122251687147205
+Baseline,33.5,61.6111616243954
+Baseline,34.0,62.09451015876234
+Baseline,34.5,62.57243137505996
+Baseline,35.0,63.04534008585957
+Baseline,35.5,63.50948574792549
+Baseline,36.0,63.969231467849845
+Baseline,36.5,64.42356997248928
+Baseline,37.0,64.87266314609299
+Baseline,37.5,65.31697615784404
+Baseline,38.0,65.75497157943913
+Baseline,38.5,66.18751165743181
+Baseline,39.0,66.61576594535688
+Baseline,39.5,67.04095684397693
+Baseline,40.0,67.46181269313858
+Baseline,40.5,67.87859668249537
+Baseline,41.0,68.2913165363323
+Baseline,41.5,68.70090919217357
+Baseline,42.0,69.10783973135442
+Baseline,42.5,69.51133487771423
+Baseline,43.0,69.91014254677383
+Baseline,43.5,70.30616740417712
+Baseline,44.0,70.69762532220102
+Baseline,44.5,71.08493456257655
+Baseline,45.0,71.46955404986201
+Baseline,45.5,71.85090285397435
+Baseline,46.0,72.23004705534488
+Baseline,46.5,72.605943949788
+Baseline,47.0,72.97827083362199
+Baseline,47.5,73.34841861073318
+Baseline,48.0,73.71587366692961
+Baseline,48.5,74.08140963333851
+Baseline,49.0,74.44372796581817
+Baseline,49.5,74.80269784112122
+Baseline,50.0,75.15757881275576
+Baseline,50.5,75.50959761457305
+Baseline,51.0,75.85912723971822
+Baseline,51.5,76.20618306885426
+Baseline,52.0,76.54978248994237
+Baseline,52.5,76.89065834353156
+Baseline,53.0,77.22951229887218
+Baseline,53.5,77.56579898663429
+Baseline,54.0,77.90013566118525
+Baseline,54.5,78.23251294419912
+Baseline,55.0,78.56159781237591
+Baseline,55.5,78.88906128984507
+Baseline,56.0,79.21433940568568
+Baseline,56.5,79.53758858709519
+Baseline,57.0,79.85914815736356
+Baseline,57.5,80.17883587215184
+Baseline,58.0,80.4963910568941
+Baseline,58.5,80.81235201788598
+Baseline,59.0,81.12655315361377
+Baseline,59.5,81.43862405743884
+Baseline,60.0,81.74835340644172
+Baseline,60.5,82.05665600535187
+Baseline,61.0,82.36362113382171
+Baseline,61.5,82.66919361787812
+Baseline,62.0,82.97260438980159
+Baseline,62.5,83.27458854025912
+Baseline,63.0,83.57541652066888
+Baseline,63.5,83.87368056142424
+Baseline,64.0,84.1704309292831
+Baseline,64.5,84.46460620917279
+Baseline,65.0,84.757245035853
+Baseline,65.5,85.04788621728792
+Baseline,66.0,85.33709399795819
+Baseline,66.5,85.62520010532538
+Baseline,67.0,85.91093243509971
+Baseline,67.5,86.19529543650893
+Baseline,68.0,86.47805443894029
+Baseline,68.5,86.75885931910244
+Baseline,69.0,87.03789416874825
+Baseline,69.5,87.31550728923756
+Baseline,70.0,87.59122597308985
+Baseline,70.5,87.8650532856493
+Baseline,71.0,88.13697730732333
+Baseline,71.5,88.40695550400775
+Baseline,72.0,88.67507124472792
+Baseline,72.5,88.94133096674818
+Baseline,73.0,89.20601429626953
+Baseline,73.5,89.46965012218918
+Baseline,74.0,89.73194367398783
+Baseline,74.5,89.99285194415855
+Baseline,75.0,90.25222677790467
+Baseline,75.5,90.50929796488418
+Baseline,76.0,90.76446302648154
+Baseline,76.5,91.0181596085308
+Baseline,77.0,91.26960371631314
+Baseline,77.5,91.51962265391043
+Baseline,78.0,91.7677388392371
+Baseline,78.5,92.01415026187041
+Baseline,79.0,92.25892936918919
+Baseline,79.5,92.50198271489613
+Baseline,80.0,92.74296644788146
+Baseline,80.5,92.9818903935961
+Baseline,81.0,93.21848181328328
+Baseline,81.5,93.45359797470776
+Baseline,82.0,93.68704677612217
+Baseline,82.5,93.91937127159233
+Baseline,83.0,94.14914917441268
+Baseline,83.5,94.37650928352981
+Baseline,84.0,94.6014850507967
+Baseline,84.5,94.82375952272744
+Baseline,85.0,95.04446023406736
+Baseline,85.5,95.26233473278538
+Baseline,86.0,95.47814799356003
+Baseline,86.5,95.6926687064717
+Baseline,87.0,95.90540513975043
+Baseline,87.5,96.1154637110244
+Baseline,88.0,96.32352772894815
+Baseline,88.5,96.52856971890328
+Baseline,89.0,96.73109518545192
+Baseline,89.5,96.93125935350237
+Baseline,90.0,97.12796588793903
+Baseline,90.5,97.32216393836204
+Baseline,91.0,97.51268468352598
+Baseline,91.5,97.69923591283035
+Baseline,92.0,97.88205091766355
+Baseline,92.5,98.05959832620202
+Baseline,93.0,98.2328937135114
+Baseline,93.5,98.40181360972602
+Baseline,94.0,98.56631368374428
+Baseline,94.5,98.72452395533443
+Baseline,95.0,98.8772207288655
+Baseline,95.5,99.02498052825497
+Baseline,96.0,99.16599553118351
+Baseline,96.5,99.30060812528701
+Baseline,97.0,99.42686321746055
+Baseline,97.5,99.54633227014098
+Baseline,98.0,99.65797823237457
+Baseline,98.5,99.76086156885269
+Baseline,99.0,99.85250211121033
+Baseline,99.5,99.93205211061675
+Baseline,100.0,100.0
+C energy guard 0.8 (selected),0.5,1.6661772209492387
+C energy guard 0.8 (selected),1.0,3.203754238326183
+C energy guard 0.8 (selected),1.5,4.693830868905293
+C energy guard 0.8 (selected),2.0,6.161409021791393
+C energy guard 0.8 (selected),2.5,7.60408763857383
+C energy guard 0.8 (selected),3.0,9.025551375927185
+C energy guard 0.8 (selected),3.5,10.427693859245643
+C energy guard 0.8 (selected),4.0,11.814735757219244
+C energy guard 0.8 (selected),4.5,13.191579917569484
+C energy guard 0.8 (selected),5.0,14.554523942723101
+C energy guard 0.8 (selected),5.5,15.908382218080543
+C energy guard 0.8 (selected),6.0,17.24888365400947
+C energy guard 0.8 (selected),6.5,18.574567956913427
+C energy guard 0.8 (selected),7.0,19.88556969520722
+C energy guard 0.8 (selected),7.5,21.187421602013703
+C energy guard 0.8 (selected),8.0,22.47911537057991
+C energy guard 0.8 (selected),8.5,23.754252195881445
+C energy guard 0.8 (selected),9.0,25.021590411141002
+C energy guard 0.8 (selected),9.5,26.278044610848813
+C energy guard 0.8 (selected),10.0,27.524157204795255
+C energy guard 0.8 (selected),10.5,28.754927372840402
+C energy guard 0.8 (selected),11.0,29.976028860158845
+C energy guard 0.8 (selected),11.5,31.18393846546458
+C energy guard 0.8 (selected),12.0,32.38092520966557
+C energy guard 0.8 (selected),12.5,33.56272504056416
+C energy guard 0.8 (selected),13.0,34.72920941587223
+C energy guard 0.8 (selected),13.5,35.88198851011862
+C energy guard 0.8 (selected),14.0,37.017086661613874
+C energy guard 0.8 (selected),14.5,38.141203739197664
+C energy guard 0.8 (selected),15.0,39.24655581548986
+C energy guard 0.8 (selected),15.5,40.33704015966733
+C energy guard 0.8 (selected),16.0,41.40778621841618
+C energy guard 0.8 (selected),16.5,42.46098613672555
+C energy guard 0.8 (selected),17.0,43.49361503373702
+C energy guard 0.8 (selected),17.5,44.50732521901145
+C energy guard 0.8 (selected),18.0,45.49841442991736
+C energy guard 0.8 (selected),18.5,46.46804857205074
+C energy guard 0.8 (selected),19.0,47.41944258981486
+C energy guard 0.8 (selected),19.5,48.35347090235902
+C energy guard 0.8 (selected),20.0,49.26779293944092
+C energy guard 0.8 (selected),20.5,50.16103422346669
+C energy guard 0.8 (selected),21.0,51.03677186163205
+C energy guard 0.8 (selected),21.5,51.897228698698655
+C energy guard 0.8 (selected),22.0,52.73555571905849
+C energy guard 0.8 (selected),22.5,53.55593788442074
+C energy guard 0.8 (selected),23.0,54.35656922862177
+C energy guard 0.8 (selected),23.5,55.1433032099372
+C energy guard 0.8 (selected),24.0,55.911909717617846
+C energy guard 0.8 (selected),24.5,56.66183779675731
+C energy guard 0.8 (selected),25.0,57.39449983726248
+C energy guard 0.8 (selected),25.5,58.115156546261815
+C energy guard 0.8 (selected),26.0,58.818046399298034
+C energy guard 0.8 (selected),26.5,59.507680611206794
+C energy guard 0.8 (selected),27.0,60.18391205751316
+C energy guard 0.8 (selected),27.5,60.84460910194625
+C energy guard 0.8 (selected),28.0,61.4922397453963
+C energy guard 0.8 (selected),28.5,62.12492384709085
+C energy guard 0.8 (selected),29.0,62.74385901526731
+C energy guard 0.8 (selected),29.5,63.3531165109297
+C energy guard 0.8 (selected),30.0,63.95088699367935
+C energy guard 0.8 (selected),30.5,64.53169472216786
+C energy guard 0.8 (selected),31.0,65.09939485711152
+C energy guard 0.8 (selected),31.5,65.65530472978138
+C energy guard 0.8 (selected),32.0,66.20004853776506
+C energy guard 0.8 (selected),32.5,66.73525008226561
+C energy guard 0.8 (selected),33.0,67.25950965977607
+C energy guard 0.8 (selected),33.5,67.77851270349558
+C energy guard 0.8 (selected),34.0,68.2902143373801
+C energy guard 0.8 (selected),34.5,68.79328241075375
+C energy guard 0.8 (selected),35.0,69.28981949141729
+C energy guard 0.8 (selected),35.5,69.7787673661476
+C energy guard 0.8 (selected),36.0,70.26041535489952
+C energy guard 0.8 (selected),36.5,70.73163843157216
+C energy guard 0.8 (selected),37.0,71.19161482673415
+C energy guard 0.8 (selected),37.5,71.64570123003769
+C energy guard 0.8 (selected),38.0,72.0891981369664
+C energy guard 0.8 (selected),38.5,72.52479826416472
+C energy guard 0.8 (selected),39.0,72.95562543857854
+C energy guard 0.8 (selected),39.5,73.37836126800516
+C energy guard 0.8 (selected),40.0,73.79335288740381
+C energy guard 0.8 (selected),40.5,74.20256568347432
+C energy guard 0.8 (selected),41.0,74.60488296377379
+C energy guard 0.8 (selected),41.5,75.00118244475875
+C energy guard 0.8 (selected),42.0,75.39182714886277
+C energy guard 0.8 (selected),42.5,75.77704947009404
+C energy guard 0.8 (selected),43.0,76.15638540034833
+C energy guard 0.8 (selected),43.5,76.53042895060945
+C energy guard 0.8 (selected),44.0,76.89987836877691
+C energy guard 0.8 (selected),44.5,77.26567858531394
+C energy guard 0.8 (selected),45.0,77.62695186085287
+C energy guard 0.8 (selected),45.5,77.98490282433754
+C energy guard 0.8 (selected),46.0,78.33854753326062
+C energy guard 0.8 (selected),46.5,78.6869938652969
+C energy guard 0.8 (selected),47.0,79.03117342990785
+C energy guard 0.8 (selected),47.5,79.37063609330959
+C energy guard 0.8 (selected),48.0,79.70751245443495
+C energy guard 0.8 (selected),48.5,80.0408891760299
+C energy guard 0.8 (selected),49.0,80.37006283059264
+C energy guard 0.8 (selected),49.5,80.69453347384677
+C energy guard 0.8 (selected),50.0,81.01375545408278
+C energy guard 0.8 (selected),50.5,81.32817882263839
+C energy guard 0.8 (selected),51.0,81.63982156519829
+C energy guard 0.8 (selected),51.5,81.94804053328177
+C energy guard 0.8 (selected),52.0,82.2532800280268
+C energy guard 0.8 (selected),52.5,82.55639214056411
+C energy guard 0.8 (selected),53.0,82.85565477256027
+C energy guard 0.8 (selected),53.5,83.15124765486141
+C energy guard 0.8 (selected),54.0,83.44290797703803
+C energy guard 0.8 (selected),54.5,83.73072299897514
+C energy guard 0.8 (selected),55.0,84.01522972694445
+C energy guard 0.8 (selected),55.5,84.29663897825952
+C energy guard 0.8 (selected),56.0,84.57519730067817
+C energy guard 0.8 (selected),56.5,84.84942623644515
+C energy guard 0.8 (selected),57.0,85.11975025258215
+C energy guard 0.8 (selected),57.5,85.38656196168503
+C energy guard 0.8 (selected),58.0,85.6513351398871
+C energy guard 0.8 (selected),58.5,85.91260193959829
+C energy guard 0.8 (selected),59.0,86.17083462207111
+C energy guard 0.8 (selected),59.5,86.42570310561659
+C energy guard 0.8 (selected),60.0,86.67738379843033
+C energy guard 0.8 (selected),60.5,86.92576549056109
+C energy guard 0.8 (selected),61.0,87.17111036540413
+C energy guard 0.8 (selected),61.5,87.41314237048317
+C energy guard 0.8 (selected),62.0,87.65264049689975
+C energy guard 0.8 (selected),62.5,87.88965803020018
+C energy guard 0.8 (selected),63.0,88.12396322647736
+C energy guard 0.8 (selected),63.5,88.3563962685815
+C energy guard 0.8 (selected),64.0,88.58590071630162
+C energy guard 0.8 (selected),64.5,88.81332329267101
+C energy guard 0.8 (selected),65.0,89.03890000786399
+C energy guard 0.8 (selected),65.5,89.26292656577718
+C energy guard 0.8 (selected),66.0,89.48536560630819
+C energy guard 0.8 (selected),66.5,89.70572290556285
+C energy guard 0.8 (selected),67.0,89.92363175019746
+C energy guard 0.8 (selected),67.5,90.13908994880519
+C energy guard 0.8 (selected),68.0,90.3522818409044
+C energy guard 0.8 (selected),68.5,90.56294847992193
+C energy guard 0.8 (selected),69.0,90.77167055709545
+C energy guard 0.8 (selected),69.5,90.97854592837193
+C energy guard 0.8 (selected),70.0,91.18282124064582
+C energy guard 0.8 (selected),70.5,91.38474003217856
+C energy guard 0.8 (selected),71.0,91.58468915051085
+C energy guard 0.8 (selected),71.5,91.78300850500247
+C energy guard 0.8 (selected),72.0,91.97956098657795
+C energy guard 0.8 (selected),72.5,92.17376343037878
+C energy guard 0.8 (selected),73.0,92.36664822611661
+C energy guard 0.8 (selected),73.5,92.55792529972746
+C energy guard 0.8 (selected),74.0,92.74740848332311
+C energy guard 0.8 (selected),74.5,92.93453121455573
+C energy guard 0.8 (selected),75.0,93.1202482607364
+C energy guard 0.8 (selected),75.5,93.30442699238846
+C energy guard 0.8 (selected),76.0,93.48706764180731
+C energy guard 0.8 (selected),76.5,93.66654899079559
+C energy guard 0.8 (selected),77.0,93.8433337552678
+C energy guard 0.8 (selected),77.5,94.01830398218229
+C energy guard 0.8 (selected),78.0,94.19188824493966
+C energy guard 0.8 (selected),78.5,94.36353524944786
+C energy guard 0.8 (selected),79.0,94.53322916147462
+C energy guard 0.8 (selected),79.5,94.70059673963412
+C energy guard 0.8 (selected),80.0,94.86638890516066
+C energy guard 0.8 (selected),80.5,95.02968261751643
+C energy guard 0.8 (selected),81.0,95.19164413069232
+C energy guard 0.8 (selected),81.5,95.35149218435186
+C energy guard 0.8 (selected),82.0,95.50951622040522
+C energy guard 0.8 (selected),82.5,95.66616098807499
+C energy guard 0.8 (selected),83.0,95.82134116241723
+C energy guard 0.8 (selected),83.5,95.97530887427929
+C energy guard 0.8 (selected),84.0,96.1277390477501
+C energy guard 0.8 (selected),84.5,96.27866755445719
+C energy guard 0.8 (selected),85.0,96.42774141439932
+C energy guard 0.8 (selected),85.5,96.57529098227592
+C energy guard 0.8 (selected),86.0,96.72116562649144
+C energy guard 0.8 (selected),86.5,96.86460376223866
+C energy guard 0.8 (selected),87.0,97.00676732089322
+C energy guard 0.8 (selected),87.5,97.14754932794327
+C energy guard 0.8 (selected),88.0,97.28694891951417
+C energy guard 0.8 (selected),88.5,97.42431737359229
+C energy guard 0.8 (selected),89.0,97.56016041177244
+C energy guard 0.8 (selected),89.5,97.69460111930012
+C energy guard 0.8 (selected),90.0,97.82711615105246
+C energy guard 0.8 (selected),90.5,97.95837336008847
+C energy guard 0.8 (selected),91.0,98.08783101105712
+C energy guard 0.8 (selected),91.5,98.21526019649596
+C energy guard 0.8 (selected),92.0,98.34171815113044
+C energy guard 0.8 (selected),92.5,98.46648825554877
+C energy guard 0.8 (selected),93.0,98.58892559338688
+C energy guard 0.8 (selected),93.5,98.70938264824588
+C energy guard 0.8 (selected),94.0,98.82763904879369
+C energy guard 0.8 (selected),94.5,98.94352047018577
+C energy guard 0.8 (selected),95.0,99.05704565766143
+C energy guard 0.8 (selected),95.5,99.16811130692761
+C energy guard 0.8 (selected),96.0,99.27618634027013
+C energy guard 0.8 (selected),96.5,99.38190670658443
+C energy guard 0.8 (selected),97.0,99.4844909273665
+C energy guard 0.8 (selected),97.5,99.58419195591233
+C energy guard 0.8 (selected),98.0,99.67946861834696
+C energy guard 0.8 (selected),98.5,99.77090119266806
+C energy guard 0.8 (selected),99.0,99.85697842717836
+C energy guard 0.8 (selected),99.5,99.93543391429213
+C energy guard 0.8 (selected),100.0,100.0
+C+A guard 0.8 + retry reserve 0.5,0.5,1.671878937771084
+C+A guard 0.8 + retry reserve 0.5,1.0,3.240148114108065
+C+A guard 0.8 + retry reserve 0.5,1.5,4.7647013517992205
+C+A guard 0.8 + retry reserve 0.5,2.0,6.266237556357551
+C+A guard 0.8 + retry reserve 0.5,2.5,7.738512234322319
+C+A guard 0.8 + retry reserve 0.5,3.0,9.183197808132737
+C+A guard 0.8 + retry reserve 0.5,3.5,10.607594174033284
+C+A guard 0.8 + retry reserve 0.5,4.0,12.021499165528176
+C+A guard 0.8 + retry reserve 0.5,4.5,13.421489086424158
+C+A guard 0.8 + retry reserve 0.5,5.0,14.805764327855487
+C+A guard 0.8 + retry reserve 0.5,5.5,16.177983046779346
+C+A guard 0.8 + retry reserve 0.5,6.0,17.542045665675683
+C+A guard 0.8 + retry reserve 0.5,6.5,18.896546927153242
+C+A guard 0.8 + retry reserve 0.5,7.0,20.240433044438273
+C+A guard 0.8 + retry reserve 0.5,7.5,21.574732787639686
+C+A guard 0.8 + retry reserve 0.5,8.0,22.900348854169277
+C+A guard 0.8 + retry reserve 0.5,8.5,24.218863111035194
+C+A guard 0.8 + retry reserve 0.5,9.0,25.5271813602333
+C+A guard 0.8 + retry reserve 0.5,9.5,26.82665305024691
+C+A guard 0.8 + retry reserve 0.5,10.0,28.114076967337805
+C+A guard 0.8 + retry reserve 0.5,10.5,29.39320461670522
+C+A guard 0.8 + retry reserve 0.5,11.0,30.66262506942373
+C+A guard 0.8 + retry reserve 0.5,11.5,31.920129288515714
+C+A guard 0.8 + retry reserve 0.5,12.0,33.16889431118992
+C+A guard 0.8 + retry reserve 0.5,12.5,34.40790730618694
+C+A guard 0.8 + retry reserve 0.5,13.0,35.637228935057365
+C+A guard 0.8 + retry reserve 0.5,13.5,36.852957721326675
+C+A guard 0.8 + retry reserve 0.5,14.0,38.059027241696654
+C+A guard 0.8 + retry reserve 0.5,14.5,39.254143329067965
+C+A guard 0.8 + retry reserve 0.5,15.0,40.43474564786671
+C+A guard 0.8 + retry reserve 0.5,15.5,41.60631525327467
+C+A guard 0.8 + retry reserve 0.5,16.0,42.76144809996729
+C+A guard 0.8 + retry reserve 0.5,16.5,43.90329264848703
+C+A guard 0.8 + retry reserve 0.5,17.0,45.03386222668623
+C+A guard 0.8 + retry reserve 0.5,17.5,46.15066373414609
+C+A guard 0.8 + retry reserve 0.5,18.0,47.25527454399889
+C+A guard 0.8 + retry reserve 0.5,18.5,48.34622350943942
+C+A guard 0.8 + retry reserve 0.5,19.0,49.42507677072798
+C+A guard 0.8 + retry reserve 0.5,19.5,50.48469185693074
+C+A guard 0.8 + retry reserve 0.5,20.0,51.52818957181771
+C+A guard 0.8 + retry reserve 0.5,20.5,52.560803564588895
+C+A guard 0.8 + retry reserve 0.5,21.0,53.57316170594902
+C+A guard 0.8 + retry reserve 0.5,21.5,54.57427531739403
+C+A guard 0.8 + retry reserve 0.5,22.0,55.55517831401043
+C+A guard 0.8 + retry reserve 0.5,22.5,56.51625351142176
+C+A guard 0.8 + retry reserve 0.5,23.0,57.46283911821417
+C+A guard 0.8 + retry reserve 0.5,23.5,58.3897456096445
+C+A guard 0.8 + retry reserve 0.5,24.0,59.29846179364091
+C+A guard 0.8 + retry reserve 0.5,24.5,60.19378861969331
+C+A guard 0.8 + retry reserve 0.5,25.0,61.069780232899646
+C+A guard 0.8 + retry reserve 0.5,25.5,61.92206155582034
+C+A guard 0.8 + retry reserve 0.5,26.0,62.759193168619596
+C+A guard 0.8 + retry reserve 0.5,26.5,63.57643175294901
+C+A guard 0.8 + retry reserve 0.5,27.0,64.37541678937471
+C+A guard 0.8 + retry reserve 0.5,27.5,65.14972016427248
+C+A guard 0.8 + retry reserve 0.5,28.0,65.90512682700209
+C+A guard 0.8 + retry reserve 0.5,28.5,66.6390108848382
+C+A guard 0.8 + retry reserve 0.5,29.0,67.3547677603417
+C+A guard 0.8 + retry reserve 0.5,29.5,68.05068461841729
+C+A guard 0.8 + retry reserve 0.5,30.0,68.73236866071078
+C+A guard 0.8 + retry reserve 0.5,30.5,69.40035741512366
+C+A guard 0.8 + retry reserve 0.5,31.0,70.05176072511665
+C+A guard 0.8 + retry reserve 0.5,31.5,70.69401688854578
+C+A guard 0.8 + retry reserve 0.5,32.0,71.32244837878122
+C+A guard 0.8 + retry reserve 0.5,32.5,71.94011280276915
+C+A guard 0.8 + retry reserve 0.5,33.0,72.54383800552635
+C+A guard 0.8 + retry reserve 0.5,33.5,73.12905063512724
+C+A guard 0.8 + retry reserve 0.5,34.0,73.6953241945151
+C+A guard 0.8 + retry reserve 0.5,34.5,74.24986552741758
+C+A guard 0.8 + retry reserve 0.5,35.0,74.78697714464045
+C+A guard 0.8 + retry reserve 0.5,35.5,75.310555837577
+C+A guard 0.8 + retry reserve 0.5,36.0,75.82087990902018
+C+A guard 0.8 + retry reserve 0.5,36.5,76.3182945115973
+C+A guard 0.8 + retry reserve 0.5,37.0,76.79987483963296
+C+A guard 0.8 + retry reserve 0.5,37.5,77.2687045700649
+C+A guard 0.8 + retry reserve 0.5,38.0,77.72630073763645
+C+A guard 0.8 + retry reserve 0.5,38.5,78.17775252919532
+C+A guard 0.8 + retry reserve 0.5,39.0,78.61866752965234
+C+A guard 0.8 + retry reserve 0.5,39.5,79.05005447083366
+C+A guard 0.8 + retry reserve 0.5,40.0,79.46962829844415
+C+A guard 0.8 + retry reserve 0.5,40.5,79.8807120160758
+C+A guard 0.8 + retry reserve 0.5,41.0,80.28076650673634
+C+A guard 0.8 + retry reserve 0.5,41.5,80.67237021767973
+C+A guard 0.8 + retry reserve 0.5,42.0,81.05790557162022
+C+A guard 0.8 + retry reserve 0.5,42.5,81.43731426379527
+C+A guard 0.8 + retry reserve 0.5,43.0,81.80876871615541
+C+A guard 0.8 + retry reserve 0.5,43.5,82.17360444315136
+C+A guard 0.8 + retry reserve 0.5,44.0,82.5304658281476
+C+A guard 0.8 + retry reserve 0.5,44.5,82.87910771705276
+C+A guard 0.8 + retry reserve 0.5,45.0,83.22089759313555
+C+A guard 0.8 + retry reserve 0.5,45.5,83.55589774615916
+C+A guard 0.8 + retry reserve 0.5,46.0,83.8841446669962
+C+A guard 0.8 + retry reserve 0.5,46.5,84.20452376748703
+C+A guard 0.8 + retry reserve 0.5,47.0,84.51771649566088
+C+A guard 0.8 + retry reserve 0.5,47.5,84.82742487250229
+C+A guard 0.8 + retry reserve 0.5,48.0,85.12880597321767
+C+A guard 0.8 + retry reserve 0.5,48.5,85.42507550358512
+C+A guard 0.8 + retry reserve 0.5,49.0,85.7146087081915
+C+A guard 0.8 + retry reserve 0.5,49.5,86.00021583580745
+C+A guard 0.8 + retry reserve 0.5,50.0,86.2812392637526
+C+A guard 0.8 + retry reserve 0.5,50.5,86.55539896985331
+C+A guard 0.8 + retry reserve 0.5,51.0,86.82411004460509
+C+A guard 0.8 + retry reserve 0.5,51.5,87.08619567595969
+C+A guard 0.8 + retry reserve 0.5,52.0,87.3448484695559
+C+A guard 0.8 + retry reserve 0.5,52.5,87.59861417127564
+C+A guard 0.8 + retry reserve 0.5,53.0,87.84878536338182
+C+A guard 0.8 + retry reserve 0.5,53.5,88.09592606426382
+C+A guard 0.8 + retry reserve 0.5,54.0,88.33694408677799
+C+A guard 0.8 + retry reserve 0.5,54.5,88.57481685893404
+C+A guard 0.8 + retry reserve 0.5,55.0,88.80701462996728
+C+A guard 0.8 + retry reserve 0.5,55.5,89.03536648670551
+C+A guard 0.8 + retry reserve 0.5,56.0,89.2598491769976
+C+A guard 0.8 + retry reserve 0.5,56.5,89.48172355506549
+C+A guard 0.8 + retry reserve 0.5,57.0,89.6989962163931
+C+A guard 0.8 + retry reserve 0.5,57.5,89.91059543387738
+C+A guard 0.8 + retry reserve 0.5,58.0,90.11866209449907
+C+A guard 0.8 + retry reserve 0.5,58.5,90.32297387257894
+C+A guard 0.8 + retry reserve 0.5,59.0,90.52372140314249
+C+A guard 0.8 + retry reserve 0.5,59.5,90.72122866226805
+C+A guard 0.8 + retry reserve 0.5,60.0,90.91413472618484
+C+A guard 0.8 + retry reserve 0.5,60.5,91.10342682188099
+C+A guard 0.8 + retry reserve 0.5,61.0,91.28924732929435
+C+A guard 0.8 + retry reserve 0.5,61.5,91.47196967899815
+C+A guard 0.8 + retry reserve 0.5,62.0,91.6512831040469
+C+A guard 0.8 + retry reserve 0.5,62.5,91.82754971495531
+C+A guard 0.8 + retry reserve 0.5,63.0,92.00080827116534
+C+A guard 0.8 + retry reserve 0.5,63.5,92.1720844785498
+C+A guard 0.8 + retry reserve 0.5,64.0,92.34000804304915
+C+A guard 0.8 + retry reserve 0.5,64.5,92.50508751346175
+C+A guard 0.8 + retry reserve 0.5,65.0,92.66778135406885
+C+A guard 0.8 + retry reserve 0.5,65.5,92.82765424479997
+C+A guard 0.8 + retry reserve 0.5,66.0,92.98572695480688
+C+A guard 0.8 + retry reserve 0.5,66.5,93.1416938384753
+C+A guard 0.8 + retry reserve 0.5,67.0,93.29500662569461
+C+A guard 0.8 + retry reserve 0.5,67.5,93.44692957325915
+C+A guard 0.8 + retry reserve 0.5,68.0,93.5966541035996
+C+A guard 0.8 + retry reserve 0.5,68.5,93.7442855974231
+C+A guard 0.8 + retry reserve 0.5,69.0,93.88997572086592
+C+A guard 0.8 + retry reserve 0.5,69.5,94.03381230424111
+C+A guard 0.8 + retry reserve 0.5,70.0,94.175463514855
+C+A guard 0.8 + retry reserve 0.5,70.5,94.31527918937948
+C+A guard 0.8 + retry reserve 0.5,71.0,94.45301620890761
+C+A guard 0.8 + retry reserve 0.5,71.5,94.5886043771022
+C+A guard 0.8 + retry reserve 0.5,72.0,94.72273360704327
+C+A guard 0.8 + retry reserve 0.5,72.5,94.85481192024254
+C+A guard 0.8 + retry reserve 0.5,73.0,94.98542523474177
+C+A guard 0.8 + retry reserve 0.5,73.5,95.11423844917249
+C+A guard 0.8 + retry reserve 0.5,74.0,95.24166642260818
+C+A guard 0.8 + retry reserve 0.5,74.5,95.36770044356616
+C+A guard 0.8 + retry reserve 0.5,75.0,95.49195960537287
+C+A guard 0.8 + retry reserve 0.5,75.5,95.61520781556338
+C+A guard 0.8 + retry reserve 0.5,76.0,95.73645326236193
+C+A guard 0.8 + retry reserve 0.5,76.5,95.85664085684807
+C+A guard 0.8 + retry reserve 0.5,77.0,95.97520882361482
+C+A guard 0.8 + retry reserve 0.5,77.5,96.0926549340867
+C+A guard 0.8 + retry reserve 0.5,78.0,96.20883167923654
+C+A guard 0.8 + retry reserve 0.5,78.5,96.3233727360864
+C+A guard 0.8 + retry reserve 0.5,79.0,96.43632827535394
+C+A guard 0.8 + retry reserve 0.5,79.5,96.54787369068839
+C+A guard 0.8 + retry reserve 0.5,80.0,96.65821334083769
+C+A guard 0.8 + retry reserve 0.5,80.5,96.76728515961854
+C+A guard 0.8 + retry reserve 0.5,81.0,96.87515006709587
+C+A guard 0.8 + retry reserve 0.5,81.5,96.98182166274648
+C+A guard 0.8 + retry reserve 0.5,82.0,97.08749423272542
+C+A guard 0.8 + retry reserve 0.5,82.5,97.19141823209262
+C+A guard 0.8 + retry reserve 0.5,83.0,97.29386038886062
+C+A guard 0.8 + retry reserve 0.5,83.5,97.39525437520798
+C+A guard 0.8 + retry reserve 0.5,84.0,97.49543474533351
+C+A guard 0.8 + retry reserve 0.5,84.5,97.59430630523393
+C+A guard 0.8 + retry reserve 0.5,85.0,97.69217992677665
+C+A guard 0.8 + retry reserve 0.5,85.5,97.78869686109559
+C+A guard 0.8 + retry reserve 0.5,86.0,97.88416475636446
+C+A guard 0.8 + retry reserve 0.5,86.5,97.9785689971652
+C+A guard 0.8 + retry reserve 0.5,87.0,98.07177769450315
+C+A guard 0.8 + retry reserve 0.5,87.5,98.16414937778023
+C+A guard 0.8 + retry reserve 0.5,88.0,98.25480572103568
+C+A guard 0.8 + retry reserve 0.5,88.5,98.34398996301115
+C+A guard 0.8 + retry reserve 0.5,89.0,98.43220870447944
+C+A guard 0.8 + retry reserve 0.5,89.5,98.51974328981255
+C+A guard 0.8 + retry reserve 0.5,90.0,98.60651001590978
+C+A guard 0.8 + retry reserve 0.5,90.5,98.69250022684774
+C+A guard 0.8 + retry reserve 0.5,91.0,98.7765389652459
+C+A guard 0.8 + retry reserve 0.5,91.5,98.85912666951346
+C+A guard 0.8 + retry reserve 0.5,92.0,98.9405434122373
+C+A guard 0.8 + retry reserve 0.5,92.5,99.02118504567892
+C+A guard 0.8 + retry reserve 0.5,93.0,99.10052839327342
+C+A guard 0.8 + retry reserve 0.5,93.5,99.17802915695064
+C+A guard 0.8 + retry reserve 0.5,94.0,99.25375680975051
+C+A guard 0.8 + retry reserve 0.5,94.5,99.32814101550893
+C+A guard 0.8 + retry reserve 0.5,95.0,99.40079973184909
+C+A guard 0.8 + retry reserve 0.5,95.5,99.47226671631933
+C+A guard 0.8 + retry reserve 0.5,96.0,99.54186465202902
+C+A guard 0.8 + retry reserve 0.5,96.5,99.60968319644137
+C+A guard 0.8 + retry reserve 0.5,97.0,99.67454703574246
+C+A guard 0.8 + retry reserve 0.5,97.5,99.73755948205691
+C+A guard 0.8 + retry reserve 0.5,98.0,99.79855362526358
+C+A guard 0.8 + retry reserve 0.5,98.5,99.85594230459735
+C+A guard 0.8 + retry reserve 0.5,99.0,99.90956574447785
+C+A guard 0.8 + retry reserve 0.5,99.5,99.95834797561953
+C+A guard 0.8 + retry reserve 0.5,100.0,100.0

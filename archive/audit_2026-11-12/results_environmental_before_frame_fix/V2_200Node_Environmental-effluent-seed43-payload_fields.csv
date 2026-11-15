@@ -1,0 +1,10 @@
+name,unit,origin,datasetColumn
+temperature_C,see metadata.json,scenario,temperature_C
+pH,see metadata.json,scenario,pH
+conductivity_uScm,see metadata.json,scenario,conductivity_uScm
+TDS_mgL,see metadata.json,scenario,TDS_mgL
+DO_mgL,see metadata.json,scenario,DO_mgL
+turbidity_NTU,see metadata.json,scenario,turbidity_NTU
+COD_mgL,see metadata.json,scenario,COD_mgL
+BOD_mgL,see metadata.json,scenario,BOD_mgL
+NH3N_mgL,see metadata.json,scenario,NH3N_mgL

@@ -1,0 +1,100 @@
+# OMNeT++ feasibility: current architecture and the extensions heterogeneous sensors need
+
+This audit is of the code as it stands in `RLHybrid_Scalability_Experiment`. Nothing was changed.
+
+## 1. What exists today
+
+| Question | Finding (file) |
+|---|---|
+| How environmental data is represented | `Workload::build` (`PeriyarModel.cc`) reads one CSV. The ini `datasetFields` spec is `column\|name\|unit\|lo\|hi`, followed by a validity filter (drop or keepNaN). Timestamps map to rounds ('uniform'), with causal sample-and-hold. A source can also be `syntheticSources` (labelled `SYNTHETIC-n<k>`) or `replaySources` (labelled `REPLAY-n<k>:<station>`). |
+| How reports are generated | The Controller gives every source one slot in each due round (`reportInterval`, global). The slot's `WorkloadReport` becomes a `ReportRecord`. |
+| Do packets carry measurements? | **Yes.** `ReportRecord.values[16]` plus `numValues` carry the actual field values (NaN = missing). Station, date and round metadata travel too, and the BS can export the delivered payload. Routing never reads the values. |
+| Packet size | One scalar, `Scenario::packetSize` = 4,000 bits. Every frame's bit length is `packetSize`. A route frame carrying m reports is charged as m × packetSize (`reportPreservingEnergy`). Hop delay = packetSize / Rbit + Tproc + d/c. |
+| Report interval | Global `WorkloadConfig::reportInterval`, the same for every node. There is no per-node interval and no event-driven report. |
+| Sensing energy | **Not modelled.** Only TX, RX and aggregation (E_DA) energy are charged. |
+| Sensor-specific energy | Not supported. |
+| Aggregation | The cluster head concatenates member reports into one route frame (`reports[]`), charges E_DA × packetSize per report, and does no compression. |
+| Node types | Every node is the same `SensorNode`. The "station" role is only a display label and a workload source label. |
+| Per-node sensor profile | **Not supported.** The payload layout `Workload::fields` is global, so every report has the same field list. |
+| Can the application vary under the same RL-Hybrid routing? | **Yes, structurally.** Routing depends only on energy, distance, link quality, load and hop count, so a per-node application layer can be added without touching the routing logic. |
+
+**Already supports heterogeneity:**
+
+- payload values per report;
+- the NaN missing-value convention;
+- replay and synthetic sources;
+- dataset loading with validity rules;
+- per-report metadata;
+- a delivered-payload export;
+- an independent routing layer.
+
+**Needs extension:** see section 3.
+
+## 2. Proposed reusable architecture (no INET, no copy of the routing code)
+
+**`SensorProfile`** is a parameter structure, not a module type per sensor. It holds:
+
+- profile id and name;
+- field list (name, unit, encoding scale, bits);
+- header bits and MAC/PHY overhead bits;
+- samples per round, report interval, alarm interval, chemistry interval;
+- alarm rules and priority;
+- per-sample and per-round sensing energy.
+
+It is loaded from `sensor_profiles.json`, or from an equivalent ini or XML file. The water, effluent, air and soil profiles are four instances of this one structure.
+
+**`ProfileMap`**: node → profile (`node_map.csv`), with a default of one profile for all nodes.
+
+**`EnvironmentalDataSource`**: a generalised `Workload` with three readers:
+
+- the existing KSPCB path, unchanged;
+- the scenario schema in `data/scenarios/*/observations.csv`;
+- optionally, the synthetic generators ported to C++, or simply the pre-generated CSV.
+
+It produces per-node, per-round records, including `m1_report` / `m2_report`, or computes the Mode 2 schedule at run time from the profile rules.
+
+**Application measurement record**: `ReportRecord` gains `profileId`, `bits`, `priority` and `trigger`. Frame bits = overhead + Σ report bits.
+
+**Energy**:
+
+- `txEnergyBits` / `rxEnergyBits` already take bits. The call sites that use `packetSize × reports` would use the frame's actual bits instead.
+- New `chargeSensing(round)` per node: shared budget, separate budget, or off (see the budget decision in `SENSOR_PROFILE_DESIGN.md` §4).
+
+**Metrics**: PDR, delay and energy by `sensor_type` and by priority class; alarm-report delivery and latency.
+
+**Routing**: unchanged. Baseline, Variant C (energyGuard 0.8) and C+A run as they are. Every new behaviour defaults to off, so the validated configurations (`V2_10Node` 95/95, `V2_200Node*`) are reproduced byte-for-byte.
+
+## 3. Modifications that would eventually be required
+
+**Status (2026-11-11):**
+
+- **Done:** items 1, 2, 5 and 7, as the default-off Controller parameters `scenarioDataset` and `scenarioMode`. The node map is `node_map.csv`; the Mode 2 schedule is read from `m2_report`; sensing energy is a separate ledger.
+- **Regression:** with the new build, V2_10Node is byte-identical, and M1_Water is identical to the validated variant-C run.
+- **Item 3, done in M2F:** `scenarioFrameBits` charges each report its own profile frame. The parameter cannot be combined with retransmission or `qPriorInit`.
+  - **Exact:** every energy charge uses the actual bits of the reports concerned. Cluster TX/RX use the member's own report; a route hop's TX, RX and aggregation use Σ bits of the reports in the frame; the reward uses that charged energy.
+  - **Resolved on 12 Nov 2026 in the primary `V2_200Node_Environmental` model:** each report's frame bits come from its dataset row (`scenarioFrameBits = "dataset"`, only the present fields). With per-report frames, the route-candidate sender and receiver checks, cheapestAllowedTx and the hop airtime now use the whole frame actually forwarded (Σ bits). The ACK timeout counts from the frame's end. The node-death threshold stays at the validated E_elec × 4000 bit = 200 µJ. In the seed-42 runs, delivery and residual energy were identical to the retired M2F runs; only delay rose, by 3.6–7.0 ms. The bullets below describe the retired M2F model.
+  - **Approximation (retired mixed and soil M2F only):** the MATLAB rules defined for "one packet" have no single actual size when a route frame mixes report sizes, because a hop forwards all of the frame's reports together. These rules are the routeCandidates sender TX and receiver RX checks, cheapestAllowedTx, and the per-hop airtime k/Rbit. They therefore use one report = Σ bits / reports, which equals MATLAB's rule whenever the sizes are equal. The minimum-energy rule (E < E_elec × k) uses `packetSize` = the smallest frame. Making these checks charge the full frame would change the RL-Hybrid candidate rule in every mode, so it was not done.
+  - **Effect in the five-seed study:** the checks can bind only below 59.7 mJ, while the lowest node energy in any M2F run was 1.316 J. So no single-report size (mean, smallest or largest) can change a decision in those runs. The airtime approximation shifts the mean delay by at most 2.0 ms.
+  - With all frames equal, the results are byte-identical to the uniform `packetSize` path.
+- **Items 4 and 6:** not implemented.
+
+1. Load profiles and the node map (new ini parameters; defaults reproduce today's behaviour).
+2. A scenario-schema reader for `observations.csv`, honouring the `m1_report` / `m2_report` columns.
+3. Variable report and frame bits in place of the global `packetSize`, wherever energy and delay are computed.
+4. Per-node report schedule (interval, alarm, chemistry rounds) in place of the global `reportInterval`.
+5. A sensing-energy accounting option.
+6. A priority flag carried end-to-end, with per-class metrics. Any priority-aware *routing* is a separate, later study.
+7. Regression: the existing validation (`compare_v2.py` 95/95, the 200-node final outputs) must stay identical with every new option off.
+
+## 4. Limitations of the current abstract communication model
+
+- **No MAC contention, collisions, carrier sense or queues.**
+  - Frames are delivered by `sendDirect`, and a central Controller runs the round phases.
+  - Higher offered load (alarm bursts, 9-field frames) therefore never causes congestion loss or queueing delay. It acts only through energy drain and the load term of the reward.
+- **One channel outcome per link per round.** That is the MATLAB success bit, plus independent retry draws for the optional retransmission. Airtime and frame length do not change the loss probability.
+- **First-order radio model** (E_elec 50 nJ/bit, ε_fs, ε_mp). It is not calibrated to a real transceiver, and there is no idle listening, sleep scheduling or wake-up cost.
+- **The 2 J initial energy is a radio-energy abstraction.** Realistic sensing energy cannot be added to it without changing the meaning of lifetime.
+- **Round-synchronous timing.** Rounds are 100 s of simulated time, with no clock drift and no asynchronous sampling inside a round.
+- **The geometry is abstract.** The 600 × 50 m strip and the uniform replay positions are not real sensor locations for air, soil or effluent sites.
+
+The modelled mechanisms are energy, distance, link quality, load and hop count. Under this model, sensor heterogeneity can be studied for traffic volume, frame size and energy, but not for congestion or MAC effects. Results must be stated with that limitation.

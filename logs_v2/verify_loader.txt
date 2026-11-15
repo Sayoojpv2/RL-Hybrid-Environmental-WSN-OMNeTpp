@@ -1,0 +1,18 @@
+PASS Loader_TestFixture: workload columns ['waterTemp', 'turbidity', 'nitrate']
+PASS Loader_TestFixture: raw 12, valid 9, unique times 6, scheduled 60, with data 8 (expected 12/9/6/60/8)
+PASS Loader_TestFixture: all 8 reports match the independent recomputation (round, node, station, timestamp, every payload value; 0 NaN payload values)
+PASS Loader_TestFixture: payload field names/units/columns waterTemp[degC]<-water_temp_C, turbidity[NTU]<-turbidity_NTU, nitrate[mg/L]<-nitrate_mgL
+PASS Loader_TestFixture: report sources [7, 23, 41] and cluster-phase actors [7, 23, 41] are mapped nodes [7, 23, 41]; every workload report of the 20 simulated rounds has exactly one fate
+PASS Loader_TestFixture: accounting OK; fates {'lost_channel': 8}
+PASS Loader_TestFixture: 0 delivered reports; payload received at the BS identical to the dataset values for every one
+PASS Loader_PeriyarClean: workload columns ['temperature', 'pH', 'TDS', 'DO']
+PASS Loader_PeriyarClean: raw 1273, valid 1254, unique times 212, scheduled 5000, with data 4912 (expected 1273/1254/212/5000/4912)
+PASS Loader_PeriyarClean: all 4912 reports match the independent recomputation (round, node, station, timestamp, every payload value; 1179 NaN payload values)
+PASS Loader_PeriyarClean: payload field names/units/columns temperature[degC]<-Temperature, pH[pH]<-pH, TDS[unspecified]<-TDS, DO[unspecified]<-DO
+PASS Loader_PeriyarClean: report sources [5, 10, 15, 20, 25, 30] and cluster-phase actors [5, 10, 15, 20, 25, 30] are mapped nodes [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]; every workload report of the 20 simulated rounds has exactly one fate
+PASS Loader_PeriyarClean: accounting OK; fates {'lost_channel': 45, 'delivered': 15}
+PASS Loader_PeriyarClean: 15 delivered reports; payload received at the BS identical to the dataset values for every one
+PASS packet delivery observed: {'fixture': 0, 'clean': 15} reports delivered (fixture, clean)
+PASS payload independence: measurement values changed (workload differs: True); routing outputs identical: {'decisions.csv': True, 'reports.csv': True, 'per_round.csv': True, 'metrics.csv': True, 'unavailability_events.csv': True}
+
+16 checks, 0 failed

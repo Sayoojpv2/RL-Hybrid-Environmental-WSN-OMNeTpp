@@ -1,0 +1,263 @@
+PASS Ctrl50 seed 42: C1 50 battery nodes (expected 50), 1 BS
+PASS Ctrl50 seed 42: C2 design run seed 42, topology 42, relays 900042, channel independent (round-1 channel seed 42000001)
+PASS Ctrl50 seed 42: C3 nodes 1..50 = MATLAB layout 42; 0 added relays inside the area, all distinct
+PASS Ctrl50 seed 42: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl50 seed 42: C5 targets 1..51, states 1..6561
+PASS Ctrl50 seed 42: C6 energy closes (max node error 9.0e-14 J)
+PASS Ctrl50 seed 42: C7 10000 slots; 8731 emitted = 3778 delivered + 4953 lost + 0 unattempted
+PASS Ctrl50 seed 42: C8 3 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl50 seed 42: C9 longest round 1.13 s of 10 s
+PASS Ctrl50 seed 42: C10 29495 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl50 seed 43: C1 50 battery nodes (expected 50), 1 BS
+PASS Ctrl50 seed 43: C2 design run seed 43, topology 42, relays 900042, channel independent (round-1 channel seed 43000001)
+PASS Ctrl50 seed 43: C3 nodes 1..50 = MATLAB layout 42; 0 added relays inside the area, all distinct
+PASS Ctrl50 seed 43: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl50 seed 43: C5 targets 1..51, states 1..6561
+PASS Ctrl50 seed 43: C6 energy closes (max node error 1.0e-13 J)
+PASS Ctrl50 seed 43: C7 10000 slots; 9340 emitted = 3869 delivered + 5470 lost + 1 unattempted
+PASS Ctrl50 seed 43: C8 3 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl50 seed 43: C9 longest round 1.11 s of 10 s
+PASS Ctrl50 seed 43: C10 32995 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl50 seed 44: C1 50 battery nodes (expected 50), 1 BS
+PASS Ctrl50 seed 44: C2 design run seed 44, topology 42, relays 900042, channel independent (round-1 channel seed 44000001)
+PASS Ctrl50 seed 44: C3 nodes 1..50 = MATLAB layout 42; 0 added relays inside the area, all distinct
+PASS Ctrl50 seed 44: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl50 seed 44: C5 targets 1..51, states 1..6561
+PASS Ctrl50 seed 44: C6 energy closes (max node error 1.2e-13 J)
+PASS Ctrl50 seed 44: C7 10000 slots; 9455 emitted = 3967 delivered + 5488 lost + 0 unattempted
+PASS Ctrl50 seed 44: C8 4 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl50 seed 44: C9 longest round 1.19 s of 10 s
+PASS Ctrl50 seed 44: C10 32242 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl50 seed 45: C1 50 battery nodes (expected 50), 1 BS
+PASS Ctrl50 seed 45: C2 design run seed 45, topology 42, relays 900042, channel independent (round-1 channel seed 45000001)
+PASS Ctrl50 seed 45: C3 nodes 1..50 = MATLAB layout 42; 0 added relays inside the area, all distinct
+PASS Ctrl50 seed 45: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl50 seed 45: C5 targets 1..51, states 1..6561
+PASS Ctrl50 seed 45: C6 energy closes (max node error 1.1e-13 J)
+PASS Ctrl50 seed 45: C7 10000 slots; 9385 emitted = 3926 delivered + 5459 lost + 0 unattempted
+PASS Ctrl50 seed 45: C8 6 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl50 seed 45: C9 longest round 1.10 s of 10 s
+PASS Ctrl50 seed 45: C10 32074 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl50 seed 46: C1 50 battery nodes (expected 50), 1 BS
+PASS Ctrl50 seed 46: C2 design run seed 46, topology 42, relays 900042, channel independent (round-1 channel seed 46000001)
+PASS Ctrl50 seed 46: C3 nodes 1..50 = MATLAB layout 42; 0 added relays inside the area, all distinct
+PASS Ctrl50 seed 46: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl50 seed 46: C5 targets 1..51, states 1..6561
+PASS Ctrl50 seed 46: C6 energy closes (max node error 9.6e-14 J)
+PASS Ctrl50 seed 46: C7 10000 slots; 9112 emitted = 3778 delivered + 5334 lost + 0 unattempted
+PASS Ctrl50 seed 46: C8 6 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl50 seed 46: C9 longest round 1.10 s of 10 s
+PASS Ctrl50 seed 46: C10 31612 transmissions logged with true link quality, matching decisions.csv
+PASS X1 N=50: topology identical for run seeds 42-46
+PASS X3 N=50: decision traces differ for all 10 of 10 seed pairs
+PASS Ctrl100 seed 42: C1 100 battery nodes (expected 100), 1 BS
+PASS Ctrl100 seed 42: C2 design run seed 42, topology 42, relays 900042, channel independent (round-1 channel seed 42000001)
+PASS Ctrl100 seed 42: C3 nodes 1..50 = MATLAB layout 42; 50 added relays inside the area, all distinct
+PASS Ctrl100 seed 42: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl100 seed 42: C5 targets 1..101, states 1..6561
+PASS Ctrl100 seed 42: C6 energy closes (max node error 1.1e-13 J)
+PASS Ctrl100 seed 42: C7 10000 slots; 9501 emitted = 3590 delivered + 5911 lost + 0 unattempted
+PASS Ctrl100 seed 42: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl100 seed 42: C9 longest round 1.31 s of 10 s
+PASS Ctrl100 seed 42: C10 35404 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl100 seed 43: C1 100 battery nodes (expected 100), 1 BS
+PASS Ctrl100 seed 43: C2 design run seed 43, topology 42, relays 900042, channel independent (round-1 channel seed 43000001)
+PASS Ctrl100 seed 43: C3 nodes 1..50 = MATLAB layout 42; 50 added relays inside the area, all distinct
+PASS Ctrl100 seed 43: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl100 seed 43: C5 targets 1..101, states 1..6561
+PASS Ctrl100 seed 43: C6 energy closes (max node error 9.5e-14 J)
+PASS Ctrl100 seed 43: C7 10000 slots; 9671 emitted = 3597 delivered + 6074 lost + 0 unattempted
+PASS Ctrl100 seed 43: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl100 seed 43: C9 longest round 1.26 s of 10 s
+PASS Ctrl100 seed 43: C10 36718 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl100 seed 44: C1 100 battery nodes (expected 100), 1 BS
+PASS Ctrl100 seed 44: C2 design run seed 44, topology 42, relays 900042, channel independent (round-1 channel seed 44000001)
+PASS Ctrl100 seed 44: C3 nodes 1..50 = MATLAB layout 42; 50 added relays inside the area, all distinct
+PASS Ctrl100 seed 44: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl100 seed 44: C5 targets 1..101, states 1..6561
+PASS Ctrl100 seed 44: C6 energy closes (max node error 1.2e-13 J)
+PASS Ctrl100 seed 44: C7 10000 slots; 9775 emitted = 3786 delivered + 5989 lost + 0 unattempted
+PASS Ctrl100 seed 44: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl100 seed 44: C9 longest round 1.31 s of 10 s
+PASS Ctrl100 seed 44: C10 36423 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl100 seed 45: C1 100 battery nodes (expected 100), 1 BS
+PASS Ctrl100 seed 45: C2 design run seed 45, topology 42, relays 900042, channel independent (round-1 channel seed 45000001)
+PASS Ctrl100 seed 45: C3 nodes 1..50 = MATLAB layout 42; 50 added relays inside the area, all distinct
+PASS Ctrl100 seed 45: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl100 seed 45: C5 targets 1..101, states 1..6561
+PASS Ctrl100 seed 45: C6 energy closes (max node error 1.1e-13 J)
+PASS Ctrl100 seed 45: C7 10000 slots; 9356 emitted = 3440 delivered + 5916 lost + 0 unattempted
+PASS Ctrl100 seed 45: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl100 seed 45: C9 longest round 1.20 s of 10 s
+PASS Ctrl100 seed 45: C10 33801 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl100 seed 46: C1 100 battery nodes (expected 100), 1 BS
+PASS Ctrl100 seed 46: C2 design run seed 46, topology 42, relays 900042, channel independent (round-1 channel seed 46000001)
+PASS Ctrl100 seed 46: C3 nodes 1..50 = MATLAB layout 42; 50 added relays inside the area, all distinct
+PASS Ctrl100 seed 46: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl100 seed 46: C5 targets 1..101, states 1..6561
+PASS Ctrl100 seed 46: C6 energy closes (max node error 1.9e-13 J)
+PASS Ctrl100 seed 46: C7 10000 slots; 9344 emitted = 3505 delivered + 5839 lost + 0 unattempted
+PASS Ctrl100 seed 46: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl100 seed 46: C9 longest round 1.23 s of 10 s
+PASS Ctrl100 seed 46: C10 35336 transmissions logged with true link quality, matching decisions.csv
+PASS X1 N=100: topology identical for run seeds 42-46
+PASS X3 N=100: decision traces differ for all 10 of 10 seed pairs
+PASS Ctrl250 seed 42: C1 250 battery nodes (expected 250), 1 BS
+PASS Ctrl250 seed 42: C2 design run seed 42, topology 42, relays 900042, channel independent (round-1 channel seed 42000001)
+PASS Ctrl250 seed 42: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Ctrl250 seed 42: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl250 seed 42: C5 targets 1..251, states 1..6561
+PASS Ctrl250 seed 42: C6 energy closes (max node error 1.4e-13 J)
+PASS Ctrl250 seed 42: C7 10000 slots; 9580 emitted = 3307 delivered + 6273 lost + 0 unattempted
+PASS Ctrl250 seed 42: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl250 seed 42: C9 longest round 1.34 s of 10 s
+PASS Ctrl250 seed 42: C10 37280 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl250 seed 43: C1 250 battery nodes (expected 250), 1 BS
+PASS Ctrl250 seed 43: C2 design run seed 43, topology 42, relays 900042, channel independent (round-1 channel seed 43000001)
+PASS Ctrl250 seed 43: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Ctrl250 seed 43: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl250 seed 43: C5 targets 1..251, states 1..6561
+PASS Ctrl250 seed 43: C6 energy closes (max node error 7.0e-14 J)
+PASS Ctrl250 seed 43: C7 10000 slots; 9793 emitted = 3484 delivered + 6309 lost + 0 unattempted
+PASS Ctrl250 seed 43: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl250 seed 43: C9 longest round 1.30 s of 10 s
+PASS Ctrl250 seed 43: C10 36255 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl250 seed 44: C1 250 battery nodes (expected 250), 1 BS
+PASS Ctrl250 seed 44: C2 design run seed 44, topology 42, relays 900042, channel independent (round-1 channel seed 44000001)
+PASS Ctrl250 seed 44: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Ctrl250 seed 44: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl250 seed 44: C5 targets 1..251, states 1..6561
+PASS Ctrl250 seed 44: C6 energy closes (max node error 8.1e-14 J)
+PASS Ctrl250 seed 44: C7 10000 slots; 9699 emitted = 3457 delivered + 6242 lost + 0 unattempted
+PASS Ctrl250 seed 44: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl250 seed 44: C9 longest round 1.25 s of 10 s
+PASS Ctrl250 seed 44: C10 37133 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl250 seed 45: C1 250 battery nodes (expected 250), 1 BS
+PASS Ctrl250 seed 45: C2 design run seed 45, topology 42, relays 900042, channel independent (round-1 channel seed 45000001)
+PASS Ctrl250 seed 45: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Ctrl250 seed 45: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl250 seed 45: C5 targets 1..251, states 1..6561
+PASS Ctrl250 seed 45: C6 energy closes (max node error 9.0e-14 J)
+PASS Ctrl250 seed 45: C7 10000 slots; 9609 emitted = 3489 delivered + 6120 lost + 0 unattempted
+PASS Ctrl250 seed 45: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl250 seed 45: C9 longest round 1.25 s of 10 s
+PASS Ctrl250 seed 45: C10 36512 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl250 seed 46: C1 250 battery nodes (expected 250), 1 BS
+PASS Ctrl250 seed 46: C2 design run seed 46, topology 42, relays 900042, channel independent (round-1 channel seed 46000001)
+PASS Ctrl250 seed 46: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Ctrl250 seed 46: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl250 seed 46: C5 targets 1..251, states 1..6561
+PASS Ctrl250 seed 46: C6 energy closes (max node error 7.0e-14 J)
+PASS Ctrl250 seed 46: C7 10000 slots; 9404 emitted = 3323 delivered + 6081 lost + 0 unattempted
+PASS Ctrl250 seed 46: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl250 seed 46: C9 longest round 1.24 s of 10 s
+PASS Ctrl250 seed 46: C10 35017 transmissions logged with true link quality, matching decisions.csv
+PASS X1 N=250: topology identical for run seeds 42-46
+PASS X3 N=250: decision traces differ for all 10 of 10 seed pairs
+PASS Ctrl500 seed 42: C1 500 battery nodes (expected 500), 1 BS
+PASS Ctrl500 seed 42: C2 design run seed 42, topology 42, relays 900042, channel independent (round-1 channel seed 42000001)
+PASS Ctrl500 seed 42: C3 nodes 1..50 = MATLAB layout 42; 450 added relays inside the area, all distinct
+PASS Ctrl500 seed 42: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl500 seed 42: C5 targets 1..501, states 1..6561
+PASS Ctrl500 seed 42: C6 energy closes (max node error 9.2e-14 J)
+PASS Ctrl500 seed 42: C7 10000 slots; 9636 emitted = 3149 delivered + 6487 lost + 0 unattempted
+PASS Ctrl500 seed 42: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl500 seed 42: C9 longest round 1.41 s of 10 s
+PASS Ctrl500 seed 42: C10 38077 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl500 seed 43: C1 500 battery nodes (expected 500), 1 BS
+PASS Ctrl500 seed 43: C2 design run seed 43, topology 42, relays 900042, channel independent (round-1 channel seed 43000001)
+PASS Ctrl500 seed 43: C3 nodes 1..50 = MATLAB layout 42; 450 added relays inside the area, all distinct
+PASS Ctrl500 seed 43: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl500 seed 43: C5 targets 1..501, states 1..6561
+PASS Ctrl500 seed 43: C6 energy closes (max node error 1.0e-13 J)
+PASS Ctrl500 seed 43: C7 10000 slots; 9388 emitted = 3115 delivered + 6273 lost + 0 unattempted
+PASS Ctrl500 seed 43: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl500 seed 43: C9 longest round 1.26 s of 10 s
+PASS Ctrl500 seed 43: C10 35618 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl500 seed 44: C1 500 battery nodes (expected 500), 1 BS
+PASS Ctrl500 seed 44: C2 design run seed 44, topology 42, relays 900042, channel independent (round-1 channel seed 44000001)
+PASS Ctrl500 seed 44: C3 nodes 1..50 = MATLAB layout 42; 450 added relays inside the area, all distinct
+PASS Ctrl500 seed 44: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl500 seed 44: C5 targets 1..501, states 1..6561
+PASS Ctrl500 seed 44: C6 energy closes (max node error 6.3e-14 J)
+PASS Ctrl500 seed 44: C7 10000 slots; 9571 emitted = 3156 delivered + 6415 lost + 0 unattempted
+PASS Ctrl500 seed 44: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl500 seed 44: C9 longest round 1.27 s of 10 s
+PASS Ctrl500 seed 44: C10 36650 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl500 seed 45: C1 500 battery nodes (expected 500), 1 BS
+PASS Ctrl500 seed 45: C2 design run seed 45, topology 42, relays 900042, channel independent (round-1 channel seed 45000001)
+PASS Ctrl500 seed 45: C3 nodes 1..50 = MATLAB layout 42; 450 added relays inside the area, all distinct
+PASS Ctrl500 seed 45: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl500 seed 45: C5 targets 1..501, states 1..6561
+PASS Ctrl500 seed 45: C6 energy closes (max node error 1.1e-13 J)
+PASS Ctrl500 seed 45: C7 10000 slots; 9603 emitted = 3140 delivered + 6463 lost + 0 unattempted
+PASS Ctrl500 seed 45: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl500 seed 45: C9 longest round 1.39 s of 10 s
+PASS Ctrl500 seed 45: C10 38041 transmissions logged with true link quality, matching decisions.csv
+PASS Ctrl500 seed 46: C1 500 battery nodes (expected 500), 1 BS
+PASS Ctrl500 seed 46: C2 design run seed 46, topology 42, relays 900042, channel independent (round-1 channel seed 46000001)
+PASS Ctrl500 seed 46: C3 nodes 1..50 = MATLAB layout 42; 450 added relays inside the area, all distinct
+PASS Ctrl500 seed 46: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Ctrl500 seed 46: C5 targets 1..501, states 1..6561
+PASS Ctrl500 seed 46: C6 energy closes (max node error 8.6e-14 J)
+PASS Ctrl500 seed 46: C7 10000 slots; 9788 emitted = 3258 delivered + 6529 lost + 1 unattempted
+PASS Ctrl500 seed 46: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Ctrl500 seed 46: C9 longest round 1.31 s of 10 s
+PASS Ctrl500 seed 46: C10 37901 transmissions logged with true link quality, matching decisions.csv
+PASS X1 N=500: topology identical for run seeds 42-46
+PASS X3 N=500: decision traces differ for all 10 of 10 seed pairs
+PASS X2 nesting: N=50 ⊂ N=100 ⊂ N=250 ⊂ N=500 (same ids, same coordinates)
+PASS Place250 topo 900042: C1 250 battery nodes (expected 250), 1 BS
+PASS Place250 topo 900042: C2 design run seed 42, topology 42, relays 900042, channel independent (round-1 channel seed 42000001)
+PASS Place250 topo 900042: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Place250 topo 900042: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Place250 topo 900042: C5 targets 1..251, states 1..6561
+PASS Place250 topo 900042: C6 energy closes (max node error 1.4e-13 J)
+PASS Place250 topo 900042: C7 10000 slots; 9580 emitted = 3307 delivered + 6273 lost + 0 unattempted
+PASS Place250 topo 900042: C8 1 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Place250 topo 900042: C9 longest round 1.34 s of 10 s
+PASS Place250 topo 900042: C10 37280 transmissions logged with true link quality, matching decisions.csv
+PASS Place250 topo 910001: C1 250 battery nodes (expected 250), 1 BS
+PASS Place250 topo 910001: C2 design run seed 42, topology 42, relays 910001, channel independent (round-1 channel seed 42000001)
+PASS Place250 topo 910001: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Place250 topo 910001: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Place250 topo 910001: C5 targets 1..251, states 1..6561
+PASS Place250 topo 910001: C6 energy closes (max node error 9.6e-14 J)
+PASS Place250 topo 910001: C7 10000 slots; 9255 emitted = 2965 delivered + 6290 lost + 0 unattempted
+PASS Place250 topo 910001: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Place250 topo 910001: C9 longest round 1.31 s of 10 s
+PASS Place250 topo 910001: C10 34941 transmissions logged with true link quality, matching decisions.csv
+PASS Place250 topo 910002: C1 250 battery nodes (expected 250), 1 BS
+PASS Place250 topo 910002: C2 design run seed 42, topology 42, relays 910002, channel independent (round-1 channel seed 42000001)
+PASS Place250 topo 910002: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Place250 topo 910002: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Place250 topo 910002: C5 targets 1..251, states 1..6561
+PASS Place250 topo 910002: C6 energy closes (max node error 7.0e-14 J)
+PASS Place250 topo 910002: C7 10000 slots; 9411 emitted = 3315 delivered + 6096 lost + 0 unattempted
+PASS Place250 topo 910002: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Place250 topo 910002: C9 longest round 1.20 s of 10 s
+PASS Place250 topo 910002: C10 35193 transmissions logged with true link quality, matching decisions.csv
+PASS Place250 topo 910003: C1 250 battery nodes (expected 250), 1 BS
+PASS Place250 topo 910003: C2 design run seed 42, topology 42, relays 910003, channel independent (round-1 channel seed 42000001)
+PASS Place250 topo 910003: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Place250 topo 910003: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Place250 topo 910003: C5 targets 1..251, states 1..6561
+PASS Place250 topo 910003: C6 energy closes (max node error 1.0e-13 J)
+PASS Place250 topo 910003: C7 10000 slots; 9367 emitted = 3270 delivered + 6097 lost + 0 unattempted
+PASS Place250 topo 910003: C8 2 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Place250 topo 910003: C9 longest round 1.29 s of 10 s
+PASS Place250 topo 910003: C10 35698 transmissions logged with true link quality, matching decisions.csv
+PASS Place250 topo 910004: C1 250 battery nodes (expected 250), 1 BS
+PASS Place250 topo 910004: C2 design run seed 42, topology 42, relays 910004, channel independent (round-1 channel seed 42000001)
+PASS Place250 topo 910004: C3 nodes 1..50 = MATLAB layout 42; 200 added relays inside the area, all distinct
+PASS Place250 topo 910004: C4 workload = MATLAB (9825 reports); sources 10 stations; 0 source actions by non-stations
+PASS Place250 topo 910004: C5 targets 1..251, states 1..6561
+PASS Place250 topo 910004: C6 energy closes (max node error 1.5e-13 J)
+PASS Place250 topo 910004: C7 10000 slots; 9825 emitted = 3440 delivered + 6385 lost + 0 unattempted
+PASS Place250 topo 910004: C8 0 nodes unavailable; 0 late actions, 0 unavailable targets; TTL respected
+PASS Place250 topo 910004: C9 longest round 1.20 s of 10 s
+PASS Place250 topo 910004: C10 37329 transmissions logged with true link quality, matching decisions.csv
+PASS X4 Place250 topo 900042 = Ctrl250 run seed 42 (6 output files byte-identical)
+PASS X5 placements: nodes 1..50 identical; added relays differ for every pair of topology seeds
+
+261 checks, 0 failed

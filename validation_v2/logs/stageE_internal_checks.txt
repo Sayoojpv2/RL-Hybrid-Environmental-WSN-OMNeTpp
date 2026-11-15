@@ -1,0 +1,57 @@
+PASS seed 42: E1 every one of the 9825 valid-data slots has exactly one recorded fate
+PASS seed 42: E1 10000 slots = 175 pre-observation + 9825 data; 9825 = 605 source-down + 9220 emitted; emitted = 3877 delivered + 5343 lost + 0 unattempted
+PASS seed 42: E2 delivered <= emitted, PDR = delivered / 10000 scheduled = 38.770 % (conditional delivered/emitted = 42.050 % reported separately)
+PASS seed 42: E3 energy reconciles per node (max |E0-residual-(tx+rx+agg)| = 1.4e-13 J); spent 47.533124 + residual 52.466876 = 100 J budget
+PASS seed 42: E3 BS counted 3877 delivered reports = report log
+PASS seed 42: E4 no node acts after it became unavailable (5 nodes became unavailable; 0 late actions, 0 choices of an unavailable target)
+PASS seed 42: E5 TTL respected: largest route hop 15 <= 15, largest delivered hop count 16 (<= 15 route hops + 1 member hop); TTL losses 0
+PASS seed 42: E6 every action indexes Q(state 1..6561, action 1..51); 748 distinct states visited; self-head actions target the actor
+PASS seed 42: E6 Q-learning active: 33736 updates summed over the 50 per-node tables = network total; 4252 exploratory and 29484 greedy decisions
+PASS seed 42: E7 logged radio actions (member 8981, relay 20306, to BS 4210) = physical frames 33497; self-head choices 239; decoded member frames 7697
+PASS seed 42: E8 roles: reports generated only by 10 sensing nodes [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]; source actions only by them; 40 relay-only nodes; 50 battery-node modules + 1 BS
+PASS seed 43: E1 every one of the 9825 valid-data slots has exactly one recorded fate
+PASS seed 43: E1 10000 slots = 175 pre-observation + 9825 data; 9825 = 298 source-down + 9527 emitted; emitted = 4484 delivered + 5043 lost + 0 unattempted
+PASS seed 43: E2 delivered <= emitted, PDR = delivered / 10000 scheduled = 44.840 % (conditional delivered/emitted = 47.066 % reported separately)
+PASS seed 43: E3 energy reconciles per node (max |E0-residual-(tx+rx+agg)| = 1.9e-13 J); spent 42.637237 + residual 57.362763 = 100 J budget
+PASS seed 43: E3 BS counted 4484 delivered reports = report log
+PASS seed 43: E4 no node acts after it became unavailable (6 nodes became unavailable; 0 late actions, 0 choices of an unavailable target)
+PASS seed 43: E5 TTL respected: largest route hop 14 <= 15, largest delivered hop count 15 (<= 15 route hops + 1 member hop); TTL losses 0
+PASS seed 43: E6 every action indexes Q(state 1..6561, action 1..51); 679 distinct states visited; self-head actions target the actor
+PASS seed 43: E6 Q-learning active: 32788 updates summed over the 50 per-node tables = network total; 3985 exploratory and 28803 greedy decisions
+PASS seed 43: E7 logged radio actions (member 8969, relay 18587, to BS 4674) = physical frames 32230; self-head choices 558; decoded member frames 7677
+PASS seed 43: E8 roles: reports generated only by 10 sensing nodes [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]; source actions only by them; 40 relay-only nodes; 50 battery-node modules + 1 BS
+PASS seed 44: E1 every one of the 9825 valid-data slots has exactly one recorded fate
+PASS seed 44: E1 10000 slots = 175 pre-observation + 9825 data; 9825 = 614 source-down + 9211 emitted; emitted = 4409 delivered + 4802 lost + 0 unattempted
+PASS seed 44: E2 delivered <= emitted, PDR = delivered / 10000 scheduled = 44.090 % (conditional delivered/emitted = 47.867 % reported separately)
+PASS seed 44: E3 energy reconciles per node (max |E0-residual-(tx+rx+agg)| = 6.4e-14 J); spent 41.398910 + residual 58.601090 = 100 J budget
+PASS seed 44: E3 BS counted 4409 delivered reports = report log
+PASS seed 44: E4 no node acts after it became unavailable (4 nodes became unavailable; 0 late actions, 0 choices of an unavailable target)
+PASS seed 44: E5 TTL respected: largest route hop 14 <= 15, largest delivered hop count 15 (<= 15 route hops + 1 member hop); TTL losses 0
+PASS seed 44: E6 every action indexes Q(state 1..6561, action 1..51); 655 distinct states visited; self-head actions target the actor
+PASS seed 44: E6 Q-learning active: 31125 updates summed over the 50 per-node tables = network total; 4007 exploratory and 27118 greedy decisions
+PASS seed 44: E7 logged radio actions (member 8843, relay 17329, to BS 4585) = physical frames 30757; self-head choices 368; decoded member frames 7565
+PASS seed 44: E8 roles: reports generated only by 10 sensing nodes [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]; source actions only by them; 40 relay-only nodes; 50 battery-node modules + 1 BS
+PASS seed 45: E1 every one of the 9825 valid-data slots has exactly one recorded fate
+PASS seed 45: E1 10000 slots = 175 pre-observation + 9825 data; 9825 = 783 source-down + 9042 emitted; emitted = 3825 delivered + 5217 lost + 0 unattempted
+PASS seed 45: E2 delivered <= emitted, PDR = delivered / 10000 scheduled = 38.250 % (conditional delivered/emitted = 42.303 % reported separately)
+PASS seed 45: E3 energy reconciles per node (max |E0-residual-(tx+rx+agg)| = 1.0e-13 J); spent 47.472106 + residual 52.527894 = 100 J budget
+PASS seed 45: E3 BS counted 3825 delivered reports = report log
+PASS seed 45: E4 no node acts after it became unavailable (6 nodes became unavailable; 0 late actions, 0 choices of an unavailable target)
+PASS seed 45: E5 TTL respected: largest route hop 15 <= 15, largest delivered hop count 16 (<= 15 route hops + 1 member hop); TTL losses 0
+PASS seed 45: E6 every action indexes Q(state 1..6561, action 1..51); 718 distinct states visited; self-head actions target the actor
+PASS seed 45: E6 Q-learning active: 31632 updates summed over the 50 per-node tables = network total; 4200 exploratory and 27432 greedy decisions
+PASS seed 45: E7 logged radio actions (member 8607, relay 18443, to BS 4147) = physical frames 31197; self-head choices 435; decoded member frames 7298
+PASS seed 45: E8 roles: reports generated only by 10 sensing nodes [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]; source actions only by them; 40 relay-only nodes; 50 battery-node modules + 1 BS
+PASS seed 46: E1 every one of the 9825 valid-data slots has exactly one recorded fate
+PASS seed 46: E1 10000 slots = 175 pre-observation + 9825 data; 9825 = 450 source-down + 9375 emitted; emitted = 3917 delivered + 5458 lost + 0 unattempted
+PASS seed 46: E2 delivered <= emitted, PDR = delivered / 10000 scheduled = 39.170 % (conditional delivered/emitted = 41.781 % reported separately)
+PASS seed 46: E3 energy reconciles per node (max |E0-residual-(tx+rx+agg)| = 9.3e-14 J); spent 43.231695 + residual 56.768305 = 100 J budget
+PASS seed 46: E3 BS counted 3917 delivered reports = report log
+PASS seed 46: E4 no node acts after it became unavailable (7 nodes became unavailable; 0 late actions, 0 choices of an unavailable target)
+PASS seed 46: E5 TTL respected: largest route hop 15 <= 15, largest delivered hop count 16 (<= 15 route hops + 1 member hop); TTL losses 3
+PASS seed 46: E6 every action indexes Q(state 1..6561, action 1..51); 717 distinct states visited; self-head actions target the actor
+PASS seed 46: E6 Q-learning active: 34908 updates summed over the 50 per-node tables = network total; 4385 exploratory and 30523 greedy decisions
+PASS seed 46: E7 logged radio actions (member 8892, relay 21312, to BS 4221) = physical frames 34425; self-head choices 483; decoded member frames 7599
+PASS seed 46: E8 roles: reports generated only by 10 sensing nodes [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]; source actions only by them; 40 relay-only nodes; 50 battery-node modules + 1 BS
+
+55 checks, 0 failed

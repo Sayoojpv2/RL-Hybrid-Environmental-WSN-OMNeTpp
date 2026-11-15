@@ -1,0 +1,1 @@
+Stage A: 50-node outputs (final code) vs unmodified copy of the validated project: 51 byte-identical, 0 different

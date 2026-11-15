@@ -1,0 +1,11 @@
+dataset,reports,routine,warning,critical,event_triggers
+water_quality_200,68700,27920,18120,22660,conductivity_uScm:37560;DO_mgL:3140;pH:80
+industrial_effluent_200,99306,82589,4125,12592,BOD_mgL:16273;COD_mgL:266;pH:131;NH3N_mgL:47
+air_quality_200,100000,35213,5440,59347,PM25_ugm3:59087;NO2_ugm3:3012;PM10_ugm3:2672;CO_mgm3:16
+soil_monitoring_200,25135,24636,235,264,VWC_pct:499
+mixed_environment_200,73306,42288,7517,23501,PM25_ugm3:14690;conductivity_uScm:9779;BOD_mgL:4422;PM10_ugm3:674;NO2_ugm3:670;DO_mgL:530;VWC_pct:127;COD_mgL:83;pH:37;CO_mgm3:5;NH3N_mgL:1
+water_quality_500,171750,69800,45300,56650,conductivity_uScm:93900;DO_mgL:7850;pH:200
+industrial_effluent_500,248086,205815,10317,31954,BOD_mgL:41129;COD_mgL:665;pH:368;NH3N_mgL:109
+air_quality_500,250000,87938,13615,148447,PM25_ugm3:147762;NO2_ugm3:7587;PM10_ugm3:6672;CO_mgm3:41
+soil_monitoring_500,62984,61685,621,678,VWC_pct:1299
+mixed_environment_500,182752,107800,17875,57077,PM25_ugm3:36582;conductivity_uScm:22467;BOD_mgL:9553;DO_mgL:2153;NO2_ugm3:1763;PM10_ugm3:1704;VWC_pct:344;COD_mgL:226;pH:129;CO_mgm3:16;NH3N_mgL:15

@@ -1,0 +1,50 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  1
+
+Preparing for running configuration Periyar500_Smoke, run #0...
+Scenario: $seed=42, $repetition=0
+Assigned runID=Periyar500_Smoke-0-20261025-16:23:40-4720
+Setting up network "PeriyarRiverNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.2e-05s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 1002   present: 1002   in FES: 2   Memory (RSS): 26.7578MiB
+** Event #1977   t=200   Elapsed: 0.054459s (0m 00s)  100% completed  (100% total)
+     Speed:     ev/sec=36309.9   simsec/sec=3496.07   ev/simsec=10.3859
+     Messages:  created: 2108   present: 1002   in FES: 0   Memory (RSS): 27.0898MiB
+
+<!> Simulation time limit reached -- at t=200s, event #1977
+
+Calling finish() at end of Run #0...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 42   rounds simulated: 20 of 1000
+network                  : 500 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scheduled slots          : 200   (10 per round)
+  pre-observation slots  : 79   (no data yet; never a report)
+  valid-data slots       : 121
+    source unavailable   : 0   (valid data, source down at round start)
+    reports emitted      : 121
+      unattempted        : 0
+      attempted          : 121
+        delivered        : 39
+        network losses   : 82  (channel 82, energy 0, no candidate 0, TTL 0)
+PDR (delivered/scheduled): 19.500 %
+delivered / emitted      : 32.231 %  (conditional; not the MATLAB PDR)
+FND (first round < 500 op): -1
+first unavailable node   : 0  (MATLAB firstUnavailableRound nan)
+final operational nodes  : 500
+residual energy          : 999.0293 J   spent 0.9707 J (tx 0.8898, rx 0.0736, aggregation 0.0074)
+energy / delivered report: 0.024890 J
+mean delivered hops      : 7.051
+mean path delay          : 0.14808 s  (sum of k/Rbit + Tproc + d/c per hop, MATLAB definition)
+Q updates / explorations : 489 / 146  (exploitation 343, agent RNG draws 978)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+
+End.

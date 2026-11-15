@@ -1,0 +1,11 @@
+config,runtime_s,exit
+M2T_Water,3.64,0
+M2T_Effluent,5.21,0
+M2T_Air,5.18,0
+M2T_Soil,2.00,0
+M2T_Mixed,5.05,0
+M2F_Water,4.73,0
+M2F_Effluent,7.65,0
+M2F_Air,7.68,0
+M2F_Soil,2.01,0
+M2F_Mixed,5.92,0

@@ -1,0 +1,71 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  1
+
+Preparing for running configuration V2_200Node_Environmental, run #37...
+Scenario: $N=500, $rd=results_environmental_500, $seed=44, $scenario=air, $profile=air_quality, $repetition=0
+Assigned runID=V2_200Node_Environmental-37-20261112-20:14:32-9160
+Setting up network "PeriyarRiverNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 9e-06s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 1002   present: 1002   in FES: 2   Memory (RSS): 75.3125MiB
+** Event #551936   t=9107.300674395023   Elapsed: 5.00117s (0m 05s)  9% completed  (9% total)
+     Speed:     ev/sec=110362   simsec/sec=1821.04   ev/simsec=60.6038
+     Messages:  created: 324971   present: 1004   in FES: 3   Memory (RSS): 81.0703MiB
+** Event #1040384   t=16601.958409009136   Elapsed: 10.0041s (0m 10s)  16% completed  (16% total)
+     Speed:     ev/sec=97632.7   simsec/sec=1498.06   ev/simsec=65.1728
+     Messages:  created: 610180   present: 1003   in FES: 2   Memory (RSS): 83.5312MiB
+** Event #1519872   t=23809.249229733353   Elapsed: 15.005s (0m 15s)  23% completed  (23% total)
+     Speed:     ev/sec=95879.3   simsec/sec=1441.18   ev/simsec=66.5282
+     Messages:  created: 890258   present: 1003   in FES: 1   Memory (RSS): 84.7422MiB
+** Event #1967872   t=30300.346043934684   Elapsed: 20.0051s (0m 20s)  30% completed  (30% total)
+     Speed:     ev/sec=89598.9   simsec/sec=1298.2   ev/simsec=69.0176
+     Messages:  created: 1150473   present: 1003   in FES: 2   Memory (RSS): 85.5938MiB
+** Event #2490112   t=37506.808012162445   Elapsed: 25.0052s (0m 25s)  37% completed  (37% total)
+     Speed:     ev/sec=104446   simsec/sec=1441.27   ev/simsec=72.4683
+     Messages:  created: 1452800   present: 1004   in FES: 3   Memory (RSS): 86.6758MiB
+** Event #3013376   t=44802.293739174894   Elapsed: 30.0076s (0m 30s)  44% completed  (44% total)
+     Speed:     ev/sec=104601   simsec/sec=1458.38   ev/simsec=71.7244
+     Messages:  created: 1756097   present: 1003   in FES: 2   Memory (RSS): 87.6602MiB
+** Event #3389673   t=100000   Elapsed: 33.5352s (0m 33s)  100% completed  (100% total)
+     Speed:     ev/sec=106673   simsec/sec=1448.98   ev/simsec=73.6197
+     Messages:  created: 1973593   present: 1002   in FES: 0   Memory (RSS): 88.5234MiB
+
+<!> Simulation time limit reached -- at t=100000s, event #3389673
+
+Calling finish() at end of Run #37...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 44   rounds simulated: 500 of 500
+network                  : 500 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scenario                 : air   (data/scenarios/air_quality_500)
+scheduled slots          : 250000   (m2 profile schedule: one slot per report)
+  pre-observation slots  : 0   (no data yet; never a report)
+  valid-data slots       : 250000
+    source unavailable   : 0   (valid data, source down at round start)
+    reports emitted      : 250000
+      unattempted        : 0
+      attempted          : 250000
+        delivered        : 114550
+        network losses   : 135450  (channel 135260, energy 0, no candidate 0, TTL 190)
+PDR (delivered/scheduled): 45.820 %
+delivered / emitted      : 45.820 %  (conditional; not the MATLAB PDR)
+FND (first round < 500 op): -1
+first unavailable node   : 0  (MATLAB firstUnavailableRound nan)
+final operational nodes  : 500
+residual energy          : 886.9409 J   spent 113.0591 J (tx 95.3802, rx 16.0713, aggregation 1.6076)
+energy / delivered report: 0.000987 J
+mean delivered hops      : 6.128
+mean path delay          : 0.04708 s  (sum of frame bits/Rbit + Tproc + d/c per hop)
+Q updates / explorations : 847349 / 147157  (exploitation 700192, agent RNG draws 1694698)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+radio traffic            : 411.2 Mbit on air in 1144022 report transmissions (mean 359.5 bit); mean generated frame 359.5 bit (per-report frames)
+sensing ledger (separate): 26909873.8 J in operational node-rounds (26909873.8 J if all nodes sensed all 500 rounds); NOT charged to the 2.0 J radio battery
+
+End.

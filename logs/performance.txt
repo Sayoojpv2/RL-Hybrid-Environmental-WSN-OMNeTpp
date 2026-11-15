@@ -1,0 +1,8 @@
+Periyar100_Smoke: exit , wall 0.6 s, peak working set 22.9 MiB, last reported event #1681
+Periyar100_Smoke: exit , wall 0.4 s, peak working set 23.0 MiB, last reported event #1681
+Periyar250_Smoke: exit , wall 0.6 s, peak working set 23.5 MiB, last reported event #1989
+Periyar500_Smoke: exit , wall 0.6 s, peak working set 27.2 MiB, last reported event #1977
+Periyar250_RelayScaling: exit 0, wall 15.1 s, peak working set 24.9 MiB, last reported event #145873
+Periyar100_RelayScaling: exit 0, wall 11.4 s, peak working set 23.8 MiB, last reported event #140487
+Periyar500_RelayScaling: exit 0, wall 4.2 s, peak working set 28.6 MiB, last reported event #146279
+Periyar50_Baseline: exit 0, wall 9.8 s, peak working set 23.4 MiB, last reported event #139729

@@ -1,0 +1,65 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.4.0, build: 260506-2cf25223fe, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  1
+
+Preparing for running configuration V2_200Node_Environmental, run #40...
+Scenario: $N=500, $rd=results_environmental_500, $seed=45, $scenario=water, $profile=water_quality, $repetition=0
+Assigned runID=V2_200Node_Environmental-40-20261112-20:15:53-19500
+Setting up network "PeriyarRiverNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 7e-06s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 1002   present: 1002   in FES: 2   Memory (RSS): 61.6055MiB
+** Event #578048   t=14200.509669463592   Elapsed: 5.00353s (0m 05s)  14% completed  (14% total)
+     Speed:     ev/sec=115528   simsec/sec=2838.1   ev/simsec=40.7062
+     Messages:  created: 339121   present: 1003   in FES: 2   Memory (RSS): 66.9922MiB
+** Event #1088768   t=24205.554469181081   Elapsed: 10.0049s (0m 10s)  24% completed  (24% total)
+     Speed:     ev/sec=102116   simsec/sec=2000.46   ev/simsec=51.0462
+     Messages:  created: 636156   present: 1003   in FES: 2   Memory (RSS): 69.4414MiB
+** Event #1604864   t=35007.828977679753   Elapsed: 15.0056s (0m 15s)  35% completed  (35% total)
+     Speed:     ev/sec=103205   simsec/sec=2160.17   ev/simsec=47.7766
+     Messages:  created: 934550   present: 1003   in FES: 2   Memory (RSS): 70.6875MiB
+** Event #2090240   t=45205.373777547231   Elapsed: 20.0058s (0m 20s)  45% completed  (45% total)
+     Speed:     ev/sec=97071.3   simsec/sec=2039.43   ev/simsec=47.5973
+     Messages:  created: 1215885   present: 1003   in FES: 2   Memory (RSS): 71.6875MiB
+** Event #2360229   t=100000   Elapsed: 22.8192s (0m 22s)  100% completed  (100% total)
+     Speed:     ev/sec=95962.5   simsec/sec=1671.54   ev/simsec=57.4098
+     Messages:  created: 1372231   present: 1002   in FES: 0   Memory (RSS): 72.2969MiB
+
+<!> Simulation time limit reached -- at t=100000s, event #2360229
+
+Calling finish() at end of Run #40...
+==== Periyar RL-Hybrid OMNeT++ validation run (logged measurements) ====
+seed                     : 45   rounds simulated: 500 of 500
+network                  : 500 battery nodes + BS (600.000000, 25.000000), 600 x 50 m, E0 = 2 J
+scenario                 : water   (data/scenarios/water_quality_500)
+scheduled slots          : 171750   (m2 profile schedule: one slot per report)
+  pre-observation slots  : 0   (no data yet; never a report)
+  valid-data slots       : 171750
+    source unavailable   : 0   (valid data, source down at round start)
+    reports emitted      : 171750
+      unattempted        : 0
+      attempted          : 171750
+        delivered        : 76172
+        network losses   : 95578  (channel 95535, energy 0, no candidate 0, TTL 43)
+PDR (delivered/scheduled): 44.351 %
+delivered / emitted      : 44.351 %  (conditional; not the MATLAB PDR)
+FND (first round < 500 op): -1
+first unavailable node   : 0  (MATLAB firstUnavailableRound nan)
+final operational nodes  : 500
+residual energy          : 935.0195 J   spent 64.9805 J (tx 55.9398, rx 8.2185, aggregation 0.8221)
+energy / delivered report: 0.000853 J
+mean delivered hops      : 6.123
+mean path delay          : 0.04275 s  (sum of frame bits/Rbit + Tproc + d/c per hop)
+Q updates / explorations : 590021 / 101593  (exploitation 488428, agent RNG draws 1180042)
+checks                   : energy closes OK; slot accounting OK; per-round MATLAB invariants OK (enforced every round)
+radio traffic            : 212.4 Mbit on air in 758746 report transmissions (mean 280.0 bit); mean generated frame 280.0 bit (per-report frames)
+sensing ledger (separate): 152377.5 J in operational node-rounds (152377.5 J if all nodes sensed all 500 rounds); NOT charged to the 2.0 J radio battery
+
+End.

@@ -1,0 +1,59 @@
+pilot,check,result,detail
+P1,20/20 frames delivered,PASS,rx 20
+P1,"one MAC attempt per frame, one MAC ACK per frame",PASS,"tx 20, acks 20"
+P1,adapter hands 20 frames down / 20 up,PASS,
+P1,upper layer is told of every MAC transmission,PASS,
+P1,node[0] radio state times cover the run,PASS,30.000000000 s
+P1,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.860822281 / 1.860822281 / 1.860822281 J
+P1,node[1] radio state times cover the run,PASS,30.000000000 s
+P1,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.860934640 / 1.860934640 / 1.860934640 J
+P2,"150 m: nothing delivered, every frame fails at the retry limit",PASS,failed 20
+P2,ACK timeout -> 3 retransmissions per frame,PASS,attempts 80
+P2,upper layer is told of every retransmission (charged in the 2 J ledger),PASS,80
+P2,node[0] radio state times cover the run,PASS,30.000000000 s
+P2,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.859689126 / 1.859689126 / 1.859689126 J
+P2,node[1] radio state times cover the run,PASS,30.000000000 s
+P2,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.861200000 / 1.861200000 / 1.861200000 J
+P3,CSMA/CA defers: more backoffs than transmissions (CCA found the channel busy),PASS,"backoffs 64, attempts 43"
+P3,simultaneous senders in range: all frames delivered (retries recover collisions),PASS,"rx 40/40, retransmissions 3"
+P3,node[0] radio state times cover the run,PASS,30.000000000 s
+P3,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.860765624 / 1.860765624 / 1.860765624 J
+P3,node[1] radio state times cover the run,PASS,30.000000000 s
+P3,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.860669280 / 1.860669280 / 1.860669280 J
+P3,node[2] radio state times cover the run,PASS,30.000000000 s
+P3,node[2] sum(P x t) = adapter energy = INET energy meter,PASS,1.860822281 / 1.860822281 / 1.860822281 J
+P4,hidden nodes collide at the receiver (frames received with errors),PASS,corrupted 29
+P4,collisions cost retries and losses; every frame accounted for,PASS,"rx 33, failed 7, attempts 101"
+P4,node[0] radio state times cover the run,PASS,30.000000000 s
+P4,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.860255704 / 1.860255704 / 1.860255704 J
+P4,node[1] radio state times cover the run,PASS,30.000000000 s
+P4,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.860762156 / 1.860762156 / 1.860762156 J
+P4,node[2] radio state times cover the run,PASS,30.000000000 s
+P4,node[2] sum(P x t) = adapter energy = INET energy meter,PASS,1.860236818 / 1.860236818 / 1.860236818 J
+P5,10 B payload: airtime = SHR+PHR + (9 + 10) B x 32 us,PASS,800 us (expected 800)
+P5,node[0] radio state times cover the run,PASS,30.000000000 s
+P5,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.861184662 / 1.861184662 / 1.861184662 J
+P5,node[1] radio state times cover the run,PASS,30.000000000 s
+P5,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.861186732 / 1.861186732 / 1.861186732 J
+P5,34 B payload: airtime = SHR+PHR + (9 + 34) B x 32 us,PASS,1568 us (expected 1568)
+P5,node[0] radio state times cover the run,PASS,30.000000000 s
+P5,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.861181114 / 1.861181114 / 1.861181114 J
+P5,node[1] radio state times cover the run,PASS,30.000000000 s
+P5,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.861186732 / 1.861186732 / 1.861186732 J
+P5,60 B payload: airtime = SHR+PHR + (9 + 60) B x 32 us,PASS,2400 us (expected 2400)
+P5,node[0] radio state times cover the run,PASS,30.000000000 s
+P5,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.861177270 / 1.861177270 / 1.861177270 J
+P5,node[1] radio state times cover the run,PASS,30.000000000 s
+P5,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.861186732 / 1.861186732 / 1.861186732 J
+P5,118 B payload: airtime = SHR+PHR + (9 + 118) B x 32 us,PASS,4256 us (expected 4256)
+P5,node[0] radio state times cover the run,PASS,30.000000000 s
+P5,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.861168696 / 1.861168696 / 1.861168696 J
+P5,node[1] radio state times cover the run,PASS,30.000000000 s
+P5,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.861186732 / 1.861186732 / 1.861186732 J
+P5b,INET does not enforce aMaxPHYPacketSize (a 128 B MPDU is sent) -> the RL layer must cap MAC payload at 118 B,PASS,airtime 4288 us
+P6,"10 frames queued at once: queue reaches 10, all delivered",PASS,max queue 10
+P6,end-to-end delay grows with queue position,PASS,3.5 6.9 10.6 13.0 17.7 20.4 23.8 27.9 32.5 35.0 ms
+P6,node[0] radio state times cover the run,PASS,30.000000000 s
+P6,node[0] sum(P x t) = adapter energy = INET energy meter,PASS,1.861011141 / 1.861011141 / 1.861011141 J
+P6,node[1] radio state times cover the run,PASS,30.000000000 s
+P6,node[1] sum(P x t) = adapter energy = INET energy meter,PASS,1.861067320 / 1.861067320 / 1.861067320 J

@@ -1,0 +1,87 @@
+# Dataset provenance
+
+## Datasets
+
+| Dataset (`data/scenarios/`) | Class | Source | Licence / status | Node mapping |
+|---|---|---|---|---|
+| `water_quality_200` | **real**; nodes 11–200 are replay nodes | KSPCB "Analysis report of River Periyar", Jan–Jul 2025, 10 sampling points, read via `data/v2_consdata_loaded.csv` (the MATLAB V2 loader table) | the user's project data; workbook unchanged | node k → station ((k−1) mod 10)+1; nodes 1–10 are the real streams |
+| `air_quality_200` | **real**; nodes 13–200 are replay nodes | UCI Beijing Multi-Site Air Quality, Chen S. (2017), DOI [10.24432/C5RK5G](https://doi.org/10.24432/C5RK5G), Beijing Municipal Environmental Monitoring Center | **CC BY 4.0**: reuse allowed with attribution | node k → station ((k−1) mod 12)+1, stations in alphabetical order |
+| `industrial_effluent_200` | **synthetic** | `generate_effluent`, seed 2101 | generated; not measurements | 20 virtual outfalls `SYN-OUTFALL-xx`, node k → ((k−1) mod 20)+1 |
+| `soil_monitoring_200` | **synthetic** | `generate_soil`, seed 2102 | generated; not measurements | 10 virtual fields `SYN-FIELD-xx`, node k → ((k−1) mod 10)+1 |
+| `mixed_environment_200` | manifest | `node_map.csv`, seed 2103 | – | per-node profile; rows read from the four datasets above, same node id |
+| `*_500` (five folders) | as the 200-node rows | same generator, `--nodes 500` | as above | nodes 1–200 are identical to the 200-node datasets; water nodes 201–500 copy their station node exactly as nodes 11–200 do; mixed = 125 nodes per profile |
+
+Every row carries the labels `data_source`, `is_real`, `is_replayed` and `is_synthetic`.
+
+- Replay nodes are virtual sensors that repeat a real station stream. They are not additional stations.
+- Synthetic rows are never labelled real.
+
+## Inputs (all read-only) and checksums (MD5)
+
+| File | MD5 |
+|---|---|
+| MATLAB V2 `data/consdata.xlsx` (not opened by the generator) | `6100b72899bd76df5a393fbbc5fb898a` (unchanged) |
+| `data/v2_consdata_loaded.csv` | `ad4639818a3c8bd0123dc16a8e1dd676` |
+| `results_200node_optimization/final/baseline/V2_200Node_Final-seed47-workload.csv` | `18fdc325e03a6e9e4465acb0c49dae7d` (identical across all 60 final runs) |
+| `data/scenarios/_sources/uci_beijing_air/PRSA2017_Data_20130301-20170228.zip` | `5ae0dea7626dd1dca091e08ee0cf5001` (downloaded 2026-11-11 with the user's approval, kept unchanged; read directly from the zip) |
+
+## Outputs (MD5, generator with numpy 2.5.3)
+
+| File | MD5 |
+|---|---|
+| `water_quality_200/observations.csv` | `45037423bab8d0e1cf4eb21c2f0d7cee` |
+| `air_quality_200/observations.csv` | `6f2b95b66f09e01045442d1d0c9c0e34` |
+| `industrial_effluent_200/observations.csv` | `b4b5327bd542320696dadbbbd003058a` |
+| `soil_monitoring_200/observations.csv` | `8787ec598eb0cc17fc484ac3996787d9` |
+| `mixed_environment_200/node_map.csv` | `f1ca07b9603bf5d396c13d77ab40d4f9` |
+| `water_quality_500/observations.csv` | `3e91790505db34d7be385a72abd923d0` |
+| `air_quality_500/observations.csv` | `5698517edf2a431b8306b597c8536fce` |
+| `industrial_effluent_500/observations.csv` | `fd78c2c13230998dd08cf7ca9e08562e` |
+| `soil_monitoring_500/observations.csv` | `22cb426c62d3041f0fd55303aea8d128` |
+| `mixed_environment_500/node_map.csv` | `2f549fd76610a21e8ecea40cc342a2f6` |
+
+The synthetic series use `numpy.random.default_rng` (PCG64). They are reproducible with the same numpy major version. A different version may change the values, and the validator's regeneration check would detect that.
+
+## Transformations applied
+
+- **Water:** none to the values. Strings are copied from the validated workload.
+  - DO is joined by (station, date) from the loader table and kept only if 0 < DO ≤ 15 mg/L.
+  - Slots before a station's first valid observation are empty and flagged `no_observation_yet`.
+- **Air:**
+  - CO ÷ 1000 (µg/m³ → mg/m³).
+  - RH derived from TEMP and DEWP with the Magnus formula.
+  - NA becomes an empty cell. PM10 < PM2.5 is flagged and not altered.
+- **Synthetic:** values are quantised to the field's 16-bit encoding resolution.
+
+## Policies
+
+- **Missing values:** a missing value is an empty cell, explained in `quality_flag`, and is never 0. Exact zeros that do appear are real: 0.0 °C temperatures, calm wind, and anoxic synthetic DO.
+- **Validity rules:** per field, in each `metadata.json` and in `SENSOR_PARAMETER_MATRIX.csv`.
+
+## Reproduce
+
+Run these from `RLHybrid_Scalability_Experiment`:
+
+```bash
+python -P scenario_study/generators/generate_scenarios.py
+```
+
+```bash
+python -P scenario_study/generators/generate_scenarios.py --nodes 500 --matrix ""
+```
+
+```bash
+python -P scenario_study/generators/validate_scenarios.py --regen-dir <empty temp dir>
+```
+
+```bash
+python -P scenario_study/generators/validate_scenarios.py --nodes 500 --regen-dir <empty temp dir>
+```
+
+```bash
+python -P scenario_study/generators/plot_profiles.py
+```
+
+The validator writes `scenario_study/validation/<dataset>_validation.txt`. The figure is written to `scenario_study/figures/scenario_comparison.png`.
+
+**Attribution required for the air data (CC BY 4.0):** Chen, S. (2017). *Beijing Multi-Site Air Quality* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5RK5G

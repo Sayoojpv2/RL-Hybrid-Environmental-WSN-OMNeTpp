@@ -1,0 +1,24 @@
+PASS seed 42: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS seed 43: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS seed 44: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS seed 45: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS seed 46: workload identical to MATLAB (9825 reports, 0 field differences)
+PASS workload summary (counts, r_events milestones, station order, node ids) identical to MATLAB
+PASS expected counts: raw 1273 valid 1251 dates 212 scheduled 10000 available 9825 unavailable 175
+PASS station -> node mapping as in create_periyar_workload_continuous.m: {'PATHALAM BUND U/S': 22, 'PATHALAM BUND D/S': 28, 'PATHALAM BRIDGE': 32, 'PUTHALAM KADAVU': 38, 'MANJUMMAL BUND': 42, 'VETTUKADAVU': 48, 'ALUVA - MANAPPURAM': 4, 'PURAPILLIKADAVU US': 8, 'PURAPILLIKADAVU BUND NAVIGATION': 12, 'PURAPILLIKADAVU BUND DS': 18}
+PASS at most one report per station per round, all 1000 rounds present
+PASS no station emits twice in a round
+PASS no future observation used: 0 reports carry a date after their round
+PASS pre-first-observation slots = sum over stations of (first round - 1) = 175
+PASS seed 42: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 42: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+PASS seed 43: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 43: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+PASS seed 44: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 44: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+PASS seed 45: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 45: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+PASS seed 46: 50 node coordinates bit-identical to generate_scenario.m (0 differ)
+PASS seed 46: all 2550000 success_history bits (50 x 51 x 1000) identical (0 differ)
+
+22 checks, 0 failed

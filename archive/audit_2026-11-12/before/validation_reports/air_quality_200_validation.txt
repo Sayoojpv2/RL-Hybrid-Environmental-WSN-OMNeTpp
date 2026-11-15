@@ -1,0 +1,52 @@
+air_quality_200: ALL CHECKS PASSED
+PASS observations.csv MD5 matches metadata (6f2b95b66f09e01045442d1d0c9c0e34)
+PASS 100000 rows = 200 nodes x 500 rounds
+PASS node ids 1..200 (200 nodes)
+PASS rounds 1..500
+PASS sample_id unique
+PASS no duplicate (node, round) records
+PASS field columns present with units: PM25_ugm3 [ug/m3], PM10_ugm3 [ug/m3], CO_mgm3 [mg/m3], NO2_ugm3 [ug/m3], SO2_ugm3 [ug/m3], O3_ugm3 [ug/m3], temperature_C [degC], RH_pct [%], wind_ms [m/s]
+PASS sensor_type / scenario_id labels
+PASS PM25_ugm3: 99579 present, 421 missing, range 3..646 within [0, 2000], all encodable at scale 1
+PASS PM25_ugm3: every missing value is an empty cell explained by quality_flag (421/421)
+PASS PM10_ugm3: 99916 present, 84 missing, range 3..737 within [0, 2000], all encodable at scale 1
+PASS PM10_ugm3: every missing value is an empty cell explained by quality_flag (84/84)
+PASS CO_mgm3: 98338 present, 1662 missing, range 0.1..10 within [0, 100], all encodable at scale 0.001
+PASS CO_mgm3: every missing value is an empty cell explained by quality_flag (1662/1662)
+PASS NO2_ugm3: 99491 present, 509 missing, range 2..238 within [0, 2000], all encodable at scale 1
+PASS NO2_ugm3: every missing value is an empty cell explained by quality_flag (509/509)
+PASS SO2_ugm3: 99848 present, 152 missing, range 2..110 within [0, 2000], all encodable at scale 1
+PASS SO2_ugm3: every missing value is an empty cell explained by quality_flag (152/152)
+PASS O3_ugm3: 99509 present, 491 missing, range 2..81 within [0, 2000], all encodable at scale 1
+PASS O3_ugm3: every missing value is an empty cell explained by quality_flag (491/491)
+PASS temperature_C: 100000 present, 0 missing, range -8.5..11.6 within [-40, 60], all encodable at scale 0.01
+PASS temperature_C: every missing value is an empty cell explained by quality_flag (0/0)
+PASS RH_pct: 100000 present, 0 missing, range 9.99..97.04 within [0, 100], all encodable at scale 0.01
+PASS RH_pct: every missing value is an empty cell explained by quality_flag (0/0)
+PASS wind_ms: 100000 present, 0 missing, range 0..8.5 within [0, 60], all encodable at scale 0.01
+PASS wind_ms: every missing value is an empty cell explained by quality_flag (0/0)
+     exact zero values per field (missing values are never written as 0): {"PM25_ugm3": 0, "PM10_ugm3": 0, "CO_mgm3": 0, "NO2_ugm3": 0, "SO2_ugm3": 0, "O3_ugm3": 0, "temperature_C": 1079, "RH_pct": 0, "wind_ms": 2992}
+PASS PM10 < PM2.5 in 332 rows (0.33%); all flagged pm10_lt_pm25_in_source, values unaltered
+PASS PM25_ugm3 non-negative
+PASS PM10_ugm3 non-negative
+PASS CO_mgm3 non-negative
+PASS NO2_ugm3 non-negative
+PASS SO2_ugm3 non-negative
+PASS O3_ugm3 non-negative
+PASS rows of every node ordered by round with no gaps
+PASS sim_time_s = (round - 1) x 100 s
+PASS env_time = 2016-12-01 00:00 + (round - 1) h, hourly, no gaps
+PASS node k -> source stream ((k - 1) mod 12) + 1
+PASS replay nodes 13-200 carry exactly the values of their station node in the same round
+PASS labels: is_real=1, is_synthetic=0, is_replayed=1 only for nodes > 12
+PASS alarm_flag recomputed from the profile thresholds
+PASS Mode 1 mask = the 96,500 report slots of the validated 200-node workload (96500)
+PASS Mode 2 payload = 10 B + 2 B/field, frame bits = 8 x (17 B + payload)
+PASS Mode 2 field count = present payload fields
+PASS Mode 2 sends nothing when no field is present
+     Mode 1: 96500 reports x 4000 bits = 48.2 MB offered
+     Mode 2: 100000 reports (500.0 per node), 64787 priority (alarm), 4.493 MB offered, mean frame 359 bits; triggers {'periodic': 35213, 'periodic+alarm': 64787}
+     Mode 2 sensing+processing energy per node: 53819.748 J over 500 rounds (107639.495..107639.495 mJ per round)
+     alarm rows: 64787 (64.8%); anomaly rows: 64787; event types: {'none': 35213, 'observed_no2_peak_rush_hour': 15337, 'observed_exceedance': 20767, 'observed_pm_episode': 28683}
+     quality flags: {"ok": 97040, "missing:NO2_ugm3": 509, "missing:O3_ugm3": 491, "pm10_lt_pm25_in_source": 332, "missing:SO2_ugm3": 152, "missing:PM25_ugm3": 421, "missing:CO_mgm3": 1662, "missing:PM10_ugm3": 84}
+PASS reproducible: regenerated observations.csv is byte-identical (MD5)

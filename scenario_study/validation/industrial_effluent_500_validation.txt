@@ -1,0 +1,53 @@
+industrial_effluent_500: ALL CHECKS PASSED
+PASS observations.csv MD5 matches metadata (fd78c2c13230998dd08cf7ca9e08562e)
+PASS 250000 rows = 500 nodes x 500 rounds
+PASS node ids 1..500 (500 nodes)
+PASS rounds 1..500
+PASS sample_id unique
+PASS no duplicate (node, round) records
+PASS field columns present with units: temperature_C [degC], pH [pH], conductivity_uScm [uS/cm], TDS_mgL [mg/L], DO_mgL [mg/L], turbidity_NTU [NTU], COD_mgL [mg/L], BOD_mgL [mg/L], NH3N_mgL [mg/L as N]
+PASS sensor_type / scenario_id labels
+PASS temperature_C: 247591 present, 2409 missing, range 26.43..40.53 within [0, 60], all encodable at scale 0.01
+PASS temperature_C: every missing value is an empty cell explained by quality_flag (2409/2409)
+PASS pH: 247561 present, 2439 missing, range 2.444..12 within [0, 14], all encodable at scale 0.001
+PASS pH: every missing value is an empty cell explained by quality_flag (2439/2439)
+PASS conductivity_uScm: 247563 present, 2437 missing, range 1290..1.033e+04 within [0, 131070], all encodable at scale 2
+PASS conductivity_uScm: every missing value is an empty cell explained by quality_flag (2437/2437)
+PASS TDS_mgL: 247585 present, 2415 missing, range 783..6871 within [0, 65535], all encodable at scale 1
+PASS TDS_mgL: every missing value is an empty cell explained by quality_flag (2415/2415)
+PASS DO_mgL: 247568 present, 2432 missing, range 0..6.94 within [0, 20], all encodable at scale 0.01
+PASS DO_mgL: every missing value is an empty cell explained by quality_flag (2432/2432)
+PASS turbidity_NTU: 247579 present, 2421 missing, range 4.6..262.2 within [0, 4000], all encodable at scale 0.1
+PASS turbidity_NTU: every missing value is an empty cell explained by quality_flag (2421/2421)
+PASS COD_mgL: 247609 present, 2391 missing, range 45..2979 within [0, 5000], all encodable at scale 1
+PASS COD_mgL: every missing value is an empty cell explained by quality_flag (2391/2391)
+PASS BOD_mgL: 247612 present, 2388 missing, range 5.9..351.6 within [0, 3000], all encodable at scale 0.1
+PASS BOD_mgL: every missing value is an empty cell explained by quality_flag (2388/2388)
+PASS NH3N_mgL: 247602 present, 2398 missing, range 2.87..240.7 within [0, 500], all encodable at scale 0.01
+PASS NH3N_mgL: every missing value is an empty cell explained by quality_flag (2398/2398)
+     exact zero values per field (missing values are never written as 0): {"temperature_C": 0, "pH": 0, "conductivity_uScm": 0, "TDS_mgL": 0, "DO_mgL": 244, "turbidity_NTU": 0, "COD_mgL": 0, "BOD_mgL": 0, "NH3N_mgL": 0}
+PASS conductivity_uScm non-negative
+PASS TDS_mgL non-negative
+PASS DO_mgL non-negative
+PASS turbidity_NTU non-negative
+PASS COD_mgL non-negative
+PASS BOD_mgL non-negative
+PASS NH3N_mgL non-negative
+PASS rows of every node ordered by round with no gaps
+PASS sim_time_s = (round - 1) x 100 s
+PASS env_time step 1 h (T+0000h .. T+0499h)
+PASS node k -> source stream ((k - 1) mod 20) + 1
+PASS labels: every row is_synthetic=1, is_real=0, data_source=SYNTHETIC
+PASS alarm_flag recomputed from the profile thresholds
+PASS Mode 1 mask = the 96,500 report slots of the validated 200-node workload (96500)
+PASS Mode 2 payload = 10 B + 2 B/field, frame bits = 8 x (17 B + payload)
+PASS Mode 2 field count = present payload fields
+PASS Mode 2 sends nothing when no field is present
+PASS Mode 2 schedule recomputed: periodic every 1 round(s), alarm reports every 1 round(s)
+PASS m2_sensing_mJ recomputed from sensor_profiles.json (V x mA x ms per sample x samples, continuous loads x 1 h, chemistry only on chemistry rounds, MCU per sample)
+     Mode 1: 96500 reports x 4000 bits = 48.2 MB offered
+     Mode 2: 248086 reports (496.2 per node), 42271 priority (alarm), 11.155 MB offered, mean frame 360 bits; triggers {'periodic': 205815, 'periodic+alarm': 42271, 'no_data': 1914}
+     Mode 2 sensing+processing energy per node: 120902.755 J over 500 rounds (241805.510..241805.510 mJ per round)
+     alarm rows: 42271 (16.9%); anomaly rows: 31937; event types: {'none': 216467, 'abnormal_discharge': 13466, 'treatment_upset': 18367, 'sensor_outage': 1596, 'sensor_spike': 104}
+     quality flags: {"ok": 243618, "missing:COD_mgL": 477, "missing:conductivity_uScm": 523, "missing:turbidity_NTU": 507, "missing:BOD_mgL": 474, "missing:TDS_mgL": 501, "missing:pH": 525, "missing:temperature_C": 495, "missing:DO_mgL": 518, "missing:NH3N_mgL": 484, "sensor_outage": 1914}
+PASS reproducible: regenerated observations.csv is byte-identical (MD5)

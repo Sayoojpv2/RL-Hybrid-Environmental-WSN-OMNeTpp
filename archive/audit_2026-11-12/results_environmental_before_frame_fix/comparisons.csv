@@ -1,0 +1,57 @@
+A,B,metric,mean_A,mean_B,diff_B_minus_A,diff_sd,diff_pct_of_A,paired_t,p,p_holm,significant_holm_0.05
+water,effluent,delivery_ratio_pct,45.2635,46.8501,1.58668,1.26266,3.50542,2.80987,0.0483235,0.578959,no
+water,effluent,source_packet_pdr_pct,45.2635,46.8501,1.58668,1.26266,3.50542,2.80987,0.0483235,0.578959,no
+water,effluent,alive_r500,200,200,0,0,0,nan,nan,nan,n/a (identical in every seed)
+water,effluent,residual_radio_J,377.19,358.153,-19.0364,0.927982,-5.04692,-45.8703,1.35099e-06,5.14408e-05,yes
+water,effluent,energy_per_delivered_mJ,0.736094,0.900721,0.164626,0.0186682,22.3648,19.7189,3.90134e-05,0.00122451,yes
+water,effluent,mean_delay_ms,35.5341,41.0521,5.51801,1.87689,15.5288,6.574,0.00277104,0.0554207,no
+water,effluent,transmitted_Mbit,79.14,154.68,75.54,3.68144,95.4511,45.8822,1.34958e-06,5.14408e-05,yes
+water,effluent,sensing_kJ_operational,60.951,24180.6,24119.6,0,39572.1,nan,nan,nan,n/a (identical in every seed)
+water,air,delivery_ratio_pct,45.2635,46.783,1.51954,1.14553,3.35709,2.96613,0.0413023,0.578959,no
+water,air,source_packet_pdr_pct,45.2635,46.783,1.51954,1.14553,3.35709,2.96613,0.0413023,0.578959,no
+water,air,alive_r500,200,200,0,0,0,nan,nan,nan,n/a (identical in every seed)
+water,air,residual_radio_J,377.19,357.641,-19.5484,0.616429,-5.18264,-70.9108,2.36987e-07,9.95347e-06,yes
+water,air,energy_per_delivered_mJ,0.736094,0.906471,0.170376,0.0295616,23.146,12.8874,0.000209051,0.00543534,yes
+water,air,mean_delay_ms,35.5341,41.4485,5.91447,2.42051,16.6445,5.46379,0.00545657,0.103675,no
+water,air,transmitted_Mbit,79.14,156.74,77.6,5.60134,98.0541,30.9781,6.47025e-06,0.000226459,yes
+water,air,sensing_kJ_operational,60.951,10763.9,10703,0,17560,nan,nan,nan,n/a (identical in every seed)
+water,soil,delivery_ratio_pct,45.2635,41.9296,-3.33388,0.903881,-7.36551,-8.24754,0.00117881,0.0294703,yes
+water,soil,source_packet_pdr_pct,45.2635,41.9296,-3.33388,0.903881,-7.36551,-8.24754,0.00117881,0.0294703,yes
+water,soil,alive_r500,200,200,0,0,0,nan,nan,nan,n/a (identical in every seed)
+water,soil,residual_radio_J,377.19,389.912,12.7224,0.616476,3.37294,46.1464,1.31899e-06,5.14408e-05,yes
+water,soil,energy_per_delivered_mJ,0.736094,0.959186,0.223092,0.0253022,30.3075,19.7156,3.90388e-05,0.00122451,yes
+water,soil,mean_delay_ms,35.5341,33.7598,-1.77426,1.89972,-4.99312,-2.08839,0.105021,0.579857,no
+water,soil,transmitted_Mbit,79.14,25.18,-53.96,2.23338,-68.183,-54.0249,7.02724e-07,2.8109e-05,yes
+water,soil,sensing_kJ_operational,60.951,5.7225,-55.2285,0,-90.6113,nan,nan,nan,n/a (identical in every seed)
+water,mixed,delivery_ratio_pct,45.2635,45.1813,-0.0821695,1.67981,-0.181536,-0.10938,0.918169,1,no
+water,mixed,source_packet_pdr_pct,45.2635,45.1813,-0.0821695,1.67981,-0.181536,-0.10938,0.918169,1,no
+water,mixed,alive_r500,200,200,0,0,0,nan,nan,nan,n/a (identical in every seed)
+water,mixed,residual_radio_J,377.19,370.879,-6.31063,0.706625,-1.67307,-19.9696,3.71065e-05,0.00122451,yes
+water,mixed,energy_per_delivered_mJ,0.736094,0.879753,0.143659,0.0432696,19.5163,7.42394,0.00175722,0.0369016,yes
+water,mixed,mean_delay_ms,35.5341,38.2698,2.73573,2.02677,7.69889,3.01824,0.0392312,0.578959,no
+water,mixed,transmitted_Mbit,79.14,103.08,23.94,3.29894,30.2502,16.2269,8.43909e-05,0.00236294,yes
+water,mixed,sensing_kJ_operational,60.951,8752.79,8691.84,0,14260.4,nan,nan,nan,n/a (identical in every seed)
+effluent,mixed,delivery_ratio_pct,46.8501,45.1813,-1.66885,0.979629,-3.56209,-3.80925,0.0189523,0.32219,no
+effluent,mixed,source_packet_pdr_pct,46.8501,45.1813,-1.66885,0.979629,-3.56209,-3.80925,0.0189523,0.32219,no
+effluent,mixed,alive_r500,200,200,0,0,0,nan,nan,nan,n/a (identical in every seed)
+effluent,mixed,residual_radio_J,358.153,370.879,12.7258,1.4353,3.55317,19.8256,3.81869e-05,0.00122451,yes
+effluent,mixed,energy_per_delivered_mJ,0.900721,0.879753,-0.0209676,0.0475843,-2.32787,-0.985303,0.380257,1,no
+effluent,mixed,mean_delay_ms,41.0521,38.2698,-2.78228,2.52607,-6.77744,-2.46286,0.0694773,0.578959,no
+effluent,mixed,transmitted_Mbit,154.68,103.08,-51.6,5.82752,-33.3592,-19.7993,3.83882e-05,0.00122451,yes
+effluent,mixed,sensing_kJ_operational,24180.6,8752.79,-15427.8,0,-63.8023,nan,nan,nan,n/a (identical in every seed)
+air,mixed,delivery_ratio_pct,46.783,45.1813,-1.60171,1.27119,-3.42369,-2.81746,0.0479519,0.578959,no
+air,mixed,source_packet_pdr_pct,46.783,45.1813,-1.60171,1.27119,-3.42369,-2.81746,0.0479519,0.578959,no
+air,mixed,alive_r500,200,200,0,0,0,nan,nan,nan,n/a (identical in every seed)
+air,mixed,residual_radio_J,357.641,370.879,13.2377,1.08442,3.7014,27.2961,1.0712e-05,0.000364208,yes
+air,mixed,energy_per_delivered_mJ,0.906471,0.879753,-0.0267176,0.0457962,-2.94743,-1.30452,0.262049,1,no
+air,mixed,mean_delay_ms,41.4485,38.2698,-3.17874,3.28723,-7.66912,-2.16227,0.0966429,0.579857,no
+air,mixed,transmitted_Mbit,156.74,103.08,-53.66,7.95506,-34.235,-15.0832,0.000112606,0.00304037,yes
+air,mixed,sensing_kJ_operational,10763.9,8752.79,-2011.16,0,-18.6842,nan,nan,nan,n/a (identical in every seed)
+soil,mixed,delivery_ratio_pct,41.9296,45.1813,3.25171,0.905291,7.75518,8.03173,0.00130411,0.0299945,yes
+soil,mixed,source_packet_pdr_pct,41.9296,45.1813,3.25171,0.905291,7.75518,8.03173,0.00130411,0.0299945,yes
+soil,mixed,alive_r500,200,200,0,0,0,nan,nan,nan,n/a (identical in every seed)
+soil,mixed,residual_radio_J,389.912,370.879,-19.033,1.17541,-4.88136,-36.2078,3.47326e-06,0.000125037,yes
+soil,mixed,energy_per_delivered_mJ,0.959186,0.879753,-0.0794334,0.0585267,-8.28133,-3.03483,0.0385973,0.578959,no
+soil,mixed,mean_delay_ms,33.7598,38.2698,4.50999,2.19464,13.359,4.59513,0.0100678,0.18122,no
+soil,mixed,transmitted_Mbit,25.18,103.08,77.9,2.9266,309.373,59.5194,4.77199e-07,1.95651e-05,yes
+soil,mixed,sensing_kJ_operational,5.7225,8752.79,8747.07,0,152854,nan,nan,nan,n/a (identical in every seed)

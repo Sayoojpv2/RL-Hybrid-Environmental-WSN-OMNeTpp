@@ -1,0 +1,6 @@
+scenario,seed,runtime_s,exit,checks_ok,peak_MB
+water,42,3.09,0,1,115.6
+effluent,42,5.27,0,1,148.1
+air,42,4.94,0,1,128.5
+soil,42,1.85,0,1,91.4
+mixed,42,5.56,0,1,123.4

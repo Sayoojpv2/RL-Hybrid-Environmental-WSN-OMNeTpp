@@ -1,0 +1,404 @@
+version 3
+run V2_ScalingSweep-0-20261106-18:37:07-12060
+attr configname V2_ScalingSweep
+attr datetime 20261106-18:37:07
+attr datetimef 20261106-183707
+attr experiment V2_ScalingSweep
+attr inifile omnetpp.ini
+attr iterationvars "$N=10, $seed=42"
+attr iterationvarsd N=10/seed=42
+attr iterationvarsf N=10,seed=42-
+attr measurement "$N=10, $seed=42"
+attr network PeriyarRiverNetwork
+attr processid 12060
+attr repetition 0
+attr replication #0
+attr resultdir results_v2_scaling_smoke
+attr runnumber 0
+attr seedset 0
+itervar N 10
+itervar seed 42
+config **.controller.numRounds 20
+config result-dir results_v2_scaling_smoke
+config description "V2 RL-Hybrid scaling sweep: numNodes 10..500 x seeds 42-46, 500 rounds, fixed 600 x 50 m area"
+config extends V2_Common
+config result-dir results_v2_scaling
+config PeriyarRiverNetwork.numNodes 10
+config **.controller.scenarioSeed 42
+config **.controller.workloadMode "\"mixed\""
+config **.controller.syntheticSources "\"others\""
+config **.controller.syntheticFields "\"temperature|degC|30|1.5|0.5; pH|pH|7.2|0.3|0.1; conductivity|uS/cm|300|100|50; TDS|mg/L|170|60|30\""
+config **.controller.syntheticSeed 42
+config **.controller.syntheticPeriodRounds 100
+config **.controller.roundPeriod "(10 <= 40 ? 10s : 0.25s * 10)"
+config sim-time-limit 100000s
+config **.controller.exportDecisionLog false
+config **.controller.exportChannel false
+config **.controller.outputPrefix "\"results_v2_scaling_smoke/V2_ScalingSweep-N10-seed42\""
+config description "base of the MATLAB V2 10-node configurations (not meant to be run alone)"
+config result-dir results_v2_10node
+config PeriyarRiverNetwork.numNodes 10
+config **.controller.topologyMode "\"stationPositions\""
+config **.controller.stationNodeIds "\"4,8,12,18,22,28,32,38,42,48\""
+config **.controller.reportPreservingEnergy true
+config **.controller.workloadRounds 500
+config **.controller.scheduleRounds 1000
+config **.controller.numRounds 500
+config **.controller.datasetPath "\"data/v2_consdata_loaded.csv\""
+config **.controller.datasetFields "\"Temperature|temperature|degC|15|50; pH|pH|pH|0|14; Conductivity|conductivity|uS/cm|>0|inf; TDS|TDS|mg/L|>0|inf\""
+config **.controller.stationMap "\"ALUVA - MANAPPURAM=1; PURAPILLIKADAVU US=2; PURAPILLIKADAVU BUND NAVIGATION=3; PURAPILLIKADAVU BUND DS=4; PATHALAM BUND U/S=5; PATHALAM BUND D/S=6; PATHALAM BRIDGE=7; PUTHALAM KADAVU=8; MANJUMMAL BUND=9; VETTUKADAVU=10\""
+config **.controller.exportReference true
+config **.controller.exportChannel true
+config sim-time-limit 5000s
+config cmdenv-status-frequency 5s
+config network PeriyarRiverNetwork
+config sim-time-limit 10000s
+config cmdenv-express-mode true
+config cmdenv-status-frequency 30s
+config **.cmdenv-log-level warn
+config record-eventlog false
+config **.controller.datasetPath "\"data/Periyar_WaterQuality_Project.csv\""
+config **.controller.outputPrefix "\"results_v2_scaling_smoke/V2_ScalingSweep-seed42\""
+config **.controller.numRounds 1000
+config **.controller.roundPeriod 10s
+config **.bs.hops.result-recording-modes mean
+config **.bs.pathDelay.result-recording-modes mean,count
+config **.bs.latency.result-recording-modes mean
+
+par PeriyarRiverNetwork.controller typename "\"Controller\""
+par PeriyarRiverNetwork.controller scenarioSeed 42
+par PeriyarRiverNetwork.controller datasetPath "\"data/v2_consdata_loaded.csv\""
+par PeriyarRiverNetwork.controller workloadMode "\"mixed\""
+par PeriyarRiverNetwork.controller datasetTimeColumn "\"Date\""
+par PeriyarRiverNetwork.controller datasetStationColumn "\"Location\""
+par PeriyarRiverNetwork.controller datasetFields "\"Temperature|temperature|degC|15|50; pH|pH|pH|0|14; Conductivity|conductivity|uS/cm|>0|inf; TDS|TDS|mg/L|>0|inf\""
+par PeriyarRiverNetwork.controller stationMap "\"ALUVA - MANAPPURAM=1; PURAPILLIKADAVU US=2; PURAPILLIKADAVU BUND NAVIGATION=3; PURAPILLIKADAVU BUND DS=4; PATHALAM BUND U/S=5; PATHALAM BUND D/S=6; PATHALAM BRIDGE=7; PUTHALAM KADAVU=8; MANJUMMAL BUND=9; VETTUKADAVU=10\""
+par PeriyarRiverNetwork.controller invalidRowPolicy "\"drop\""
+par PeriyarRiverNetwork.controller holdPolicy "\"sampleAndHold\""
+par PeriyarRiverNetwork.controller expectedRawRows 1273
+par PeriyarRiverNetwork.controller expectedValidRows 1251
+par PeriyarRiverNetwork.controller expectedUniqueTimes 212
+par PeriyarRiverNetwork.controller syntheticSources "\"others\""
+par PeriyarRiverNetwork.controller syntheticFields "\"temperature|degC|30|1.5|0.5; pH|pH|7.2|0.3|0.1; conductivity|uS/cm|300|100|50; TDS|mg/L|170|60|30\""
+par PeriyarRiverNetwork.controller syntheticSeed 42
+par PeriyarRiverNetwork.controller syntheticPeriodRounds 100
+par PeriyarRiverNetwork.controller reportInterval 1
+par PeriyarRiverNetwork.controller workloadRounds 500
+par PeriyarRiverNetwork.controller scheduleRounds 1000
+par PeriyarRiverNetwork.controller topologyMode "\"stationPositions\""
+par PeriyarRiverNetwork.controller stationNodeIds "\"4,8,12,18,22,28,32,38,42,48\""
+par PeriyarRiverNetwork.controller reportPreservingEnergy true
+par PeriyarRiverNetwork.controller areaLength 600
+par PeriyarRiverNetwork.controller areaWidth 50
+par PeriyarRiverNetwork.controller bsX 600
+par PeriyarRiverNetwork.controller bsY 25
+par PeriyarRiverNetwork.controller packetSize 4000
+par PeriyarRiverNetwork.controller initialEnergy 2
+par PeriyarRiverNetwork.controller numRounds 20
+par PeriyarRiverNetwork.controller roundPeriod 10s
+attr unit s
+par PeriyarRiverNetwork.controller stepGuard 0.001s
+attr unit s
+par PeriyarRiverNetwork.controller outputPrefix "\"results_v2_scaling_smoke/V2_ScalingSweep-N10-seed42\""
+par PeriyarRiverNetwork.controller exportReference true
+par PeriyarRiverNetwork.controller exportChannel false
+par PeriyarRiverNetwork.controller epsilonInitial 0.25
+par PeriyarRiverNetwork.controller epsilonMinimum 0.05
+par PeriyarRiverNetwork.controller epsilonDecayPerRound 0.9985
+par PeriyarRiverNetwork.controller extraTopologySeed -1
+par PeriyarRiverNetwork.controller topologySeed -1
+par PeriyarRiverNetwork.controller channelStream "\"matlab\""
+par PeriyarRiverNetwork.controller exportDeliveredPayload false
+par PeriyarRiverNetwork.controller exportDecisionLog false
+par PeriyarRiverNetwork.controller exportDiagnostics false
+scalar PeriyarRiverNetwork.controller scheduledSlots 200
+scalar PeriyarRiverNetwork.controller validDataSlots 121
+scalar PeriyarRiverNetwork.controller preObservationSlots 79
+scalar PeriyarRiverNetwork.controller sourceUnavailableDataSlots 0
+scalar PeriyarRiverNetwork.controller reportsEmitted 121
+scalar PeriyarRiverNetwork.controller reportsAttempted 113
+scalar PeriyarRiverNetwork.controller reportsUnattempted 8
+scalar PeriyarRiverNetwork.controller reportsDelivered 21
+scalar PeriyarRiverNetwork.controller networkLossTotal 92
+scalar PeriyarRiverNetwork.controller lossChannel 61
+scalar PeriyarRiverNetwork.controller lossEnergy 0
+scalar PeriyarRiverNetwork.controller lossNoCandidate 31
+scalar PeriyarRiverNetwork.controller lossTTL 0
+scalar PeriyarRiverNetwork.controller PDR_scheduled_percent 10.5
+scalar PeriyarRiverNetwork.controller FND_round -1
+scalar PeriyarRiverNetwork.controller finalOperationalNodes 10
+scalar PeriyarRiverNetwork.controller residualEnergy 19.307712208557408
+attr unit J
+scalar PeriyarRiverNetwork.controller energySpent 0.6922877914425878
+attr unit J
+scalar PeriyarRiverNetwork.controller energyPerDeliveredReport 0.03296608530678989
+attr unit J
+scalar PeriyarRiverNetwork.controller meanDeliveredHops 2.2857142857142856
+scalar PeriyarRiverNetwork.controller meanPathDelay 0.04800093814038096
+attr unit s
+scalar PeriyarRiverNetwork.controller qUpdates 213
+scalar PeriyarRiverNetwork.controller explorationDecisions 52
+scalar PeriyarRiverNetwork.controller exploitationDecisions 161
+scalar PeriyarRiverNetwork.controller physicalFrames 195
+scalar PeriyarRiverNetwork.controller agentRngDraws 426
+par PeriyarRiverNetwork.BS typename "\"BaseStation\""
+par PeriyarRiverNetwork.BS processingDelay 0.005s
+attr unit s
+scalar PeriyarRiverNetwork.BS deliveredReports 21
+scalar PeriyarRiverNetwork.BS framesReceived 16
+scalar PeriyarRiverNetwork.BS framesNotDecoded 12
+scalar PeriyarRiverNetwork.BS hops:mean 2.2857142857142856
+attr recordingmode mean
+attr title "hops per delivered report, mean"
+statistic PeriyarRiverNetwork.BS hops:histogram
+field count 21
+field mean 2.2857142857142856
+field stddev 0.7171371656006363
+field min 1
+field max 4
+field sum 48
+field sqrsum 120
+attr recordingmode histogram
+attr title "hops per delivered report"
+bin	-inf	0
+bin	0	0
+bin	1	2
+bin	2	12
+bin	3	6
+bin	4	1
+bin	5	0
+scalar PeriyarRiverNetwork.BS latency:mean 0.172052052875
+attr recordingmode mean
+attr title "OMNeT++ latency from round start to BS, mean"
+attr unit s
+scalar PeriyarRiverNetwork.BS pathDelay:mean 0.04800093814038096
+attr recordingmode mean
+attr title "path delay per delivered report (MATLAB definition), mean"
+attr unit s
+scalar PeriyarRiverNetwork.BS pathDelay:count 21
+attr recordingmode count
+attr title "path delay per delivered report (MATLAB definition), count"
+attr unit s
+par PeriyarRiverNetwork.node[0] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[0] nodeId 1
+par PeriyarRiverNetwork.node[0] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[0] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[0] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[0] residualEnergy 1.995608273038695
+attr unit J
+scalar PeriyarRiverNetwork.node[0] alive 1
+scalar PeriyarRiverNetwork.node[0] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[0] txEnergy 0.003951726961305343
+attr unit J
+scalar PeriyarRiverNetwork.node[0] rxEnergy 0.00039999999999999996
+attr unit J
+scalar PeriyarRiverNetwork.node[0] aggregationEnergy 4e-05
+attr unit J
+scalar PeriyarRiverNetwork.node[0] txFrames 3
+scalar PeriyarRiverNetwork.node[0] rxFrames 2
+scalar PeriyarRiverNetwork.node[0] qUpdates 3
+scalar PeriyarRiverNetwork.node[0] qTableNonZeroEntries 3
+par PeriyarRiverNetwork.node[1] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[1] nodeId 2
+par PeriyarRiverNetwork.node[1] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[1] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[1] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[1] residualEnergy 1.974990474992533
+attr unit J
+scalar PeriyarRiverNetwork.node[1] alive 1
+scalar PeriyarRiverNetwork.node[1] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[1] txEnergy 0.024129525007467043
+attr unit J
+scalar PeriyarRiverNetwork.node[1] rxEnergy 0.0007999999999999999
+attr unit J
+scalar PeriyarRiverNetwork.node[1] aggregationEnergy 8e-05
+attr unit J
+scalar PeriyarRiverNetwork.node[1] txFrames 4
+scalar PeriyarRiverNetwork.node[1] rxFrames 4
+scalar PeriyarRiverNetwork.node[1] qUpdates 4
+scalar PeriyarRiverNetwork.node[1] qTableNonZeroEntries 4
+par PeriyarRiverNetwork.node[2] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[2] nodeId 3
+par PeriyarRiverNetwork.node[2] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[2] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[2] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[2] residualEnergy 1.9980468307486525
+attr unit J
+scalar PeriyarRiverNetwork.node[2] alive 1
+scalar PeriyarRiverNetwork.node[2] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[2] txEnergy 0.0012931692513476372
+attr unit J
+scalar PeriyarRiverNetwork.node[2] rxEnergy 6e-04
+attr unit J
+scalar PeriyarRiverNetwork.node[2] aggregationEnergy 6.000000000000001e-05
+attr unit J
+scalar PeriyarRiverNetwork.node[2] txFrames 3
+scalar PeriyarRiverNetwork.node[2] rxFrames 3
+scalar PeriyarRiverNetwork.node[2] qUpdates 3
+scalar PeriyarRiverNetwork.node[2] qTableNonZeroEntries 3
+par PeriyarRiverNetwork.node[3] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[3] nodeId 4
+par PeriyarRiverNetwork.node[3] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[3] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[3] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[3] residualEnergy 1.9696824022432138
+attr unit J
+scalar PeriyarRiverNetwork.node[3] alive 1
+scalar PeriyarRiverNetwork.node[3] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[3] txEnergy 0.02943759775678625
+attr unit J
+scalar PeriyarRiverNetwork.node[3] rxEnergy 0.0007999999999999999
+attr unit J
+scalar PeriyarRiverNetwork.node[3] aggregationEnergy 8e-05
+attr unit J
+scalar PeriyarRiverNetwork.node[3] txFrames 3
+scalar PeriyarRiverNetwork.node[3] rxFrames 4
+scalar PeriyarRiverNetwork.node[3] qUpdates 3
+scalar PeriyarRiverNetwork.node[3] qTableNonZeroEntries 3
+par PeriyarRiverNetwork.node[4] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[4] nodeId 5
+par PeriyarRiverNetwork.node[4] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[4] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[4] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[4] residualEnergy 1.8958981853849768
+attr unit J
+scalar PeriyarRiverNetwork.node[4] alive 1
+scalar PeriyarRiverNetwork.node[4] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[4] txEnergy 0.10256181461502241
+attr unit J
+scalar PeriyarRiverNetwork.node[4] rxEnergy 0.0014000000000000002
+attr unit J
+scalar PeriyarRiverNetwork.node[4] aggregationEnergy 0.00014000000000000001
+attr unit J
+scalar PeriyarRiverNetwork.node[4] txFrames 26
+scalar PeriyarRiverNetwork.node[4] rxFrames 7
+scalar PeriyarRiverNetwork.node[4] qUpdates 26
+scalar PeriyarRiverNetwork.node[4] qTableNonZeroEntries 18
+par PeriyarRiverNetwork.node[5] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[5] nodeId 6
+par PeriyarRiverNetwork.node[5] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[5] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[5] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[5] residualEnergy 1.8579974301282702
+attr unit J
+scalar PeriyarRiverNetwork.node[5] alive 1
+scalar PeriyarRiverNetwork.node[5] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[5] txEnergy 0.13760256987172848
+attr unit J
+scalar PeriyarRiverNetwork.node[5] rxEnergy 0.004000000000000001
+attr unit J
+scalar PeriyarRiverNetwork.node[5] aggregationEnergy 4e-04
+attr unit J
+scalar PeriyarRiverNetwork.node[5] txFrames 38
+scalar PeriyarRiverNetwork.node[5] rxFrames 20
+scalar PeriyarRiverNetwork.node[5] qUpdates 38
+scalar PeriyarRiverNetwork.node[5] qTableNonZeroEntries 24
+par PeriyarRiverNetwork.node[6] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[6] nodeId 7
+par PeriyarRiverNetwork.node[6] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[6] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[6] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[6] residualEnergy 1.8815299134947316
+attr unit J
+scalar PeriyarRiverNetwork.node[6] alive 1
+scalar PeriyarRiverNetwork.node[6] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[6] txEnergy 0.11551008650526705
+attr unit J
+scalar PeriyarRiverNetwork.node[6] rxEnergy 0.0026000000000000007
+attr unit J
+scalar PeriyarRiverNetwork.node[6] aggregationEnergy 0.00036
+attr unit J
+scalar PeriyarRiverNetwork.node[6] txFrames 21
+scalar PeriyarRiverNetwork.node[6] rxFrames 13
+scalar PeriyarRiverNetwork.node[6] qUpdates 26
+scalar PeriyarRiverNetwork.node[6] qTableNonZeroEntries 14
+par PeriyarRiverNetwork.node[7] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[7] nodeId 8
+par PeriyarRiverNetwork.node[7] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[7] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[7] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[7] residualEnergy 1.8503778224579683
+attr unit J
+scalar PeriyarRiverNetwork.node[7] alive 1
+scalar PeriyarRiverNetwork.node[7] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[7] txEnergy 0.1438221775420314
+attr unit J
+scalar PeriyarRiverNetwork.node[7] rxEnergy 0.005199999999999999
+attr unit J
+scalar PeriyarRiverNetwork.node[7] aggregationEnergy 0.0006000000000000003
+attr unit J
+scalar PeriyarRiverNetwork.node[7] txFrames 38
+scalar PeriyarRiverNetwork.node[7] rxFrames 25
+scalar PeriyarRiverNetwork.node[7] qUpdates 42
+scalar PeriyarRiverNetwork.node[7] qTableNonZeroEntries 22
+par PeriyarRiverNetwork.node[8] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[8] nodeId 9
+par PeriyarRiverNetwork.node[8] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[8] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[8] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[8] residualEnergy 1.9248242816337773
+attr unit J
+scalar PeriyarRiverNetwork.node[8] alive 1
+scalar PeriyarRiverNetwork.node[8] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[8] txEnergy 0.06829571836622177
+attr unit J
+scalar PeriyarRiverNetwork.node[8] rxEnergy 0.006199999999999999
+attr unit J
+scalar PeriyarRiverNetwork.node[8] aggregationEnergy 0.0006800000000000004
+attr unit J
+scalar PeriyarRiverNetwork.node[8] txFrames 43
+scalar PeriyarRiverNetwork.node[8] rxFrames 28
+scalar PeriyarRiverNetwork.node[8] qUpdates 46
+scalar PeriyarRiverNetwork.node[8] qTableNonZeroEntries 19
+par PeriyarRiverNetwork.node[9] typename "\"SensorNode\""
+par PeriyarRiverNetwork.node[9] nodeId 10
+par PeriyarRiverNetwork.node[9] ackTimeout 0.02s
+attr unit s
+par PeriyarRiverNetwork.node[9] processingDelay 0.005s
+attr unit s
+par PeriyarRiverNetwork.node[9] bitRate 250000bps
+attr unit bps
+scalar PeriyarRiverNetwork.node[9] residualEnergy 1.9587565944345888
+attr unit J
+scalar PeriyarRiverNetwork.node[9] alive 1
+scalar PeriyarRiverNetwork.node[9] firstUnavailableRound nan
+scalar PeriyarRiverNetwork.node[9] txEnergy 0.035843405565410394
+attr unit J
+scalar PeriyarRiverNetwork.node[9] rxEnergy 0.004799999999999999
+attr unit J
+scalar PeriyarRiverNetwork.node[9] aggregationEnergy 0.0006000000000000002
+attr unit J
+scalar PeriyarRiverNetwork.node[9] txFrames 16
+scalar PeriyarRiverNetwork.node[9] rxFrames 21
+scalar PeriyarRiverNetwork.node[9] qUpdates 22
+scalar PeriyarRiverNetwork.node[9] qTableNonZeroEntries 15
+par PeriyarRiverNetwork typename "\"PeriyarRiverNetwork\""
+par PeriyarRiverNetwork numNodes 10
+

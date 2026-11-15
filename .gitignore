@@ -1,0 +1,26 @@
+# Build products (rebuild with build.sh / build_wireless.sh)
+*.exe
+*.dll
+*.o
+*.a
+*.lib
+*.pdb
+out/
+*_m.cc
+*_m.h
+__pycache__/
+*.pyc
+*.bak
+.settings/
+
+# Bulky per-event raw outputs: published as compressed GitHub Release assets,
+# listed with SHA-256 in docs/RAW_DATA_MANIFEST.md
+*-workload.csv
+*-reports.csv
+*-decisions.csv
+*-hops.csv
+*.vec
+*.vci
+*.bin
+!matlab_reference/**/*.bin
+release_assets/

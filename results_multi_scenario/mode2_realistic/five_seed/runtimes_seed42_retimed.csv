@@ -1,0 +1,11 @@
+config,seed,runtime_s,exit
+M2T_Water,42,10.92,0
+M2T_Effluent,42,14.90,0
+M2T_Air,42,13.44,0
+M2T_Soil,42,4.02,0
+M2T_Mixed,42,13.41,0
+M2F_Water,42,13.37,0
+M2F_Effluent,42,21.26,0
+M2F_Air,42,20.46,0
+M2F_Soil,42,3.86,0
+M2F_Mixed,42,17.09,0

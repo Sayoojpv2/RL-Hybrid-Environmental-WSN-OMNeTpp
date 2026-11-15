@@ -1,0 +1,32 @@
+comparison,scenario,metric,n,mean_diff,sd_diff,ci95_low,ci95_high,per_seed
+wireless - abstract,mixed,pdr_pct,5,44.71721277930865,1.5945393017746883,42.737648138936734,46.69677741968057,43.5299 44.5393 47.4968 44.0455 43.9746
+wireless - abstract,mixed,delivered,5,32780.4,1168.892980558956,31329.26034472896,34231.539655271044,31910 32650 34818 32288 32236
+wireless - abstract,mixed,meanHops,5,2.2468421474369102,0.3137181112367322,1.8573721109459242,2.6363121839278962,2.41274 1.88774 2.19751 2.68854 2.04767
+wireless - abstract,mixed,relay_top10_share_pct,5,9.581992473775056,1.8855743194075272,7.241118062377254,11.922866885172859,7.19465 8.78965 10.3616 12.2664 9.29774
+wireless - abstract,mixed,route_failures,5,-32780.4,1168.892980558956,-34231.539655271044,-31329.26034472896,-31910 -32650 -34818 -32288 -32236
+wireless - abstract,mixed,node_rounds,5,0.0,0.0,0.0,0.0,0 0 0 0 0
+wireless - abstract,mixed,residualJ,5,5.0564065904208295,1.0874670128590755,3.706354419344972,6.406458761496687,4.1198 5.16476 3.85335 6.47883 5.66529
+wireless - abstract,mixed,spentJ,5,-5.056406590422934,1.0874670128594053,-6.4064587614992,-3.7063544193466664,-4.1198 -5.16476 -3.85335 -6.47883 -5.66529
+wireless - abstract,mixed,energyPerDeliveredJ,5,-0.0005194074925028522,3.072414668191086e-05,-0.0005575504434539006,-0.0004812645415518038,-0.000472325 -0.000506358 -0.000538674 -0.000549396 -0.000530284
+wireless - abstract,mixed,path_delay_s,5,0.04595816953750738,0.002552300112288871,0.04278957842891503,0.04912676064609973,0.0468344 0.0430473 0.0447767 0.0498299 0.0453025
+wireless - abstract,mixed,qUpdates,5,120371.6,14390.170492388197,102506.70783713489,138236.49216286512,132182 107268 125944 133674 102790
+eventaware - wireless,mixed,pdr_pct,1,4.789512454642178,nan,nan,nan,4.78951
+eventaware - wireless,mixed,critical_pdr_pct,1,5.6933747500106335,nan,nan,nan,5.69337
+eventaware - wireless,mixed,critical_latency_s,1,-1.99078854960972,nan,nan,nan,-1.99079
+eventaware - wireless,mixed,critical_deadline_pct,1,94.0640823794732,nan,nan,nan,94.0641
+eventaware - wireless,mixed,warning_pdr_pct,1,4.29692696554477,nan,nan,nan,4.29693
+eventaware - wireless,mixed,warning_deadline_pct,1,4.29692696554477,nan,nan,nan,4.29693
+eventaware - wireless,mixed,routine_pdr_pct,1,4.3747635262958795,nan,nan,nan,4.37476
+eventaware - wireless,mixed,routine_latency_s,1,0.035463518948568584,nan,nan,nan,0.0354635
+eventaware - wireless,mixed,routine_deadline_pct,1,4.3747635262958795,nan,nan,nan,4.37476
+eventaware - wireless,mixed,routine_max_queue_s,1,-0.027833034374000004,nan,nan,nan,-0.027833
+eventaware - wireless,mixed,latency_s,1,-0.6332554153524943,nan,nan,nan,-0.633255
+eventaware - wireless,mixed,spentJ,1,1.6599258785975621,nan,nan,nan,1.65993
+eventaware - wireless,mixed,energyPerDeliveredJ,1,5.229423414715873e-06,nan,nan,nan,5.22942e-06
+eventaware - wireless,mixed,E_radio_active,1,122.52744186103882,nan,nan,nan,122.527
+eventaware - wireless,mixed,E_radio_dc,1,122.39784016871272,nan,nan,nan,122.398
+eventaware - wireless,mixed,sensing_J,1,0.0,nan,nan,nan,0
+eventaware - wireless,mixed,mac_tx,1,55376.0,nan,nan,nan,55376
+eventaware - wireless,mixed,mac_retries,1,-8652.0,nan,nan,nan,-8652
+eventaware - wireless,mixed,corrupted_rx,1,-249148.0,nan,nan,nan,-249148
+eventaware - wireless,mixed,node_rounds,1,0,nan,nan,nan,0

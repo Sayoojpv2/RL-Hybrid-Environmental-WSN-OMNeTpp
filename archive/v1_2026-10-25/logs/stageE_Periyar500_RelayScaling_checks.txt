@@ -1,0 +1,12 @@
+PASS seed 42: S1 500 battery-node modules (expected 500) and 1 BS
+PASS seed 42: S2 500 coordinates; nodes 1..50 bit-identical to MATLAB; 450 added relays inside 600 x 50 m, all distinct
+PASS seed 42: S3 workload identical to the MATLAB Periyar workload (9825 reports); report sources [4, 8, 12, 18, 22, 28, 32, 38, 42, 48]
+PASS seed 42: S4 nodes other than the 10 stations never originate reports or source actions (0 violations)
+PASS seed 42: S5 targets within 1..501 (max 501), to-BS actions target 501, states within 1..6561 (312 visited)
+PASS seed 42: S6 450 of 450 added relays were chosen as next hop or cluster head (450 as cluster head)
+PASS seed 42: S8 energy closes per node (max error 6.3e-14 J); spent 65.8955 + residual 934.1045 = 1000 J
+PASS seed 42: S9 10000 slots (1000 rounds); 9471 emitted = 3214 delivered + 6257 lost + 0 unattempted; each report counted once; BS count matches
+PASS seed 42: S10 2 nodes became unavailable; 0 late actions (0), 0 unavailable targets (0); max route hop 15
+PASS seed 42: S11 longest round 1.30 s of 10 s; 36325 Q-updates, 4630 exploratory decisions
+
+10 checks, 0 failed

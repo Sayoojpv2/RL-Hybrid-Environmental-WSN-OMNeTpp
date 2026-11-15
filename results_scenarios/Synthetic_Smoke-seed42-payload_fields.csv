@@ -1,0 +1,4 @@
+name,unit,origin,datasetColumn
+waterTemp,degC,SYNTHETIC,
+turbidity,NTU,SYNTHETIC,
+dissolvedOxygen,mg/L,SYNTHETIC,
