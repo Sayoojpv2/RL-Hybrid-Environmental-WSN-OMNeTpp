@@ -2,10 +2,10 @@
 
 ## Unreleased
 
-* `teacher_demo.cmd` / `teacher_demo.sh`: a menu that opens one of five existing 20-round configurations
-  (`V2_10Node_Smoke`, `GuiDemo20Rounds`, `Periyar250_GuiPreview`, `Synthetic_Smoke`, `W10_Smoke`) in Qtenv, each
-  writing to a new `runs/teacher_demo/<Config>-<timestamp>/` folder; `TEACHER_DEMO_GUIDE.md`.
-* `run_wireless.sh`: `OPP_UI` selects the user interface (default Cmdenv, unchanged).
+* `teacher_demo.cmd` / `teacher_demo.sh`: a menu that opens one of the five environmental scenarios of the existing
+  `V2_200Node_Environmental` configuration (water, effluent, air, soil, mixed; N = 200, seed 42) in Qtenv as a
+  20-round preview (command-line overrides only), each writing to a new `runs/teacher_demo/<scenario>/<timestamp>/`
+  folder; `TEACHER_DEMO_GUIDE.md` with the published five-seed results.
 
 ## v1.0.1 (16 Nov 2026): maintenance
 

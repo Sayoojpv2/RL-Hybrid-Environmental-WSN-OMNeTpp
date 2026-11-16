@@ -26,3 +26,4 @@ __pycache__/
 release_assets/
 runs/
 validation_runs/
+.qtenvrc

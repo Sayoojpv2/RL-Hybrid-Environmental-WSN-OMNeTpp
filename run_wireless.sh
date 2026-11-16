@@ -1,7 +1,6 @@
 #!/bin/bash
 # Runs a communicationModel = "ieee802154" configuration: loads INET 4.7.0 (NED path + libINET.dll) and the plugin
 # wireless/libRLHybridWireless.dll. The validated abstract configurations do not need this script.
-# OPP_UI=Qtenv opens the run in the GUI (teacher_demo.sh uses this); the default is Cmdenv.
 # Usage (OMNeT++ shell):  ./run_wireless.sh -c <Config> [-f <ini file>] [-r '<run filter>'] [other options]
 set -e
 cd "$(dirname "$0")"
@@ -16,4 +15,4 @@ case " $* " in
   *" --result-dir="*) out=() ;;
   *) out=(--result-dir="runs/wireless-$(date +%Y%m%d-%H%M%S)"); echo "result dir: ${out[0]#--result-dir=} (pass --result-dir to choose)" ;;
 esac
-exec ./RLHybrid_Scalability_Experiment -u "${OPP_UI:-Cmdenv}" -n ".;$(cygpath -m "$INET/src")" -l wireless/RLHybridWireless "${out[@]}" "$@"
+exec ./RLHybrid_Scalability_Experiment -u Cmdenv -n ".;$(cygpath -m "$INET/src")" -l wireless/RLHybridWireless "${out[@]}" "$@"

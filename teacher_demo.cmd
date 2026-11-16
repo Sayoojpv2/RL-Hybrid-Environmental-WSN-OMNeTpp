@@ -1,7 +1,7 @@
 @echo off
-rem Teacher demonstration menu: double-click to open one of five existing 20-round simulations in OMNeT++ Qtenv.
-rem Needs OMNETPP_ROOT (OMNeT++ 6.4.0 folder) and a built simulator (build.cmd); demo 5 also needs INET 4.7.0
-rem and build_wireless.cmd. See TEACHER_DEMO_GUIDE.md.
+rem Teacher demonstration menu: double-click to open one of the five environmental scenarios of the existing
+rem V2_200Node_Environmental configuration (200 nodes, seed 42, 20-round preview) in OMNeT++ Qtenv.
+rem Needs OMNETPP_ROOT (OMNeT++ 6.4.0 folder) and a built simulator (build.cmd). See TEACHER_DEMO_GUIDE.md.
 setlocal
 if not defined OMNETPP_ROOT (
   echo ERROR: OMNETPP_ROOT is not set. Set it once to your OMNeT++ 6.4.0 folder, for example:
@@ -23,13 +23,13 @@ set BAD=0
 
 :menu
 echo.
-echo  RL-Hybrid Environmental WSN - teacher demonstration (OMNeT++ Qtenv)
+echo  RL-Hybrid environmental WSN - 200 nodes, Qtenv demonstration
 echo.
-echo   1. 10-node Periyar real-data demo
-echo   2. 50-node MATLAB-equivalent demo   (recommended first)
-echo   3. 250-node network preview
-echo   4. Synthetic environmental monitoring demo
-echo   5. IEEE 802.15.4 wireless demo
+echo   1. Water quality monitoring
+echo   2. Industrial effluent monitoring
+echo   3. Air quality monitoring
+echo   4. Soil monitoring
+echo   5. Mixed environmental monitoring
 echo   6. Exit
 echo.
 set "K="
