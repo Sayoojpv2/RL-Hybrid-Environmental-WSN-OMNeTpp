@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+* `teacher_demo.cmd` / `teacher_demo.sh`: a menu that opens one of five existing 20-round configurations
+  (`V2_10Node_Smoke`, `GuiDemo20Rounds`, `Periyar250_GuiPreview`, `Synthetic_Smoke`, `W10_Smoke`) in Qtenv, each
+  writing to a new `runs/teacher_demo/<Config>-<timestamp>/` folder; `TEACHER_DEMO_GUIDE.md`.
+* `run_wireless.sh`: `OPP_UI` selects the user interface (default Cmdenv, unchanged).
+
 ## v1.0.1 (16 Nov 2026): maintenance
 
 Scripts and documentation only. No C++, NED, configuration value, dataset or experimental result was changed, and

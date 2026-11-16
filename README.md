@@ -49,6 +49,7 @@ algorithm and between algorithm options.
 ## Documentation
 
 * [PROJECT_REPORT.md](PROJECT_REPORT.md): the complete project report.
+* [TEACHER_DEMO_GUIDE.md](TEACHER_DEMO_GUIDE.md): five short Qtenv demonstrations from one menu (`teacher_demo.cmd`).
 * [docs/EXPERIMENT_STATUS.md](docs/EXPERIMENT_STATUS.md): every experiment, labelled complete, single-seed, partial, failed or smoke test.
 * [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): modules, data flow and energy accounting.
 * [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md): build, run and analyse; raw-data archives.
